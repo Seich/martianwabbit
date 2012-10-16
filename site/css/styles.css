@@ -113,6 +113,11 @@ header#title a {
 	color: #999;
 }
 
+.media-anouncement {
+	margin-top: 30px;
+	font-style: italic;
+}
+
 /* about me */
 .about-me h1 {
 	font-size: 72px;
