@@ -1,0 +1,14 @@
+<p>﻿&#8212; layout: post</p>
+
+<h2 id='title_implementing_html5_video_fallbacks'>title: &#8220;Implementing HTML5 Video fallbacks&#8221;</h2>
+
+<p>The new video tag in HTML5 has to be one of the biggest dissapointments I&#8217;ve had in the recent years. It has nothing to do with how it works because, when it does work it is awesome but when it doesn&#8217;t, there&#8217;s a lot of pain involved. This is mostly due to formats, I won&#8217;t be getting into this as much since, it&#8217;s been discussed a lot lately.</p>
+
+<p>I&#8217;ll be discussing how to handle fallbacks. The current way to do it, basically uses the video tag where available and fallbacks to flash. This is fine, except that the requirements to use pure html video, involves uploading the same video in different formats. This sucks. Ideally you&#8217;d be able to use a single format but, browsers don&#8217;t agree on what format to use so, you need to provide various &#8220;sources&#8221; to cater to all these differences.</p>
+
+<p>The problem truly appears when you only want to use one source. For example: If you provide an MP4 video, you&#8217;d expect Chrome and Safari to be able to play it and everyone else who doesn&#8217;t support it to fallback to flash. Unfortunately, most solutions out there will only check if they video tag is supported and then let the browser handle the rest. If you only provided the MP4 source, this will break in Firefox, who will only tell you it&#8217;s not supported.</p>
+
+<p>The solution to this is quite forward, all you need to do is check the formats provided and check if they can be played by the browser and fallback based on this rather than on the video tag being supported. Here&#8217;s a simple solution to this issue (I use flowplayer because I love it&#8217;s javascript API and jQuery because I don&#8217;t feel like writting too much) :</p>
+
+<pre><code>var Hello = &quot;World&quot;;
+// How are you doing.</code></pre>

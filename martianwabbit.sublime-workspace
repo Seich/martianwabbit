@@ -107,6 +107,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/index.html",
+			"settings":
+			{
+				"buffer_size": 253,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/_layouts/default.html",
+			"settings":
+			{
+				"buffer_size": 1194,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/css/styles.css",
+			"settings":
+			{
+				"buffer_size": 2537,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -117,6 +141,14 @@
 			[
 				"close",
 				"Project: Close"
+			],
+			[
+				"comb",
+				"Sort via CSScomb"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
 			],
 			[
 				"save",
@@ -133,10 +165,6 @@
 			[
 				"wrap",
 				"Word Wrap: Toggle"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"ss js",
@@ -243,7 +271,7 @@
 				"Git: Status"
 			]
 		],
-		"width": 386.0
+		"width": 357.0
 	},
 	"console":
 	{
@@ -260,6 +288,7 @@
 	},
 	"file_history":
 	[
+		"/E/SKIDROW/Binaries/Win32/SKIDROW.ini",
 		"/C/Users/Seich/Downloads/peepcode-072-pbp-wycats-i-mov/links-mentioned.txt",
 		"/C/Users/Seich/Documents/Projects/martianwabbit.com/martianwabbit.sublime-workspace",
 		"/C/Users/Seich/Documents/Projects/martianwabbit.com/martianwabbit.sublime-project",
@@ -520,8 +549,90 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/index.html",
+					"settings":
+					{
+						"buffer_size": 253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								204,
+								204
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/_layouts/default.html",
+					"settings":
+					{
+						"buffer_size": 1194,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								504,
+								504
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 43.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/css/styles.css",
+					"settings":
+					{
+						"buffer_size": 2537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								252,
+								253
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -570,6 +681,18 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				".css",
+				"src/css/styles.css"
+			],
+			[
+				"default",
+				"src/_layouts/default.html"
+			],
+			[
+				"index.",
+				"src/index.html"
+			],
 			[
 				"about",
 				"site/about/index.html"
@@ -624,7 +747,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 168.0,
 	"status_bar_visible": true
 }
