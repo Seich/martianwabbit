@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "Once Again, Daydreaming."
 ---
