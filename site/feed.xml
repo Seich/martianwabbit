@@ -7,6 +7,20 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Hiding elements when they lose focus with jQuery</title>
+				<description>&lt;p&gt;There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/4502881.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.&lt;/p&gt;
+
+&lt;p&gt;So far, I like this method a lot, mostly because it is simple and gets things done quickly.&lt;/p&gt;</description>
+				<pubDate>Thu, 10 Jan 2013 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2013/01/10/onBlur-for-divs-with-jquery.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2013/01/10/onBlur-for-divs-with-jquery.html</guid>
+			</item>
+		
+			<item>
 				<title>New Year's Resolutions 2013</title>
 				<description>&lt;p&gt;I&amp;#8217;ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I&amp;#8217;ve been saying I&amp;#8217;ll start blogging more often for a couple of years now and I keep failing. I&amp;#8217;ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don&amp;#8217;t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that&amp;#8217;s how I roll.&lt;/p&gt;
 

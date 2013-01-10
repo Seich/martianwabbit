@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Seichy's Missing Bit  | Hiding elements when they lose focus with jQuery </title>
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="/feed.xml" />
+	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+</head>
+<body>
+	<div class="container">
+		<nav id="top">
+			<ul>
+				<li><a href="/">Posts</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+		</nav>
+		
+		<header id="title">
+			<h1><a href="/">Seichy's Missing Bit</a></h1>
+		</header>
+		
+		<section class="post">
+	<h1><a href="/2013/01/10/onBlur-for-divs-with-jquery.html">Hiding elements when they lose focus with jQuery</a></h1>
+	<time>January 10, 2013</time>
+	<p>There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:</p>
+
+<script src="https://gist.github.com/4502881.js"></script>
+
+<p>As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.</p>
+
+<p>So far, I like this method a lot, mostly because it is simple and gets things done quickly.</p>
+</section>
+	
+<section class="media-anouncement">
+	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
+</section>
+
+		
+		<footer>
+			David Sergio D&iacute;az &copy; All Rights Reserved.
+		</footer>
+	</div>
+	<script>
+        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>
+		
