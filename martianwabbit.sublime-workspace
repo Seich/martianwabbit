@@ -4,274 +4,210 @@
 		"selected_items":
 		[
 			[
-				"border",
-				"border-radius"
+				"bl",
+				"darkBlue"
 			],
 			[
-				"mar",
-				"margin-top"
-			],
-			[
-				"font",
-				"font-size"
-			],
-			[
-				"about",
-				"about-me"
-			],
-			[
-				"margin",
-				"margin-right"
-			],
-			[
-				"bol",
-				"bold"
-			],
-			[
-				"pad",
-				"padding"
+				"pu",
+				"purple"
 			],
 			[
 				"text",
-				"text-align"
-			],
-			[
-				"tex",
 				"text-decoration"
 			],
 			[
-				"fon",
-				"font-size"
-			],
-			[
-				"borrr",
-				"border-right"
-			],
-			[
-				"ma",
-				"margin-right"
-			],
-			[
-				"chat",
-				"chat-box"
-			],
-			[
-				"marg",
-				"margin-bottom"
-			],
-			[
-				"in",
-				"inline-block"
-			],
-			[
-				"acti",
-				"active"
+				"list",
+				"list:n	list-style-type:none"
 			],
 			[
 				"ch",
-				"channel"
+				"channelUsers"
 			],
 			[
-				"icon",
-				"icon-alone"
-			],
-			[
-				"padding",
-				"padding-left"
-			],
-			[
-				"padd",
-				"padding"
+				"app",
+				"appendUser"
 			],
 			[
 				"cha",
-				"chat-box"
+				"channels"
 			],
 			[
-				"vide",
-				"videoContainer"
+				"hide",
+				"hideModal"
 			],
 			[
-				"n",
-				":nth-child(|)"
+				"lo",
+				"login"
 			],
 			[
-				"cla",
-				"cla	class .. initialize .. end"
+				"soc",
+				"socket"
 			],
 			[
-				"inline",
-				"inline-block"
+				"disconn",
+				"disconnected"
+			],
+			[
+				"sock",
+				"socket"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"show",
+				"showModal"
+			],
+			[
+				"old",
+				"oldValue"
+			],
+			[
+				"e",
+				"event"
+			],
+			[
+				"eve",
+				"events"
+			],
+			[
+				"ev",
+				"events"
+			],
+			[
+				"arg",
+				"arguments"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"ob",
+				"obj"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/index.html",
+			"file": "src/_posts/2013-01-05-new-years-resolutions-2013.md",
 			"settings":
 			{
-				"buffer_size": 253,
+				"buffer_size": 1644,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/_layouts/default.html",
-			"settings":
-			{
-				"buffer_size": 1194,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/css/styles.css",
-			"settings":
-			{
-				"buffer_size": 2537,
-				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 135.0,
+		"height": 285.0,
 		"selected_items":
 		[
 			[
-				"close",
-				"Project: Close"
-			],
-			[
-				"comb",
-				"Sort via CSScomb"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"save",
 				"Project: Save As"
-			],
-			[
-				"start",
-				"SublimeServer: Restart SublimeServer"
-			],
-			[
-				"user",
-				"Preferences: Settings - User"
 			],
 			[
 				"wrap",
 				"Word Wrap: Toggle"
 			],
 			[
-				"ss js",
-				"Set Syntax: JavaScript"
+				"save ",
+				"Project: Save As"
 			],
 			[
-				"stop",
-				"SublimeServer: Stop SublimeServer"
+				"close",
+				"Project: Close"
 			],
 			[
-				"subl",
-				"SublimeServer: Start SublimeServer"
-			],
-			[
-				"ss ja",
-				"Set Syntax: Java"
-			],
-			[
-				"ins",
-				"Package Control: Install Package"
-			],
-			[
-				"enable",
+				"enabl",
 				"Package Control: Enable Package"
-			],
-			[
-				"server",
-				"SublimeServer: Start SublimeServer"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"disa",
 				"Package Control: Disable Package"
 			],
 			[
-				"disab",
-				"Package Control: Disable Package"
+				"ss ruby",
+				"Set Syntax: Ruby"
 			],
 			[
-				"disable",
-				"Package Control: Disable Package"
+				"star",
+				"SublimeServer: Start SublimeServer"
 			],
 			[
-				"remo",
-				"Package Control: Remove Package"
+				"prefi",
+				"Preferences: Prefixr Key Bindings – Default"
+			],
+			[
+				"ss sas",
+				"Set Syntax: Sass"
+			],
+			[
+				"ss css",
+				"Set Syntax: CSS"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ser st",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"start",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"ss sass",
+				"Set Syntax: Sass"
 			],
 			[
 				"instal",
 				"Package Control: Install Package"
 			],
 			[
-				"add repo",
-				"Package Control: Add Repository"
-			],
-			[
-				"server stat",
+				"server",
 				"SublimeServer: Start SublimeServer"
 			],
 			[
-				"ss c++",
-				"Set Syntax: C++"
+				"dis",
+				"Package Control: Disable Package"
 			],
 			[
-				"lua",
-				"Set Syntax: Lua"
-			],
-			[
-				"setting",
-				"Preferences: Settings - Default"
-			],
-			[
-				"server str",
-				"SublimeServer: Start SublimeServer"
-			],
-			[
-				"ss java",
+				"ss js",
 				"Set Syntax: JavaScript"
 			],
 			[
-				"git push",
-				"Git: Push"
+				"ss diff",
+				"Set Syntax: Diff"
 			],
 			[
-				"git co",
-				"Git: Commit"
+				"remov",
+				"Package Control: Remove Package"
 			],
 			[
-				"git add",
-				"Git: Add..."
+				"sass",
+				"Set Syntax: Sass"
 			],
 			[
-				"git st",
-				"Git: Status"
+				"insta",
+				"Package Control: Install Package"
 			],
 			[
-				"git com",
-				"Git: Commit"
-			],
-			[
-				"git statu",
-				"Git: Status"
+				"install",
+				"Package Control: Install Package"
 			]
 		],
-		"width": 357.0
+		"width": 386.0
 	},
 	"console":
 	{
@@ -288,141 +224,74 @@
 	},
 	"file_history":
 	[
-		"/E/SKIDROW/Binaries/Win32/SKIDROW.ini",
-		"/C/Users/Seich/Downloads/peepcode-072-pbp-wycats-i-mov/links-mentioned.txt",
-		"/C/Users/Seich/Documents/Projects/martianwabbit.com/martianwabbit.sublime-workspace",
-		"/C/Users/Seich/Documents/Projects/martianwabbit.com/martianwabbit.sublime-project",
-		"/C/Users/Seich/Documents/Projects/martianwabbit.com/src/css/styles.css",
-		"/C/Users/Seich/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/Seich/Desktop/mwps/src/404.html",
-		"/C/Users/Seich/Desktop/mwps/src/css/styles.css",
-		"/C/Users/Seich/Dropbox/ciri25.txt",
-		"/C/Users/Seich/AppData/Local/Temp/fz3temp-1/.htaccess",
-		"/C/Users/Seich/Desktop/mwps/src/_layouts/default.html",
-		"/C/Users/Seich/Desktop/mwps/src/css/pictonic.css",
-		"/C/Users/Seich/Desktop/mwps/src/about/index.html",
-		"/C/Users/Seich/Desktop/mwps/site/css/pictonic.css",
-		"/C/Users/Seich/Desktop/mwps/.gitignore",
-		"/C/Users/Seich/Desktop/mwps/_config.yml",
-		"/C/Users/Seich/AppData/Local/Temp/Temp1_pictonic.zip/css/pictonic.css",
-		"/C/Users/Seich/Desktop/mwps/site/_site/css/normalize.css",
-		"/C/Users/Seich/Desktop/mwps/_plugins/less.rb",
-		"/C/Users/Seich/Desktop/mwps/src/_layouts/post.html",
-		"/C/Users/Seich/Desktop/mwps/src/index.html",
-		"/C/Users/Seich/Desktop/mwps/site/about/index.html",
-		"/C/Users/Seich/Desktop/static blog/src/css/styles.css",
-		"/C/Users/Seich/Desktop/static blog/src/_posts/2012-10-15-housekeeping.md",
-		"/C/Users/Seich/Desktop/static blog/src/_posts/2012-05-28-23951072604.md",
-		"/C/Users/Seich/Desktop/static blog/src/_posts/2012-07-30-28387444881.md",
-		"/C/Users/Seich/Desktop/static blog/src/_posts/2011-12-04-13742736909.md",
-		"/C/Users/Seich/Desktop/static blog/src/_posts/2011-04-04-4344642365.html",
-		"/C/Users/Seich/Desktop/static blog/src/_posts/2011-07-11-7516077182.md",
-		"/C/Users/Seich/Desktop/static blog/_layouts/default.html",
-		"/C/Users/Seich/Desktop/static blog/index.html",
-		"/C/Users/Seich/Desktop/static blog/about/index.html",
-		"/C/Users/Seich/Desktop/static blog/_layouts/post.html",
-		"/C/Users/Seich/Desktop/static blog/_config.yml",
-		"/C/Users/Seich/Desktop/static blog/_posts/2012-10-15-hello.md",
-		"/C/Users/Seich/Desktop/static blog/_posts/2011-07-11-7516077182.md",
-		"/C/Users/Seich/Desktop/static blog/_posts/2011-12-04-13742736909.md",
-		"/C/Users/Seich/Desktop/static blog/_posts/2012-05-28-23951072604.md",
-		"/C/Users/Seich/Desktop/static blog/_posts/2012-07-30-28387444881.md",
-		"/C/Users/Seich/Desktop/static blog/_posts/2011-01-29-2996959634.md",
-		"/C/Users/Seich/Desktop/static blog/_posts/2011-04-04-4344642365.md",
-		"/C/Users/Seich/Desktop/static blog/css/styles.css",
-		"/C/Users/Seich/Desktop/static blog/_posts/2012-10-15.md",
-		"/C/Users/Seich/Desktop/static blog/_layouts/blog_entry.html",
-		"/C/Users/Seich/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/Users/Seich/Desktop/static blog/_layout/default.html",
-		"/C/Users/Seich/Desktop/mwps/index.html",
-		"/C/Users/Seich/Desktop/mwps/css/styles.css",
-		"/C/Users/Seich/Desktop/mwps/css/normalize.css",
-		"/C/Users/Seich/Desktop/mwps/css/kube.css",
-		"/C/Users/Seich/Desktop/mwps/css/master.css",
-		"/C/Users/Seich/Desktop/starter-kit/css/style.css",
-		"/C/Users/Seich/Desktop/starter-kit/index.html",
-		"/C/Users/Seich/Desktop/starter-kit/js/app.js",
-		"/C/Users/Seich/Desktop/starter-kit/TODO.txt",
-		"/C/Users/Seich/Downloads/x-o.htm",
-		"/C/Users/Seich/AppData/Local/Temp/Temp1_kube101.zip/kube101/css/kube.css",
-		"/C/Users/Seich/Documents/Projects/mwps/css/styles.css",
-		"/C/Users/Seich/Downloads/main.js",
-		"/C/Users/Seich/Desktop/ArtistSiteBase/index.html",
-		"/C/Users/Seich/Desktop/ArtistSiteBase/mail.php",
-		"/C/Users/Seich/Desktop/ArtistSiteBase/css/cabin.css",
-		"/C/Users/Seich/Documents/Projects/mwps/index.html",
-		"/C/Users/Seich/Desktop/ArtistSiteBase/gallery.php",
-		"/C/Users/Seich/Downloads/index.html",
-		"/C/Users/Seich/AppData/Roaming/Sublime Text 2/Packages/JavaScript/console.log.sublime-snippet",
-		"/C/Users/Seich/Desktop/a.js",
-		"/C/Users/Seich/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/README.rst",
-		"/F/Repositories/Xunsu/css/screen.css",
-		"/F/Repositories/Xunsu/index.html",
-		"/C/Users/Seich/AppData/Local/Temp/fz3temp-1/server.js",
-		"/C/Users/Seich/AppData/Local/Temp/Temp1_entypo98087.zip/entypo98087/style.css",
-		"/C/Users/Seich/Downloads/entypo51071/entypo51071/lte-ie7.js",
-		"/F/Repositories/Xunsu/css/fonts/stylesheet.css",
-		"/F/Repositories/Xunsu/css/normalize.css",
-		"/C/Users/Seich/Downloads/Project4/Project4/src/project4/Vertice.java",
-		"/C/Users/Seich/Downloads/Project4/Project4/src/project4/Grafo.java",
-		"/C/Users/Seich/Desktop/Graphs/Vertex.rb",
-		"/C/Users/Seich/Documents/workspace/primeNumberGenerator/src/Main.java",
-		"/F/Bash/ConEmu/ConEmu.xml",
-		"/C/Users/Seich/.ssh/known_hosts",
-		"/C/Users/Seich/Desktop/mwps.phpfogapp.com/index.html",
-		"/C/Users/Seich/Desktop/mwps.phpfogapp.com/js/main.js",
-		"/C/Users/Seich/Desktop/mwps.phpfogapp.com/stylesheets/tileFramework.css",
-		"/C/Users/Seich/Desktop/mwps.phpfogapp.com/js/laureate.videofy.js",
-		"/C/Program Files (x86)/Data Realms/Cortex Command/Base.rte/Activities/EndlessSkirmish.lua",
-		"/C/Program Files (x86)/Data Realms/Cortex Command/Browncoats.rte/Devices/Weapons/Rifles.ini",
-		"/C/Users/Seich/.ssh/id_rsa.pub",
-		"/C/Program Files (x86)/Data Realms/Cortex Command/Base.rte/Activities/Unused/ZombiePit.lua",
-		"/C/Program Files (x86)/Data Realms/Cortex Command/Base.rte/Activities/BrainVsBrain.lua",
-		"/C/Program Files (x86)/Data Realms/Cortex Command/Missions.rte/Activities/Dummy Assault.lua",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"//LOCAL/dev/Xunsu/app/controllers/header_controller.coffee",
-		"/C/Users/Seich/Desktop/Xunsu/css/main.css",
-		"/C/Users/Seich/Desktop/Xunsu/index.html",
-		"/C/Users/Seich/Desktop/Xunsu/js/main.js",
-		"/C/Users/Seich/Desktop/Xunsu/js/bootstrap.js",
-		"/C/Users/Seich/Desktop/fancyname/newrelic.yml",
-		"/C/Users/Seich/Desktop/fancyname/Guardfile",
-		"/C/Users/Seich/Desktop/fancyname/Gemfile",
-		"/C/Users/Seich/Desktop/fancyname/Gemfile.lock",
-		"/C/Users/Seich/Desktop/Nueva carpeta/Battle/BoatGH.ctxt",
-		"/C/Users/Seich/Desktop/Nueva carpeta/thresher/IRC/source/WhoisInfo.cs",
-		"/C/Users/Seich/Desktop/notes.txt",
-		"/C/Users/Seich/Desktop/index.html",
-		"/C/Users/Seich/Desktop/mwps/assets/stylesheets/layout.css",
-		"/C/Users/Seich/Desktop/test.txt - copia",
-		"/C/Users/Seich/Desktop/test.txt.huff",
-		"/C/Users/Seich/Desktop/test2.txt.huff",
-		"/C/Users/Seich/Desktop/mwps.psd",
-		"/C/Users/Public/Desktop/Unity.lnk",
-		"/C/Users/Seich/AppData/Local/Temp/7zOC7878852/BitOutputStream.java",
-		"/C/Users/Seich/Documents/Google Drive/Resume.gdoc",
-		"/C/Users/Seich/Documents/Google Drive/Taiwan IT Industry.gslides",
-		"/C/Users/Seich/Desktop/mwps/assets/stylesheets/skeleton.css",
-		"/C/Users/Seich/Documents/Code Repositories/seich.github.com/index.md",
-		"/C/Users/Seich/Downloads/t.txt",
-		"/C/Users/Seich/Documents/New Unity Project/Assets/NewBehaviourScript.cs",
-		"/C/Users/Seich/Documents/workspace/Timing Factorials/f1.csv",
-		"/C/Users/Seich/Documents/workspace/Timing Factorials/f2.csv",
-		"/C/Users/Seich/Documents/Code Repositories/Tiling/tiling.css",
-		"/C/Users/Seich/Documents/Code Repositories/Tiling/index.html",
-		"/C/Users/Seich/AppData/Roaming/Sublime Text 2/Packages/ZenCoding/Default.sublime-keymap",
-		"/C/Users/Seich/Desktop/screen.css"
+		"/C/Users/Sergio/Documents/Projects/bootstrap/index.html",
+		"/C/Users/Sergio/Documents/Projects/bootstrap/css/screen.scss",
+		"/C/Users/Sergio/Documents/Projects/bootstrap/css/normalize.css",
+		"/C/Users/Sergio/Documents/Projects/bootstrap/css/screen.css",
+		"/C/Users/Sergio/Documents/Projects/bootstrap/css/bootstrap.css",
+		"/C/Users/Sergio/Documents/Projects/bootstrap/Gemfile",
+		"/C/Users/Sergio/Documents/Projects/bootstrap/Guardfile",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/LiveReload/LiveReload.sublime-settings",
+		"/C/Users/Sergio/Desktop/bootstrap/css/bootstrap-responsive.css",
+		"/C/Users/Sergio/Desktop/bootstrap/css/bootstrap.css",
+		"/C/Users/Sergio/Desktop/bootstrap/css/screen.scss",
+		"/C/Users/Sergio/Desktop/bootstrap/index.html",
+		"/C/Windows/System32/Drivers/etc/hosts",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/Prefixr/Default (Windows).sublime-keymap",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/index.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/css/styles.css",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2012-11-06-Once-again-day-dreaming.md",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/site/2012/11/06/Once-again-day-dreaming.html",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/User/LiveReload.sublime-settings",
+		"/C/Users/Sergio/Desktop/bootstrap/css/screen.css",
+		"/C/Users/Sergio/Desktop/bootstrap/css/screen.scss.css",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/SublimeServer/SublimeServer.py",
+		"/C/Users/Sergio/Desktop/lchat/frontend/index.html",
+		"/C/Users/Sergio/Desktop/lchat/frontend/css/screen.css",
+		"/C/Users/Sergio/Desktop/lchat/app.js",
+		"/C/Users/Sergio/Desktop/lchat/frontend/js/main.js",
+		"/C/Users/Sergio/Documents/Unity/MicroRacer/Assets/Standard Assets/playerController.cs",
+		"/C/Users/Sergio/Documents/Unity/MicroRacer/Assets/Standard Assets/Character Controllers/Sources/Scripts/CharacterMotor.js",
+		"/C/Users/Sergio/Dropbox/Game Projects/Dummy Field/Assets/Dummy/Scripts/Movement.cs",
+		"/C/Users/Sergio/Desktop/lchat/node_modules/irc/lib/irc.js",
+		"/C/Users/Sergio/Desktop/charles/lib/charles.observe.js",
+		"/C/Users/Sergio/Desktop/charles/lib/charles.build.js",
+		"/C/Users/Sergio/Desktop/lchat/frontend/js/charles.js",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/JavaScript/Get-Elements.sublime-snippet",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/JavaScript/if-___-else.sublime-snippet",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/JavaScript/if.sublime-snippet",
+		"/C/Users/Sergio/Desktop/charles/grunt.js",
+		"/C/Users/Sergio/AppData/Roaming/Sublime Text 2/Packages/JavaScript/console.log.sublime-snippet",
+		"/C/Users/Sergio/Desktop/charles/index.html",
+		"/C/Program Files (x86)/Steam/steamapps/common/Battlefield Bad Company 2/installscript.vdf",
+		"/C/Users/Sergio/Desktop/lchat/frontend/js/libs/handlebars.js",
+		"/C/Users/Sergio/Desktop/lchat/frontend/js/router.js",
+		"/C/Users/Sergio/.bashrc",
+		"/C/Program Files/nodejs/nodejsvars.bat",
+		"/C/Program Files/nodejs/npm",
+		"/C/Program Files/nodejs/npm.cmd",
+		"/C/Users/Sergio/Desktop/lchat/.gitignore",
+		"/C/Users/Sergio/Desktop/InfoJoven/Gemfile",
+		"/C/Users/Sergio/Desktop/InfoJoven/app/assets/stylesheets/application.css",
+		"/C/Users/Sergio/Desktop/InfoJoven/app/assets/stylesheets/scaffolds.css.scss",
+		"/C/Users/Sergio/Desktop/InfoJoven/db/schema.rb",
+		"/C/Users/Sergio/Desktop/InfoJoven/app/assets/javascripts/people.js",
+		"/C/Users/Sergio/Documents/workspace/Arbol/src/arbol/TreeNode.java",
+		"/C/Program Files (x86)/Steam/steamapps/common/Borderlands 2/installscript.vdf"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 98.0,
 		"where_history":
 		[
-			"<open folders>"
 		]
 	},
 	"find_state":
@@ -430,108 +299,96 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"files",
-			"../font/",
-			"0.8",
-			"padding: 1em;\n	background: rgba(133, 99, 99, 0.02);",
-			"../font/",
-			"styles",
-			"---\n",
-			"inline",
-			"nav",
-			"h1",
-			"<img",
-			"img",
-			"source",
-			"src",
-			"---",
-			"img",
-			":",
-			"auto",
-			"---",
-			".container > ",
-			"+",
-			"section",
-			"\n				<li>\n					<h1><a href=\"#\">Hello world</a><small>02/25/1992</small></h1>\n					<p>Totally helloing your world...</p>\n				</li>",
-			"#",
-			"body",
-			"header",
-			"container",
-			"#444",
-			"scroll",
-			"==",
-			"Archive",
-			"div",
-			"700",
-			"100",
-			"width",
-			"python",
-			"%;",
-			"screen",
-			"Seich",
-			"#screen",
-			"Begins",
-			"999",
-			"ccc",
-			"c8c8c8",
-			"ccc",
-			"aaa",
-			"hover",
-			"b9b9b9",
-			"F4F4F4",
-			"90",
-			"F4F4F4",
-			"E9E9E9",
-			"F4F4F4",
-			"Archive",
-			";\n",
-			"a",
-			"input",
-			"555",
-			"333",
-			"444",
-			"em",
-			"Seich",
-			"padding",
-			"1px",
-			"ddd",
-			"primes",
-			"limit",
+			"background",
+			"top",
+			"ul",
+			"li",
+			"brown",
 			",",
-			"public",
-			"preview",
-			"1000000",
-			"sr-6",
-			"mass",
-			"sr-06",
-			"Bullet",
-			"sr-06",
-			"rte.StartingFundsScale",
-			" +",
-			"myArray",
-			"msgBox",
-			"$(\"#msg\")",
-			"Itha92",
-			"h3",
-			"div",
-			"btn-mini",
-			"row-fluid",
+			"yellow",
+			"red",
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tortor neque, posuere et tristique id, laoreet et turpis.",
+			"darkBlue",
+			"body",
+			"font",
+			"Lorem ipsum dolor sit amet...",
+			"Encuentra oportunidades de trabajo en tu comunidad, en Honduras o en paises aledaños.",
+			"span4",
+			"span6",
+			"em",
+			"sass",
+			"45deg",
 			"span",
-			"Settings",
-			"Events",
-			"Marketing",
-			"h1",
-			"name",
-			"10",
+			"@media",
+			"body",
+			"navbar",
+			"welcome",
+			"span4",
+			"bootstrap",
+			"Horizontal",
+			"forward",
+			"updateNames",
+			"text",
+			"log",
+			".users",
+			"this",
+			"users",
+			"list",
+			"this",
+			"client",
+			"clients[socket.id]",
+			"modal",
 			"div",
-			"stylesheets",
-			"images",
-			"E",
-			"[]",
-			"r.size()",
-			"length",
-			"Object",
-			"doctype"
+			"showModal",
+			"toggleModal",
+			"$overlay",
+			"$app",
+			"toggleOverlay",
+			"modal",
+			"{\n",
+			"client",
+			"Client",
+			"client",
+			"Client",
+			"client",
+			"Client",
+			"client",
+			"null",
+			".\");",
+			"newValue",
+			"nickname",
+			"Email",
+			"email",
+			"show",
+			"true",
+			"folder",
+			"true",
+			"false",
+			"Light",
+			"obj",
+			"Super",
+			"Dark",
+			"d",
+			"__extends",
+			"hello",
+			"test",
+			"handler",
+			"callback",
+			"key",
+			":",
+			"on",
+			"addListener",
+			"create",
+			"value",
+			"unbind",
+			"bind",
+			"first_argument",
+			"method_name",
+			"backbone",
+			"prod",
+			"scroll",
+			"scroll bar",
+			"default"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -549,83 +406,30 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/index.html",
+					"file": "src/_posts/2013-01-05-new-years-resolutions-2013.md",
 					"settings":
 					{
-						"buffer_size": 253,
+						"buffer_size": 1644,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								204,
-								204
+								1644,
+								1644
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/_layouts/default.html",
-					"settings":
-					{
-						"buffer_size": 1194,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								504,
-								504
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 43.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/css/styles.css",
-					"settings":
-					{
-						"buffer_size": 2537,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								252,
-								253
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"spell_check": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -669,7 +473,7 @@
 	"menu_visible": false,
 	"output.git":
 	{
-		"height": 102.0
+		"height": 132.0
 	},
 	"replace":
 	{
@@ -682,52 +486,44 @@
 		"selected_items":
 		[
 			[
-				".css",
-				"src/css/styles.css"
+				"scre",
+				"bootstrap/css/screen.css"
 			],
 			[
-				"default",
-				"src/_layouts/default.html"
+				"boo",
+				"bootstrap/css/bootstrap.css"
 			],
 			[
-				"index.",
-				"src/index.html"
+				"gem",
+				"bootstrap/Gemfile"
 			],
 			[
-				"about",
-				"site/about/index.html"
+				"gua",
+				"bootstrap/Guardfile"
 			],
 			[
-				"confi",
-				"_config.yml"
+				"screen",
+				"bootstrap/css/screen.css"
 			],
 			[
-				"blog",
-				"_layouts/blog_entry.html"
+				"gu",
+				"bootstrap/Guardfile"
 			],
 			[
-				"",
-				"css/styles.css"
+				"guar",
+				"bootstrap/Guardfile"
 			],
 			[
-				"mast",
-				"css/master.css"
+				"day",
+				"src/_posts/2012-11-06-Once-again-day-dreaming.md"
 			],
 			[
-				"css",
-				"css/style.css"
+				"daydre",
+				"martianwabbit.com/site/2012/11/06/Once-again-day-dreaming.html"
 			],
 			[
-				"s",
-				"css/screen.css"
-			],
-			[
-				"video",
-				"js/laureate.videofy.js"
-			],
-			[
-				"main",
-				"js/main.js"
+				"scr",
+				"bootstrap/css/screen.css"
 			]
 		],
 		"width": 0.0
@@ -739,7 +535,7 @@
 		[
 			[
 				"",
-				"/C/Users/Seich/Documents/Projects/martianwabbit.com/martianwabbit.com"
+				"/C/Users/Sergio/Documents/Projects/InfoJoven.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -748,6 +544,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 168.0,
+	"side_bar_width": 232.0,
 	"status_bar_visible": true
 }

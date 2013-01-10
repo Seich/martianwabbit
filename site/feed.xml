@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Seichy's Missing Bit</title>
+		<description>A blog on programing, dreams, pandas and sweet food.</description>
+		<link>http://martianwabbit.com</link>
+		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>New Year's Resolutions 2013</title>
+				<description>&lt;p&gt;I&amp;#8217;ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I&amp;#8217;ve been saying I&amp;#8217;ll start blogging more often for a couple of years now and I keep failing. I&amp;#8217;ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don&amp;#8217;t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that&amp;#8217;s how I roll.&lt;/p&gt;
+
+&lt;p&gt;My second resolution is to start a company. I am currently participating in contest sponsored by my university. If I were to win I&amp;#8217;d be established as a company in a couple of months. Even if this doesn&amp;#8217;t work out, I&amp;#8217;ll get started on my own.&lt;/p&gt;
+
+&lt;p&gt;There&amp;#8217;s more development and learning to be done in 2013 as well. I&amp;#8217;d say 2012 was the year of Javascript. Working as a front-end developer forces you to learn a lot of Javascript so it&amp;#8217;s been a great experience. This year I&amp;#8217;ll further evolve as a Javascript developer but, I also want to master ruby. I just love that language and even though I&amp;#8217;ve worked with it a lot I don&amp;#8217;t feel as confident in my skills. It still feels too magical for my taste. I&amp;#8217;ll be working a lot more on personal projects (and blogging about it as well). I already have one android app in mind and a couple of gems to make my life easier.&lt;/p&gt;
+
+&lt;p&gt;In the end I hope this year is as great as the last one and I learn, develop and grow a lot more.&lt;/p&gt;</description>
+				<pubDate>Sat, 05 Jan 2013 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2013/01/05/new-years-resolutions-2013.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2013/01/05/new-years-resolutions-2013.html</guid>
+			</item>
+		
+			<item>
+				<title>Daydreaming: Mobile Processing Clusters</title>
+				<description>&lt;p&gt;I think this blog will most probably become a daydream diary. Oh wellz, let&amp;#8217;s talk about random ideas. Today I was daydreaming during my calculus class (this is one of the reasons I suck at calculus, more on that in another post) and thought something really cool.&lt;/p&gt;
+
+&lt;p&gt;Now, this is kind of completely out of my field so I don&amp;#8217;t know how feasible or useful it might be but, I was thinking that cellphones spend most of their lives on standby and these phones have CPUs which we could use to do something useful, so how about we use them to help solve problems.&lt;/p&gt;
+
+&lt;p&gt;I was thinking of something along the lines of wolframalpha, solving via cluster of CPUs. We could connect a bunch of phones via an app running in the background which would receive requests to do some processing. These requests would be problems that can be broken up into smaller pieces.These pieces would be sent all around to phones to be solved and then be sent back to a server coordinating the problem solving.&lt;/p&gt;
+
+&lt;p&gt;You could also have the server look for phones with more powerful CPUs to solve more difficult parts of the problem, which might not be as easily broken down.&lt;/p&gt;</description>
+				<pubDate>Tue, 06 Nov 2012 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2012/11/06/Once-again-day-dreaming.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2012/11/06/Once-again-day-dreaming.html</guid>
+			</item>
+		
+			<item>
+				<title>A little House Keeping</title>
+				<description>&lt;p&gt;Hello world! It&amp;#8217;s that time of the year again where I am forced to do a little house keeping. My blog has been incredibly hideous for a couple of months now and I finally got the opportunity to do somethign about it.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ve redesigned it and, since apparently I am terrible at designing stuff I went with a very minimalistic approach. So my new blog is easier on the eyes, simpler and, will now become my homepage.&lt;/p&gt;
+
+&lt;p&gt;There isn&amp;#8217;t much to it, I&amp;#8217;ll be moving a couple of my old posts over to the new blog and I&amp;#8217;ll do my best to start blogging at least twice a week. It&amp;#8217;s actually harder said than done&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;The blog runs on Jekyll now, mostly because it is hacker friendlier than tumblr and I love the idea of version controlled blogging. I will also remove comments from the blog since they distract me quite often. If anyone feels the need to tell me anything they are free to email me.&lt;/p&gt;</description>
+				<pubDate>Mon, 15 Oct 2012 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2012/10/15/housekeeping.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2012/10/15/housekeeping.html</guid>
+			</item>
+		
+			<item>
+				<title>Random stuff has been happening lately</title>
+				<description>&lt;p&gt;Ok, so what&amp;#8217;s up dear readers? I&amp;#8217;ve been up to a bunch of random things lately so I&amp;#8217;ll write them down just so I know what I was up to at this time of year later on.&lt;/p&gt;
+&lt;p&gt;First of all, I got a new job. I guess I&amp;#8217;ll stop freelancing for the time being and focus on my new (awesome) job. Starting 2 weeks ago, I&amp;#8217;ll be working as a &amp;#8220;Graphic Developer&amp;#8221; for the HNSC, which, is a fancy way to say I am a front end developer. I get to play with lots of javascript and are surrounded by amazing people I didn&amp;#8217;t even know about! So yes, lots of new people and cool projects which might actually inspire me to build new and cool things on my own.&lt;/p&gt;
+&lt;p&gt;Second, I&amp;#8217;ve been getting into javascript a lot lately. Like a serious lot. Even before my new job, I started reading and developing almost exclusively in javascript. I feel like I&amp;#8217;ve been improving a lot constantly these past couple of weeks and am really happy about it. I&amp;#8217;ve read and develop a lot, trying to get my vanilla javascript up to speed and I&amp;#8217;ve been working with a lot of jQuery at work as well so that&amp;#8217;s that. Today I built a jQuery plugin which, doesn&amp;#8217;t do much but it&amp;#8217;s exactly what I needed I&amp;#8217;ll talk more about it once I figure out if I can release it as open source. That&amp;#8217;ll hopefully happen soon.&lt;/p&gt;
+&lt;p&gt;Third, since I recently started working as a frontend developer, which is almost completely opposite from my old freelancing stuff where I focused on the backend, I decided to start a pears repository of stuff I use often just to keep mental notes and to share with you guys. You can find them here: &lt;a href=&quot;http://patterns.martianwabbit.com/&quot;&gt;http://patterns.martianwabbit.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And I guess that&amp;#8217;s basically it, school is as hard as usual, I am still pretty dumb and I get paid to program for 4 hours on a daily basis, I am doing pretty good these days.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 30 Jul 2012 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2012/07/30/28387444881.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2012/07/30/28387444881.html</guid>
+			</item>
+		
+			<item>
+				<title>Playing with Arduinos, RFID cards and Ruby</title>
+				<description>&lt;p&gt;&lt;em&gt;This is probably one of the coolest things I&amp;#8217;ve worked on in a while and I also happen to have time to write a blog post about it, which is great, I love working with hardware from time to time.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;It definitely isn&amp;#8217;t the biggest programming challenge I&amp;#8217;ve had but it is pretty cool and I am certain others might find it interesting. Yesterday, I was helping my sister with a project she was doing for her professional practice (she is a very weird kind of engineer who specializes in automation stuff, she is great at it), she was basically asked to open a door with a RFID card.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3qapJDn1qazvm1.jpg&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;To do this, she had a very simple plan, we plug an RFID card reader into a computer which then sends the RFID over to a computer and then tells an Arduino to open the door. She used this &lt;a href=&quot;http://www.sparkfun.com/products/8628&quot;&gt;RFID Reader&lt;/a&gt; (RFID Reader ID-20 (125&amp;#160;kHz)) which is pretty inexpensive and easy to plug into a computer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3roDKpw1qazvm1.jpg&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;This was fairly straight-forward for her, she mounted the RFID card reader into a board and plugged it into her computer along with her Arduino. She then fired up putty and set it to read the RFID card reader&amp;#8217;s serial port (COM 9, in our case) which showed us the RFID of any card we read. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3qluG5S1qazvm1.jpg&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;This is where I came in, she isn&amp;#8217;t that much of a coder so she asked me for help on how to finish the connection between the RFID reader and the Arduino. This is what I came up in Ruby:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/2821185.js?file=rfid_reader.rb&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;p&gt;I was actually going to use C++ but, I prefer using Ruby whenever possible. This is a very simple code snippet but it did the job wonderfully. The code is documented and very simple, I used the fabulous &lt;a href=&quot;https://github.com/hparra/ruby-serialport&quot;&gt;ruby-serialport&lt;/a&gt; gem which, took care of all the heavy lifting for me.&lt;/p&gt;
+&lt;p&gt;This was only half of the work though, we also needed to get the Arduino to wait for an input coming from the computer and do something whenever a value is received, in this case we wanted to open a lock so that&amp;#8217;s what we&amp;#8217;ll do.&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/2821196.js?file=gistfile1.ino&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;p&gt;The code is even simpler than the Ruby one running on the computer. All it does is wait for there to be an input and then activate a pin when there is one. Ruby is pretty much doing all of the actual processing and telling the Arduino when and what to do.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3s7jnwp1qazvm1.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Finally, all we had to do was fire up the terminal and run our Ruby program which would then wait for there to be an input form the RFID reader. Whenever there&amp;#8217;s an input it&amp;#8217;ll log it and then, if the RFID is registered, tell the Arduino to open the lock. And that&amp;#8217;s basically it, it made a nice problem to solve for fun.&lt;/p&gt;</description>
+				<pubDate>Mon, 28 May 2012 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2012/05/28/23951072604.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2012/05/28/23951072604.html</guid>
+			</item>
+		
+			<item>
+				<title>Mew: Windows Markdown Editor</title>
+				<description>&lt;p&gt;&lt;span&gt;So for some mysterious and unknown reason I am selling a windows markdown editor. It’s called Mew, and you can get it for $8 at &lt;/span&gt;&lt;a href=&quot;http://codecanyon.net/item/mew-windows-markdown-editor/924879&quot;&gt;codecanyon&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Mew, as you’d expect from a markdown editor is pretty simple. I built it for myself using C# and the awesome .net framework. I was basically forced into building it since, there wasn&amp;#8217;t a nice markdown editor for windows available. I worked on polishing it for a couple of weeks and now here the end result:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://codecanyon.net/item/mew-windows-markdown-editor/924879&quot;&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_lvp53kpOSQ1qazvm1.jpg&quot;/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It has built-in snippets, color themes and a live-preview, among other things.&lt;/p&gt;
+&lt;p&gt;I am fairly happy with the results. It provides a simple, yet customizable enviorment, it’s fast and really simple. I’ve tried to create an editor that doesn’t get in your way and that actually tries to help you. It was built for my needs so, these are addressed completely. I might add more features in future versions if anyone requests them since, I want it to be good editor for everyone.&lt;/p&gt;
+&lt;p&gt;I have a small list of things I’ve been considering to add so, we’ll see how that ends up working. Hopefully I’ll get somewhere with it and, even if it’s not a good seller, I did enjoy building it, working with C# is entertaining and pretty cool so, it made the whole process a nice experience. If I don&amp;#8217;t make a single sale for a couple of months I&amp;#8217;ll open-source it since, it&amp;#8217;d mean there&amp;#8217;s no commercial potential for it.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 04 Dec 2011 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2011/12/04/13742736909.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2011/12/04/13742736909.html</guid>
+			</item>
+		
+			<item>
+				<title>Being bored is boring AKA Introducing PHP Routs</title>
+				<description>&lt;p&gt;I am probably the most bored person I know. What I mean by this is, that I am almost never entertained. Most of the time, I&amp;#8217;ll be doing something for some 5 minutes before my short attention span takes me elsewhere. This has stopped me from finishing a lot of personal projects in the past, losing a lot of cool things I built halfway through. &lt;/p&gt;
+&lt;p&gt;Since, I almost never finish my projects, I&amp;#8217;ve decided to start publishing them. Hopefully, just knowing that others are looking at my code my motivate me to continue developing something. I&amp;#8217;ve finally started using &lt;a title=&quot;My Github Account&quot; href=&quot;https://github.com/Seich&quot;&gt;my Github account&lt;/a&gt; to it&amp;#8217;s fullest. I honestly doubt it&amp;#8217;ll actually have a great effect on me but, any motivation I might get will prove useful. So, in conclusion, I&amp;#8217;ll be releasing most of the stuff I do whenever I am bored on my Github account and I&amp;#8217;ll be posting about it here, all in an attempt to keep me interested.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Introducing PHP Routs&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s move on to my actual project. &lt;a title=&quot;PHP Routs&quot; href=&quot;http://routs.martianwabbit.com&quot;&gt;Routs&lt;/a&gt;, is a small PHP library built to handle URLs. Some background: I was playing with &lt;a title=&quot;Ruby's Sinatra&quot; href=&quot;htttp://www.sinatrarb.com&quot;&gt;Sinatra&lt;/a&gt; the other day and, just by reading the documentation I fell in love with how it managed URL routes (I later discovered I wasn&amp;#8217;t the only since, there are a bunch of projects written in PHP following it&amp;#8217;s example). So, I decided I wanted to do the same in PHP but, in a very simple way which, would allow me to easily implement it into any project by including a single file.&lt;/p&gt;
+&lt;p&gt;It turned out to be a lot easier than I expected. After deciding on the syntax I would like to use with plugin I made huge advances in just a couple of lines. This is what I have so far:&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s say I am building an simple one page site for some guy named Bob. Since it&amp;#8217;s so simple, I want to have as much as I can in a single page. Routs allow me to do something like this:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/1077044.js?file=gistfile1.php&quot;&gt;&lt;/script&gt;&lt;p&gt;In this example I am using Routs to handle all get requests to example.com/home using the homeFunction() function. The part about the template manager is whatever method you&amp;#8217;re using, I&amp;#8217;ll be creating my own soonish. Now, I added a form to my html page and I want it to be handled on the same page. My routs handler changes into this:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/1077050.js?file=gistfile1.php&quot;&gt;&lt;/script&gt;&lt;p&gt;Which handles the the submitted form and so on. Basically, the possibilities are endless! :D So yeah, that&amp;#8217;s it, have fun with it, fork it, tell me why it sucks, etc.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 11 Jul 2011 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2011/07/11/7516077182.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2011/07/11/7516077182.html</guid>
+			</item>
+		
+			<item>
+				<title>JustVector Social Icons Font</title>
+				<description>&lt;p&gt;I&amp;#8217;ve been pretty bored lately, so I decided to redesign my &lt;a target=&quot;_self&quot; href=&quot;http://www.martianwabbit.com&quot;&gt;site&lt;/a&gt; and  found an awesome social icon set by Alex Peattie (&lt;a href=&quot;http://www.alexpeattie.com/&quot;&gt;&lt;a href=&quot;http://www.alexpeattie.com&quot;&gt;http://www.alexpeattie.com&lt;/a&gt;&lt;/a&gt;) to go with the new design. The set is minimalistic and really cool! Unfortunately, I wasn&amp;#8217;t as happy to work with it as I would have liked to mainly because, I couldn&amp;#8217;t decide on what size I wanted the icons on the new site and thus, I found myself opening photoshop and resizing them far too often. I eventually, as you might have guessed by the post&amp;#8217;s title, decided that such an icon set would make an awesome font. So, I created a font file which included most icons from the set* . This would allow me to embed the font and get nice icons which, I can resize and recolor with css.&lt;/p&gt;
+&lt;p&gt;I am very happy with the results, I&amp;#8217;ll be updating it soon as I wanna get rid of some of the icons  I included and replace them for others that I might think are more useful. The whole icon set is huge. So I&amp;#8217;ll keep all versions I make around just in case the icon you&amp;#8217;re looking for is in one of them. The main ones (Twitter, Facebook, Tumblr, etc.) will be on all versions of the set.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve created a @font-face kit using fontsquirrel. So it&amp;#8217;s pretty much ready to be downloaded and used as it is right now. You can check out Alex&amp;#8217;s demos right &lt;a href=&quot;http://www.alexpeattie.com/projects/justvector_font/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The font is distributed under the same license as the icons, the &lt;a href=&quot;http://artlibre.org/licence/lal/en&quot;&gt;Free Art License&lt;/a&gt; which, allows you to pretty much do anything you want with it. Read the license if you want details.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;* I didn&amp;#8217;t include all icons because, fonts have limited glyph spots available and I wanted to support as many keyboard layouts as possible by only including icons in common keys. For example, I didn&amp;#8217;t use any of the accent keys I have access to because, I know most English keyboards wouldn&amp;#8217;t support them. (I have a Spanish keyboard)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://cl.ly/2a2H3K0F1y423l182J0t&quot;&gt;Download Font Kit&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Update: V1.2&lt;/h2&gt;
+&lt;p&gt;I found the first font a little hard to navigate so, I created a second version in which icons are now arranged alphabetically (mostly) and empty spaces where no icons could go were filled in with additional icons. This font version has less glyphs than the first version because it only uses letters and numbers. If you need some of the additional icons you can use the first one.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://cl.ly/3M0P0t2D2V403M1P2x2G&quot;&gt;Download Font Kit (v1.2)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Tips&lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;When you use these icons add a text-shadow. It&amp;#8217;ll make the images smoother. Something like: &lt;code&gt;text-shadow: 0 0 1px #000;&lt;/code&gt; would do the trick.&lt;/li&gt;
+&lt;/ul&gt;</description>
+				<pubDate>Mon, 04 Apr 2011 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2011/04/04/4344642365.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2011/04/04/4344642365.html</guid>
+			</item>
+		
+	</channel>
+</rss>
