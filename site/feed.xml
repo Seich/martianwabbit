@@ -7,6 +7,44 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Organizing a Javascript MVC Project</title>
+				<description>&lt;p&gt; 
+I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seirously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
+&lt;/p&gt;&lt;p&gt;
+As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use &lt;a href='http://www.canjs.us'&gt;can.js&lt;/a&gt; as our MVC framework of choice and use &lt;a href='http://www.gruntjs.com/'&gt;grunt&lt;/a&gt; to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
+&lt;/p&gt;&lt;pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'&gt;REXML could not parse this XML/HTML: 
+&amp;lt;p&amp;gt;
+Comming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
+&amp;lt;p&amp;gt;
+
+&amp;lt;pre&amp;gt;
+    -Project
+        -Application
+            -Assets
+                -Images
+                -Css
+            -Javascript
+                -Models
+                -Views
+                -Controllers
+                -libs
+                    -Plugins
+                    jQuery.js
+                app.js
+        -dist
+            -app.min.js
+            -libs.min.js
+&amp;lt;/pre&amp;gt;
+
+&amp;lt;p&amp;gt;
+It might look complicated, but it&amp;apos;s actually fairly simple. I&amp;apos;ll try to break it down, show how we use grunt to generate &amp;lt;code&amp;gt;app.min.js&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;libs.min.js&amp;lt;/code&amp;gt; and how they all generally fit in together.
+&amp;lt;/p&amp;gt;&lt;/pre&gt;</description>
+				<pubDate>Fri, 01 Feb 2013 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</guid>
+			</item>
+		
+			<item>
 				<title>Surviving a Hackathon</title>
 				<description>&lt;p&gt;Last week I finally went to &lt;a href='http://vdhackathon.org'&gt;my first hackathon&lt;/a&gt; and it was an awesome experience! Here are a couple of things everyone should watch out for when they go to a hackathon for the first time.&lt;/p&gt;
 
@@ -166,22 +204,6 @@
 				<pubDate>Sun, 04 Dec 2011 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2011/12/04/13742736909.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2011/12/04/13742736909.html</guid>
-			</item>
-		
-			<item>
-				<title>Being bored is boring AKA Introducing PHP Routs</title>
-				<description>&lt;p&gt;I am probably the most bored person I know. What I mean by this is, that I am almost never entertained. Most of the time, I&amp;#8217;ll be doing something for some 5 minutes before my short attention span takes me elsewhere. This has stopped me from finishing a lot of personal projects in the past, losing a lot of cool things I built halfway through. &lt;/p&gt;
-&lt;p&gt;Since, I almost never finish my projects, I&amp;#8217;ve decided to start publishing them. Hopefully, just knowing that others are looking at my code my motivate me to continue developing something. I&amp;#8217;ve finally started using &lt;a title=&quot;My Github Account&quot; href=&quot;https://github.com/Seich&quot;&gt;my Github account&lt;/a&gt; to it&amp;#8217;s fullest. I honestly doubt it&amp;#8217;ll actually have a great effect on me but, any motivation I might get will prove useful. So, in conclusion, I&amp;#8217;ll be releasing most of the stuff I do whenever I am bored on my Github account and I&amp;#8217;ll be posting about it here, all in an attempt to keep me interested.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Introducing PHP Routs&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Let&amp;#8217;s move on to my actual project. &lt;a title=&quot;PHP Routs&quot; href=&quot;http://routs.martianwabbit.com&quot;&gt;Routs&lt;/a&gt;, is a small PHP library built to handle URLs. Some background: I was playing with &lt;a title=&quot;Ruby's Sinatra&quot; href=&quot;htttp://www.sinatrarb.com&quot;&gt;Sinatra&lt;/a&gt; the other day and, just by reading the documentation I fell in love with how it managed URL routes (I later discovered I wasn&amp;#8217;t the only since, there are a bunch of projects written in PHP following it&amp;#8217;s example). So, I decided I wanted to do the same in PHP but, in a very simple way which, would allow me to easily implement it into any project by including a single file.&lt;/p&gt;
-&lt;p&gt;It turned out to be a lot easier than I expected. After deciding on the syntax I would like to use with plugin I made huge advances in just a couple of lines. This is what I have so far:&lt;/p&gt;
-&lt;p&gt;Let&amp;#8217;s say I am building an simple one page site for some guy named Bob. Since it&amp;#8217;s so simple, I want to have as much as I can in a single page. Routs allow me to do something like this:&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/1077044.js?file=gistfile1.php&quot;&gt;&lt;/script&gt;&lt;p&gt;In this example I am using Routs to handle all get requests to example.com/home using the homeFunction() function. The part about the template manager is whatever method you&amp;#8217;re using, I&amp;#8217;ll be creating my own soonish. Now, I added a form to my html page and I want it to be handled on the same page. My routs handler changes into this:&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/1077050.js?file=gistfile1.php&quot;&gt;&lt;/script&gt;&lt;p&gt;Which handles the the submitted form and so on. Basically, the possibilities are endless! :D So yeah, that&amp;#8217;s it, have fun with it, fork it, tell me why it sucks, etc.&lt;/p&gt;
-</description>
-				<pubDate>Mon, 11 Jul 2011 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2011/07/11/7516077182.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2011/07/11/7516077182.html</guid>
 			</item>
 		
 	</channel>
