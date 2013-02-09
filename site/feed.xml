@@ -12,12 +12,9 @@
 I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seirously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
 &lt;/p&gt;&lt;p&gt;
 As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use &lt;a href='http://www.canjs.us'&gt;can.js&lt;/a&gt; as our MVC framework of choice and use &lt;a href='http://www.gruntjs.com/'&gt;grunt&lt;/a&gt; to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
-&lt;/p&gt;&lt;pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'&gt;REXML could not parse this XML/HTML: 
-&amp;lt;p&amp;gt;
-Comming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
-&amp;lt;p&amp;gt;
-
-&amp;lt;pre&amp;gt;
+&lt;/p&gt;&lt;p&gt;
+Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
+&lt;/p&gt;&lt;pre&gt;
     -Project
         -Application
             -Assets
@@ -34,11 +31,16 @@ Comming up with a structure was pretty hard but, I think out current structure w
         -dist
             -app.min.js
             -libs.min.js
-&amp;lt;/pre&amp;gt;
-
-&amp;lt;p&amp;gt;
-It might look complicated, but it&amp;apos;s actually fairly simple. I&amp;apos;ll try to break it down, show how we use grunt to generate &amp;lt;code&amp;gt;app.min.js&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;libs.min.js&amp;lt;/code&amp;gt; and how they all generally fit in together.
-&amp;lt;/p&amp;gt;&lt;/pre&gt;</description>
+        index.html
+&lt;/pre&gt;&lt;p&gt;
+It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate &lt;code&gt;app.min.js&lt;/code&gt; and &lt;code&gt;libs.min.js&lt;/code&gt; and how they all generally fit in together.
+&lt;/p&gt;&lt;h2&gt;Folder &amp;amp; File Structure&lt;/h2&gt;&lt;p&gt;
+The folder structure is fairly straight forward. Inside the &lt;code&gt;Application&lt;/code&gt; folder we hold all of our important files. The only important folder here is the one called &lt;code&gt;Javascript&lt;/code&gt;, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
+&lt;/p&gt;&lt;p&gt;Here's what a raw controller inside this folder looks like:&lt;/p&gt;&lt;script src='https://gist.github.com/Seich/4746478.js' /&gt;&lt;p&gt;
+As you can see the only thing we are doing which isn't immediatedly obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populute the global namespace with every single controller and because we can access any controller like this: &lt;code&gt;Controllers.ControllerName&lt;/code&gt;. We do the same for models:
+&lt;/p&gt;&lt;script src='https://gist.github.com/Seich/4746517.js' /&gt;&lt;p&gt;
+In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster.
+&lt;/p&gt;</description>
 				<pubDate>Fri, 01 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</guid>

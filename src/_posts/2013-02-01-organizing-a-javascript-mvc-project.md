@@ -12,8 +12,8 @@ As it stands, I developed the frontend structure of the project (I am not sure i
 </p>
 
 <p>
-Comming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
-<p>
+Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
+</p>
 
 <pre>
     -Project
@@ -32,8 +32,27 @@ Comming up with a structure was pretty hard but, I think out current structure w
         -dist
             -app.min.js
             -libs.min.js
+        index.html
 </pre>
 
 <p>
 It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate <code>app.min.js</code> and <code>libs.min.js</code> and how they all generally fit in together.
+</p>
+
+<h2>Folder &amp; File Structure</h2>
+<p>
+The folder structure is fairly straight forward. Inside the <code>Application</code> folder we hold all of our important files. The only important folder here is the one called <code>Javascript</code>, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
+</p>
+
+<p>Here's what a raw controller inside this folder looks like:</p>
+<script src="https://gist.github.com/Seich/4746478.js"></script>
+
+<p>
+As you can see the only thing we are doing which isn't immediatedly obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populute the global namespace with every single controller and because we can access any controller like this: <code>Controllers.ControllerName</code>. We do the same for models:
+</p>
+
+<script src="https://gist.github.com/Seich/4746517.js"></script>
+
+<p>
+In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster.
 </p>
