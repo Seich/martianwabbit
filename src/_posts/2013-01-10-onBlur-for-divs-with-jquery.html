@@ -5,7 +5,20 @@ title: "Hiding elements when they lose focus with jQuery"
 
 <p>There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:</p>
 
-<script src="https://gist.github.com/4502881.js"></script>
+<code>
+<pre>
+$(".userMenu a").on("click", function() {
+  $(".loginForm").stop().fadeToggle(100, "linear", function() {
+    $("body").on("click.loginform", function(e) {
+      if($(e.target).parents('.loginForm, .userMenu').length === 0) {
+        $('.loginForm').fadeToggle(100);
+        $("body").off(".loginform");
+      }
+    });
+  });
+});
+</pre>
+</code>
 
 <p>As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.</p>
 

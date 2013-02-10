@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/highlighter/prettify.css" type="text/css" media="screen" />
 </head>
 <body>
 	<div class="container">
@@ -40,7 +41,32 @@
 	So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
 </p>
 
-<script src="https://gist.github.com/4601733.js"></script>
+<p>user.rb</p>
+<code>
+<pre>
+class User < ActiveRecord::Base
+  after_create :create_profile
+  has_one :user_profile, :dependent => :destroy
+  
+  def create_profile
+    self.build_user_profile
+    self.user_profile.save(:validate => false)
+  end
+end
+</pre>
+</code>
+
+<p>user_profile.rb</p>
+<code>
+<pre>
+class UserProfile < ActiveRecord::Base
+  belongs_to :user
+ 
+  attr_accessible :username
+  validates_uniqueness_of :username
+end
+</pre>
+</code>
 
 <p>This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.</p>
 </section>
@@ -49,7 +75,16 @@
 	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
 </section>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
+<script>
+	if (typeof prettyPrint === "undefined") return;
+	
+	var codes = document.querySelectorAll("code > pre");
+	for (var i = 0; i < codes.length; i++) {
+		codes[i].className = codes[i].className + " prettyprint";
+	}
+	prettyPrint();
+</script>
 		
 		<footer>
 			David Sergio D&iacute;az &copy; All Rights Reserved.

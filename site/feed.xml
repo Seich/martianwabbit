@@ -9,7 +9,7 @@
 			<item>
 				<title>Organizing a Javascript MVC Project</title>
 				<description>&lt;p&gt; 
-I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seirously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
+I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
 &lt;/p&gt;&lt;p&gt;
 As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use &lt;a href='http://www.canjs.us'&gt;can.js&lt;/a&gt; as our MVC framework of choice and use &lt;a href='http://www.gruntjs.com/'&gt;grunt&lt;/a&gt; to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
 &lt;/p&gt;&lt;p&gt;
@@ -32,15 +32,83 @@ Coming up with a structure was pretty hard but, I think out current structure wo
             -app.min.js
             -libs.min.js
         index.html
+        grunt.js
 &lt;/pre&gt;&lt;p&gt;
 It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate &lt;code&gt;app.min.js&lt;/code&gt; and &lt;code&gt;libs.min.js&lt;/code&gt; and how they all generally fit in together.
 &lt;/p&gt;&lt;h2&gt;Folder &amp;amp; File Structure&lt;/h2&gt;&lt;p&gt;
 The folder structure is fairly straight forward. Inside the &lt;code&gt;Application&lt;/code&gt; folder we hold all of our important files. The only important folder here is the one called &lt;code&gt;Javascript&lt;/code&gt;, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
-&lt;/p&gt;&lt;p&gt;Here's what a raw controller inside this folder looks like:&lt;/p&gt;&lt;script src='https://gist.github.com/Seich/4746478.js' /&gt;&lt;p&gt;
-As you can see the only thing we are doing which isn't immediatedly obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populute the global namespace with every single controller and because we can access any controller like this: &lt;code&gt;Controllers.ControllerName&lt;/code&gt;. We do the same for models:
-&lt;/p&gt;&lt;script src='https://gist.github.com/Seich/4746517.js' /&gt;&lt;p&gt;
-In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster.
-&lt;/p&gt;</description>
+&lt;/p&gt;&lt;p&gt;
+Here's what a raw controller inside this folder looks like:
+&lt;/p&gt;&lt;code&gt;
+&lt;pre&gt;
+;(function(namespace, undefined) {
+  'use strict';
+  var ControllerName = can.Control({
+    'init': function(element, options) {
+      var self = this;
+      // Actual code stuff
+    }
+  });
+
+  namespace.Controllers = namespace.Controllers || {};
+  namespace.Controllers.ControllerName = ControllerName;
+}(this));
+&lt;/pre&gt;
+&lt;/code&gt;&lt;p&gt;
+As you can see the only thing we are doing which isn't immediately obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populate the global namespace with every single controller and because we can access any controller like this: &lt;code&gt;Controllers.ControllerName&lt;/code&gt;. We do the same for models:
+&lt;/p&gt;&lt;code&gt;
+&lt;pre&gt;
+;(function(namespace, undefined) {
+  'use strict';
+  var ModelName = can.Model({
+    findOne: 'GET /getModel'
+  }, {});
+
+  namespace.Models = namespace.Models || {};
+  namespace.Models.ModelName = ModelName;
+}(this));
+&lt;/pre&gt;
+&lt;/code&gt;&lt;p&gt;
+In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
+&lt;/p&gt;&lt;p&gt;
+Now that we have our files in place, let's move into using grunt to generate the finalized application files will be using in production.
+&lt;/p&gt;&lt;h2&gt;Grunt&lt;/h2&gt;&lt;p&gt;Here's what an example grunt file would look like:&lt;/p&gt;&lt;code&gt;
+&lt;pre&gt;
+module.exports = function(grunt) {
+  grunt.initConfig({
+    concat: {
+      app: {
+        src: [
+          'Application/Assets/Javascript/controllers/**/*.js', 
+          'Application/Assets/Javascript/models/**/*.js', 
+          'Application/Assets/Javascript/app.js'
+        ],
+        dest: 'dist/app.js'
+      },
+      libs: {
+        src: [
+          'Application/Assets/Javascript/libs/jQuery.js', 
+          'Application/Assets/Javascript/libs/plugins/**/*.js'
+        ],
+        dest: 'dist/libs.js'
+      }
+    },
+    min: {
+      app: {
+        src: ['&amp;lt;config:concat.app.dest&amp;gt;'],
+        dest: 'dist/app.min.js'
+      },
+      libs: {
+        src: ['&amp;lt;config:concat.libs.dest&amp;gt;'],
+        dest: 'dist/libs.min.js'
+      }
+    }
+  });
+
+  grunt.registerTask('default', 'concat min');
+};
+&lt;/pre&gt;
+&lt;/code&gt;&lt;p&gt;This particular grunt file doesn't do much. When you call the &lt;code&gt;grunt&lt;/code&gt; command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.&lt;/p&gt;&lt;h2&gt;That's it&lt;/h2&gt;&lt;p&gt;I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.&lt;/p&gt;</description>
 				<pubDate>Fri, 01 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</guid>
@@ -97,7 +165,32 @@ In our case, views are simple .ejs files so there's nothing special about how we
 	So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
 &lt;/p&gt;
 
-&lt;script src=&quot;https://gist.github.com/4601733.js&quot;&gt;&lt;/script&gt;
+&lt;p&gt;user.rb&lt;/p&gt;
+&lt;code&gt;
+&lt;pre&gt;
+class User &lt; ActiveRecord::Base
+  after_create :create_profile
+  has_one :user_profile, :dependent =&gt; :destroy
+  
+  def create_profile
+    self.build_user_profile
+    self.user_profile.save(:validate =&gt; false)
+  end
+end
+&lt;/pre&gt;
+&lt;/code&gt;
+
+&lt;p&gt;user_profile.rb&lt;/p&gt;
+&lt;code&gt;
+&lt;pre&gt;
+class UserProfile &lt; ActiveRecord::Base
+  belongs_to :user
+ 
+  attr_accessible :username
+  validates_uniqueness_of :username
+end
+&lt;/pre&gt;
+&lt;/code&gt;
 
 &lt;p&gt;This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.&lt;/p&gt;</description>
 				<pubDate>Fri, 18 Jan 2013 00:00:00 -0600</pubDate>
@@ -109,7 +202,20 @@ In our case, views are simple .ejs files so there's nothing special about how we
 				<title>Hiding elements when they lose focus with jQuery</title>
 				<description>&lt;p&gt;There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:&lt;/p&gt;
 
-&lt;script src=&quot;https://gist.github.com/4502881.js&quot;&gt;&lt;/script&gt;
+&lt;code&gt;
+&lt;pre&gt;
+$(&quot;.userMenu a&quot;).on(&quot;click&quot;, function() {
+  $(&quot;.loginForm&quot;).stop().fadeToggle(100, &quot;linear&quot;, function() {
+    $(&quot;body&quot;).on(&quot;click.loginform&quot;, function(e) {
+      if($(e.target).parents('.loginForm, .userMenu').length === 0) {
+        $('.loginForm').fadeToggle(100);
+        $(&quot;body&quot;).off(&quot;.loginform&quot;);
+      }
+    });
+  });
+});
+&lt;/pre&gt;
+&lt;/code&gt;
 
 &lt;p&gt;As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.&lt;/p&gt;
 
@@ -184,9 +290,72 @@ In our case, views are simple .ejs files so there's nothing special about how we
 &lt;p&gt;This was fairly straight-forward for her, she mounted the RFID card reader into a board and plugged it into her computer along with her Arduino. She then fired up putty and set it to read the RFID card reader&amp;#8217;s serial port (COM 9, in our case) which showed us the RFID of any card we read. &lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3qluG5S1qazvm1.jpg&quot;/&gt;&lt;/p&gt;
 &lt;p&gt;This is where I came in, she isn&amp;#8217;t that much of a coder so she asked me for help on how to finish the connection between the RFID reader and the Arduino. This is what I came up in Ruby:&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/2821185.js?file=rfid_reader.rb&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;p&gt;I was actually going to use C++ but, I prefer using Ruby whenever possible. This is a very simple code snippet but it did the job wonderfully. The code is documented and very simple, I used the fabulous &lt;a href=&quot;https://github.com/hparra/ruby-serialport&quot;&gt;ruby-serialport&lt;/a&gt; gem which, took care of all the heavy lifting for me.&lt;/p&gt;
-&lt;p&gt;This was only half of the work though, we also needed to get the Arduino to wait for an input coming from the computer and do something whenever a value is received, in this case we wanted to open a lock so that&amp;#8217;s what we&amp;#8217;ll do.&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/2821196.js?file=gistfile1.ino&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;p&gt;The code is even simpler than the Ruby one running on the computer. All it does is wait for there to be an input and then activate a pin when there is one. Ruby is pretty much doing all of the actual processing and telling the Arduino when and what to do.&lt;/p&gt;
+
+&lt;code&gt;
+	&lt;pre&gt;
+require &quot;serialport&quot;
+ 
+@rfid_reader = SerialPort.new 4 # Open COM 5
+@arduino = SerialPort.new 2 # Open COM 3
+ 
+@valid_ids = ['4500B8D690BB']
+ 
+def readRFID
+  rfid = @rfid_reader.gets
+  rfid.strip!
+  rfid.slice(0) if rfid.size == 13
+  rfid.slice(0..1) if rfid.size == 14
+ 
+  return rfid
+end
+ 
+puts &quot;Waiting for input...&quot;
+loop do
+  rfid = readRFID # Get the RFID of the current card
+  if !rfid.empty? 
+    if @valid_ids.include? rfid # is the ID valid?
+      puts &quot;RFID: &quot; + rfid
+ 
+      # Send the arduino a signal so it opens the lock.
+      @arduino.write &quot;1&quot; 
+    else
+      puts &quot;Invalid RFID: &quot; + rfid
+      @arduino.write &quot;&quot;
+    end
+  end
+  @arduino.write &quot;&quot;
+end
+	&lt;/pre&gt;
+&lt;/code&gt;
+
+&lt;p&gt;
+	I was actually going to use C++ but, I prefer using Ruby whenever possible. This is a very simple code snippet but it did the job wonderfully. The code is documented and very simple, I used the fabulous &lt;a href=&quot;https://github.com/hparra/ruby-serialport&quot;&gt;ruby-serialport&lt;/a&gt; gem which, took care of all the heavy lifting for me.
+&lt;/p&gt;
+
+&lt;p&gt;
+	This was only half of the work though, we also needed to get the Arduino to wait for an input coming from the computer and do something whenever a value is received, in this case we wanted to open a lock so that&amp;#8217;s what we&amp;#8217;ll do.
+&lt;/p&gt;
+
+&lt;code&gt;
+	&lt;pre&gt;
+void setup () {
+  Serial.begin (9600);
+  pinMode (12, OUTPUT);
+}
+ 
+void serialEvent() {
+  digitalWrite(12, HIGH);
+  delay(2000);
+  digitalWrite(12, LOW);
+  Serial.read();
+}
+	&lt;/pre&gt;
+&lt;/code&gt;
+
+&lt;p&gt;
+	The code is even simpler than the Ruby one running on the computer. All it does is wait for there to be an input and then activate a pin when there is one. Ruby is pretty much doing all of the actual processing and telling the Arduino when and what to do.
+&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3s7jnwp1qazvm1.png&quot;/&gt;&lt;/p&gt;
 &lt;p&gt;Finally, all we had to do was fire up the terminal and run our Ruby program which would then wait for there to be an input form the RFID reader. Whenever there&amp;#8217;s an input it&amp;#8217;ll log it and then, if the RFID is registered, tell the Arduino to open the lock. And that&amp;#8217;s basically it, it made a nice problem to solve for fun.&lt;/p&gt;</description>
 				<pubDate>Mon, 28 May 2012 00:00:00 -0600</pubDate>

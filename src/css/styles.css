@@ -26,6 +26,12 @@ a:hover {
 	text-decoration: none;
 }
 
+code, pre {
+	font-family: 'Menlo', 'Liberation Mono', 'Consolas', 'Courier New', 'andale mono','lucida console',monospace;
+	font-size: 14px;
+	line-height: 25px;
+}
+
 /* Page Styles */
 
 /* Container */
