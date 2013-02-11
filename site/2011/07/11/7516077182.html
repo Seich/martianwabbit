@@ -97,13 +97,13 @@ Rout::post('home', function($params){
 </section>
 <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
 <script>
-	if (typeof prettyPrint === "undefined") return;
-	
-	var codes = document.querySelectorAll("code > pre");
-	for (var i = 0; i < codes.length; i++) {
-		codes[i].className = codes[i].className + " prettyprint";
+	if (typeof prettyPrint !== "undefined") {
+		var codes = document.querySelectorAll("code > pre");
+		for (var i = 0; i < codes.length; i++) {
+			codes[i].className = codes[i].className + " prettyprint";
+		}
+		prettyPrint();
 	}
-	prettyPrint();
 </script>
 		
 		<footer>
