@@ -45,17 +45,17 @@
 <p>Which isn&#8217;t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink for imported posts to this:</p>
 <code>
 	<pre>
-		---
-		layout: post
-		title: "JustVector Social Icons Font"
-		permalink: /post/4344642365.html
-		---
+---
+layout: post
+title: "JustVector Social Icons Font"
+permalink: /post/4344642365.html
+---
 	</pre>
 </code>
 <p>So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it&#8217;d redirect the URLs as intended, that was probably the easiest part, a quick regex later I ended up with this:</p>
 <code>
 	<pre>
-		RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
+RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 	</pre>
 </code>
 <p>Which worked exactly as intended, now all I have to do, is for the DNS to finish propagating.</p>

@@ -36,11 +36,11 @@ for imported posts to this:
 
 <code>
 	<pre>
-		---
-		layout: post
-		title: "JustVector Social Icons Font"
-		permalink: /post/4344642365.html
-		---
+---
+layout: post
+title: "JustVector Social Icons Font"
+permalink: /post/4344642365.html
+---
 	</pre>
 </code>
 
@@ -49,7 +49,7 @@ that was probably the easiest part, a quick regex later I ended up with this:
 
 <code>
 	<pre>
-		RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
+RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 	</pre>
 </code>
 
