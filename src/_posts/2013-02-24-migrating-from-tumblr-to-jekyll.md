@@ -22,35 +22,35 @@ completely. This ended up being a good decision at the end.
 So now, the only thing I needed to do was to redirect this:
 
 <code>
-	http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
+http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
 </code>
 
 to this:
 
 <code>
-	http://martianwabbit.com/2011/04/04/4344642365.html
+http://martianwabbit.com/2011/04/04/4344642365.html
 </code>
 
 Which isn't as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink 
 for imported posts to this:
 
 <code>
-	<pre>
+<pre>
 ---
 layout: post
 title: "JustVector Social Icons Font"
 permalink: /post/4344642365.html
 ---
-	</pre>
+</pre>
 </code>
 
 So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it'd redirect the URLs as intended,
 that was probably the easiest part, a quick regex later I ended up with this:
 
 <code>
-	<pre>
+<pre>
 RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
-	</pre>
+</pre>
 </code>
 
 Which worked exactly as intended, now all I have to do, is for the DNS to finish propagating.

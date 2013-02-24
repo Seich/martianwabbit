@@ -18,27 +18,27 @@
 
 &lt;p&gt;So now, the only thing I needed to do was to redirect this:&lt;/p&gt;
 &lt;code&gt;
-	http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
+http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
 &lt;/code&gt;
 &lt;p&gt;to this:&lt;/p&gt;
 &lt;code&gt;
-	http://martianwabbit.com/2011/04/04/4344642365.html
+http://martianwabbit.com/2011/04/04/4344642365.html
 &lt;/code&gt;
 &lt;p&gt;Which isn&amp;#8217;t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink for imported posts to this:&lt;/p&gt;
 &lt;code&gt;
-	&lt;pre&gt;
+&lt;pre&gt;
 ---
 layout: post
 title: &quot;JustVector Social Icons Font&quot;
 permalink: /post/4344642365.html
 ---
-	&lt;/pre&gt;
+&lt;/pre&gt;
 &lt;/code&gt;
 &lt;p&gt;So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it&amp;#8217;d redirect the URLs as intended, that was probably the easiest part, a quick regex later I ended up with this:&lt;/p&gt;
 &lt;code&gt;
-	&lt;pre&gt;
+&lt;pre&gt;
 RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
-	&lt;/pre&gt;
+&lt;/pre&gt;
 &lt;/code&gt;
 &lt;p&gt;Which worked exactly as intended, now all I have to do, is for the DNS to finish propagating.&lt;/p&gt;</description>
 				<pubDate>Sun, 24 Feb 2013 00:00:00 -0600</pubDate>
