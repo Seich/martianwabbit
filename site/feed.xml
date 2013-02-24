@@ -290,8 +290,8 @@ $(&quot;.userMenu a&quot;).on(&quot;click&quot;, function() {
 &lt;p&gt;And I guess that&amp;#8217;s basically it, school is as hard as usual, I am still pretty dumb and I get paid to program for 4 hours on a daily basis, I am doing pretty good these days.&lt;/p&gt;
 </description>
 				<pubDate>Mon, 30 Jul 2012 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2012/07/30/28387444881.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2012/07/30/28387444881.html</guid>
+				<link>http://martianwabbit.com/post/28387444881.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/post/28387444881.html</guid>
 			</item>
 		
 			<item>
@@ -373,8 +373,8 @@ void serialEvent() {
 &lt;p&gt;&lt;img src=&quot;http://media.tumblr.com/tumblr_m4r3s7jnwp1qazvm1.png&quot;/&gt;&lt;/p&gt;
 &lt;p&gt;Finally, all we had to do was fire up the terminal and run our Ruby program which would then wait for there to be an input form the RFID reader. Whenever there&amp;#8217;s an input it&amp;#8217;ll log it and then, if the RFID is registered, tell the Arduino to open the lock. And that&amp;#8217;s basically it, it made a nice problem to solve for fun.&lt;/p&gt;</description>
 				<pubDate>Mon, 28 May 2012 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2012/05/28/23951072604.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2012/05/28/23951072604.html</guid>
+				<link>http://martianwabbit.com/post/23951072604.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/post/23951072604.html</guid>
 			</item>
 		
 	</channel>
