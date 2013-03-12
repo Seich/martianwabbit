@@ -47,6 +47,20 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 			</item>
 		
 			<item>
+				<title>Design For Your Mother</title>
+				<description>&lt;p&gt;I am not really that much of a designer. I&amp;#8217;ve worked as one but, I&amp;#8217;d never describe me as a &amp;#8220;web designer&amp;#8221;. I am simply not that good with designing things. I do have good taste though and, can tell good design apart from bad design. I also have a solid knowledge of design and UX in general which is enough for my day to day activities. At the end of the day, the only thing I know about design, is that good design should be easy to use. How easy? Well, my mother should be able to use it without having to ask for my help. I obviously know that not all mothers need help when it comes to computers (to be honest, mine can handle herself just fine without me) but, the point is, your design should be easy to use first, and nice-looking second. My mother should be able to use your application without having to think too hard. Users are lazy and they like being able to do stuff without thinking. Try as hard as possible to make it easy for them to not think.&lt;/p&gt;
+
+&lt;p&gt;I really like how simple interfaces are kind of trending these days. It really is great, simple design helps get the message through and allows users to interact more freely with the web. I&amp;#8217;ve always gone with &amp;#8220;minimalist&amp;#8221; designs mostly because, it&amp;#8217;s easier to get right when you are not that great of a designer and also because it&amp;#8217;s easier for the user to interact with any application if they are only presented what they need at any given moment.&lt;/p&gt;
+
+&lt;p&gt;Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don&amp;#8217;t?&lt;/p&gt;
+
+&lt;p&gt;Think about, simple design is awesome, &lt;a href='http://www.sensible.com/dmmt.html'&gt;don&amp;#8217;t make me think&lt;/a&gt; and don&amp;#8217;t make my mother ask me for help.&lt;/p&gt;</description>
+				<pubDate>Wed, 20 Feb 2013 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</guid>
+			</item>
+		
+			<item>
 				<title>On the Importance of Vanilla Javascript</title>
 				<description>&lt;p&gt;There&amp;#8217;s a very simple reason why people don&amp;#8217;t see the need to learn &amp;#8220;vanilla&amp;#8221; Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn&amp;#8217;t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.&lt;/p&gt;
 
@@ -319,19 +333,6 @@ $(&quot;.userMenu a&quot;).on(&quot;click&quot;, function() {
 				<pubDate>Mon, 15 Oct 2012 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2012/10/15/housekeeping.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2012/10/15/housekeeping.html</guid>
-			</item>
-		
-			<item>
-				<title>Random stuff has been happening lately</title>
-				<description>&lt;p&gt;Ok, so what&amp;#8217;s up dear readers? I&amp;#8217;ve been up to a bunch of random things lately so I&amp;#8217;ll write them down just so I know what I was up to at this time of year later on.&lt;/p&gt;
-&lt;p&gt;First of all, I got a new job. I guess I&amp;#8217;ll stop freelancing for the time being and focus on my new (awesome) job. Starting 2 weeks ago, I&amp;#8217;ll be working as a &amp;#8220;Graphic Developer&amp;#8221; for the HNSC, which, is a fancy way to say I am a front end developer. I get to play with lots of javascript and are surrounded by amazing people I didn&amp;#8217;t even know about! So yes, lots of new people and cool projects which might actually inspire me to build new and cool things on my own.&lt;/p&gt;
-&lt;p&gt;Second, I&amp;#8217;ve been getting into javascript a lot lately. Like a serious lot. Even before my new job, I started reading and developing almost exclusively in javascript. I feel like I&amp;#8217;ve been improving a lot constantly these past couple of weeks and am really happy about it. I&amp;#8217;ve read and develop a lot, trying to get my vanilla javascript up to speed and I&amp;#8217;ve been working with a lot of jQuery at work as well so that&amp;#8217;s that. Today I built a jQuery plugin which, doesn&amp;#8217;t do much but it&amp;#8217;s exactly what I needed I&amp;#8217;ll talk more about it once I figure out if I can release it as open source. That&amp;#8217;ll hopefully happen soon.&lt;/p&gt;
-&lt;p&gt;Third, since I recently started working as a frontend developer, which is almost completely opposite from my old freelancing stuff where I focused on the backend, I decided to start a pears repository of stuff I use often just to keep mental notes and to share with you guys. You can find them here: &lt;a href=&quot;http://patterns.martianwabbit.com/&quot;&gt;http://patterns.martianwabbit.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;And I guess that&amp;#8217;s basically it, school is as hard as usual, I am still pretty dumb and I get paid to program for 4 hours on a daily basis, I am doing pretty good these days.&lt;/p&gt;
-</description>
-				<pubDate>Mon, 30 Jul 2012 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/post/28387444881.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/post/28387444881.html</guid>
 			</item>
 		
 	</channel>

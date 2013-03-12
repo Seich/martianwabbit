@@ -91,21 +91,17 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "src/_posts/2013-01-05-new-years-resolutions-2013.md",
-			"settings":
-			{
-				"buffer_size": 1644,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 285.0,
+		"height": 85.0,
 		"selected_items":
 		[
+			[
+				"close",
+				"Project: Close"
+			],
 			[
 				"save",
 				"Project: Save As"
@@ -117,10 +113,6 @@
 			[
 				"save ",
 				"Project: Save As"
-			],
-			[
-				"close",
-				"Project: Close"
 			],
 			[
 				"enabl",
@@ -224,6 +216,14 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2013-02-24-migrating-from-tumblr-to-jekyll.md",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2012-07-30-28387444881.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2012-05-28-23951072604.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2011-12-04-13742736909.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2011-04-04-4344642365.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2011-07-11-7516077182.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/JustVector-Social-Icons-Font.html",
+		"/C/Users/Sergio/Dropbox/Projects/martianwabbit.com/src/_posts/2013-01-05-new-years-resolutions-2013.md",
 		"/C/Users/Sergio/Documents/Projects/bootstrap/index.html",
 		"/C/Users/Sergio/Documents/Projects/bootstrap/css/screen.scss",
 		"/C/Users/Sergio/Documents/Projects/bootstrap/css/normalize.css",
@@ -289,7 +289,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 98.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -299,6 +299,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"4344642365",
 			"background",
 			"top",
 			"ul",
@@ -406,37 +407,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "src/_posts/2013-01-05-new-years-resolutions-2013.md",
-					"settings":
-					{
-						"buffer_size": 1644,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1644,
-								1644
-							]
-						],
-						"settings":
-						{
-							"spell_check": true,
-							"syntax": "Packages/Markdown/Markdown.tmLanguage",
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
