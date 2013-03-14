@@ -53,4 +53,4 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 </pre>
 </code>
 
-Which worked exactly as intended, now all I have to do, is for the DNS to finish propagating.
+Which worked exactly as intended, now all I have to do, is wait for the DNS to finish propagating.
