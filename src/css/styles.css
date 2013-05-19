@@ -27,7 +27,7 @@ a:hover {
 }
 
 code, pre {
-	font-family: 'Menlo', 'Liberation Mono', 'Consolas', 'Courier New', 'andale mono','lucida console',monospace;
+	font-family: 'Menlo', 'Liberation Mono', 'Consolas', 'Courier New', 'andale mono','lucida console', monospace;
 	font-size: 14px;
 	line-height: 25px;
 }
@@ -144,6 +144,10 @@ header#title a {
 	font-size: 50px;
 	margin-top: 30px;
 	margin-right: 5px;
+}
+
+.about-me img {
+	border-radius: 5px;
 }
 
 a#twitter {
