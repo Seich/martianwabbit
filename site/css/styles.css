@@ -66,6 +66,7 @@ header#title a {
 	font-size: 25px;
 	line-height: 40px;
 	margin: 0;
+	font-weight: normal;
 }
 
 /* Body Sections */
@@ -91,6 +92,7 @@ header#title a {
 
 .archive li h1 {
 	font-size: 25px;
+	font-weight: normal;
 }
 
 .archive li small {
