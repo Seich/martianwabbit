@@ -7,11 +7,41 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Connecting To A Remote RethinkDB Admin Interface</title>
+				<description>&lt;p&gt;
+	So here&#39;s a really quick tip, when you run a RethinkDB instance on a remote server you cannot access the admin interface, by default, from the outside of the server. The easiest way to get around this without allowing anyone to access it is to use a ssh tunnel like this:
+&lt;/p&gt;
+
+&lt;pre&gt;
+	&lt;code&gt;
+ssh -L 8080:localhost:8080 &amp;lt;host&amp;gt;
+	&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;
+	This basically uses ssh to map the port 8080 of your machine (127.0.0.1 or localhost) to the port 8080 on the host machine. Don&#39;t forget to replace &quot;&amp;lt;host&amp;gt;&quot; with your actual remote host.
+&lt;/p&gt;
+
+&lt;p&gt;
+	With this, you can now connect to the admin interface by going to localhost:8080 on your machine. Note that this will only work as long as the ssh connection remains open.
+&lt;/p&gt;
+
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;p&gt;
+	&lt;a href=&quot;http://www.symantec.com/connect/articles/ssh-port-forwarding&quot;&gt;SSH Port Forwarding - Symatec&lt;/a&gt; &lt;br&gt;
+	&lt;a href=&quot;https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding&quot;&gt;SSH/OpenSSH/PortForwarding - Ubuntu Community Documentation&lt;/a&gt;
+&lt;/p&gt;</description>
+				<pubDate>Sat, 20 Jul 2013 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2013/07/20/connecting-to-a-remote-rethinkdb-admin-interface.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2013/07/20/connecting-to-a-remote-rethinkdb-admin-interface.html</guid>
+			</item>
+		
+			<item>
 				<title>A Javascript Array of Countries</title>
 				<description>&lt;p&gt;Here&amp;#8217;s the Array:&lt;/p&gt;
 &lt;code&gt;
 	&lt;pre&gt;
-var countries = [&quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;American Samoa&quot;, &quot;Andorra&quot;, &quot;Angola&quot;, &quot;Anguilla&quot;, &quot;Antarctica&quot;, &quot;Antigua And Barbuda&quot;, &quot;Argentina&quot;, &quot;Armenia&quot;, &quot;Aruba&quot;, &quot;Australia&quot;, &quot;Austria&quot;, &quot;Azerbaijan&quot;, &quot;Bahamas&quot;, &quot;Bahrain&quot;, &quot;Bangladesh&quot;, &quot;Barbados&quot;, &quot;Belarus&quot;, &quot;Belgium&quot;, &quot;Belize&quot;, &quot;Benin&quot;, &quot;Bermuda&quot;, &quot;Bhutan&quot;, &quot;Bolivia, Plurinational State Of&quot;, &quot;Bonaire, Sint Eustatius And Saba&quot;, &quot;Bosnia And Herzegovina&quot;, &quot;Botswana&quot;, &quot;Bouvet Island&quot;, &quot;Brazil&quot;, &quot;British Indian Ocean Territory&quot;, &quot;Brunei Darussalam&quot;, &quot;Bulgaria&quot;, &quot;Burkina Faso&quot;, &quot;Burundi&quot;, &quot;Cambodia&quot;, &quot;Cameroon&quot;, &quot;Canada&quot;, &quot;Cape Verde&quot;, &quot;Cayman Islands&quot;, &quot;Central African Republic&quot;, &quot;Chad&quot;, &quot;Chile&quot;, &quot;China&quot;, &quot;Christmas Island&quot;, &quot;Cocos (keeling) Islands&quot;, &quot;Colombia&quot;, &quot;Comoros&quot;, &quot;Congo&quot;, &quot;Congo, The Democratic Republic Of The&quot;, &quot;Cook Islands&quot;, &quot;Costa Rica&quot;, &quot;Côte D'ivoire&quot;, &quot;Croatia&quot;, &quot;Cuba&quot;, &quot;Curaçao&quot;, &quot;Cyprus&quot;, &quot;Czech Republic&quot;, &quot;Denmark&quot;, &quot;Djibouti&quot;, &quot;Dominica&quot;, &quot;Dominican Republic&quot;, &quot;Ecuador&quot;, &quot;Egypt&quot;, &quot;El Salvador&quot;, &quot;Equatorial Guinea&quot;, &quot;Eritrea&quot;, &quot;Estonia&quot;, &quot;Ethiopia&quot;, &quot;Falkland Islands (malvinas)&quot;, &quot;Faroe Islands&quot;, &quot;Fiji&quot;, &quot;Finland&quot;, &quot;France&quot;, &quot;French Guiana&quot;, &quot;French Polynesia&quot;, &quot;French Southern Territories&quot;, &quot;Gabon&quot;, &quot;Gambia&quot;, &quot;Georgia&quot;, &quot;Germany&quot;, &quot;Ghana&quot;, &quot;Gibraltar&quot;, &quot;Greece&quot;, &quot;Greenland&quot;, &quot;Grenada&quot;, &quot;Guadeloupe&quot;, &quot;Guam&quot;, &quot;Guatemala&quot;, &quot;Guernsey&quot;, &quot;Guinea&quot;, &quot;Guinea-bissau&quot;, &quot;Guyana&quot;, &quot;Haiti&quot;, &quot;Heard Island And Mcdonald Islands&quot;, &quot;Holy See (vatican City State)&quot;, &quot;Honduras&quot;, &quot;Hong Kong&quot;, &quot;Hungary&quot;, &quot;Iceland&quot;, &quot;India&quot;, &quot;Indonesia&quot;, &quot;Iran, Islamic Republic Of&quot;, &quot;Iraq&quot;, &quot;Ireland&quot;, &quot;Isle Of Man&quot;, &quot;Israel&quot;, &quot;Italy&quot;, &quot;Jamaica&quot;, &quot;Japan&quot;, &quot;Jersey&quot;, &quot;Jordan&quot;, &quot;Kazakhstan&quot;, &quot;Kenya&quot;, &quot;Kiribati&quot;, &quot;Korea, Democratic People's Republic Of&quot;, &quot;Korea, Republic Of&quot;, &quot;Kuwait&quot;, &quot;Kyrgyzstan&quot;, &quot;Lao People's Democratic Republic&quot;, &quot;Latvia&quot;, &quot;Lebanon&quot;, &quot;Lesotho&quot;, &quot;Liberia&quot;, &quot;Libya&quot;, &quot;Liechtenstein&quot;, &quot;Lithuania&quot;, &quot;Luxembourg&quot;, &quot;Macao&quot;, &quot;Macedonia, The Former Yugoslav Republic Of&quot;, &quot;Madagascar&quot;, &quot;Malawi&quot;, &quot;Malaysia&quot;, &quot;Maldives&quot;, &quot;Mali&quot;, &quot;Malta&quot;, &quot;Marshall Islands&quot;, &quot;Martinique&quot;, &quot;Mauritania&quot;, &quot;Mauritius&quot;, &quot;Mayotte&quot;, &quot;Mexico&quot;, &quot;Micronesia, Federated States Of&quot;, &quot;Moldova, Republic Of&quot;, &quot;Monaco&quot;, &quot;Mongolia&quot;, &quot;Montenegro&quot;, &quot;Montserrat&quot;, &quot;Morocco&quot;, &quot;Mozambique&quot;, &quot;Myanmar&quot;, &quot;Namibia&quot;, &quot;Nauru&quot;, &quot;Nepal&quot;, &quot;Netherlands&quot;, &quot;New Caledonia&quot;, &quot;New Zealand&quot;, &quot;Nicaragua&quot;, &quot;Niger&quot;, &quot;Nigeria&quot;, &quot;Niue&quot;, &quot;Norfolk Island&quot;, &quot;Northern Mariana Islands&quot;, &quot;Norway&quot;, &quot;Oman&quot;, &quot;Pakistan&quot;, &quot;Palau&quot;, &quot;Palestine, State Of&quot;, &quot;Panama&quot;, &quot;Papua New Guinea&quot;, &quot;Paraguay&quot;, &quot;Peru&quot;, &quot;Philippines&quot;, &quot;Pitcairn&quot;, &quot;Poland&quot;, &quot;Portugal&quot;, &quot;Puerto Rico&quot;, &quot;Qatar&quot;, &quot;Réunion&quot;, &quot;Romania&quot;, &quot;Russian Federation&quot;, &quot;Rwanda&quot;, &quot;Saint Barthélemy&quot;, &quot;Saint Helena, Ascension And Tristan Da Cunha&quot;, &quot;Saint Kitts And Nevis&quot;, &quot;Saint Lucia&quot;, &quot;Saint Martin (french Part)&quot;, &quot;Saint Pierre And Miquelon&quot;, &quot;Saint Vincent And The Grenadines&quot;, &quot;Samoa&quot;, &quot;San Marino&quot;, &quot;Sao Tome And Principe&quot;, &quot;Saudi Arabia&quot;, &quot;Senegal&quot;, &quot;Serbia&quot;, &quot;Seychelles&quot;, &quot;Sierra Leone&quot;, &quot;Singapore&quot;, &quot;Sint Maarten (dutch Part)&quot;, &quot;Slovakia&quot;, &quot;Slovenia&quot;, &quot;Solomon Islands&quot;, &quot;Somalia&quot;, &quot;South Africa&quot;, &quot;South Georgia And The South Sandwich Islands&quot;, &quot;South Sudan&quot;, &quot;Spain&quot;, &quot;Sri Lanka&quot;, &quot;Sudan&quot;, &quot;Suriname&quot;, &quot;Svalbard And Jan Mayen&quot;, &quot;Swaziland&quot;, &quot;Sweden&quot;, &quot;Switzerland&quot;, &quot;Syrian Arab Republic&quot;, &quot;Taiwan, Province Of China&quot;, &quot;Tajikistan&quot;, &quot;Tanzania, United Republic Of&quot;, &quot;Thailand&quot;, &quot;Timor-leste&quot;, &quot;Togo&quot;, &quot;Tokelau&quot;, &quot;Tonga&quot;, &quot;Trinidad And Tobago&quot;, &quot;Tunisia&quot;, &quot;Turkey&quot;, &quot;Turkmenistan&quot;, &quot;Turks And Caicos Islands&quot;, &quot;Tuvalu&quot;, &quot;Uganda&quot;, &quot;Ukraine&quot;, &quot;United Arab Emirates&quot;, &quot;United Kingdom&quot;, &quot;United States&quot;, &quot;United States Minor Outlying Islands&quot;, &quot;Uruguay&quot;, &quot;Uzbekistan&quot;, &quot;Vanuatu&quot;, &quot;Venezuela, Bolivarian Republic Of&quot;, &quot;Viet Nam&quot;, &quot;Virgin Islands, British&quot;, &quot;Virgin Islands, U.s.&quot;, &quot;Wallis And Futuna&quot;, &quot;Western Sahara&quot;, &quot;Yemen&quot;, &quot;Zambia&quot;, &quot;Zimbabwe&quot;];
+var countries = [&quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;American Samoa&quot;, &quot;Andorra&quot;, &quot;Angola&quot;, &quot;Anguilla&quot;, &quot;Antarctica&quot;, &quot;Antigua And Barbuda&quot;, &quot;Argentina&quot;, &quot;Armenia&quot;, &quot;Aruba&quot;, &quot;Australia&quot;, &quot;Austria&quot;, &quot;Azerbaijan&quot;, &quot;Bahamas&quot;, &quot;Bahrain&quot;, &quot;Bangladesh&quot;, &quot;Barbados&quot;, &quot;Belarus&quot;, &quot;Belgium&quot;, &quot;Belize&quot;, &quot;Benin&quot;, &quot;Bermuda&quot;, &quot;Bhutan&quot;, &quot;Bolivia, Plurinational State Of&quot;, &quot;Bonaire, Sint Eustatius And Saba&quot;, &quot;Bosnia And Herzegovina&quot;, &quot;Botswana&quot;, &quot;Bouvet Island&quot;, &quot;Brazil&quot;, &quot;British Indian Ocean Territory&quot;, &quot;Brunei Darussalam&quot;, &quot;Bulgaria&quot;, &quot;Burkina Faso&quot;, &quot;Burundi&quot;, &quot;Cambodia&quot;, &quot;Cameroon&quot;, &quot;Canada&quot;, &quot;Cape Verde&quot;, &quot;Cayman Islands&quot;, &quot;Central African Republic&quot;, &quot;Chad&quot;, &quot;Chile&quot;, &quot;China&quot;, &quot;Christmas Island&quot;, &quot;Cocos (keeling) Islands&quot;, &quot;Colombia&quot;, &quot;Comoros&quot;, &quot;Congo&quot;, &quot;Congo, The Democratic Republic Of The&quot;, &quot;Cook Islands&quot;, &quot;Costa Rica&quot;, &quot;Côte D&#39;ivoire&quot;, &quot;Croatia&quot;, &quot;Cuba&quot;, &quot;Curaçao&quot;, &quot;Cyprus&quot;, &quot;Czech Republic&quot;, &quot;Denmark&quot;, &quot;Djibouti&quot;, &quot;Dominica&quot;, &quot;Dominican Republic&quot;, &quot;Ecuador&quot;, &quot;Egypt&quot;, &quot;El Salvador&quot;, &quot;Equatorial Guinea&quot;, &quot;Eritrea&quot;, &quot;Estonia&quot;, &quot;Ethiopia&quot;, &quot;Falkland Islands (malvinas)&quot;, &quot;Faroe Islands&quot;, &quot;Fiji&quot;, &quot;Finland&quot;, &quot;France&quot;, &quot;French Guiana&quot;, &quot;French Polynesia&quot;, &quot;French Southern Territories&quot;, &quot;Gabon&quot;, &quot;Gambia&quot;, &quot;Georgia&quot;, &quot;Germany&quot;, &quot;Ghana&quot;, &quot;Gibraltar&quot;, &quot;Greece&quot;, &quot;Greenland&quot;, &quot;Grenada&quot;, &quot;Guadeloupe&quot;, &quot;Guam&quot;, &quot;Guatemala&quot;, &quot;Guernsey&quot;, &quot;Guinea&quot;, &quot;Guinea-bissau&quot;, &quot;Guyana&quot;, &quot;Haiti&quot;, &quot;Heard Island And Mcdonald Islands&quot;, &quot;Holy See (vatican City State)&quot;, &quot;Honduras&quot;, &quot;Hong Kong&quot;, &quot;Hungary&quot;, &quot;Iceland&quot;, &quot;India&quot;, &quot;Indonesia&quot;, &quot;Iran, Islamic Republic Of&quot;, &quot;Iraq&quot;, &quot;Ireland&quot;, &quot;Isle Of Man&quot;, &quot;Israel&quot;, &quot;Italy&quot;, &quot;Jamaica&quot;, &quot;Japan&quot;, &quot;Jersey&quot;, &quot;Jordan&quot;, &quot;Kazakhstan&quot;, &quot;Kenya&quot;, &quot;Kiribati&quot;, &quot;Korea, Democratic People&#39;s Republic Of&quot;, &quot;Korea, Republic Of&quot;, &quot;Kuwait&quot;, &quot;Kyrgyzstan&quot;, &quot;Lao People&#39;s Democratic Republic&quot;, &quot;Latvia&quot;, &quot;Lebanon&quot;, &quot;Lesotho&quot;, &quot;Liberia&quot;, &quot;Libya&quot;, &quot;Liechtenstein&quot;, &quot;Lithuania&quot;, &quot;Luxembourg&quot;, &quot;Macao&quot;, &quot;Macedonia, The Former Yugoslav Republic Of&quot;, &quot;Madagascar&quot;, &quot;Malawi&quot;, &quot;Malaysia&quot;, &quot;Maldives&quot;, &quot;Mali&quot;, &quot;Malta&quot;, &quot;Marshall Islands&quot;, &quot;Martinique&quot;, &quot;Mauritania&quot;, &quot;Mauritius&quot;, &quot;Mayotte&quot;, &quot;Mexico&quot;, &quot;Micronesia, Federated States Of&quot;, &quot;Moldova, Republic Of&quot;, &quot;Monaco&quot;, &quot;Mongolia&quot;, &quot;Montenegro&quot;, &quot;Montserrat&quot;, &quot;Morocco&quot;, &quot;Mozambique&quot;, &quot;Myanmar&quot;, &quot;Namibia&quot;, &quot;Nauru&quot;, &quot;Nepal&quot;, &quot;Netherlands&quot;, &quot;New Caledonia&quot;, &quot;New Zealand&quot;, &quot;Nicaragua&quot;, &quot;Niger&quot;, &quot;Nigeria&quot;, &quot;Niue&quot;, &quot;Norfolk Island&quot;, &quot;Northern Mariana Islands&quot;, &quot;Norway&quot;, &quot;Oman&quot;, &quot;Pakistan&quot;, &quot;Palau&quot;, &quot;Palestine, State Of&quot;, &quot;Panama&quot;, &quot;Papua New Guinea&quot;, &quot;Paraguay&quot;, &quot;Peru&quot;, &quot;Philippines&quot;, &quot;Pitcairn&quot;, &quot;Poland&quot;, &quot;Portugal&quot;, &quot;Puerto Rico&quot;, &quot;Qatar&quot;, &quot;Réunion&quot;, &quot;Romania&quot;, &quot;Russian Federation&quot;, &quot;Rwanda&quot;, &quot;Saint Barthélemy&quot;, &quot;Saint Helena, Ascension And Tristan Da Cunha&quot;, &quot;Saint Kitts And Nevis&quot;, &quot;Saint Lucia&quot;, &quot;Saint Martin (french Part)&quot;, &quot;Saint Pierre And Miquelon&quot;, &quot;Saint Vincent And The Grenadines&quot;, &quot;Samoa&quot;, &quot;San Marino&quot;, &quot;Sao Tome And Principe&quot;, &quot;Saudi Arabia&quot;, &quot;Senegal&quot;, &quot;Serbia&quot;, &quot;Seychelles&quot;, &quot;Sierra Leone&quot;, &quot;Singapore&quot;, &quot;Sint Maarten (dutch Part)&quot;, &quot;Slovakia&quot;, &quot;Slovenia&quot;, &quot;Solomon Islands&quot;, &quot;Somalia&quot;, &quot;South Africa&quot;, &quot;South Georgia And The South Sandwich Islands&quot;, &quot;South Sudan&quot;, &quot;Spain&quot;, &quot;Sri Lanka&quot;, &quot;Sudan&quot;, &quot;Suriname&quot;, &quot;Svalbard And Jan Mayen&quot;, &quot;Swaziland&quot;, &quot;Sweden&quot;, &quot;Switzerland&quot;, &quot;Syrian Arab Republic&quot;, &quot;Taiwan, Province Of China&quot;, &quot;Tajikistan&quot;, &quot;Tanzania, United Republic Of&quot;, &quot;Thailand&quot;, &quot;Timor-leste&quot;, &quot;Togo&quot;, &quot;Tokelau&quot;, &quot;Tonga&quot;, &quot;Trinidad And Tobago&quot;, &quot;Tunisia&quot;, &quot;Turkey&quot;, &quot;Turkmenistan&quot;, &quot;Turks And Caicos Islands&quot;, &quot;Tuvalu&quot;, &quot;Uganda&quot;, &quot;Ukraine&quot;, &quot;United Arab Emirates&quot;, &quot;United Kingdom&quot;, &quot;United States&quot;, &quot;United States Minor Outlying Islands&quot;, &quot;Uruguay&quot;, &quot;Uzbekistan&quot;, &quot;Vanuatu&quot;, &quot;Venezuela, Bolivarian Republic Of&quot;, &quot;Viet Nam&quot;, &quot;Virgin Islands, British&quot;, &quot;Virgin Islands, U.s.&quot;, &quot;Wallis And Futuna&quot;, &quot;Western Sahara&quot;, &quot;Yemen&quot;, &quot;Zambia&quot;, &quot;Zimbabwe&quot;];
 	&lt;/pre&gt;
 &lt;/code&gt;
 &lt;p&gt;It follows the ISO 3166-1-alpha-2 standard. You don&amp;#8217;t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn&amp;#8217;t have to look for it again.&lt;/p&gt;
@@ -26,8 +56,8 @@ String.prototype.capitalize = function() {
 
 var countries = &quot;var countries = [&quot;;
 
-$('tbody').find(&quot;tr&quot;).each(function(i) {
-    var country = $(this).find('td').last().text();
+$(&#39;tbody&#39;).find(&quot;tr&quot;).each(function(i) {
+    var country = $(this).find(&#39;td&#39;).last().text();
     country = country.toLowerCase().capitalize();
     if (i === 0) {
         countries = countries + &quot;\&quot;&quot; + country + &quot;\&quot;&quot;;
@@ -40,7 +70,7 @@ countries = countries + &quot;];&quot;;
 console.log(countries);
 	&lt;/pre&gt;
 &lt;/code&gt;
-&lt;p&gt;If you run that script in &lt;a href='http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm'&gt;here&lt;/a&gt;, you&amp;#8217;ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.&lt;/p&gt;</description>
+&lt;p&gt;If you run that script in &lt;a href=&#39;http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm&#39;&gt;here&lt;/a&gt;, you&amp;#8217;ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.&lt;/p&gt;</description>
 				<pubDate>Fri, 28 Jun 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/06/28/a-javascript-array-of-countries.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/06/28/a-javascript-array-of-countries.html</guid>
@@ -108,7 +138,7 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 
 &lt;p&gt;Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don&amp;#8217;t?&lt;/p&gt;
 
-&lt;p&gt;Think about, simple design is awesome, &lt;a href='http://www.sensible.com/dmmt.html'&gt;don&amp;#8217;t make me think&lt;/a&gt; and don&amp;#8217;t make my mother ask me for help.&lt;/p&gt;</description>
+&lt;p&gt;Think about, simple design is awesome, &lt;a href=&#39;http://www.sensible.com/dmmt.html&#39;&gt;don&amp;#8217;t make me think&lt;/a&gt; and don&amp;#8217;t make my mother ask me for help.&lt;/p&gt;</description>
 				<pubDate>Wed, 20 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</guid>
@@ -131,9 +161,9 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 			<item>
 				<title>Organizing a Javascript MVC Project</title>
 				<description>&lt;p&gt; 
-I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
+I&#39;ve been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it&#39;s easy to work with and hard for us to make mistakes.
 &lt;/p&gt;&lt;p&gt;
-As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use &lt;a href='http://www.canjs.us'&gt;can.js&lt;/a&gt; as our MVC framework of choice and use &lt;a href='http://www.gruntjs.com/'&gt;grunt&lt;/a&gt; to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
+As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use &lt;a href=&#39;http://www.canjs.us&#39;&gt;can.js&lt;/a&gt; as our MVC framework of choice and use &lt;a href=&#39;http://www.gruntjs.com/&#39;&gt;grunt&lt;/a&gt; to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
 &lt;/p&gt;&lt;p&gt;
 Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
 &lt;/p&gt;&lt;pre&gt;
@@ -156,17 +186,17 @@ Coming up with a structure was pretty hard but, I think out current structure wo
         index.html
         grunt.js
 &lt;/pre&gt;&lt;p&gt;
-It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate &lt;code&gt;app.min.js&lt;/code&gt; and &lt;code&gt;libs.min.js&lt;/code&gt; and how they all generally fit in together.
+It might look complicated, but it&#39;s actually fairly simple. I&#39;ll try to break it down, show how we use grunt to generate &lt;code&gt;app.min.js&lt;/code&gt; and &lt;code&gt;libs.min.js&lt;/code&gt; and how they all generally fit in together.
 &lt;/p&gt;&lt;h2&gt;Folder &amp;amp; File Structure&lt;/h2&gt;&lt;p&gt;
 The folder structure is fairly straight forward. Inside the &lt;code&gt;Application&lt;/code&gt; folder we hold all of our important files. The only important folder here is the one called &lt;code&gt;Javascript&lt;/code&gt;, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
 &lt;/p&gt;&lt;p&gt;
-Here's what a raw controller inside this folder looks like:
+Here&#39;s what a raw controller inside this folder looks like:
 &lt;/p&gt;&lt;code&gt;
 &lt;pre&gt;
 ;(function(namespace, undefined) {
-  'use strict';
+  &#39;use strict&#39;;
   var ControllerName = can.Control({
-    'init': function(element, options) {
+    &#39;init&#39;: function(element, options) {
       var self = this;
       // Actual code stuff
     }
@@ -177,13 +207,13 @@ Here's what a raw controller inside this folder looks like:
 }(this));
 &lt;/pre&gt;
 &lt;/code&gt;&lt;p&gt;
-As you can see the only thing we are doing which isn't immediately obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populate the global namespace with every single controller and because we can access any controller like this: &lt;code&gt;Controllers.ControllerName&lt;/code&gt;. We do the same for models:
+As you can see the only thing we are doing which isn&#39;t immediately obvious is to add the controller to the namespace&#39;s Controller object. In our case, this is the window object. This is great because we don&#39;t populate the global namespace with every single controller and because we can access any controller like this: &lt;code&gt;Controllers.ControllerName&lt;/code&gt;. We do the same for models:
 &lt;/p&gt;&lt;code&gt;
 &lt;pre&gt;
 ;(function(namespace, undefined) {
-  'use strict';
+  &#39;use strict&#39;;
   var ModelName = can.Model({
-    findOne: 'GET /getModel'
+    findOne: &#39;GET /getModel&#39;
   }, {});
 
   namespace.Models = namespace.Models || {};
@@ -191,46 +221,46 @@ As you can see the only thing we are doing which isn't immediately obvious is to
 }(this));
 &lt;/pre&gt;
 &lt;/code&gt;&lt;p&gt;
-In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
+In our case, views are simple .ejs files so there&#39;s nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
 &lt;/p&gt;&lt;p&gt;
-Now that we have our files in place, let's move into using grunt to generate the finalized application files will be using in production.
-&lt;/p&gt;&lt;h2&gt;Grunt&lt;/h2&gt;&lt;p&gt;Here's what an example grunt file would look like:&lt;/p&gt;&lt;code&gt;
+Now that we have our files in place, let&#39;s move into using grunt to generate the finalized application files will be using in production.
+&lt;/p&gt;&lt;h2&gt;Grunt&lt;/h2&gt;&lt;p&gt;Here&#39;s what an example grunt file would look like:&lt;/p&gt;&lt;code&gt;
 &lt;pre&gt;
 module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
       app: {
         src: [
-          'Application/Assets/Javascript/controllers/**/*.js', 
-          'Application/Assets/Javascript/models/**/*.js', 
-          'Application/Assets/Javascript/app.js'
+          &#39;Application/Assets/Javascript/controllers/**/*.js&#39;, 
+          &#39;Application/Assets/Javascript/models/**/*.js&#39;, 
+          &#39;Application/Assets/Javascript/app.js&#39;
         ],
-        dest: 'dist/app.js'
+        dest: &#39;dist/app.js&#39;
       },
       libs: {
         src: [
-          'Application/Assets/Javascript/libs/jQuery.js', 
-          'Application/Assets/Javascript/libs/plugins/**/*.js'
+          &#39;Application/Assets/Javascript/libs/jQuery.js&#39;, 
+          &#39;Application/Assets/Javascript/libs/plugins/**/*.js&#39;
         ],
-        dest: 'dist/libs.js'
+        dest: &#39;dist/libs.js&#39;
       }
     },
     min: {
       app: {
-        src: ['&amp;lt;config:concat.app.dest&amp;gt;'],
-        dest: 'dist/app.min.js'
+        src: [&#39;&amp;lt;config:concat.app.dest&amp;gt;&#39;],
+        dest: &#39;dist/app.min.js&#39;
       },
       libs: {
-        src: ['&amp;lt;config:concat.libs.dest&amp;gt;'],
-        dest: 'dist/libs.min.js'
+        src: [&#39;&amp;lt;config:concat.libs.dest&amp;gt;&#39;],
+        dest: &#39;dist/libs.min.js&#39;
       }
     }
   });
 
-  grunt.registerTask('default', 'concat min');
+  grunt.registerTask(&#39;default&#39;, &#39;concat min&#39;);
 };
 &lt;/pre&gt;
-&lt;/code&gt;&lt;p&gt;This particular grunt file doesn't do much. When you call the &lt;code&gt;grunt&lt;/code&gt; command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.&lt;/p&gt;&lt;h2&gt;That's it&lt;/h2&gt;&lt;p&gt;I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.&lt;/p&gt;</description>
+&lt;/code&gt;&lt;p&gt;This particular grunt file doesn&#39;t do much. When you call the &lt;code&gt;grunt&lt;/code&gt; command it&#39;ll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.&lt;/p&gt;&lt;h2&gt;That&#39;s it&lt;/h2&gt;&lt;p&gt;I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.&lt;/p&gt;</description>
 				<pubDate>Fri, 01 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</guid>
@@ -238,9 +268,9 @@ module.exports = function(grunt) {
 		
 			<item>
 				<title>Surviving a Hackathon</title>
-				<description>&lt;p&gt;Last week I finally went to &lt;a href='http://vdhackathon.org'&gt;my first hackathon&lt;/a&gt; and it was an awesome experience! Here are a couple of things everyone should watch out for when they go to a hackathon for the first time.&lt;/p&gt;
+				<description>&lt;p&gt;Last week I finally went to &lt;a href=&#39;http://vdhackathon.org&#39;&gt;my first hackathon&lt;/a&gt; and it was an awesome experience! Here are a couple of things everyone should watch out for when they go to a hackathon for the first time.&lt;/p&gt;
 
-&lt;h2 id='what_youll_need'&gt;What you&amp;#8217;ll need&lt;/h2&gt;
+&lt;h2 id=&#39;what_youll_need&#39;&gt;What you&amp;#8217;ll need&lt;/h2&gt;
 
 &lt;p&gt;Okay, first things first, hackathons are apparently seriously social events. If you are more of an introvert it might be good for a you to bring along a friend, it&amp;#8217;ll make your time there easier. I brought a friend along and it made the whole thing a lot more fun.&lt;/p&gt;
 
@@ -248,7 +278,7 @@ module.exports = function(grunt) {
 
 &lt;p&gt;Finally, another thing, which I didn&amp;#8217;t actually bring with me on purpose are business cards. Even though I was just hanging around and doing stuff a bunch of people approached me with project ideas and business offers. So if you are looking for a job that might also be a good place to look for one. I almost ran out of them during the weekend!&lt;/p&gt;
 
-&lt;h2 id='hackathoning'&gt;Hackathoning!&lt;/h2&gt;
+&lt;h2 id=&#39;hackathoning&#39;&gt;Hackathoning!&lt;/h2&gt;
 
 &lt;p&gt;Hackathoning is the only reason you are awake at 9am on a Saturday so it&amp;#8217;s important to keep it in mind. If there&amp;#8217;s a theme which was set beforehand, I&amp;#8217;d recommend you go ahead and think of ideas so you can discuss them with your teammates. If there&amp;#8217;s no theme then thinking of ideas is still a good idea.&lt;/p&gt;
 
@@ -258,11 +288,11 @@ module.exports = function(grunt) {
 
 &lt;p&gt;At this point, you are ready to start coding! So go out there and code! Try not to get too distracted or too focused, try to socialize and get stuff done at the same time. If you can balance these things you&amp;#8217;ll survive this hackathon successfully.&lt;/p&gt;
 
-&lt;h3 id='networking'&gt;Networking&lt;/h3&gt;
+&lt;h3 id=&#39;networking&#39;&gt;Networking&lt;/h3&gt;
 
 &lt;p&gt;This is, what I found to be, the most important aspect of the hackathon. You cannot only socialize but, you can also make new friends, business partners, clients and jobs. So try to talk with everyone, it&amp;#8217;s always nice to find new project to work on.&lt;/p&gt;
 
-&lt;h2 id='closing_up'&gt;Closing up&lt;/h2&gt;
+&lt;h2 id=&#39;closing_up&#39;&gt;Closing up&lt;/h2&gt;
 
 &lt;p&gt;Hackathoning is fun! You can network, socialize, code and have a general good weekend so, if you haven&amp;#8217;t gone to one, I highly recommend you do.&lt;/p&gt;</description>
 				<pubDate>Sun, 27 Jan 2013 00:00:00 -0600</pubDate>
@@ -273,18 +303,18 @@ module.exports = function(grunt) {
 			<item>
 				<title>Rails Quickhint #1: Creating a model while skipping validations</title>
 				<description>&lt;p&gt;
-	This certainly needs some background. I've been working on a random rails project for the better part of the last couple of months. 
-	This project uses devise to manage logins and user registration. Recently registrations started failing in the site which, didn't 
+	This certainly needs some background. I&#39;ve been working on a random rails project for the better part of the last couple of months. 
+	This project uses devise to manage logins and user registration. Recently registrations started failing in the site which, didn&#39;t 
 	make sense since they had been working fine for a while. So I started digging into it.
 &lt;/p&gt;
 
 &lt;p&gt;
-	According to rails the user url didn't exist so it couldn't redirect back to the homepage after a successful registration. 
-	After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that's normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn't (since the username is only supposed to be set after registration).
+	According to rails the user url didn&#39;t exist so it couldn&#39;t redirect back to the homepage after a successful registration. 
+	After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that&#39;s normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn&#39;t (since the username is only supposed to be set after registration).
 &lt;/p&gt;
 
 &lt;p&gt;
-	So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
+	So, what&#39;s the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here&#39;s how I did it:
 &lt;/p&gt;
 
 &lt;p&gt;user.rb&lt;/p&gt;
@@ -314,7 +344,7 @@ end
 &lt;/pre&gt;
 &lt;/code&gt;
 
-&lt;p&gt;This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.&lt;/p&gt;</description>
+&lt;p&gt;This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it&#39;s my fault for not paying attention.&lt;/p&gt;</description>
 				<pubDate>Fri, 18 Jan 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/01/18/rails-quickhint-1.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/01/18/rails-quickhint-1.html</guid>
@@ -322,15 +352,15 @@ end
 		
 			<item>
 				<title>Hiding elements when they lose focus with jQuery</title>
-				<description>&lt;p&gt;There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:&lt;/p&gt;
+				<description>&lt;p&gt;There&#39;s simply is no standard way of hiding an element when it loses it&#39;s &#39;focus&#39; using Javascript or jQuery. Here&#39;s how I&#39;ve been  doing it lately:&lt;/p&gt;
 
 &lt;code&gt;
 &lt;pre&gt;
 $(&quot;.userMenu a&quot;).on(&quot;click&quot;, function() {
   $(&quot;.loginForm&quot;).stop().fadeToggle(100, &quot;linear&quot;, function() {
     $(&quot;body&quot;).on(&quot;click.loginform&quot;, function(e) {
-      if($(e.target).parents('.loginForm, .userMenu').length === 0) {
-        $('.loginForm').fadeToggle(100);
+      if($(e.target).parents(&#39;.loginForm, .userMenu&#39;).length === 0) {
+        $(&#39;.loginForm&#39;).fadeToggle(100);
         $(&quot;body&quot;).off(&quot;.loginform&quot;);
       }
     });
@@ -339,26 +369,12 @@ $(&quot;.userMenu a&quot;).on(&quot;click&quot;, function() {
 &lt;/pre&gt;
 &lt;/code&gt;
 
-&lt;p&gt;As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.&lt;/p&gt;
+&lt;p&gt;As you can see, it&#39;s fairly straight forward. Basically, when you click the button that shows the element, it toggle&#39;s the target element&#39;s visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn&#39;t. If it wasn&#39;t on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.&lt;/p&gt;
 
 &lt;p&gt;So far, I like this method a lot, mostly because it is simple and gets things done quickly.&lt;/p&gt;</description>
 				<pubDate>Thu, 10 Jan 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/01/10/onBlur-for-divs-with-jquery.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/01/10/onBlur-for-divs-with-jquery.html</guid>
-			</item>
-		
-			<item>
-				<title>New Year's Resolutions 2013</title>
-				<description>&lt;p&gt;I&amp;#8217;ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I&amp;#8217;ve been saying I&amp;#8217;ll start blogging more often for a couple of years now and I keep failing. I&amp;#8217;ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don&amp;#8217;t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that&amp;#8217;s how I roll.&lt;/p&gt;
-
-&lt;p&gt;My second resolution is to start a company. I am currently participating in contest sponsored by my university. If I were to win I&amp;#8217;d be established as a company in a couple of months. Even if this doesn&amp;#8217;t work out, I&amp;#8217;ll get started on my own.&lt;/p&gt;
-
-&lt;p&gt;There&amp;#8217;s more development and learning to be done in 2013 as well. I&amp;#8217;d say 2012 was the year of Javascript. Working as a front-end developer forces you to learn a lot of Javascript so it&amp;#8217;s been a great experience. This year I&amp;#8217;ll further evolve as a Javascript developer but, I also want to master ruby. I just love that language and even though I&amp;#8217;ve worked with it a lot I don&amp;#8217;t feel as confident in my skills. It still feels too magical for my taste. I&amp;#8217;ll be working a lot more on personal projects (and blogging about it as well). I already have one android app in mind and a couple of gems to make my life easier.&lt;/p&gt;
-
-&lt;p&gt;In the end I hope this year is as great as the last one and I learn, develop and grow a lot more.&lt;/p&gt;</description>
-				<pubDate>Sat, 05 Jan 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/01/05/new-years-resolutions-2013.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/01/05/new-years-resolutions-2013.html</guid>
 			</item>
 		
 	</channel>
