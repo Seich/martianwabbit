@@ -14,14 +14,15 @@ ssh -L 8080:localhost:8080 &lt;host&gt;
 </pre>
 
 <p>
+	This basically uses ssh to map the port 8080 of your machine (127.0.0.1 or localhost) to the port 8080 on the host machine. Don't forget to replace "&lt;host&gt;" with your actual remote host.
+</p>
+
+<p>
 	With this, you can now connect to the admin interface by going to localhost:8080 on your machine. Note that this will only work as long as the ssh connection remains open.
 </p>
 
 <h2>Additional Resources</h2>
 <p>
-	<a href="http://www.symantec.com/connect/articles/ssh-port-forwarding">SSH Port Forwarding - Symatec</a>
-</p>
-
-<p>
+	<a href="http://www.symantec.com/connect/articles/ssh-port-forwarding">SSH Port Forwarding - Symatec</a> <br>
 	<a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">SSH/OpenSSH/PortForwarding - Ubuntu Community Documentation</a>
 </p>
