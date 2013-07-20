@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Seichy's Missing Bit  | Playing with Arduinos, RFID cards and Ruby </title>
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
+	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/highlighter/prettify.css" type="text/css" media="screen" />
+</head>
+<body>
+	<div class="container">
+		<nav id="top">
+			<ul>
+				<li><a href="/">Posts</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+		</nav>
+		
+		<header id="title">
+			<h1><a href="/">Seichy's Missing Bit</a></h1>
+		</header>
+		
+		<section class="post">
+	<h1><a href="/post/23951072604.html">Playing with Arduinos, RFID cards and Ruby</a></h1>
+	<time>May 28, 2012</time>
+	<p><em>This is probably one of the coolest things I&#8217;ve worked on in a while and I also happen to have time to write a blog post about it, which is great, I love working with hardware from time to time.</em></p>
+<p>It definitely isn&#8217;t the biggest programming challenge I&#8217;ve had but it is pretty cool and I am certain others might find it interesting. Yesterday, I was helping my sister with a project she was doing for her professional practice (she is a very weird kind of engineer who specializes in automation stuff, she is great at it), she was basically asked to open a door with a RFID card.</p>
+<p><img src="http://media.tumblr.com/tumblr_m4r3qapJDn1qazvm1.jpg"/></p>
+<p>To do this, she had a very simple plan, we plug an RFID card reader into a computer which then sends the RFID over to a computer and then tells an Arduino to open the door. She used this <a href="http://www.sparkfun.com/products/8628">RFID Reader</a> (RFID Reader ID-20 (125&#160;kHz)) which is pretty inexpensive and easy to plug into a computer.</p>
+<p><img src="http://media.tumblr.com/tumblr_m4r3roDKpw1qazvm1.jpg"/></p>
+<p>This was fairly straight-forward for her, she mounted the RFID card reader into a board and plugged it into her computer along with her Arduino. She then fired up putty and set it to read the RFID card reader&#8217;s serial port (COM 9, in our case) which showed us the RFID of any card we read. </p>
+<p><img src="http://media.tumblr.com/tumblr_m4r3qluG5S1qazvm1.jpg"/></p>
+<p>This is where I came in, she isn&#8217;t that much of a coder so she asked me for help on how to finish the connection between the RFID reader and the Arduino. This is what I came up in Ruby:</p>
+
+<code>
+	<pre>
+require "serialport"
+ 
+@rfid_reader = SerialPort.new 4 # Open COM 5
+@arduino = SerialPort.new 2 # Open COM 3
+ 
+@valid_ids = ['4500B8D690BB']
+ 
+def readRFID
+  rfid = @rfid_reader.gets
+  rfid.strip!
+  rfid.slice(0) if rfid.size == 13
+  rfid.slice(0..1) if rfid.size == 14
+ 
+  return rfid
+end
+ 
+puts "Waiting for input..."
+loop do
+  rfid = readRFID # Get the RFID of the current card
+  if !rfid.empty? 
+    if @valid_ids.include? rfid # is the ID valid?
+      puts "RFID: " + rfid
+ 
+      # Send the arduino a signal so it opens the lock.
+      @arduino.write "1" 
+    else
+      puts "Invalid RFID: " + rfid
+      @arduino.write ""
+    end
+  end
+  @arduino.write ""
+end
+	</pre>
+</code>
+
+<p>
+	I was actually going to use C++ but, I prefer using Ruby whenever possible. This is a very simple code snippet but it did the job wonderfully. The code is documented and very simple, I used the fabulous <a href="https://github.com/hparra/ruby-serialport">ruby-serialport</a> gem which, took care of all the heavy lifting for me.
+</p>
+
+<p>
+	This was only half of the work though, we also needed to get the Arduino to wait for an input coming from the computer and do something whenever a value is received, in this case we wanted to open a lock so that&#8217;s what we&#8217;ll do.
+</p>
+
+<code>
+	<pre>
+void setup () {
+  Serial.begin (9600);
+  pinMode (12, OUTPUT);
+}
+ 
+void serialEvent() {
+  digitalWrite(12, HIGH);
+  delay(2000);
+  digitalWrite(12, LOW);
+  Serial.read();
+}
+	</pre>
+</code>
+
+<p>
+	The code is even simpler than the Ruby one running on the computer. All it does is wait for there to be an input and then activate a pin when there is one. Ruby is pretty much doing all of the actual processing and telling the Arduino when and what to do.
+</p>
+
+<p><img src="http://media.tumblr.com/tumblr_m4r3s7jnwp1qazvm1.png"/></p>
+<p>Finally, all we had to do was fire up the terminal and run our Ruby program which would then wait for there to be an input form the RFID reader. Whenever there&#8217;s an input it&#8217;ll log it and then, if the RFID is registered, tell the Arduino to open the lock. And that&#8217;s basically it, it made a nice problem to solve for fun.</p>
+</section>
+	
+<section class="media-anouncement">
+	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
+<script>
+	if (typeof prettyPrint !== "undefined") {
+		var codes = document.querySelectorAll("code > pre");
+		for (var i = 0; i < codes.length; i++) {
+			codes[i].className = codes[i].className + " prettyprint";
+		}
+		prettyPrint();
+	}
+</script>
+		
+		<footer>
+			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
+			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
+		</footer>
+	</div>
+	<script>
+        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>
+		
