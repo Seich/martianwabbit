@@ -132,8 +132,12 @@ header#title a {
 .media-anouncement {
 	margin-top: 30px;
 	font-style: italic;
+	text-align: center;
 }
 
+.media-anouncement iframe {
+    margin: 0 0.2em;
+}
 /* about me */
 .about-me {
     border-top: 1em solid #7DB441;
