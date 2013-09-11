@@ -7,7 +7,7 @@ html {
 }
 
 body {
-	background: #FFFCF5;
+	background: #FAFAFA;
 	color: #222;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -48,7 +48,7 @@ nav#top h1 {
 
 nav#top ul {
 	float: right;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
 	margin: 0;
 	text-align: right;
@@ -61,28 +61,30 @@ nav#top li {
 }
 
 header#title a {
-	border-bottom: 1px dotted #999;
-	color: #856363;
-	font-size: 25px;
+	color: #444;
+	font-size: 45px;
 	line-height: 40px;
 	margin: 0;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 /* Body Sections */
 /* Archive */
+.archive {
+    border-top: 1em solid #7DB441;
+}
+
 .archive ul {
-	padding: 0;
+	padding: 1em 2em;
+	background: #fff;
+	margin-top: 0;
 }
 
 .archive li {
-	border-bottom: 1px dotted #bbb;
 	list-style: none;
-	margin-bottom: 2em;
-}
-
-.archive li:nth-child(even) {
-	background: #F3F3F3;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 1em;
 }
 
 .archive li h1,
@@ -100,12 +102,16 @@ header#title a {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	font-weight: normal;
+	display: block;
 }
 
 /* Post */
 .post {
 	clear: both;
 	line-height: 30px;
+    padding: 1em 2em;
+    background: #FFF;    
+	border-top: 1em solid #7DB441;
 }
 
 .post h1 {
@@ -120,6 +126,7 @@ header#title a {
 
 .post time {
 	color: #999;
+	font-size: 1.2em;
 }
 
 .media-anouncement {
@@ -128,6 +135,12 @@ header#title a {
 }
 
 /* about me */
+.about-me {
+    border-top: 1em solid #7DB441;
+    background: #fff;
+    padding: 1em 2em;
+}
+
 .about-me h1 {
 	font-size: 72px;
 	margin: 0;
