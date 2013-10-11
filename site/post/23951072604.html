@@ -7,8 +7,8 @@
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
 	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/highlighter/prettify.css" type="text/css" media="screen" />
 </head>
 <body>
 	<div class="container">
@@ -35,8 +35,8 @@
 <p><img src="http://media.tumblr.com/tumblr_m4r3qluG5S1qazvm1.jpg"/></p>
 <p>This is where I came in, she isn&#8217;t that much of a coder so she asked me for help on how to finish the connection between the RFID reader and the Arduino. This is what I came up in Ruby:</p>
 
-<code>
-	<pre>
+<pre>
+<code data-language="ruby">
 require "serialport"
  
 @rfid_reader = SerialPort.new 4 # Open COM 5
@@ -69,8 +69,8 @@ loop do
   end
   @arduino.write ""
 end
-	</pre>
 </code>
+</pre>
 
 <p>
 	I was actually going to use C++ but, I prefer using Ruby whenever possible. This is a very simple code snippet but it did the job wonderfully. The code is documented and very simple, I used the fabulous <a href="https://github.com/hparra/ruby-serialport">ruby-serialport</a> gem which, took care of all the heavy lifting for me.
@@ -80,8 +80,8 @@ end
 	This was only half of the work though, we also needed to get the Arduino to wait for an input coming from the computer and do something whenever a value is received, in this case we wanted to open a lock so that&#8217;s what we&#8217;ll do.
 </p>
 
-<code>
-	<pre>
+<pre>
+<code data-language="c">
 void setup () {
   Serial.begin (9600);
   pinMode (12, OUTPUT);
@@ -93,8 +93,8 @@ void serialEvent() {
   digitalWrite(12, LOW);
   Serial.read();
 }
-	</pre>
 </code>
+</pre>
 
 <p>
 	The code is even simpler than the Ruby one running on the computer. All it does is wait for there to be an input and then activate a pin when there is one. Ruby is pretty much doing all of the actual processing and telling the Arduino when and what to do.
@@ -108,7 +108,7 @@ void serialEvent() {
 	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
 </section>
-<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
+<script src="/rainbow/rainbow.js"></script>
 <script>
 	if (typeof prettyPrint !== "undefined") {
 		var codes = document.querySelectorAll("code > pre");

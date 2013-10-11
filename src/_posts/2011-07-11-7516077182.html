@@ -27,24 +27,24 @@ permalink: /post/7516077182.html
   Let&#8217;s say I am building an simple one page site for some guy named Bob. Since it&#8217;s so simple, I want to have as much as I can in a single page. Routs allow me to do something like this:
 </p>
 
-<code>
-  <pre>
-  require 'routs.php';
+<pre>
+<code data-language="php">
+require 'routs.php';
 
-  Rout::get('home', 'homeFunction');
+Rout::get('home', 'homeFunction');
 
-  function homeFunction($params) {
-    templateManager::Render('home.tpl', $params);
-  }
-  </pre>
+function homeFunction($params) {
+  templateManager::Render('home.tpl', $params);
+}
 </code>
+</pre>
 
 <p>
   In this example I am using Routs to handle all get requests to example.com/home using the homeFunction() function. The part about the template manager is whatever method you&#8217;re using, I&#8217;ll be creating my own soonish. Now, I added a form to my html page and I want it to be handled on the same page. My routs handler changes into this:
 </p>
 
-<code>
-  <pre>
+<pre>
+<code data-language="php">
 require 'routs.php';
 
 Rout::get('home', 'homeFunction');
@@ -60,8 +60,8 @@ Rout::post('home', function($params){
     emailHandler::Render('mailTemplate.tpl', $params)
   );
 });
-  </pre>
 </code>
+</pre>
 
 <p>
   Which handles the the submitted form and so on. Basically, the possibilities are endless! :D So yeah, that&#8217;s it, have fun with it, fork it, tell me why it sucks, etc.

@@ -7,8 +7,8 @@
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
 	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/highlighter/prettify.css" type="text/css" media="screen" />
 </head>
 <body>
 	<div class="container">
@@ -28,8 +28,8 @@
 	<time>January 10, 2013</time>
 	<p>There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:</p>
 
-<code>
 <pre>
+<code data-language="javascript">
 $(".userMenu a").on("click", function() {
   $(".loginForm").stop().fadeToggle(100, "linear", function() {
     $("body").on("click.loginform", function(e) {
@@ -40,8 +40,8 @@ $(".userMenu a").on("click", function() {
     });
   });
 });
-</pre>
 </code>
+</pre>
 
 <p>As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.</p>
 
@@ -52,7 +52,7 @@ $(".userMenu a").on("click", function() {
 	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
 </section>
-<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
+<script src="/rainbow/rainbow.js"></script>
 <script>
 	if (typeof prettyPrint !== "undefined") {
 		var codes = document.querySelectorAll("code > pre");

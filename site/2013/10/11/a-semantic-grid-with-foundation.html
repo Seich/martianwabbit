@@ -7,8 +7,8 @@
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
 	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/highlighter/prettify.css" type="text/css" media="screen" />
 </head>
 <body>
 	<div class="container">
@@ -43,10 +43,8 @@
 </div>
 
 <p>As you can see, it's a very simple layout. It'd be really easy to build it using the grid classes, it's even easier to build it using the mixins. Here's my markup:</p>
-
-<code>
 <pre>
-&lt;article&gt;
+<code data-language="html">&lt;article&gt;
   &lt;header&gt;
     &lt;h1&gt;Hello World&lt;/h1&gt;
   &lt;/header&gt;
@@ -59,16 +57,15 @@
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, voluptatibus, deserunt, facilis iusto sapiente impedit praesentium laudantium minus voluptas numquam incidunt corrupti sequi laboriosam magnam officia perspiciatis quas quam quaerat!
   &lt;/p&gt;
 &lt;/article&gt;
-</pre>
 </code>
+</pre>
 
 <p>As you can see it's pretty standard except the elements lack classes and such. Much prettier than usual in my opinion.</p>
 
 <p>Here's my CSS:</p>
 
-<code>
 <pre>
-@import "foundation/components/global";
+<code data-language="css">@import "foundation/components/global";
 @import "foundation/components/grid";
 
 $total-columns: 5;
@@ -91,8 +88,8 @@ article {
     @include grid-column(3);
   }
 }
-</pre>
 </code>
+</pre>
 
 <p>Awesome, right? Here I am the grid-column and grid-row mixins to create the grid directly in my CSS. All you have to do is import the mixins. There are also many options to customize the grid, in this case I changed the number of columns from the default 12, to 5. I am also nesting rows, all from the CSS, leaving the HTML to describe it's thing. </p>
 
@@ -104,7 +101,7 @@ article {
 	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
 </section>
-<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
+<script src="/rainbow/rainbow.js"></script>
 <script>
 	if (typeof prettyPrint !== "undefined") {
 		var codes = document.querySelectorAll("code > pre");

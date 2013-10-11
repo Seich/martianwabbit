@@ -19,8 +19,8 @@ title: "Rails Quickhint #1: Creating a model while skipping validations"
 </p>
 
 <p>user.rb</p>
-<code>
 <pre>
+<code data-language="ruby">
 class User < ActiveRecord::Base
   after_create :create_profile
   has_one :user_profile, :dependent => :destroy
@@ -30,19 +30,19 @@ class User < ActiveRecord::Base
     self.user_profile.save(:validate => false)
   end
 end
-</pre>
 </code>
+</pre>
 
 <p>user_profile.rb</p>
-<code>
 <pre>
+<code data-language="ruby">
 class UserProfile < ActiveRecord::Base
   belongs_to :user
  
   attr_accessible :username
   validates_uniqueness_of :username
 end
-</pre>
 </code>
+</pre>
 
 <p>This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.</p>

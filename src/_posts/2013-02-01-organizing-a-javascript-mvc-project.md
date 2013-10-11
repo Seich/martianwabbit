@@ -49,8 +49,8 @@ The folder structure is fairly straight forward. Inside the <code>Application</c
 Here's what a raw controller inside this folder looks like:
 </p>
 
-<code>
 <pre>
+<code data-language="javascript">
 ;(function(namespace, undefined) {
   'use strict';
   var ControllerName = can.Control({
@@ -63,15 +63,15 @@ Here's what a raw controller inside this folder looks like:
   namespace.Controllers = namespace.Controllers || {};
   namespace.Controllers.ControllerName = ControllerName;
 }(this));
-</pre>
 </code>
+</pre>
 
 <p>
 As you can see the only thing we are doing which isn't immediately obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populate the global namespace with every single controller and because we can access any controller like this: <code>Controllers.ControllerName</code>. We do the same for models:
 </p>
 
-<code>
 <pre>
+<code data-language="javascript">
 ;(function(namespace, undefined) {
   'use strict';
   var ModelName = can.Model({
@@ -81,8 +81,8 @@ As you can see the only thing we are doing which isn't immediately obvious is to
   namespace.Models = namespace.Models || {};
   namespace.Models.ModelName = ModelName;
 }(this));
-</pre>
 </code>
+</pre>
 
 <p>
 In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
@@ -94,8 +94,8 @@ Now that we have our files in place, let's move into using grunt to generate the
 
 <h2>Grunt</h2>
 <p>Here's what an example grunt file would look like:</p>
-<code>
 <pre>
+<code data-language="javascript">
 module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
@@ -129,8 +129,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', 'concat min');
 };
-</pre>
 </code>
+</pre>
 
 <p>This particular grunt file doesn't do much. When you call the <code>grunt</code> command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.</p>
 
