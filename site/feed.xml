@@ -7,6 +7,105 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>You've Gotta Love Deferreds</title>
+				<description>&lt;p&gt;Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code data-language=&#39;html&#39;&gt;
+var settings = {
+	template: &#39;todo.hbs&#39;,
+	data_src: &#39;/todo.json&#39;
+};
+	
+var template;
+	
+var getting_template;
+var getting_data;
+	
+if (&#39;template&#39; in settings) {
+	getting_template = $.get(settings.template);
+	
+	getting_template.done(function(t) {
+		template = t;
+	});
+	
+	if (&#39;data_src&#39; in settings) {
+		getting_data = $.get(settings.data_src);
+		getting_data.done(function(data) {
+			render(template, data);
+		});
+	} else {
+		getting_template.done(function(t) {
+			render(t, {});
+		});
+	}
+} else {
+	render(&#39;&#39;, {});
+}
+&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;(I am pretty sure it wasn&amp;#8217;t necessarily as ugly but, I don&amp;#8217;t quite remember.)&lt;/p&gt;
+
+&lt;p&gt;As you can see, even though I am making use of the deferreds returned by the &lt;code&gt;$.get&lt;/code&gt; function. This could be cleaned up a lot by using even more deferreds.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#8217;s more or less what the code ended up looking like:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code data-language=&#39;html&#39;&gt;
+var settings = {
+	template: &#39;todo.hbs&#39;,
+	data_src: &#39;/todo.json&#39;
+};
+
+var templateDefer = new $.Deferred();
+var dataDefer; = new $.Deferred();
+
+if (&#39;template&#39; in settings) {
+	$.get(settings.template, function(template) {
+		templateDefer.resolve(template);
+	});
+} else {
+	templateDefer.resolve(&#39;&#39;);
+}
+
+if (&#39;data_src&#39; in settings) {
+	$.get(settings.data_src, function(data) {
+		dataDefer.resolve(data);
+	});
+} else {
+	dataDefer.resolve({});
+}
+
+$.when(templateDefer, dataDefer).done(function(template, data) {
+	render(template, data);
+});
+&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (&lt;code&gt;new $.Deferred()&lt;/code&gt;). The other handy thing built into jQuery is the &lt;code&gt;$.when&lt;/code&gt; method, you can basically pass in a bunch of deferreds and you&amp;#8217;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.&lt;/p&gt;
+
+&lt;p&gt;I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality.&lt;/p&gt;
+
+&lt;h2 id=&#39;recommended_links&#39;&gt;Recommended links&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#8217;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://api.jquery.com/category/deferred-object/&#39;&gt;jQuery&amp;#8217;s Deferred Object Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/&#39;&gt;jQuery Deferreds promises asynchronous bliss&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#39;http://promises-aplus.github.io/promises-spec/&#39;&gt;Promises A+ Spec&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+				<pubDate>Tue, 12 Nov 2013 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2013/11/12/youve-gotta-love-deferreds.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2013/11/12/youve-gotta-love-deferreds.html</guid>
+			</item>
+		
+			<item>
 				<title>A Semantic Grid with Zurb's Foundation</title>
 				<description>&lt;p&gt;&lt;a href=&quot;http://foundation.zurb.com&quot;&gt;Foundation&lt;/a&gt; is great. I love it, I use it whenever I am building anything big. My favorite feature and the one key thing that has kept me as a fan for so long has been it&#39;s grid. I feel like it&#39;s the best grid we have available so far.&lt;/p&gt;
 
@@ -379,56 +478,6 @@ module.exports = function(grunt) {
 				<pubDate>Sun, 27 Jan 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/01/27/surviving-a-hackathon.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/01/27/surviving-a-hackathon.html</guid>
-			</item>
-		
-			<item>
-				<title>Rails Quickhint #1: Creating a model while skipping validations</title>
-				<description>&lt;p&gt;
-	This certainly needs some background. I&#39;ve been working on a random rails project for the better part of the last couple of months. 
-	This project uses devise to manage logins and user registration. Recently registrations started failing in the site which, didn&#39;t 
-	make sense since they had been working fine for a while. So I started digging into it.
-&lt;/p&gt;
-
-&lt;p&gt;
-	According to rails the user url didn&#39;t exist so it couldn&#39;t redirect back to the homepage after a successful registration. 
-	After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that&#39;s normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn&#39;t (since the username is only supposed to be set after registration).
-&lt;/p&gt;
-
-&lt;p&gt;
-	So, what&#39;s the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here&#39;s how I did it:
-&lt;/p&gt;
-
-&lt;p&gt;user.rb&lt;/p&gt;
-&lt;pre&gt;
-&lt;code data-language=&quot;ruby&quot;&gt;
-class User &lt; ActiveRecord::Base
-  after_create :create_profile
-  has_one :user_profile, :dependent =&gt; :destroy
-  
-  def create_profile
-    self.build_user_profile
-    self.user_profile.save(:validate =&gt; false)
-  end
-end
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;user_profile.rb&lt;/p&gt;
-&lt;pre&gt;
-&lt;code data-language=&quot;ruby&quot;&gt;
-class UserProfile &lt; ActiveRecord::Base
-  belongs_to :user
- 
-  attr_accessible :username
-  validates_uniqueness_of :username
-end
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it&#39;s my fault for not paying attention.&lt;/p&gt;</description>
-				<pubDate>Fri, 18 Jan 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/01/18/rails-quickhint-1.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/01/18/rails-quickhint-1.html</guid>
 			</item>
 		
 	</channel>

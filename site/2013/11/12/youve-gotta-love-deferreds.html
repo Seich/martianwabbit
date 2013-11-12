@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Seichy's Missing Bit  | You've Gotta Love Deferreds </title>
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
+	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+</head>
+<body>
+	<div class="container">
+		<nav id="top">
+			<ul>
+				<li><a href="/">Posts</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+		</nav>
+		
+		<header id="title">
+			<h1><a href="/">Seichy's Missing Bit</a></h1>
+		</header>
+		
+		<section class="post">
+	<h1><a href="/2013/11/12/youve-gotta-love-deferreds.html">You've Gotta Love Deferreds</a></h1>
+	<time>November 12, 2013</time>
+	<p>Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:</p>
+<pre>
+<code data-language='html'>
+var settings = {
+	template: 'todo.hbs',
+	data_src: '/todo.json'
+};
+	
+var template;
+	
+var getting_template;
+var getting_data;
+	
+if ('template' in settings) {
+	getting_template = $.get(settings.template);
+	
+	getting_template.done(function(t) {
+		template = t;
+	});
+	
+	if ('data_src' in settings) {
+		getting_data = $.get(settings.data_src);
+		getting_data.done(function(data) {
+			render(template, data);
+		});
+	} else {
+		getting_template.done(function(t) {
+			render(t, {});
+		});
+	}
+} else {
+	render('', {});
+}
+</code>
+</pre>
+<p>(I am pretty sure it wasn&#8217;t necessarily as ugly but, I don&#8217;t quite remember.)</p>
+
+<p>As you can see, even though I am making use of the deferreds returned by the <code>$.get</code> function. This could be cleaned up a lot by using even more deferreds.</p>
+
+<p>Here&#8217;s more or less what the code ended up looking like:</p>
+<pre>
+<code data-language='html'>
+var settings = {
+	template: 'todo.hbs',
+	data_src: '/todo.json'
+};
+
+var templateDefer = new $.Deferred();
+var dataDefer; = new $.Deferred();
+
+if ('template' in settings) {
+	$.get(settings.template, function(template) {
+		templateDefer.resolve(template);
+	});
+} else {
+	templateDefer.resolve('');
+}
+
+if ('data_src' in settings) {
+	$.get(settings.data_src, function(data) {
+		dataDefer.resolve(data);
+	});
+} else {
+	dataDefer.resolve({});
+}
+
+$.when(templateDefer, dataDefer).done(function(template, data) {
+	render(template, data);
+});
+</code>
+</pre>
+<p>I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (<code>new $.Deferred()</code>). The other handy thing built into jQuery is the <code>$.when</code> method, you can basically pass in a bunch of deferreds and you&#8217;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.</p>
+
+<p>I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality.</p>
+
+<h2 id='recommended_links'>Recommended links</h2>
+
+<p>Here&#8217;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:</p>
+
+<ul>
+<li>
+<p><a href='http://api.jquery.com/category/deferred-object/'>jQuery&#8217;s Deferred Object Documentation</a></p>
+</li>
+
+<li>
+<p><a href='http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/'>jQuery Deferreds promises asynchronous bliss</a></p>
+</li>
+
+<li>
+<p><a href='http://promises-aplus.github.io/promises-spec/'>Promises A+ Spec</a></p>
+</li>
+</ul>
+</section>
+	
+<section class="media-anouncement">
+	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
+</section>
+<script src="/rainbow/rainbow.js"></script>
+<script>
+	if (typeof prettyPrint !== "undefined") {
+		var codes = document.querySelectorAll("code > pre");
+		for (var i = 0; i < codes.length; i++) {
+			codes[i].className = codes[i].className + " prettyprint";
+		}
+		prettyPrint();
+	}
+</script>
+		
+		<footer>
+			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
+			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
+		</footer>
+	</div>
+	<script>
+        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>
+		
