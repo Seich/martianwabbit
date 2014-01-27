@@ -7,7 +7,7 @@ html {
 }
 
 body {
-	background: #F5F5F5;
+	background: #FAFAFA;
 	color: #222;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -27,10 +27,9 @@ a:hover {
 }
 
 code, pre {
-	font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+	font-family: Consolas, 'Liberation Mono', Courier, monospace;
 	font-size: 14px;
 	line-height: 1.5;
-	border-radius: 1px;
 }
 
 pre {
