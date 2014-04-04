@@ -25,6 +25,49 @@
 
 	<div class="content">
 
+	<article class="post" id="A Javascript Array of Countries">
+		<header>
+			<h1>
+				<a href="/2013/06/28/a-javascript-array-of-countries.html">A Javascript Array of Countries</a>
+			</h1>
+			<time>June 28, 2013</time>
+		</header>
+
+		<p>Here’s the Array:</p>
+<pre>
+<code data-language='javascript'>
+var countries = ["Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia, Plurinational State Of", "Bonaire, Sint Eustatius And Saba", "Bosnia And Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, The Democratic Republic Of The", "Cook Islands", "Costa Rica", "Côte D'ivoire", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-bissau", "Guyana", "Haiti", "Heard Island And Mcdonald Islands", "Holy See (vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic Of", "Iraq", "Ireland", "Isle Of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic Of", "Korea, Republic Of", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia, The Former Yugoslav Republic Of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States Of", "Moldova, Republic Of", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine, State Of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthélemy", "Saint Helena, Ascension And Tristan Da Cunha", "Saint Kitts And Nevis", "Saint Lucia", "Saint Martin (french Part)", "Saint Pierre And Miquelon", "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten (dutch Part)", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia And The South Sandwich Islands", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard And Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province Of China", "Tajikistan", "Tanzania, United Republic Of", "Thailand", "Timor-leste", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela, Bolivarian Republic Of", "Viet Nam", "Virgin Islands, British", "Virgin Islands, U.s.", "Wallis And Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"];
+</code>
+</pre>
+<p>It follows the ISO 3166-1-alpha-2 standard. You don’t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn’t have to look for it again.</p>
+
+<p>Here’s how I got the list:</p>
+<pre>
+<code data-language='javascript'>
+$ = jQuery;
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
+
+var countries = "var countries = [";
+
+$('tbody').find("tr").each(function(i) {
+    var country = $(this).find('td').last().text();
+    country = country.toLowerCase().capitalize();
+    if (i === 0) {
+        countries = countries + "\"" + country + "\"";
+    } else {
+        countries = countries + ", " + "\"" + country + "\"";
+    }
+});
+
+countries = countries + "];";
+console.log(countries);
+</code>
+</pre>
+<p>If you run that script in <a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm">here</a>, you’ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.</p>
+	</article>
+
 	<article class="post" id="On Storytelling and Video Games">
 		<header>
 			<h1>
@@ -129,117 +172,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 <p>I personally think that soon enough, we won’t need jQuery to do as much for us, with new browser APIs it gets increasingly easier to get things done with less. Things like querySelectors and CSS3 animations can go a long way when building a modern site. But, as long as we have money to be made and time to be saved and many browsers to be supported, going vanilla might not be a good option in most cases.</p>
 	</article>
 
-	<article class="post" id="Organizing a Javascript MVC Project">
-		<header>
-			<h1>
-				<a href="/2013/02/01/organizing-a-javascript-mvc-project.html">Organizing a Javascript MVC Project</a>
-			</h1>
-			<time>February 01, 2013</time>
-		</header>
-
-		<p> 
-I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
-</p><p>
-As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use <a href='http://www.canjs.us'>can.js</a> as our MVC framework of choice and use <a href='http://www.gruntjs.com/'>grunt</a> to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
-</p><p>
-Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
-</p><pre>
-    -Project
-        -Application
-            -Assets
-                -Images
-                -Css
-            -Javascript
-                -Models
-                -Views
-                -Controllers
-                -libs
-                    -Plugins
-                    jQuery.js
-                app.js
-        -dist
-            -app.min.js
-            -libs.min.js
-        index.html
-        grunt.js
-</pre><p>
-It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate <code>app.min.js</code> and <code>libs.min.js</code> and how they all generally fit in together.
-</p><h2>Folder &amp; File Structure</h2><p>
-The folder structure is fairly straight forward. Inside the <code>Application</code> folder we hold all of our important files. The only important folder here is the one called <code>Javascript</code>, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
-</p><p>
-Here's what a raw controller inside this folder looks like:
-</p><pre>
-<code data-language='javascript'>
-;(function(namespace, undefined) {
-  'use strict';
-  var ControllerName = can.Control({
-    'init': function(element, options) {
-      var self = this;
-      // Actual code stuff
-    }
-  });
-
-  namespace.Controllers = namespace.Controllers || {};
-  namespace.Controllers.ControllerName = ControllerName;
-}(this));
-</code>
-</pre><p>
-As you can see the only thing we are doing which isn't immediately obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populate the global namespace with every single controller and because we can access any controller like this: <code>Controllers.ControllerName</code>. We do the same for models:
-</p><pre>
-<code data-language='javascript'>
-;(function(namespace, undefined) {
-  'use strict';
-  var ModelName = can.Model({
-    findOne: 'GET /getModel'
-  }, {});
-
-  namespace.Models = namespace.Models || {};
-  namespace.Models.ModelName = ModelName;
-}(this));
-</code>
-</pre><p>
-In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
-</p><p>
-Now that we have our files in place, let's move into using grunt to generate the finalized application files will be using in production.
-</p><h2>Grunt</h2><p>Here's what an example grunt file would look like:</p><pre>
-<code data-language='javascript'>
-module.exports = function(grunt) {
-  grunt.initConfig({
-    concat: {
-      app: {
-        src: [
-          'Application/Assets/Javascript/controllers/**/*.js', 
-          'Application/Assets/Javascript/models/**/*.js', 
-          'Application/Assets/Javascript/app.js'
-        ],
-        dest: 'dist/app.js'
-      },
-      libs: {
-        src: [
-          'Application/Assets/Javascript/libs/jQuery.js', 
-          'Application/Assets/Javascript/libs/plugins/**/*.js'
-        ],
-        dest: 'dist/libs.js'
-      }
-    },
-    min: {
-      app: {
-        src: ['&lt;config:concat.app.dest&gt;'],
-        dest: 'dist/app.min.js'
-      },
-      libs: {
-        src: ['&lt;config:concat.libs.dest&gt;'],
-        dest: 'dist/libs.min.js'
-      }
-    }
-  });
-
-  grunt.registerTask('default', 'concat min');
-};
-</code>
-</pre><p>This particular grunt file doesn't do much. When you call the <code>grunt</code> command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.</p><h2>That's it</h2><p>I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.</p>
-	</article>
-
 </div>
 
 
@@ -250,6 +182,11 @@ module.exports = function(grunt) {
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#A Javascript Array of Countries">A Javascript Array of Countries</a>
+			<time>June 28, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#On Storytelling and Video Games">On Storytelling and Video Games</a>
@@ -269,11 +206,6 @@ module.exports = function(grunt) {
 		<li>
 			<a href="#On the Importance of Vanilla Javascript">On the Importance of Vanilla Javascript</a>
 			<time>February 13, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Organizing a Javascript MVC Project">Organizing a Javascript MVC Project</a>
-			<time>February 01, 2013</time>
 		</li>
 	
 	</ul>

@@ -116,6 +116,12 @@ a:hover {
     max-width: 100%;
 }
 
+.post img.small {
+	display: block;
+	margin: 1em auto;
+	max-width: 50%;
+}
+
 .post pre {
 	border-left: 1px dotted #ccc;
 	font-family: Monaco, Consolas, "Lucida Console", monospace;

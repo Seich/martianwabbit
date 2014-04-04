@@ -7,6 +7,62 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Scroll Spying for Fun and Profit</title>
+				<description>&lt;p&gt;I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on. &lt;img class=&#39;small&#39; src=&#39;http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif&#39; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To achieve this, I used &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto&lt;/a&gt; and a small amount of math. (The great thing about Zepto is that it’s fully compatible with jQuery, so this should work with jQuery out of the both as well).&lt;/p&gt;
+
+&lt;p&gt;Let’s jump right in, here’s how I do it:&lt;/p&gt;
+&lt;pre&gt;
+&lt;code&gt;
+var article_offsets = $(&#39;article&#39;).map(function() { 
+	return $(this).offset().top
+});
+
+$(window).on(&#39;scroll&#39;, function() {
+	for (var i = 0; i &amp;lt; article_offsets.length; i++) {
+		if (article_offsets[i] &amp;gt; scrollTop &amp;amp;&amp;amp; 
+		article_offsets[i] &amp;lt; scrollTop + $(window).height()) 
+		{
+			$(&#39;.sidebar li&#39;)
+				.removeClass(&#39;active&#39;)
+				.eq(i).addClass(&#39;active&#39;);
+		}
+	};
+});
+&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;The first line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function() { 
+	return $(this).offset().top 
+});&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Grabs all of the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts.&lt;/p&gt;
+
+&lt;p&gt;After that, I am binding an event to the window’s scroll. Whenever the page is scrolled, we iterate over all of our scroll positions, if we find ourselves scrolled after one of the offsets and before the window height, we call:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which looks for the Ith element on the sidebar’s list (which should match out Ith article element) and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
+
+&lt;p&gt;There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://getbootstrap.com/javascript/#scrollspy&quot;&gt;http://getbootstrap.com/javascript/#scrollspy&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;http://www.outyear.co.uk/smint/&quot;&gt;http://www.outyear.co.uk/smint/&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&quot;http://scrollnav.com/&quot;&gt;http://scrollnav.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I am pretty sure they are plenty of others, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;</description>
+				<pubDate>Fri, 04 Apr 2014 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</guid>
+			</item>
+		
+			<item>
 				<title>2014</title>
 				<description>&lt;p&gt;I know I am a little late doing the whole goal setting and year review thing but, this year I wanted to try something different. I wanted to see how January turned out before setting goals.&lt;/p&gt;
 
@@ -358,114 +414,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 				<pubDate>Wed, 13 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/13/On-the-Importance-of-Vanilla-Javascript.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/13/On-the-Importance-of-Vanilla-Javascript.html</guid>
-			</item>
-		
-			<item>
-				<title>Organizing a Javascript MVC Project</title>
-				<description>&lt;p&gt; 
-I&#39;ve been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it&#39;s easy to work with and hard for us to make mistakes.
-&lt;/p&gt;&lt;p&gt;
-As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use &lt;a href=&#39;http://www.canjs.us&#39;&gt;can.js&lt;/a&gt; as our MVC framework of choice and use &lt;a href=&#39;http://www.gruntjs.com/&#39;&gt;grunt&lt;/a&gt; to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
-&lt;/p&gt;&lt;p&gt;
-Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
-&lt;/p&gt;&lt;pre&gt;
-    -Project
-        -Application
-            -Assets
-                -Images
-                -Css
-            -Javascript
-                -Models
-                -Views
-                -Controllers
-                -libs
-                    -Plugins
-                    jQuery.js
-                app.js
-        -dist
-            -app.min.js
-            -libs.min.js
-        index.html
-        grunt.js
-&lt;/pre&gt;&lt;p&gt;
-It might look complicated, but it&#39;s actually fairly simple. I&#39;ll try to break it down, show how we use grunt to generate &lt;code&gt;app.min.js&lt;/code&gt; and &lt;code&gt;libs.min.js&lt;/code&gt; and how they all generally fit in together.
-&lt;/p&gt;&lt;h2&gt;Folder &amp;amp; File Structure&lt;/h2&gt;&lt;p&gt;
-The folder structure is fairly straight forward. Inside the &lt;code&gt;Application&lt;/code&gt; folder we hold all of our important files. The only important folder here is the one called &lt;code&gt;Javascript&lt;/code&gt;, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
-&lt;/p&gt;&lt;p&gt;
-Here&#39;s what a raw controller inside this folder looks like:
-&lt;/p&gt;&lt;pre&gt;
-&lt;code data-language=&#39;javascript&#39;&gt;
-;(function(namespace, undefined) {
-  &#39;use strict&#39;;
-  var ControllerName = can.Control({
-    &#39;init&#39;: function(element, options) {
-      var self = this;
-      // Actual code stuff
-    }
-  });
-
-  namespace.Controllers = namespace.Controllers || {};
-  namespace.Controllers.ControllerName = ControllerName;
-}(this));
-&lt;/code&gt;
-&lt;/pre&gt;&lt;p&gt;
-As you can see the only thing we are doing which isn&#39;t immediately obvious is to add the controller to the namespace&#39;s Controller object. In our case, this is the window object. This is great because we don&#39;t populate the global namespace with every single controller and because we can access any controller like this: &lt;code&gt;Controllers.ControllerName&lt;/code&gt;. We do the same for models:
-&lt;/p&gt;&lt;pre&gt;
-&lt;code data-language=&#39;javascript&#39;&gt;
-;(function(namespace, undefined) {
-  &#39;use strict&#39;;
-  var ModelName = can.Model({
-    findOne: &#39;GET /getModel&#39;
-  }, {});
-
-  namespace.Models = namespace.Models || {};
-  namespace.Models.ModelName = ModelName;
-}(this));
-&lt;/code&gt;
-&lt;/pre&gt;&lt;p&gt;
-In our case, views are simple .ejs files so there&#39;s nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
-&lt;/p&gt;&lt;p&gt;
-Now that we have our files in place, let&#39;s move into using grunt to generate the finalized application files will be using in production.
-&lt;/p&gt;&lt;h2&gt;Grunt&lt;/h2&gt;&lt;p&gt;Here&#39;s what an example grunt file would look like:&lt;/p&gt;&lt;pre&gt;
-&lt;code data-language=&#39;javascript&#39;&gt;
-module.exports = function(grunt) {
-  grunt.initConfig({
-    concat: {
-      app: {
-        src: [
-          &#39;Application/Assets/Javascript/controllers/**/*.js&#39;, 
-          &#39;Application/Assets/Javascript/models/**/*.js&#39;, 
-          &#39;Application/Assets/Javascript/app.js&#39;
-        ],
-        dest: &#39;dist/app.js&#39;
-      },
-      libs: {
-        src: [
-          &#39;Application/Assets/Javascript/libs/jQuery.js&#39;, 
-          &#39;Application/Assets/Javascript/libs/plugins/**/*.js&#39;
-        ],
-        dest: &#39;dist/libs.js&#39;
-      }
-    },
-    min: {
-      app: {
-        src: [&#39;&amp;lt;config:concat.app.dest&amp;gt;&#39;],
-        dest: &#39;dist/app.min.js&#39;
-      },
-      libs: {
-        src: [&#39;&amp;lt;config:concat.libs.dest&amp;gt;&#39;],
-        dest: &#39;dist/libs.min.js&#39;
-      }
-    }
-  });
-
-  grunt.registerTask(&#39;default&#39;, &#39;concat min&#39;);
-};
-&lt;/code&gt;
-&lt;/pre&gt;&lt;p&gt;This particular grunt file doesn&#39;t do much. When you call the &lt;code&gt;grunt&lt;/code&gt; command it&#39;ll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.&lt;/p&gt;&lt;h2&gt;That&#39;s it&lt;/h2&gt;&lt;p&gt;I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.&lt;/p&gt;</description>
-				<pubDate>Fri, 01 Feb 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/02/01/organizing-a-javascript-mvc-project.html</guid>
 			</item>
 		
 	</channel>

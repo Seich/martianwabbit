@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+
+	<title>Seichy's Missing Bit  | Scroll Spying for Fun and Profit </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<div class="container center">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+	<article class="post">
+		<header>
+			<h1>
+				<a href="">Scroll Spying for Fun and Profit</a>
+			</h1>
+			<time>April 04, 2014</time>
+		</header>
+		<p>I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on. <img class='small' src='http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif' /></p>
+
+<p>To achieve this, I used <a href="http://zeptojs.com/">Zepto</a> and a small amount of math. (The great thing about Zepto is that it’s fully compatible with jQuery, so this should work with jQuery out of the both as well).</p>
+
+<p>Let’s jump right in, here’s how I do it:</p>
+<pre>
+<code>
+var article_offsets = $('article').map(function() { 
+	return $(this).offset().top
+});
+
+$(window).on('scroll', function() {
+	for (var i = 0; i &lt; article_offsets.length; i++) {
+		if (article_offsets[i] &gt; scrollTop &amp;&amp; 
+		article_offsets[i] &lt; scrollTop + $(window).height()) 
+		{
+			$('.sidebar li')
+				.removeClass('active')
+				.eq(i).addClass('active');
+		}
+	};
+});
+</code>
+</pre>
+<p>The first line:</p>
+
+<pre><code>var article_offsets = $(&#39;article&#39;).map(function() { 
+	return $(this).offset().top 
+});</code></pre>
+
+<p>Grabs all of the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts.</p>
+
+<p>After that, I am binding an event to the window’s scroll. Whenever the page is scrolled, we iterate over all of our scroll positions, if we find ourselves scrolled after one of the offsets and before the window height, we call:</p>
+
+<pre><code>$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);</code></pre>
+
+<p>Which looks for the Ith element on the sidebar’s list (which should match out Ith article element) and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.</p>
+
+<p>There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:</p>
+
+<ul>
+<li><a href="http://getbootstrap.com/javascript/#scrollspy">http://getbootstrap.com/javascript/#scrollspy</a></li>
+
+<li><a href="http://www.outyear.co.uk/smint/">http://www.outyear.co.uk/smint/</a></li>
+
+<li><a href="http://scrollnav.com/">http://scrollnav.com/</a></li>
+</ul>
+
+<p>I am pretty sure they are plenty of others, for my evil purposes, my tiny script fulfills my needs.</p>
+	</article>
+</div>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/zepto.js"></script>
+	<script src="/js/main.js"></script>
+	<script>
+        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>

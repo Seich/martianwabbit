@@ -25,6 +25,117 @@
 
 	<div class="content">
 
+	<article class="post" id="Organizing a Javascript MVC Project">
+		<header>
+			<h1>
+				<a href="/2013/02/01/organizing-a-javascript-mvc-project.html">Organizing a Javascript MVC Project</a>
+			</h1>
+			<time>February 01, 2013</time>
+		</header>
+
+		<p> 
+I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
+</p><p>
+As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use <a href='http://www.canjs.us'>can.js</a> as our MVC framework of choice and use <a href='http://www.gruntjs.com/'>grunt</a> to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
+</p><p>
+Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
+</p><pre>
+    -Project
+        -Application
+            -Assets
+                -Images
+                -Css
+            -Javascript
+                -Models
+                -Views
+                -Controllers
+                -libs
+                    -Plugins
+                    jQuery.js
+                app.js
+        -dist
+            -app.min.js
+            -libs.min.js
+        index.html
+        grunt.js
+</pre><p>
+It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate <code>app.min.js</code> and <code>libs.min.js</code> and how they all generally fit in together.
+</p><h2>Folder &amp; File Structure</h2><p>
+The folder structure is fairly straight forward. Inside the <code>Application</code> folder we hold all of our important files. The only important folder here is the one called <code>Javascript</code>, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
+</p><p>
+Here's what a raw controller inside this folder looks like:
+</p><pre>
+<code data-language='javascript'>
+;(function(namespace, undefined) {
+  'use strict';
+  var ControllerName = can.Control({
+    'init': function(element, options) {
+      var self = this;
+      // Actual code stuff
+    }
+  });
+
+  namespace.Controllers = namespace.Controllers || {};
+  namespace.Controllers.ControllerName = ControllerName;
+}(this));
+</code>
+</pre><p>
+As you can see the only thing we are doing which isn't immediately obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populate the global namespace with every single controller and because we can access any controller like this: <code>Controllers.ControllerName</code>. We do the same for models:
+</p><pre>
+<code data-language='javascript'>
+;(function(namespace, undefined) {
+  'use strict';
+  var ModelName = can.Model({
+    findOne: 'GET /getModel'
+  }, {});
+
+  namespace.Models = namespace.Models || {};
+  namespace.Models.ModelName = ModelName;
+}(this));
+</code>
+</pre><p>
+In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
+</p><p>
+Now that we have our files in place, let's move into using grunt to generate the finalized application files will be using in production.
+</p><h2>Grunt</h2><p>Here's what an example grunt file would look like:</p><pre>
+<code data-language='javascript'>
+module.exports = function(grunt) {
+  grunt.initConfig({
+    concat: {
+      app: {
+        src: [
+          'Application/Assets/Javascript/controllers/**/*.js', 
+          'Application/Assets/Javascript/models/**/*.js', 
+          'Application/Assets/Javascript/app.js'
+        ],
+        dest: 'dist/app.js'
+      },
+      libs: {
+        src: [
+          'Application/Assets/Javascript/libs/jQuery.js', 
+          'Application/Assets/Javascript/libs/plugins/**/*.js'
+        ],
+        dest: 'dist/libs.js'
+      }
+    },
+    min: {
+      app: {
+        src: ['&lt;config:concat.app.dest&gt;'],
+        dest: 'dist/app.min.js'
+      },
+      libs: {
+        src: ['&lt;config:concat.libs.dest&gt;'],
+        dest: 'dist/libs.min.js'
+      }
+    }
+  });
+
+  grunt.registerTask('default', 'concat min');
+};
+</code>
+</pre><p>This particular grunt file doesn't do much. When you call the <code>grunt</code> command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.</p><h2>That's it</h2><p>I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.</p>
+	</article>
+
 	<article class="post" id="Surviving a Hackathon">
 		<header>
 			<h1>
@@ -162,23 +273,6 @@ $(".userMenu a").on("click", function() {
 <p>In the end I hope this year is as great as the last one and I learn, develop and grow a lot more.</p>
 	</article>
 
-	<article class="post" id="Daydreaming: Mobile Processing Clusters">
-		<header>
-			<h1>
-				<a href="/2012/11/06/Once-again-day-dreaming.html">Daydreaming: Mobile Processing Clusters</a>
-			</h1>
-			<time>November 06, 2012</time>
-		</header>
-
-		<p>I think this blog will most probably become a daydream diary. Oh wellz, let’s talk about random ideas. Today I was daydreaming during my calculus class (this is one of the reasons I suck at calculus, more on that in another post) and thought something really cool.</p>
-
-<p>Now, this is kind of completely out of my field so I don’t know how feasible or useful it might be but, I was thinking that cellphones spend most of their lives on standby and these phones have CPUs which we could use to do something useful, so how about we use them to help solve problems.</p>
-
-<p>I was thinking of something along the lines of wolframalpha, solving via cluster of CPUs. We could connect a bunch of phones via an app running in the background which would receive requests to do some processing. These requests would be problems that can be broken up into smaller pieces.These pieces would be sent all around to phones to be solved and then be sent back to a server coordinating the problem solving.</p>
-
-<p>You could also have the server look for phones with more powerful CPUs to solve more difficult parts of the problem, which might not be as easily broken down.</p>
-	</article>
-
 </div>
 
 
@@ -189,6 +283,11 @@ $(".userMenu a").on("click", function() {
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#Organizing a Javascript MVC Project">Organizing a Javascript MVC Project</a>
+			<time>February 01, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#Surviving a Hackathon">Surviving a Hackathon</a>
@@ -208,11 +307,6 @@ $(".userMenu a").on("click", function() {
 		<li>
 			<a href="#New Year's Resolutions 2013">New Year's Resolutions 2013</a>
 			<time>January 05, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Daydreaming: Mobile Processing Clusters">Daydreaming: Mobile Processing Clusters</a>
-			<time>November 06, 2012</time>
 		</li>
 	
 	</ul>

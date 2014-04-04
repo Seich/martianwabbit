@@ -25,6 +25,65 @@
 
 	<div class="content">
 
+	<article class="post" id="Scroll Spying for Fun and Profit">
+		<header>
+			<h1>
+				<a href="/2014/04/04/scroll-spying-for-fun-and-profit.html">Scroll Spying for Fun and Profit</a>
+			</h1>
+			<time>April 04, 2014</time>
+		</header>
+
+		<p>I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on. <img class='small' src='http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif' /></p>
+
+<p>To achieve this, I used <a href="http://zeptojs.com/">Zepto</a> and a small amount of math. (The great thing about Zepto is that it’s fully compatible with jQuery, so this should work with jQuery out of the both as well).</p>
+
+<p>Let’s jump right in, here’s how I do it:</p>
+<pre>
+<code>
+var article_offsets = $('article').map(function() { 
+	return $(this).offset().top
+});
+
+$(window).on('scroll', function() {
+	for (var i = 0; i &lt; article_offsets.length; i++) {
+		if (article_offsets[i] &gt; scrollTop &amp;&amp; 
+		article_offsets[i] &lt; scrollTop + $(window).height()) 
+		{
+			$('.sidebar li')
+				.removeClass('active')
+				.eq(i).addClass('active');
+		}
+	};
+});
+</code>
+</pre>
+<p>The first line:</p>
+
+<pre><code>var article_offsets = $(&#39;article&#39;).map(function() { 
+	return $(this).offset().top 
+});</code></pre>
+
+<p>Grabs all of the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts.</p>
+
+<p>After that, I am binding an event to the window’s scroll. Whenever the page is scrolled, we iterate over all of our scroll positions, if we find ourselves scrolled after one of the offsets and before the window height, we call:</p>
+
+<pre><code>$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);</code></pre>
+
+<p>Which looks for the Ith element on the sidebar’s list (which should match out Ith article element) and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.</p>
+
+<p>There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:</p>
+
+<ul>
+<li><a href="http://getbootstrap.com/javascript/#scrollspy">http://getbootstrap.com/javascript/#scrollspy</a></li>
+
+<li><a href="http://www.outyear.co.uk/smint/">http://www.outyear.co.uk/smint/</a></li>
+
+<li><a href="http://scrollnav.com/">http://scrollnav.com/</a></li>
+</ul>
+
+<p>I am pretty sure they are plenty of others, for my evil purposes, my tiny script fulfills my needs.</p>
+	</article>
+
 	<article class="post" id="2014">
 		<header>
 			<h1>
@@ -259,49 +318,6 @@ $ ssh -L 8080:localhost:8080 &lt;host&gt;
 </p>
 	</article>
 
-	<article class="post" id="A Javascript Array of Countries">
-		<header>
-			<h1>
-				<a href="/2013/06/28/a-javascript-array-of-countries.html">A Javascript Array of Countries</a>
-			</h1>
-			<time>June 28, 2013</time>
-		</header>
-
-		<p>Here’s the Array:</p>
-<pre>
-<code data-language='javascript'>
-var countries = ["Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia, Plurinational State Of", "Bonaire, Sint Eustatius And Saba", "Bosnia And Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, The Democratic Republic Of The", "Cook Islands", "Costa Rica", "Côte D'ivoire", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-bissau", "Guyana", "Haiti", "Heard Island And Mcdonald Islands", "Holy See (vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic Of", "Iraq", "Ireland", "Isle Of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic Of", "Korea, Republic Of", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia, The Former Yugoslav Republic Of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States Of", "Moldova, Republic Of", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine, State Of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthélemy", "Saint Helena, Ascension And Tristan Da Cunha", "Saint Kitts And Nevis", "Saint Lucia", "Saint Martin (french Part)", "Saint Pierre And Miquelon", "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten (dutch Part)", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia And The South Sandwich Islands", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard And Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province Of China", "Tajikistan", "Tanzania, United Republic Of", "Thailand", "Timor-leste", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela, Bolivarian Republic Of", "Viet Nam", "Virgin Islands, British", "Virgin Islands, U.s.", "Wallis And Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"];
-</code>
-</pre>
-<p>It follows the ISO 3166-1-alpha-2 standard. You don’t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn’t have to look for it again.</p>
-
-<p>Here’s how I got the list:</p>
-<pre>
-<code data-language='javascript'>
-$ = jQuery;
-String.prototype.capitalize = function() {
-    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-};
-
-var countries = "var countries = [";
-
-$('tbody').find("tr").each(function(i) {
-    var country = $(this).find('td').last().text();
-    country = country.toLowerCase().capitalize();
-    if (i === 0) {
-        countries = countries + "\"" + country + "\"";
-    } else {
-        countries = countries + ", " + "\"" + country + "\"";
-    }
-});
-
-countries = countries + "];";
-console.log(countries);
-</code>
-</pre>
-<p>If you run that script in <a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm">here</a>, you’ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.</p>
-	</article>
-
 </div>
 
 
@@ -312,6 +328,11 @@ console.log(countries);
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#Scroll Spying for Fun and Profit">Scroll Spying for Fun and Profit</a>
+			<time>April 04, 2014</time>
+		</li>
 	
 		<li>
 			<a href="#2014">2014</a>
@@ -331,11 +352,6 @@ console.log(countries);
 		<li>
 			<a href="#Connecting To A Remote RethinkDB Admin Interface">Connecting To A Remote RethinkDB Admin Interface</a>
 			<time>July 20, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#A Javascript Array of Countries">A Javascript Array of Countries</a>
-			<time>June 28, 2013</time>
 		</li>
 	
 	</ul>
