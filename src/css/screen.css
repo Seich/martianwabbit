@@ -237,6 +237,10 @@ and (max-device-width : 480px) {
 		width: 100%;
 	}
 
+	.container.center {
+		width: 90%;
+	}
+
 	.sidebar {
 		width: 100%;
 	}
