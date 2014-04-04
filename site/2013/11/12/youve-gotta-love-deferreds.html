@@ -61,11 +61,11 @@ if ('template' in settings) {
 }
 </code>
 </pre>
-<p>(I am pretty sure it wasn&#8217;t necessarily as ugly but, I don&#8217;t quite remember.)</p>
+<p>(I am pretty sure it wasn’t necessarily as ugly but, I don’t quite remember.)</p>
 
 <p>As you can see, even though I am making use of the deferreds returned by the <code>$.get</code> function. This could be cleaned up a lot by using even more deferreds.</p>
 
-<p>Here&#8217;s more or less what the code ended up looking like:</p>
+<p>Here’s more or less what the code ended up looking like:</p>
 <pre>
 <code data-language='html'>
 var settings = {
@@ -97,26 +97,20 @@ $.when(templateDefer, dataDefer).done(function(template, data) {
 });
 </code>
 </pre>
-<p>I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (<code>new $.Deferred()</code>). The other handy thing built into jQuery is the <code>$.when</code> method, you can basically pass in a bunch of deferreds and you&#8217;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.</p>
+<p>I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (<code>new $.Deferred()</code>). The other handy thing built into jQuery is the <code>$.when</code> method, you can basically pass in a bunch of deferreds and you’d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.</p>
 
 <p>I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality.</p>
 
-<h2 id='recommended_links'>Recommended links</h2>
+<h2 id="recommended_links">Recommended links</h2>
 
-<p>Here&#8217;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:</p>
+<p>Here’s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:</p>
 
 <ul>
-<li>
-<p><a href='http://api.jquery.com/category/deferred-object/'>jQuery&#8217;s Deferred Object Documentation</a></p>
-</li>
+<li><a href="http://api.jquery.com/category/deferred-object/">jQuery’s Deferred Object Documentation</a></li>
 
-<li>
-<p><a href='http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/'>jQuery Deferreds promises asynchronous bliss</a></p>
-</li>
+<li><a href="http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/">jQuery Deferreds promises asynchronous bliss</a></li>
 
-<li>
-<p><a href='http://promises-aplus.github.io/promises-spec/'>Promises A+ Spec</a></p>
-</li>
+<li><a href="http://promises-aplus.github.io/promises-spec/">Promises A+ Spec</a></li>
 </ul>
 </section>
 	

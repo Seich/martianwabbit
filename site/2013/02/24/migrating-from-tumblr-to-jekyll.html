@@ -26,38 +26,42 @@
 		<section class="post">
 	<h1><a href="/2013/02/24/migrating-from-tumblr-to-jekyll.html">Migrating from Tumblr to Jekyll</a></h1>
 	<time>February 24, 2013</time>
-	<p>A couple of months ago I moved my blog from Tumblr over to Jekyll and started hosting it with Webfaction. It&#8217;s been great so far but, I never quite figured out how to get rid of my old url redirecting everything to it&#8217;s new page on the new blog.</p>
+	<p>A couple of months ago I moved my blog from Tumblr over to Jekyll and started hosting it with Webfaction. It’s been great so far but, I never quite figured out how to get rid of my old url redirecting everything to it’s new page on the new blog.</p>
 
-<p>I originally thought I&#8217;d have to write a redirect rule for each of the posts I kept on the new blog and then make the subdomain redirect to to the domain. Needless to say that it felt so annoying that I ended up not doing anything at all. Until now, that is. So here is how I fixed stuff! First of all, since I imported my Tumblr posts using the importer that comes with Jekyll, I had urls that looked like this:</p>
-<code>
+<p>I originally thought I’d have to write a redirect rule for each of the posts I kept on the new blog and then make the subdomain redirect to to the domain. Needless to say that it felt so annoying that I ended up not doing anything at all. Until now, that is. So here is how I fixed stuff! First of all, since I imported my Tumblr posts using the importer that comes with Jekyll, I had urls that looked like this:</p>
+
+<p><code>
 	http://martianwabbit.com/2011/04/04/4344642365.html
-</code>
-<p>I didn&#8217;t really change them, I thought that they having their old ID would be handy when I wanted to make the shift completely. This ended up being a good decision at the end.</p>
+</code></p>
+
+<p>I didn’t really change them, I thought that they having their old ID would be handy when I wanted to make the shift completely. This ended up being a good decision at the end.</p>
 
 <p>So now, the only thing I needed to do was to redirect this:</p>
-<code>
+
+<p><code>
 http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
-</code>
+</code></p>
+
 <p>to this:</p>
-<code>
+
+<p><code>
 http://martianwabbit.com/2011/04/04/4344642365.html
-</code>
-<p>Which isn&#8217;t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink for imported posts to this:</p>
-<code>
-<pre>
----
-layout: post
-title: "JustVector Social Icons Font"
-permalink: /post/4344642365.html
----
-</pre>
-</code>
-<p>So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it&#8217;d redirect the URLs as intended, that was probably the easiest part, a quick regex later I ended up with this:</p>
-<code>
+</code></p>
+
+<p>Which isn’t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink for imported posts to this:</p>
+
+<p><code>
+<pre>— layout: post title: &quot;JustVector Social Icons Font&quot; permalink: /post/4344642365.html </pre>
+</code></p>
+
+<p>So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it’d redirect the URLs as intended, that was probably the easiest part, a quick regex later I ended up with this:</p>
+
+<p><code>
 <pre>
 RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 </pre>
-</code>
+</code></p>
+
 <p>Which worked exactly as intended, now all I have to do, is wait for the DNS to finish propagating.</p>
 </section>
 	
