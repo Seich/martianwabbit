@@ -1,32 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<title>Seichy's Missing Bit  | Organizing a Javascript MVC Project </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
-	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-	<div class="container">
-		<nav id="top">
-			<ul>
-				<li><a href="/">Posts</a></li>
-				<li><a href="/about">About</a></li>
-			</ul>
-		</nav>
-		
-		<header id="title">
-			<h1><a href="/">Seichy's Missing Bit</a></h1>
+
+<div class="container center">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+	<article class="post">
+		<header>
+			<h1>
+				<a href="">Organizing a Javascript MVC Project</a>
+			</h1>
+			<time>February 01, 2013</time>
 		</header>
-		
-		<section class="post">
-	<h1><a href="/2013/02/01/organizing-a-javascript-mvc-project.html">Organizing a Javascript MVC Project</a></h1>
-	<time>February 01, 2013</time>
-	<p> 
+		<p> 
 I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
 </p><p>
 As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use <a href='http://www.canjs.us'>can.js</a> as our MVC framework of choice and use <a href='http://www.gruntjs.com/'>grunt</a> to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
@@ -127,28 +130,18 @@ module.exports = function(grunt) {
 };
 </code>
 </pre><p>This particular grunt file doesn't do much. When you call the <code>grunt</code> command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.</p><h2>That's it</h2><p>I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.</p>
-</section>
-	
-<section class="media-anouncement">
-	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
-</section>
-<script src="/rainbow/rainbow.js"></script>
-<script>
-	if (typeof prettyPrint !== "undefined") {
-		var codes = document.querySelectorAll("code > pre");
-		for (var i = 0; i < codes.length; i++) {
-			codes[i].className = codes[i].className + " prettyprint";
-		}
-		prettyPrint();
-	}
-</script>
-		
-		<footer>
-			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
-			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
-		</footer>
-	</div>
+	</article>
+</div>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/zepto.js"></script>
+	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
@@ -157,4 +150,3 @@ module.exports = function(grunt) {
     </script>
 </body>
 </html>
-		

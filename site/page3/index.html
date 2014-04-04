@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>Seichy's Missing Bit </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<div class="container">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+
+	<article class="post" id="Surviving a Hackathon">
+		<header>
+			<h1>
+				<a href="/2013/01/27/surviving-a-hackathon.html">Surviving a Hackathon</a>
+			</h1>
+			<time>January 27, 2013</time>
+		</header>
+
+		<p>Last week I finally went to <a href="http://vdhackathon.org">my first hackathon</a> and it was an awesome experience! Here are a couple of things everyone should watch out for when they go to a hackathon for the first time.</p>
+
+<h2 id="what_youll_need">What you’ll need</h2>
+
+<p>Okay, first things first, hackathons are apparently seriously social events. If you are more of an introvert it might be good for a you to bring along a friend, it’ll make your time there easier. I brought a friend along and it made the whole thing a lot more fun.</p>
+
+<p>There are other things which are kind of pretty obvious stuff such as: a laptop if you are going to be doing some coding and headphones if you need to block the world to get things done (Although, like I said, these are social events so try not to get too lost in your code and enjoy the company). Cameras are also great, your phone will probably do if you don’t feel like carrying additional stuff.</p>
+
+<p>Finally, another thing, which I didn’t actually bring with me on purpose are business cards. Even though I was just hanging around and doing stuff a bunch of people approached me with project ideas and business offers. So if you are looking for a job that might also be a good place to look for one. I almost ran out of them during the weekend!</p>
+
+<h2 id="hackathoning">Hackathoning!</h2>
+
+<p>Hackathoning is the only reason you are awake at 9am on a Saturday so it’s important to keep it in mind. If there’s a theme which was set beforehand, I’d recommend you go ahead and think of ideas so you can discuss them with your teammates. If there’s no theme then thinking of ideas is still a good idea.</p>
+
+<p>The first thing you’ll need to do if find a team, if you wanna work on your own (which I don’t think is a good idea) or brought along your own team, you are done with this and can go ahead and start brainstorming. If you didn’t and have to find a team look for people who can complement your skill-set. Let them know the kind of thing you wanna work on and what you can do or want to do.</p>
+
+<p>Once you are in a team, you are ready to make a plan. Make sure the plan is feasible, you only have a limited amount of time after all so, if it’s too complicated you might have enough time to finish, you can always continue working on the project after the hackathon so, keep it achievable.</p>
+
+<p>At this point, you are ready to start coding! So go out there and code! Try not to get too distracted or too focused, try to socialize and get stuff done at the same time. If you can balance these things you’ll survive this hackathon successfully.</p>
+
+<h3 id="networking">Networking</h3>
+
+<p>This is, what I found to be, the most important aspect of the hackathon. You cannot only socialize but, you can also make new friends, business partners, clients and jobs. So try to talk with everyone, it’s always nice to find new project to work on.</p>
+
+<h2 id="closing_up">Closing up</h2>
+
+<p>Hackathoning is fun! You can network, socialize, code and have a general good weekend so, if you haven’t gone to one, I highly recommend you do.</p>
+	</article>
+
+	<article class="post" id="Rails Quickhint #1: Creating a model while skipping validations">
+		<header>
+			<h1>
+				<a href="/2013/01/18/rails-quickhint-1.html">Rails Quickhint #1: Creating a model while skipping validations</a>
+			</h1>
+			<time>January 18, 2013</time>
+		</header>
+
+		<p>
+	This certainly needs some background. I've been working on a random rails project for the better part of the last couple of months. 
+	This project uses devise to manage logins and user registration. Recently registrations started failing in the site which, didn't 
+	make sense since they had been working fine for a while. So I started digging into it.
+</p>
+
+<p>
+	According to rails the user url didn't exist so it couldn't redirect back to the homepage after a successful registration. 
+	After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that's normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn't (since the username is only supposed to be set after registration).
+</p>
+
+<p>
+	So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
+</p>
+
+<p>user.rb</p>
+<pre>
+<code data-language="ruby">
+class User < ActiveRecord::Base
+  after_create :create_profile
+  has_one :user_profile, :dependent => :destroy
+  
+  def create_profile
+    self.build_user_profile
+    self.user_profile.save(:validate => false)
+  end
+end
+</code>
+</pre>
+
+<p>user_profile.rb</p>
+<pre>
+<code data-language="ruby">
+class UserProfile < ActiveRecord::Base
+  belongs_to :user
+ 
+  attr_accessible :username
+  validates_uniqueness_of :username
+end
+</code>
+</pre>
+
+<p>This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.</p>
+	</article>
+
+	<article class="post" id="Hiding elements when they lose focus with jQuery">
+		<header>
+			<h1>
+				<a href="/2013/01/10/onBlur-for-divs-with-jquery.html">Hiding elements when they lose focus with jQuery</a>
+			</h1>
+			<time>January 10, 2013</time>
+		</header>
+
+		<p>There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:</p>
+
+<pre>
+<code data-language="javascript">
+$(".userMenu a").on("click", function() {
+  $(".loginForm").stop().fadeToggle(100, "linear", function() {
+    $("body").on("click.loginform", function(e) {
+      if($(e.target).parents('.loginForm, .userMenu').length === 0) {
+        $('.loginForm').fadeToggle(100);
+        $("body").off(".loginform");
+      }
+    });
+  });
+});
+</code>
+</pre>
+
+<p>As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.</p>
+
+<p>So far, I like this method a lot, mostly because it is simple and gets things done quickly.</p>
+	</article>
+
+	<article class="post" id="New Year's Resolutions 2013">
+		<header>
+			<h1>
+				<a href="/2013/01/05/new-years-resolutions-2013.html">New Year's Resolutions 2013</a>
+			</h1>
+			<time>January 05, 2013</time>
+		</header>
+
+		<p>I’ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I’ve been saying I’ll start blogging more often for a couple of years now and I keep failing. I’ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don’t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that’s how I roll.</p>
+
+<p>My second resolution is to start a company. I am currently participating in contest sponsored by my university. If I were to win I’d be established as a company in a couple of months. Even if this doesn’t work out, I’ll get started on my own.</p>
+
+<p>There’s more development and learning to be done in 2013 as well. I’d say 2012 was the year of Javascript. Working as a front-end developer forces you to learn a lot of Javascript so it’s been a great experience. This year I’ll further evolve as a Javascript developer but, I also want to master ruby. I just love that language and even though I’ve worked with it a lot I don’t feel as confident in my skills. It still feels too magical for my taste. I’ll be working a lot more on personal projects (and blogging about it as well). I already have one android app in mind and a couple of gems to make my life easier.</p>
+
+<p>In the end I hope this year is as great as the last one and I learn, develop and grow a lot more.</p>
+	</article>
+
+	<article class="post" id="Daydreaming: Mobile Processing Clusters">
+		<header>
+			<h1>
+				<a href="/2012/11/06/Once-again-day-dreaming.html">Daydreaming: Mobile Processing Clusters</a>
+			</h1>
+			<time>November 06, 2012</time>
+		</header>
+
+		<p>I think this blog will most probably become a daydream diary. Oh wellz, let’s talk about random ideas. Today I was daydreaming during my calculus class (this is one of the reasons I suck at calculus, more on that in another post) and thought something really cool.</p>
+
+<p>Now, this is kind of completely out of my field so I don’t know how feasible or useful it might be but, I was thinking that cellphones spend most of their lives on standby and these phones have CPUs which we could use to do something useful, so how about we use them to help solve problems.</p>
+
+<p>I was thinking of something along the lines of wolframalpha, solving via cluster of CPUs. We could connect a bunch of phones via an app running in the background which would receive requests to do some processing. These requests would be problems that can be broken up into smaller pieces.These pieces would be sent all around to phones to be solved and then be sent back to a server coordinating the problem solving.</p>
+
+<p>You could also have the server look for phones with more powerful CPUs to solve more difficult parts of the problem, which might not be as easily broken down.</p>
+	</article>
+
+</div>
+
+
+<div class="sidebar">
+	<div class="icons">
+		<a href="https://www.github.com/seich" class="github">&#62208;</a>
+		<a href="https://www.twitter.com/seich" class="twitter">&#62217;</a>
+		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
+	</div>
+	<ul>
+	
+		<li>
+			<a href="#Surviving a Hackathon">Surviving a Hackathon</a>
+			<time>January 27, 2013</time>
+		</li>
+	
+		<li>
+			<a href="#Rails Quickhint #1: Creating a model while skipping validations">Rails Quickhint #1: Creating a model while skipping validations</a>
+			<time>January 18, 2013</time>
+		</li>
+	
+		<li>
+			<a href="#Hiding elements when they lose focus with jQuery">Hiding elements when they lose focus with jQuery</a>
+			<time>January 10, 2013</time>
+		</li>
+	
+		<li>
+			<a href="#New Year's Resolutions 2013">New Year's Resolutions 2013</a>
+			<time>January 05, 2013</time>
+		</li>
+	
+		<li>
+			<a href="#Daydreaming: Mobile Processing Clusters">Daydreaming: Mobile Processing Clusters</a>
+			<time>November 06, 2012</time>
+		</li>
+	
+	</ul>
+
+	
+	<div class="pagination">
+		
+			
+				<a href="/page2" class="previous">Previous Page</a>
+			
+		
+		/
+		
+			<a href="/page4" class="next">Next Page</a>
+		
+	</div>
+	
+</div>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/zepto.js"></script>
+	<script src="/js/main.js"></script>
+	<script>
+        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>

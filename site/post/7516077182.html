@@ -1,32 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<title>Seichy's Missing Bit  | Being bored is boring AKA Introducing PHP Routs </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
-	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-	<div class="container">
-		<nav id="top">
-			<ul>
-				<li><a href="/">Posts</a></li>
-				<li><a href="/about">About</a></li>
-			</ul>
-		</nav>
-		
-		<header id="title">
-			<h1><a href="/">Seichy's Missing Bit</a></h1>
+
+<div class="container center">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+	<article class="post">
+		<header>
+			<h1>
+				<a href="">Being bored is boring AKA Introducing PHP Routs</a>
+			</h1>
+			<time>July 11, 2011</time>
 		</header>
-		
-		<section class="post">
-	<h1><a href="/post/7516077182.html">Being bored is boring AKA Introducing PHP Routs</a></h1>
-	<time>July 11, 2011</time>
-	<p>
+		<p>
   I am probably the most bored person I know. What I mean by this is, that I am almost never entertained. Most of the time, I&#8217;ll be doing something for some 5 minutes before my short attention span takes me elsewhere. This has stopped me from finishing a lot of personal projects in the past, losing a lot of cool things I built halfway through. 
 </p>
 
@@ -34,9 +37,7 @@
   Since, I almost never finish my projects, I&#8217;ve decided to start publishing them. Hopefully, just knowing that others are looking at my code my motivate me to continue developing something. I&#8217;ve finally started using <a title="My Github Account" href="https://github.com/Seich">my Github account</a> to it&#8217;s fullest. I honestly doubt it&#8217;ll actually have a great effect on me but, any motivation I might get will prove useful. So, in conclusion, I&#8217;ll be releasing most of the stuff I do whenever I am bored on my Github account and I&#8217;ll be posting about it here, all in an attempt to keep me interested.
 </p>
 
-<p>
-  <strong>Introducing PHP Routs</strong>
-</p>
+<h2>Introducing PHP Routs</h2>
 
 <p>
   Let&#8217;s move on to my actual project. <a title="PHP Routs" href="http://routs.martianwabbit.com">Routs</a>, is a small PHP library built to handle URLs. Some background: I was playing with <a title="Ruby's Sinatra" href="htttp://www.sinatrarb.com">Sinatra</a> the other day and, just by reading the documentation I fell in love with how it managed URL routes (I later discovered I wasn&#8217;t the only since, there are a bunch of projects written in PHP following it&#8217;s example). So, I decided I wanted to do the same in PHP but, in a very simple way which, would allow me to easily implement it into any project by including a single file.
@@ -89,28 +90,18 @@ Rout::post('home', function($params){
 <p>
   Which handles the the submitted form and so on. Basically, the possibilities are endless! :D So yeah, that&#8217;s it, have fun with it, fork it, tell me why it sucks, etc.
 </p>
-</section>
-	
-<section class="media-anouncement">
-	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
-</section>
-<script src="/rainbow/rainbow.js"></script>
-<script>
-	if (typeof prettyPrint !== "undefined") {
-		var codes = document.querySelectorAll("code > pre");
-		for (var i = 0; i < codes.length; i++) {
-			codes[i].className = codes[i].className + " prettyprint";
-		}
-		prettyPrint();
-	}
-</script>
-		
-		<footer>
-			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
-			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
-		</footer>
-	</div>
+	</article>
+</div>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/zepto.js"></script>
+	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
@@ -119,4 +110,3 @@ Rout::post('home', function($params){
     </script>
 </body>
 </html>
-		

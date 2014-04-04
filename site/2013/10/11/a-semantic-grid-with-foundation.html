@@ -1,32 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<title>Seichy's Missing Bit  | A Semantic Grid with Zurb's Foundation </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
-	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-	<div class="container">
-		<nav id="top">
-			<ul>
-				<li><a href="/">Posts</a></li>
-				<li><a href="/about">About</a></li>
-			</ul>
-		</nav>
-		
-		<header id="title">
-			<h1><a href="/">Seichy's Missing Bit</a></h1>
+
+<div class="container center">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+	<article class="post">
+		<header>
+			<h1>
+				<a href="">A Semantic Grid with Zurb's Foundation</a>
+			</h1>
+			<time>October 11, 2013</time>
 		</header>
-		
-		<section class="post">
-	<h1><a href="/2013/10/11/a-semantic-grid-with-foundation.html">A Semantic Grid with Zurb's Foundation</a></h1>
-	<time>October 11, 2013</time>
-	<p><a href="http://foundation.zurb.com">Foundation</a> is great. I love it, I use it whenever I am building anything big. My favorite feature and the one key thing that has kept me as a fan for so long has been it's grid. I feel like it's the best grid we have available so far.</p>
+		<p><a href="http://foundation.zurb.com">Foundation</a> is great. I love it, I use it whenever I am building anything big. My favorite feature and the one key thing that has kept me as a fan for so long has been it's grid. I feel like it's the best grid we have available so far.</p>
 
 <p>
     My favorite thing about that grid you ask? Apart from just being plainly awesome? Well, it's the semantic option. I know you probably haven't put much thought into it but, don't you feel like grid classes tend to clutter the html? I do, and I hate it. Enter the mixins!
@@ -100,28 +103,18 @@ article {
 
 <h2>Conclusion</h2>
 <p>I feel like this technique is a great way to simplify the HTML and further decouple it from it's CSS. They've been several similar things before such as the <a href="http://semantic.gs/">Semantic Grid</a> which experimented with this idea. Foundation has a much more powerful grid so, it being able to work this way as well makes me really happy.</p>
-</section>
-	
-<section class="media-anouncement">
-	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
-</section>
-<script src="/rainbow/rainbow.js"></script>
-<script>
-	if (typeof prettyPrint !== "undefined") {
-		var codes = document.querySelectorAll("code > pre");
-		for (var i = 0; i < codes.length; i++) {
-			codes[i].className = codes[i].className + " prettyprint";
-		}
-		prettyPrint();
-	}
-</script>
-		
-		<footer>
-			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
-			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
-		</footer>
-	</div>
+	</article>
+</div>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/zepto.js"></script>
+	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
@@ -130,4 +123,3 @@ article {
     </script>
 </body>
 </html>
-		

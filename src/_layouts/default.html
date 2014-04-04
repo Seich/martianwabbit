@@ -1,41 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Seichy's Missing Bit {% if page.title %} | {{ page.title }} {% endif %}</title>
-	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
-	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
-</head>
-<body>
-	<div class="container">
-		<nav id="top">
-			<ul>
-				<li><a href="/">Posts</a></li>
-				<li><a href="/about">About</a></li>
-			</ul>
-		</nav>
-		
-		<header id="title">
-			<h1><a href="/">Seichy's Missing Bit</a></h1>
-		</header>
-		
-		{{content}}
-		
-		<footer>
-			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
-			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
-		</footer>
+---
+layout: layout
+---
+<div class="content">
+{{content}}
+</div>
+
+
+<div class="sidebar">
+	<div class="icons">
+		<a href="https://www.github.com/seich" class="github">&#62208;</a>
+		<a href="https://www.twitter.com/seich" class="twitter">&#62217;</a>
+		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
-	<script>
-        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
-</body>
-</html>
-		
+	<ul>
+	{% for post in paginator.posts %}
+		<li>
+			<a href="#{{post.title}}">{{post.title}}</a>
+			<time>{{ post.date | date: "%B %d, %Y" }}</time>
+		</li>
+	{% endfor %}
+	</ul>
+
+	{% if paginator.total_pages > 1 %}
+	<div class="pagination">
+		{% if paginator.previous_page %}
+			{% if paginator.page == 2 %}
+				<a href="/" class="previous">Previous Page</a>
+			{% else %}
+				<a href="/page{{ paginator.previous_page }}" class="previous">Previous Page</a>
+			{% endif %}
+		{% else %}
+			<span class="previous">Previous Page</span>
+		{% endif %}
+		/
+		{% if paginator.next_page %}
+			<a href="/page{{ paginator.next_page }}" class="next">Next Page</a>
+		{% else %}
+			<span class="next ">Next Page</span>
+		{% endif %}
+	</div>
+	{% endif %}
+</div>

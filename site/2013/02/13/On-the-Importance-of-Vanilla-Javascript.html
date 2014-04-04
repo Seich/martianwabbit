@@ -1,60 +1,53 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<title>Seichy's Missing Bit  | On the Importance of Vanilla Javascript </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
-	<link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/pictonic.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/rainbow/theme.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/css/styles.css" type="text/css" media="screen" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-	<div class="container">
-		<nav id="top">
-			<ul>
-				<li><a href="/">Posts</a></li>
-				<li><a href="/about">About</a></li>
-			</ul>
-		</nav>
-		
-		<header id="title">
-			<h1><a href="/">Seichy's Missing Bit</a></h1>
+
+<div class="container center">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+	<article class="post">
+		<header>
+			<h1>
+				<a href="">On the Importance of Vanilla Javascript</a>
+			</h1>
+			<time>February 13, 2013</time>
 		</header>
-		
-		<section class="post">
-	<h1><a href="/2013/02/13/On-the-Importance-of-Vanilla-Javascript.html">On the Importance of Vanilla Javascript</a></h1>
-	<time>February 13, 2013</time>
-	<p>There’s a very simple reason why people don’t see the need to learn “vanilla” Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn’t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.</p>
+		<p>There’s a very simple reason why people don’t see the need to learn “vanilla” Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn’t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.</p>
 
 <p>So, there’s two ways to look at this, either you go with the approach that will support the most users and let the other’s suffer (or degrade gracefully, ideally). Or write a bunch of boilerplate code to support browsers. Luckily, the second option is actually viable. There’s a plethora of libraries other people have taken the time to write for you. These are great. They are well tested, cross-browser and are really easy to use.</p>
 
 <p>The problem is that sometimes you have to add 9595 lines of codes just to do something as simple as <code>$(&quot;code&quot;).addClass(&quot;prettyPrint&quot;); </code>. This is were a bunch of people will appear out of nowhere and tell you to do it manually with “vanilla” Javascript. I am not against vanilla Javascript. I actually like writing stuff in Javascript without the aid of libraries but, this is mostly unreasonable. For example, adding the class takes jQuery 38 lines. Now, you might say something along the lines that jQuery is an extreme example but, I am sure that everything that can be taken out was already taken out. So, you might just go with jQuery and call it the day, after all going the vanilla way is only feasible when you know your audience and want to tailor directly to them or when you are strict on who you support and are pro graceful degradation. Of course, if you have a time constraint it becomes even more one sided.</p>
 
 <p>I personally think that soon enough, we won’t need jQuery to do as much for us, with new browser APIs it gets increasingly easier to get things done with less. Things like querySelectors and CSS3 animations can go a long way when building a modern site. But, as long as we have money to be made and time to be saved and many browsers to be supported, going vanilla might not be a good option in most cases.</p>
-</section>
-	
-<section class="media-anouncement">
-	Did you like this post? <a href="https://twitter.com/Seich" class="twitter-follow-button" data-show-count="false">Follow @Seich</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> for more. 
-</section>
-<script src="/rainbow/rainbow.js"></script>
-<script>
-	if (typeof prettyPrint !== "undefined") {
-		var codes = document.querySelectorAll("code > pre");
-		for (var i = 0; i < codes.length; i++) {
-			codes[i].className = codes[i].className + " prettyprint";
-		}
-		prettyPrint();
-	}
-</script>
-		
-		<footer>
-			<p>David Sergio D&iacute;az &copy; All Rights Reserved.</p>
-			<p>Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>.</p>
-		</footer>
-	</div>
+	</article>
+</div>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/zepto.js"></script>
+	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
@@ -63,4 +56,3 @@
     </script>
 </body>
 </html>
-		

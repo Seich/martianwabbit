@@ -36,10 +36,10 @@ for imported posts to this:
 
 <code>
 <pre>
----
-layout: post
-title: "JustVector Social Icons Font"
-permalink: /post/4344642365.html
+--- <br>
+layout: post <br>
+title: "JustVector Social Icons Font" <br>
+permalink: /post/4344642365.html <br>
 ---
 </pre>
 </code>
