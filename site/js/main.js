@@ -4,8 +4,6 @@ $(function() {
 		return;
 	}
 
-	var height = $(window).height();
-
 	$(window).on('scroll', function() {
 		var scrollTop = $(window).scrollTop();
 		var article_offsets = $('article').map(function(i) { 

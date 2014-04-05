@@ -11,17 +11,19 @@ Let's jump right in, here's how I do it:
 
 <pre>
 <code>
-var article_offsets = $('article').map(function() { 
-	return $(this).offset().top
-});
-
 $(window).on('scroll', function() {
+	var scrollTop = $(window).scrollTop();
+	var article_offsets = $('article').map(function(i) { 
+		if (i === 0) {
+			return 0;
+		}
+
+		return $(this).offset().top 
+	});
+
 	for (var i = 0; i &lt; article_offsets.length; i++) {
-		if (article_offsets[i] &gt; scrollTop &amp;&amp; 
-		article_offsets[i] &lt; scrollTop + $(window).height()) 
-		{
-			$('.sidebar li')
-				.removeClass('active')
+		if (article_offsets[i] - 40 &lt;= scrollTop) {
+			$('.sidebar li').removeClass('active')
 				.eq(i).addClass('active');
 		}
 	};
@@ -30,19 +32,23 @@ $(window).on('scroll', function() {
 </pre>
 
 
-The first line:
+The first line of interest:
 	
-	var article_offsets = $('article').map(function() { 
+	var article_offsets = $('article').map(function(i) { 
+		if (i === 0) {
+			return 0;
+		}
+
 		return $(this).offset().top 
 	});
 	
-Grabs all of the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts.
+Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.
 
-After that, I am binding an event to the window's scroll. Whenever the page is scrolled, we iterate over all of our scroll positions, if we find ourselves scrolled after one of the offsets and before the window height, we call:
+After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:
 
 	$('.sidebar li').removeClass('active').eq(i).addClass('active');
 	
-Which looks for the Ith element on the sidebar's list (which should match out Ith article element) and we add a class of 'active' to it, highlighting it and doing whatever we want with it.
+This looks for the Ith element on the sidebar's list and we add a class of 'active' to it, highlighting it and doing whatever we want with it.
 
 There's a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here's a couple I came through:
 
@@ -50,4 +56,4 @@ There's a couple of other (bigger, more complex and probably more robust) soluti
  - [http://www.outyear.co.uk/smint/](http://www.outyear.co.uk/smint/)
  - [http://scrollnav.com/](http://scrollnav.com/)
  
-I am pretty sure they are plenty of others, for my evil purposes, my tiny script fulfills my needs.
+I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.

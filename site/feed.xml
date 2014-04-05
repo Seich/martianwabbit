@@ -15,36 +15,42 @@
 &lt;p&gt;Let’s jump right in, here’s how I do it:&lt;/p&gt;
 &lt;pre&gt;
 &lt;code&gt;
-var article_offsets = $(&#39;article&#39;).map(function() { 
-	return $(this).offset().top
-});
-
 $(window).on(&#39;scroll&#39;, function() {
+	var scrollTop = $(window).scrollTop();
+	var article_offsets = $(&#39;article&#39;).map(function(i) { 
+		if (i === 0) {
+			return 0;
+		}
+
+		return $(this).offset().top 
+	});
+
 	for (var i = 0; i &amp;lt; article_offsets.length; i++) {
-		if (article_offsets[i] &amp;gt; scrollTop &amp;amp;&amp;amp; 
-		article_offsets[i] &amp;lt; scrollTop + $(window).height()) 
-		{
-			$(&#39;.sidebar li&#39;)
-				.removeClass(&#39;active&#39;)
+		if (article_offsets[i] - 40 &amp;lt;= scrollTop) {
+			$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;)
 				.eq(i).addClass(&#39;active&#39;);
 		}
 	};
 });
 &lt;/code&gt;
 &lt;/pre&gt;
-&lt;p&gt;The first line:&lt;/p&gt;
+&lt;p&gt;The first line of interest:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function() { 
+&lt;pre&gt;&lt;code&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function(i) { 
+	if (i === 0) {
+		return 0;
+	}
+
 	return $(this).offset().top 
 });&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Grabs all of the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts.&lt;/p&gt;
+&lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
 
-&lt;p&gt;After that, I am binding an event to the window’s scroll. Whenever the page is scrolled, we iterate over all of our scroll positions, if we find ourselves scrolled after one of the offsets and before the window height, we call:&lt;/p&gt;
+&lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Which looks for the Ith element on the sidebar’s list (which should match out Ith article element) and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
+&lt;p&gt;This looks for the Ith element on the sidebar’s list and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
 
 &lt;p&gt;There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:&lt;/p&gt;
 
@@ -56,7 +62,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;li&gt;&lt;a href=&quot;http://scrollnav.com/&quot;&gt;http://scrollnav.com/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I am pretty sure they are plenty of others, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;</description>
+&lt;p&gt;I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;</description>
 				<pubDate>Fri, 04 Apr 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</guid>
