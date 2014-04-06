@@ -112,13 +112,6 @@ a:hover {
 	border-radius: 2px;
 }
 
-.post pre {
-  tab-size: 4;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  -webkit-tab-size: 4;
-}
-
 .post blockquote {
 	background: #fafafa;
 	border-left: 10px solid #ccc;
@@ -158,6 +151,11 @@ a:hover {
 	line-height: 1;
 	margin: 2em 0;
 	padding-left: 1em;
+
+	tab-size: 4;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	-webkit-tab-size: 4;
 
 	white-space: pre-wrap;       /* css-3 */
 	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
