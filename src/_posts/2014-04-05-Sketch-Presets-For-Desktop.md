@@ -17,61 +17,61 @@ Here's my presets:
 		<array>
 			<string>Retina Displays</string>
 			<dict>
+				<key>width</key>
+				<integer>2880</integer>
 				<key>name</key>
 				<string>15-inch</string>
 				<key>height</key>
-				<integer>2880</integer>
-				<key>width</key>
 				<integer>1800</integer>
 			</dict>
 			<dict>
+				<key>width</key>
+				<integer>2560</integer>
 				<key>name</key>
 				<string>13-inch</string>
 				<key>height</key>
-				<integer>2560</integer>
-				<key>width</key>
 				<integer>1600</integer>
 			</dict>
 			<string>4:3</string>
 			<dict>
+				<key>width</key>
+				<integer>1600</integer>
 				<key>name</key>
 				<string>Large 4:3</string>
 				<key>height</key>
-				<integer>1600</integer>
-				<key>width</key>
 				<integer>1200</integer>
 			</dict>
 			<dict>
+				<key>width</key>
+				<integer>1280</integer>
 				<key>name</key>
 				<string>Medium 4:3</string>
 				<key>height</key>
-				<integer>1280</integer>
-				<key>width</key>
 				<integer>1024</integer>
 			</dict>
 			<string>16:9</string>
 			<dict>
+				<key>width</key>
+				<integer>1920</integer>
 				<key>name</key>
 				<string>Large 16:9</string>
 				<key>height</key>
-				<integer>1920</integer>
-				<key>width</key>
 				<integer>1080</integer>
 			</dict>
 			<dict>
+				<key>width</key>
+				<integer>1600</integer>
 				<key>name</key>
 				<string>Medium 16:9</string>
 				<key>height</key>
-				<integer>1600</integer>
-				<key>width</key>
 				<integer>900</integer>
 			</dict>
 			<dict>
+				<key>width</key>
+				<integer>1366</integer>
 				<key>name</key>
 				<string>Small 16:9</string>
 				<key>height</key>
-				<integer>1366</integer>
-				<key>width</key>
 				<integer>768</integer>
 			</dict>
 		</array>
