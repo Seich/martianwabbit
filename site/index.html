@@ -25,6 +25,94 @@
 
 	<div class="content">
 
+	<article class="post" id="Sketch Presets for Desktop Screens">
+		<header>
+			<h1>
+				<a href="/2014/04/05/Sketch-Presets-For-Desktop.html">Sketch Presets for Desktop Screens</a>
+			</h1>
+			<time>April 05, 2014</time>
+		</header>
+
+		<p>I’ve been using <a href="http://bohemiancoding.com/sketch/">Sketch</a> to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a <a href="http://j4n.co/blog/custom-sketch-art-board-presets">blog post</a> detailing how to do just this.</p>
+
+<blockquote>
+<p>Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you’re using the App Store version of Sketch, then the file is located here:</p>
+</blockquote>
+
+<pre><code>~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/</code></pre>
+
+<p>Here’s my presets:</p>
+
+<pre><code>&lt;dict&gt;
+	&lt;key&gt;name&lt;/key&gt;
+	&lt;string&gt;Desktop&lt;/string&gt;
+	&lt;key&gt;presets&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;Retina Displays&lt;/string&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;15-inch&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;2880&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;1800&lt;/integer&gt;
+		&lt;/dict&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;13-inch&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;2560&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;1600&lt;/integer&gt;
+		&lt;/dict&gt;
+		&lt;string&gt;4:3&lt;/string&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;Large 4:3&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;1600&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;1200&lt;/integer&gt;
+		&lt;/dict&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;Medium 4:3&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;1280&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;1024&lt;/integer&gt;
+		&lt;/dict&gt;
+		&lt;string&gt;16:9&lt;/string&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;Large 16:9&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;1920&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;1080&lt;/integer&gt;
+		&lt;/dict&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;Medium 16:9&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;1600&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;900&lt;/integer&gt;
+		&lt;/dict&gt;
+		&lt;dict&gt;
+			&lt;key&gt;name&lt;/key&gt;
+			&lt;string&gt;Small 16:9&lt;/string&gt;
+			&lt;key&gt;height&lt;/key&gt;
+			&lt;integer&gt;1366&lt;/integer&gt;
+			&lt;key&gt;width&lt;/key&gt;
+			&lt;integer&gt;768&lt;/integer&gt;
+		&lt;/dict&gt;
+	&lt;/array&gt;
+&lt;/dict&gt;</code></pre>
+
+<p>I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I’ve used recently and might re-use in the future.</p>
+	</article>
+
 	<article class="post" id="Scroll Spying for Fun and Profit">
 		<header>
 			<h1>
@@ -291,39 +379,6 @@ article {
 <p>I feel like this technique is a great way to simplify the HTML and further decouple it from it's CSS. They've been several similar things before such as the <a href="http://semantic.gs/">Semantic Grid</a> which experimented with this idea. Foundation has a much more powerful grid so, it being able to work this way as well makes me really happy.</p>
 	</article>
 
-	<article class="post" id="Connecting To A Remote RethinkDB Admin Interface">
-		<header>
-			<h1>
-				<a href="/2013/07/20/connecting-to-a-remote-rethinkdb-admin-interface.html">Connecting To A Remote RethinkDB Admin Interface</a>
-			</h1>
-			<time>July 20, 2013</time>
-		</header>
-
-		<p>
-	So here's a really quick tip, when you run a RethinkDB instance on a remote server you cannot access the admin interface, by default, from the outside of the server. The easiest way to get around this without allowing anyone to access it is to use a ssh tunnel like this:
-</p>
-
-<pre>
-	<code data-language="shell">
-$ ssh -L 8080:localhost:8080 &lt;host&gt;
-	</code>
-</pre>
-
-<p>
-	This basically uses ssh to map the port 8080 of your machine (127.0.0.1 or localhost) to the port 8080 on the host machine. Don't forget to replace "&lt;host&gt;" with your actual remote host.
-</p>
-
-<p>
-	With this, you can now connect to the admin interface by going to localhost:8080 on your machine. Note that this will only work as long as the ssh connection remains open.
-</p>
-
-<h2>Additional Resources</h2>
-<p>
-	<a href="http://www.symantec.com/connect/articles/ssh-port-forwarding">SSH Port Forwarding - Symatec</a> <br>
-	<a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">SSH/OpenSSH/PortForwarding - Ubuntu Community Documentation</a>
-</p>
-	</article>
-
 </div>
 
 
@@ -334,6 +389,11 @@ $ ssh -L 8080:localhost:8080 &lt;host&gt;
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#Sketch Presets for Desktop Screens">Sketch Presets for Desktop Screens</a>
+			<time>April 05, 2014</time>
+		</li>
 	
 		<li>
 			<a href="#Scroll Spying for Fun and Profit">Scroll Spying for Fun and Profit</a>
@@ -353,11 +413,6 @@ $ ssh -L 8080:localhost:8080 &lt;host&gt;
 		<li>
 			<a href="#A Semantic Grid with Zurb's Foundation">A Semantic Grid with Zurb's Foundation</a>
 			<time>October 11, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Connecting To A Remote RethinkDB Admin Interface">Connecting To A Remote RethinkDB Admin Interface</a>
-			<time>July 20, 2013</time>
 		</li>
 	
 	</ul>

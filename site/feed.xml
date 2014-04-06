@@ -7,6 +7,91 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Sketch Presets for Desktop Screens</title>
+				<description>&lt;p&gt;I’ve been using &lt;a href=&quot;http://bohemiancoding.com/sketch/&quot;&gt;Sketch&lt;/a&gt; to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a &lt;a href=&quot;http://j4n.co/blog/custom-sketch-art-board-presets&quot;&gt;blog post&lt;/a&gt; detailing how to do just this.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you’re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here’s my presets:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;dict&amp;gt;
+	&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+	&amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
+	&amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
+	&amp;lt;array&amp;gt;
+		&amp;lt;string&amp;gt;Retina Displays&amp;lt;/string&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;15-inch&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;2880&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1800&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;13-inch&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;2560&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;string&amp;gt;4:3&amp;lt;/string&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Large 4:3&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1200&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Medium 4:3&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1280&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1024&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;string&amp;gt;16:9&amp;lt;/string&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Large 16:9&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1920&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1080&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Medium 16:9&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;900&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Small 16:9&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1366&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;768&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+	&amp;lt;/array&amp;gt;
+&amp;lt;/dict&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I’ve used recently and might re-use in the future.&lt;/p&gt;</description>
+				<pubDate>Sat, 05 Apr 2014 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2014/04/05/Sketch-Presets-For-Desktop.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2014/04/05/Sketch-Presets-For-Desktop.html</guid>
+			</item>
+		
+			<item>
 				<title>Scroll Spying for Fun and Profit</title>
 				<description>&lt;p&gt;I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on. &lt;img class=&#39;small&#39; src=&#39;http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif&#39; /&gt;&lt;/p&gt;
 
@@ -406,20 +491,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 				<pubDate>Wed, 20 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</guid>
-			</item>
-		
-			<item>
-				<title>On the Importance of Vanilla Javascript</title>
-				<description>&lt;p&gt;There’s a very simple reason why people don’t see the need to learn “vanilla” Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn’t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.&lt;/p&gt;
-
-&lt;p&gt;So, there’s two ways to look at this, either you go with the approach that will support the most users and let the other’s suffer (or degrade gracefully, ideally). Or write a bunch of boilerplate code to support browsers. Luckily, the second option is actually viable. There’s a plethora of libraries other people have taken the time to write for you. These are great. They are well tested, cross-browser and are really easy to use.&lt;/p&gt;
-
-&lt;p&gt;The problem is that sometimes you have to add 9595 lines of codes just to do something as simple as &lt;code&gt;$(&amp;quot;code&amp;quot;).addClass(&amp;quot;prettyPrint&amp;quot;); &lt;/code&gt;. This is were a bunch of people will appear out of nowhere and tell you to do it manually with “vanilla” Javascript. I am not against vanilla Javascript. I actually like writing stuff in Javascript without the aid of libraries but, this is mostly unreasonable. For example, adding the class takes jQuery 38 lines. Now, you might say something along the lines that jQuery is an extreme example but, I am sure that everything that can be taken out was already taken out. So, you might just go with jQuery and call it the day, after all going the vanilla way is only feasible when you know your audience and want to tailor directly to them or when you are strict on who you support and are pro graceful degradation. Of course, if you have a time constraint it becomes even more one sided.&lt;/p&gt;
-
-&lt;p&gt;I personally think that soon enough, we won’t need jQuery to do as much for us, with new browser APIs it gets increasingly easier to get things done with less. Things like querySelectors and CSS3 animations can go a long way when building a modern site. But, as long as we have money to be made and time to be saved and many browsers to be supported, going vanilla might not be a good option in most cases.&lt;/p&gt;</description>
-				<pubDate>Wed, 13 Feb 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/02/13/On-the-Importance-of-Vanilla-Javascript.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/02/13/On-the-Importance-of-Vanilla-Javascript.html</guid>
 			</item>
 		
 	</channel>

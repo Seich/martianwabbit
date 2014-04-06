@@ -25,6 +25,23 @@
 
 	<div class="content">
 
+	<article class="post" id="On the Importance of Vanilla Javascript">
+		<header>
+			<h1>
+				<a href="/2013/02/13/On-the-Importance-of-Vanilla-Javascript.html">On the Importance of Vanilla Javascript</a>
+			</h1>
+			<time>February 13, 2013</time>
+		</header>
+
+		<p>There’s a very simple reason why people don’t see the need to learn “vanilla” Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn’t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.</p>
+
+<p>So, there’s two ways to look at this, either you go with the approach that will support the most users and let the other’s suffer (or degrade gracefully, ideally). Or write a bunch of boilerplate code to support browsers. Luckily, the second option is actually viable. There’s a plethora of libraries other people have taken the time to write for you. These are great. They are well tested, cross-browser and are really easy to use.</p>
+
+<p>The problem is that sometimes you have to add 9595 lines of codes just to do something as simple as <code>$(&quot;code&quot;).addClass(&quot;prettyPrint&quot;); </code>. This is were a bunch of people will appear out of nowhere and tell you to do it manually with “vanilla” Javascript. I am not against vanilla Javascript. I actually like writing stuff in Javascript without the aid of libraries but, this is mostly unreasonable. For example, adding the class takes jQuery 38 lines. Now, you might say something along the lines that jQuery is an extreme example but, I am sure that everything that can be taken out was already taken out. So, you might just go with jQuery and call it the day, after all going the vanilla way is only feasible when you know your audience and want to tailor directly to them or when you are strict on who you support and are pro graceful degradation. Of course, if you have a time constraint it becomes even more one sided.</p>
+
+<p>I personally think that soon enough, we won’t need jQuery to do as much for us, with new browser APIs it gets increasingly easier to get things done with less. Things like querySelectors and CSS3 animations can go a long way when building a modern site. But, as long as we have money to be made and time to be saved and many browsers to be supported, going vanilla might not be a good option in most cases.</p>
+	</article>
+
 	<article class="post" id="Organizing a Javascript MVC Project">
 		<header>
 			<h1>
@@ -256,23 +273,6 @@ $(".userMenu a").on("click", function() {
 <p>So far, I like this method a lot, mostly because it is simple and gets things done quickly.</p>
 	</article>
 
-	<article class="post" id="New Year's Resolutions 2013">
-		<header>
-			<h1>
-				<a href="/2013/01/05/new-years-resolutions-2013.html">New Year's Resolutions 2013</a>
-			</h1>
-			<time>January 05, 2013</time>
-		</header>
-
-		<p>I’ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I’ve been saying I’ll start blogging more often for a couple of years now and I keep failing. I’ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don’t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that’s how I roll.</p>
-
-<p>My second resolution is to start a company. I am currently participating in contest sponsored by my university. If I were to win I’d be established as a company in a couple of months. Even if this doesn’t work out, I’ll get started on my own.</p>
-
-<p>There’s more development and learning to be done in 2013 as well. I’d say 2012 was the year of Javascript. Working as a front-end developer forces you to learn a lot of Javascript so it’s been a great experience. This year I’ll further evolve as a Javascript developer but, I also want to master ruby. I just love that language and even though I’ve worked with it a lot I don’t feel as confident in my skills. It still feels too magical for my taste. I’ll be working a lot more on personal projects (and blogging about it as well). I already have one android app in mind and a couple of gems to make my life easier.</p>
-
-<p>In the end I hope this year is as great as the last one and I learn, develop and grow a lot more.</p>
-	</article>
-
 </div>
 
 
@@ -283,6 +283,11 @@ $(".userMenu a").on("click", function() {
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#On the Importance of Vanilla Javascript">On the Importance of Vanilla Javascript</a>
+			<time>February 13, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#Organizing a Javascript MVC Project">Organizing a Javascript MVC Project</a>
@@ -302,11 +307,6 @@ $(".userMenu a").on("click", function() {
 		<li>
 			<a href="#Hiding elements when they lose focus with jQuery">Hiding elements when they lose focus with jQuery</a>
 			<time>January 10, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#New Year's Resolutions 2013">New Year's Resolutions 2013</a>
-			<time>January 05, 2013</time>
 		</li>
 	
 	</ul>
