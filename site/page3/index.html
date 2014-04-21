@@ -25,6 +25,23 @@
 
 	<div class="content">
 
+	<article class="post" id="Design For Your Mother">
+		<header>
+			<h1>
+				<a href="/2013/02/20/Design-for-your-mother.html">Design For Your Mother</a>
+			</h1>
+			<time>February 20, 2013</time>
+		</header>
+
+		<p>I am not really that much of a designer. I’ve worked as one but, I’d never describe me as a “web designer”. I am simply not that good with designing things. I do have good taste though and, can tell good design apart from bad design. I also have a solid knowledge of design and UX in general which is enough for my day to day activities. At the end of the day, the only thing I know about design, is that good design should be easy to use. How easy? Well, my mother should be able to use it without having to ask for my help. I obviously know that not all mothers need help when it comes to computers (to be honest, mine can handle herself just fine without me) but, the point is, your design should be easy to use first, and nice-looking second. My mother should be able to use your application without having to think too hard. Users are lazy and they like being able to do stuff without thinking. Try as hard as possible to make it easy for them to not think.</p>
+
+<p>I really like how simple interfaces are kind of trending these days. It really is great, simple design helps get the message through and allows users to interact more freely with the web. I’ve always gone with “minimalist” designs mostly because, it’s easier to get right when you are not that great of a designer and also because it’s easier for the user to interact with any application if they are only presented what they need at any given moment.</p>
+
+<p>Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don’t?</p>
+
+<p>Think about, simple design is awesome, <a href="http://www.sensible.com/dmmt.html">don’t make me think</a> and don’t make my mother ask me for help.</p>
+	</article>
+
 	<article class="post" id="On the Importance of Vanilla Javascript">
 		<header>
 			<h1>
@@ -243,36 +260,6 @@ end
 <p>This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.</p>
 	</article>
 
-	<article class="post" id="Hiding elements when they lose focus with jQuery">
-		<header>
-			<h1>
-				<a href="/2013/01/10/onBlur-for-divs-with-jquery.html">Hiding elements when they lose focus with jQuery</a>
-			</h1>
-			<time>January 10, 2013</time>
-		</header>
-
-		<p>There's simply is no standard way of hiding an element when it loses it's 'focus' using Javascript or jQuery. Here's how I've been  doing it lately:</p>
-
-<pre>
-<code data-language="javascript">
-$(".userMenu a").on("click", function() {
-  $(".loginForm").stop().fadeToggle(100, "linear", function() {
-    $("body").on("click.loginform", function(e) {
-      if($(e.target).parents('.loginForm, .userMenu').length === 0) {
-        $('.loginForm').fadeToggle(100);
-        $("body").off(".loginform");
-      }
-    });
-  });
-});
-</code>
-</pre>
-
-<p>As you can see, it's fairly straight forward. Basically, when you click the button that shows the element, it toggle's the target element's visibility. When it is visible, an event is bound to the body, so whenever it is clicked, it checks if the click was on the element or if it wasn't. If it wasn't on the element, we hide the element and remove the event from the body. If it was on the element, nothing happens.</p>
-
-<p>So far, I like this method a lot, mostly because it is simple and gets things done quickly.</p>
-	</article>
-
 </div>
 
 
@@ -283,6 +270,11 @@ $(".userMenu a").on("click", function() {
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#Design For Your Mother">Design For Your Mother</a>
+			<time>February 20, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#On the Importance of Vanilla Javascript">On the Importance of Vanilla Javascript</a>
@@ -302,11 +294,6 @@ $(".userMenu a").on("click", function() {
 		<li>
 			<a href="#Rails Quickhint #1: Creating a model while skipping validations">Rails Quickhint #1: Creating a model while skipping validations</a>
 			<time>January 18, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Hiding elements when they lose focus with jQuery">Hiding elements when they lose focus with jQuery</a>
-			<time>January 10, 2013</time>
 		</li>
 	
 	</ul>

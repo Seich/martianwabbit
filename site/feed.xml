@@ -7,6 +7,40 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Using mailgun to receive emails with Phabricator</title>
+				<description>&lt;p&gt;&lt;a href=&quot;http://phabricator.com&quot;&gt;Phabricator&lt;/a&gt; is awesome. We recently started trying it out for &lt;a href=&quot;http://2build.it&quot;&gt;2build.it&lt;/a&gt; (more like, this morning) and we all (&lt;a href=&quot;http://jorge.caballeromurillo.com&quot;&gt;Jorge&lt;/a&gt; and I) agreed it’s awesome.&lt;/p&gt;
+
+&lt;p&gt;The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you’re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn’t mentioned anywhere in the documentation. Btw, here’s how you do it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./bin/phd restart&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Right from the Phabricator folder.&lt;/p&gt;
+
+&lt;p&gt;Moving on.&lt;/p&gt;
+
+&lt;p&gt;Now that sending was settled there was one huge thing that wasn’t working. Inbound emails. I tried working with postfix but, it was too painful and after a couple of hours I didn’t get anywhere. The &lt;a href=&quot;https://secure.phabricator.com/book/phabricator/article/configuring_inbound_email/&quot;&gt;documentation&lt;/a&gt; talks about using sendgrid to achieve it but, I already have a mailgun account and according to the configuration Phabricator should be able to use mailgun as well. So, I had to do some research.&lt;/p&gt;
+
+&lt;p&gt;It turns out you can use mailgun to do this but, there’s zero documentation about it. Luckily, I found the &lt;a href=&quot;https://secure.phabricator.com/rPa9612fac24a9eb97ad3f611d84dfedbce98d17ad&quot;&gt;commit&lt;/a&gt; where this functionality was added and figured it out on my own. Here’s the three step guide to getting it done.&lt;/p&gt;
+
+&lt;h2 id=&quot;step_1&quot;&gt;Step 1&lt;/h2&gt;
+
+&lt;p&gt;You have to configure you domain’s MX records to point to mailgun. You can find more information &lt;a href=&quot;http://documentation.mailgun.com/user_manual.html#verifying-your-domain&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;step_2&quot;&gt;Step 2&lt;/h2&gt;
+
+&lt;p&gt;Go to your setup your mailgun configuration by going to the mailgun config (http://example.com/config/group/mailgun/) and adding your API key and your domain.&lt;/p&gt;
+
+&lt;h2 id=&quot;step_3&quot;&gt;Step 3&lt;/h2&gt;
+
+&lt;p&gt;We’re almost done. Now, all we have to do is tell mailgun to send received emails your way. To do this all you have to do is create a new route (go here: &lt;a href=&quot;https://mailgun.com/cp/routes&quot;&gt;https://mailgun.com/cp/routes&lt;/a&gt;). Give it a priority and a filter that’ll work for you (I used 0 as a priority and &lt;code&gt;catch_all()&lt;/code&gt; for a filter). For the action, forward it to your Phabricator installation with the endpoint ‘/mail/mailgun’. Like this: &lt;code&gt;forward(&amp;quot;http://example.com/mail/mailgun/&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;That is all. Your emails should now allow you to interact with Phabricator.&lt;/p&gt;</description>
+				<pubDate>Mon, 21 Apr 2014 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</guid>
+			</item>
+		
+			<item>
 				<title>Sketch Presets for Desktop Screens</title>
 				<description>&lt;p&gt;I’ve been using &lt;a href=&quot;http://bohemiancoding.com/sketch/&quot;&gt;Sketch&lt;/a&gt; to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a &lt;a href=&quot;http://j4n.co/blog/custom-sketch-art-board-presets&quot;&gt;blog post&lt;/a&gt; detailing how to do just this.&lt;/p&gt;
 
@@ -477,20 +511,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 				<pubDate>Sun, 24 Feb 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/02/24/migrating-from-tumblr-to-jekyll.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/02/24/migrating-from-tumblr-to-jekyll.html</guid>
-			</item>
-		
-			<item>
-				<title>Design For Your Mother</title>
-				<description>&lt;p&gt;I am not really that much of a designer. I’ve worked as one but, I’d never describe me as a “web designer”. I am simply not that good with designing things. I do have good taste though and, can tell good design apart from bad design. I also have a solid knowledge of design and UX in general which is enough for my day to day activities. At the end of the day, the only thing I know about design, is that good design should be easy to use. How easy? Well, my mother should be able to use it without having to ask for my help. I obviously know that not all mothers need help when it comes to computers (to be honest, mine can handle herself just fine without me) but, the point is, your design should be easy to use first, and nice-looking second. My mother should be able to use your application without having to think too hard. Users are lazy and they like being able to do stuff without thinking. Try as hard as possible to make it easy for them to not think.&lt;/p&gt;
-
-&lt;p&gt;I really like how simple interfaces are kind of trending these days. It really is great, simple design helps get the message through and allows users to interact more freely with the web. I’ve always gone with “minimalist” designs mostly because, it’s easier to get right when you are not that great of a designer and also because it’s easier for the user to interact with any application if they are only presented what they need at any given moment.&lt;/p&gt;
-
-&lt;p&gt;Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don’t?&lt;/p&gt;
-
-&lt;p&gt;Think about, simple design is awesome, &lt;a href=&quot;http://www.sensible.com/dmmt.html&quot;&gt;don’t make me think&lt;/a&gt; and don’t make my mother ask me for help.&lt;/p&gt;</description>
-				<pubDate>Wed, 20 Feb 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/02/20/Design-for-your-mother.html</guid>
 			</item>
 		
 	</channel>

@@ -25,6 +25,90 @@
 
 	<div class="content">
 
+	<article class="post" id="A Semantic Grid with Zurb's Foundation">
+		<header>
+			<h1>
+				<a href="/2013/10/11/a-semantic-grid-with-foundation.html">A Semantic Grid with Zurb's Foundation</a>
+			</h1>
+			<time>October 11, 2013</time>
+		</header>
+
+		<p><a href="http://foundation.zurb.com">Foundation</a> is great. I love it, I use it whenever I am building anything big. My favorite feature and the one key thing that has kept me as a fan for so long has been it's grid. I feel like it's the best grid we have available so far.</p>
+
+<p>
+    My favorite thing about that grid you ask? Apart from just being plainly awesome? Well, it's the semantic option. I know you probably haven't put much thought into it but, don't you feel like grid classes tend to clutter the html? I do, and I hate it. Enter the mixins!
+</p>
+
+<h2>The Mixins</h2>
+<p>
+    To alleviate this issue, Foundation gives us a set of really handy mixins which allow you to build a really semantic grid. It's as flexible as it can be and just as easy to use (I'd argue that if you're familiar with sass, it's just plainly easier and requires less typing).
+</p>
+
+<p>To demonstrate, I'll be showing you how to build this:</p>
+<div>
+    <img src="http://f.cl.ly/items/08411t3C1f393p3W2B0G/Screen%20Shot%202013-10-11%20at%2012.45.18%20PM.png" alt="Demo">
+</div>
+
+<p>As you can see, it's a very simple layout. It'd be really easy to build it using the grid classes, it's even easier to build it using the mixins. Here's my markup:</p>
+<pre>
+<code data-language="html">&lt;article&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;/header&gt;
+  
+  &lt;div&gt;
+      &lt;img src=&quot;http://lorempixel.com/300/400/&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;p&gt;
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, voluptatibus, deserunt, facilis iusto sapiente impedit praesentium laudantium minus voluptas numquam incidunt corrupti sequi laboriosam magnam officia perspiciatis quas quam quaerat!
+  &lt;/p&gt;
+&lt;/article&gt;
+</code>
+</pre>
+
+<p>As you can see it's pretty standard except the elements lack classes and such. Much prettier than usual in my opinion.</p>
+
+<p>Here's my CSS:</p>
+
+<pre>
+<code data-language="css">@import "foundation/components/global";
+@import "foundation/components/grid";
+
+$total-columns: 5;
+article {
+  @include grid-row;
+
+  header {
+    @include grid-row;
+
+    h1 {
+      @include grid-column(5);  
+    }
+  }
+
+  div {
+    @include grid-column(2);
+  }
+
+  p {
+    @include grid-column(3);
+  }
+}
+</code>
+</pre>
+
+<p>Awesome, right? Here I am the grid-column and grid-row mixins to create the grid directly in my CSS. All you have to do is import the mixins. There are also many options to customize the grid, in this case I changed the number of columns from the default 12, to 5. I am also nesting rows, all from the CSS, leaving the HTML to describe it's thing. </p>
+
+<h3>Side note:</h3>
+<p>I hadn't notice that in this case you're putting a row directly inside another row, this isn't ideal as it can cause alignment issues. Ideally you'd have the header inside full width column to prevent this. I don't think it matters in this example but in anything more complex it might be a pain to debug.</p>
+
+<p>Thanks to <a href="https://twitter.com/smiley">@smiley</a> for the heads up!</p>
+
+<h2>Conclusion</h2>
+<p>I feel like this technique is a great way to simplify the HTML and further decouple it from it's CSS. They've been several similar things before such as the <a href="http://semantic.gs/">Semantic Grid</a> which experimented with this idea. Foundation has a much more powerful grid so, it being able to work this way as well makes me really happy.</p>
+	</article>
+
 	<article class="post" id="Connecting To A Remote RethinkDB Admin Interface">
 		<header>
 			<h1>
@@ -171,23 +255,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 <p>Which worked exactly as intended, now all I have to do, is wait for the DNS to finish propagating.</p>
 	</article>
 
-	<article class="post" id="Design For Your Mother">
-		<header>
-			<h1>
-				<a href="/2013/02/20/Design-for-your-mother.html">Design For Your Mother</a>
-			</h1>
-			<time>February 20, 2013</time>
-		</header>
-
-		<p>I am not really that much of a designer. I’ve worked as one but, I’d never describe me as a “web designer”. I am simply not that good with designing things. I do have good taste though and, can tell good design apart from bad design. I also have a solid knowledge of design and UX in general which is enough for my day to day activities. At the end of the day, the only thing I know about design, is that good design should be easy to use. How easy? Well, my mother should be able to use it without having to ask for my help. I obviously know that not all mothers need help when it comes to computers (to be honest, mine can handle herself just fine without me) but, the point is, your design should be easy to use first, and nice-looking second. My mother should be able to use your application without having to think too hard. Users are lazy and they like being able to do stuff without thinking. Try as hard as possible to make it easy for them to not think.</p>
-
-<p>I really like how simple interfaces are kind of trending these days. It really is great, simple design helps get the message through and allows users to interact more freely with the web. I’ve always gone with “minimalist” designs mostly because, it’s easier to get right when you are not that great of a designer and also because it’s easier for the user to interact with any application if they are only presented what they need at any given moment.</p>
-
-<p>Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don’t?</p>
-
-<p>Think about, simple design is awesome, <a href="http://www.sensible.com/dmmt.html">don’t make me think</a> and don’t make my mother ask me for help.</p>
-	</article>
-
 </div>
 
 
@@ -198,6 +265,11 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#A Semantic Grid with Zurb's Foundation">A Semantic Grid with Zurb's Foundation</a>
+			<time>October 11, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#Connecting To A Remote RethinkDB Admin Interface">Connecting To A Remote RethinkDB Admin Interface</a>
@@ -217,11 +289,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 		<li>
 			<a href="#Migrating from Tumblr to Jekyll">Migrating from Tumblr to Jekyll</a>
 			<time>February 24, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Design For Your Mother">Design For Your Mother</a>
-			<time>February 20, 2013</time>
 		</li>
 	
 	</ul>
