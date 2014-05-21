@@ -5,7 +5,7 @@ title: "Scroll Spying for Fun and Profit"
 I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
 <img src="http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif" class="small">
 
-To achieve this, I used [Zepto](http://zeptojs.com/) and a small amount of math. (The great thing about Zepto is that it's fully compatible with jQuery, so this should work with jQuery out of the both as well).
+To achieve this, I used [Zepto](http://zeptojs.com/) and a small amount of math. (The great thing about Zepto is that it's fully compatible with jQuery, so this should work with jQuery out of the box as well).
 
 Let's jump right in, here's how I do it:
 
