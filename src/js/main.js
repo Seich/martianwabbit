@@ -1,27 +1,3 @@
-/*
-$(function() {
-
-	$(window).on('scroll', function() {
-		var scrollTop = $(window).scrollTop();
-		var article_offsets = $('article').map(function(i) { 
-			if (i === 0) {
-				return 0;
-			}
-
-			return $(this).offset().top 
-		});
-
-		for (var i = 0; i < article_offsets.length; i++) {
-			if (article_offsets[i] - 40 <= scrollTop) {
-				$('.sidebar li').removeClass('active').eq(i).addClass('active');
-			}
-		};
-	});
-
-	$(window).scroll();
-});
- */
-
 var throttle = function(fn, time) {
 	var ran = false;
 	if (typeof time === 'undefined') {
