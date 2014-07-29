@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var sidebar = document.querySelector('.sidebar');
 	var sidebar_articles = Array.prototype.slice.call(document.querySelectorAll('.sidebar li'));
 	var articles = Array.prototype.slice.call(document.querySelectorAll('article'));
+	document.querySelector('.sidebar li').classList.add('active');
 	
 	// Handle the menu's fixed state.
 	window.addEventListener('scroll', throttle(function() {
@@ -72,11 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		for (var i = 0; i < article_offsets.length; i++) {
 			if (article_offsets[i] - 40 <= scrollTop) {
-				var active = document.querySelector('.sidebar li.active');
-				if (active !== null && active.length !== 0) {
-					active.classList.remove('active');
-				}
-
+				document.querySelector('.sidebar li.active').classList.remove('active');
 				sidebar_articles[i].classList.add('active');
 			}
 		};
