@@ -82,7 +82,7 @@ Here's my final code:
 	}
 	
 And here's what my app looks like:
-![](http://f.cl.ly/items/2r0a21423A3l2S381U3w/final.png)
+<img src="http://f.cl.ly/items/2r0a21423A3l2S381U3w/final.png" alt="Final product" class="small">
 ## Additional Resources
 
 [Location and Maps Programming Guide](https://developer.apple.com/library/ios/documentation/userexperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html)
