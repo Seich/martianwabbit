@@ -25,6 +25,105 @@
 
 	<div class="content">
 
+	<article class="post" id="You've Gotta Love Deferreds">
+		<header>
+			<h1>
+				<a href="/2013/11/12/youve-gotta-love-deferreds.html">You've Gotta Love Deferreds</a>
+			</h1>
+			<time>November 12, 2013</time>
+		</header>
+
+		<p>Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:</p>
+
+<pre>
+<code data-language="html">
+var settings = {
+    template: 'todo.hbs',
+    data_src: '/todo.json'
+};
+    
+var template;
+    
+var getting_template;
+var getting_data;
+    
+if ('template' in settings) {
+    getting_template = $.get(settings.template);
+    
+    getting_template.done(function(t) {
+        template = t;
+    });
+    
+    if ('data_src' in settings) {
+        getting_data = $.get(settings.data_src);
+        getting_data.done(function(data) {
+            render(template, data);
+        });
+    } else {
+        getting_template.done(function(t) {
+            render(t, {});
+        });
+    }
+} else {
+    render('', {});
+}
+</code>
+</pre>
+
+<p>(I am pretty sure it wasn&#39;t necessarily as ugly but, I don&#39;t quite remember.)</p>
+
+<p>As you can see, even though I am making use of the deferreds returned by the <code>$.get</code> function. This could be cleaned up a lot by using even more deferreds.</p>
+
+<p>Here&#39;s more or less what the code ended up looking like:</p>
+
+<pre>
+<code data-language="html">
+var settings = {
+    template: 'todo.hbs',
+    data_src: '/todo.json'
+};
+
+var templateDefer = new $.Deferred();
+var dataDefer; = new $.Deferred();
+
+if ('template' in settings) {
+    $.get(settings.template, function(template) {
+        templateDefer.resolve(template);
+    });
+} else {
+    templateDefer.resolve('');
+}
+
+if ('data_src' in settings) {
+    $.get(settings.data_src, function(data) {
+        dataDefer.resolve(data);
+    });
+} else {
+    dataDefer.resolve({});
+}
+
+$.when(templateDefer, dataDefer).done(function(template, data) {
+    render(template, data);
+});
+</code>
+</pre>
+
+<p>I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (<code>new $.Deferred()</code>). The other handy thing built into jQuery is the <code>$.when</code> method, you can basically pass in a bunch of deferreds and you&#39;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.</p>
+
+<p>I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality. </p>
+
+<h2>Recommended links</h2>
+
+<p>Here&#39;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:</p>
+
+<ul>
+<li><a href="http://api.jquery.com/category/deferred-object/">jQuery&#39;s Deferred Object Documentation</a></li>
+<li><a href="http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/">jQuery Deferreds promises asynchronous bliss</a></li>
+<li><a href="http://promises-aplus.github.io/promises-spec/">Promises A+ Spec</a></li>
+</ul>
+
+	</article>
+
 	<article class="post" id="A Semantic Grid with Zurb's Foundation">
 		<header>
 			<h1>
@@ -150,17 +249,20 @@ $ ssh -L 8080:localhost:8080 &lt;host&gt;
 			<time>June 28, 2013</time>
 		</header>
 
-		<p>Here’s the Array:</p>
+		<p>Here&#39;s the Array: </p>
+
 <pre>
-<code data-language='javascript'>
+<code data-language="javascript">
 var countries = ["Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia, Plurinational State Of", "Bonaire, Sint Eustatius And Saba", "Bosnia And Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, The Democratic Republic Of The", "Cook Islands", "Costa Rica", "Côte D'ivoire", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-bissau", "Guyana", "Haiti", "Heard Island And Mcdonald Islands", "Holy See (vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic Of", "Iraq", "Ireland", "Isle Of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic Of", "Korea, Republic Of", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia, The Former Yugoslav Republic Of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States Of", "Moldova, Republic Of", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine, State Of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthélemy", "Saint Helena, Ascension And Tristan Da Cunha", "Saint Kitts And Nevis", "Saint Lucia", "Saint Martin (french Part)", "Saint Pierre And Miquelon", "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten (dutch Part)", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia And The South Sandwich Islands", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard And Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province Of China", "Tajikistan", "Tanzania, United Republic Of", "Thailand", "Timor-leste", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela, Bolivarian Republic Of", "Viet Nam", "Virgin Islands, British", "Virgin Islands, U.s.", "Wallis And Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"];
 </code>
 </pre>
-<p>It follows the ISO 3166-1-alpha-2 standard. You don’t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn’t have to look for it again.</p>
 
-<p>Here’s how I got the list:</p>
+<p>It follows the ISO 3166-1-alpha-2 standard. You don&#39;t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn&#39;t have to look for it again. </p>
+
+<p>Here&#39;s how I got the list:</p>
+
 <pre>
-<code data-language='javascript'>
+<code data-language="javascript">
 $ = jQuery;
 String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
@@ -182,7 +284,9 @@ countries = countries + "];";
 console.log(countries);
 </code>
 </pre>
-<p>If you run that script in <a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm">here</a>, you’ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.</p>
+
+<p>If you run that script in <a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm">here</a>, you&#39;ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.</p>
+
 	</article>
 
 	<article class="post" id="On Storytelling and Video Games">
@@ -193,66 +297,14 @@ console.log(countries);
 			<time>March 05, 2013</time>
 		</header>
 
-		<p>I think we live in a very exciting time. We have so many incredible things to communicate and so many mediums to do so. I’ve always been a daydreamer. I remember my third grade teacher using me in an example when he introduced the word. It always stuck with me, I am pretty introverted sometimes and, allowing myself to live in a different superposed world has always kept me sane.</p>
+		<p>I think we live in a very exciting time. We have so many incredible things to communicate and so many mediums to do so. I&#39;ve always been a daydreamer. I remember my third grade teacher using me in an example when he introduced the word. It always stuck with me, I am pretty introverted sometimes and, allowing myself to live in a different superposed world has always kept me sane.</p>
 
-<p>All these years I’ve been developing a world in my head, all the fine details, all the characters that inhabit such a world and every single one of their motivations and dreams have been slowly built and polish as my life goes on. I’ve thought of writing a book for years. Not because I want to be a writer, I’ll always be a programmer, but because I want to capture this world. I don’t want to lose it and I want others who know me and have heard all my stories to understand how deep this rabbit hole is.</p>
+<p>All these years I&#39;ve been developing a world in my head, all the fine details, all the characters that inhabit such a world and every single one of their motivations and dreams have been slowly built and polish as my life goes on. I&#39;ve thought of writing a book for years. Not because I want to be a writer, I&#39;ll always be a programmer, but because I want to capture this world. I don&#39;t want to lose it and I want others who know me and have heard all my stories to understand how deep this rabbit hole is.</p>
 
-<p>The problem is, I am not a writer (and as I said before, I don’t want to be one) so, writing a book is pretty daunting. Luckily there are many other mediums available to me, even though I love all sort of media, my favorite one, and the one that incorporates every other media I like is video games. I’ve always wanted to become an indie game developer. So far I haven’t been successful mostly because I let other parts of my life get in the way. I plan to change that though.</p>
+<p>The problem is, I am not a writer (and as I said before, I don&#39;t want to be one) so, writing a book is pretty daunting. Luckily there are many other mediums available to me, even though I love all sort of media, my favorite one, and the one that incorporates every other media I like is video games. I&#39;ve always wanted to become an indie game developer. So far I haven&#39;t been successful mostly because I let other parts of my life get in the way. I plan to change that though. </p>
 
-<p>I want to use video games as a canvas on which I tell my stories. I think it’s probably the only way for them to be as immersing for everyone as they’ve been for me. From now on, I’ll start working on games that tell all of my daydreams. I’ve already started on the first one, the genre will be a huge mash-up of elements I like and will hopefully get my message through. Video games are truly the means to greater expression right now and I want to fully embrace that.</p>
-	</article>
+<p>I want to use video games as a canvas on which I tell my stories. I think it&#39;s probably the only way for them to be as immersing for everyone as they&#39;ve been for me. From now on, I&#39;ll start working on games that tell all of my daydreams. I&#39;ve already started on the first one, the genre will be a huge mash-up of elements I like and will hopefully get my message through. Video games are truly the means to greater expression right now and I want to fully embrace that.</p>
 
-	<article class="post" id="Migrating from Tumblr to Jekyll">
-		<header>
-			<h1>
-				<a href="/2013/02/24/migrating-from-tumblr-to-jekyll.html">Migrating from Tumblr to Jekyll</a>
-			</h1>
-			<time>February 24, 2013</time>
-		</header>
-
-		<p>A couple of months ago I moved my blog from Tumblr over to Jekyll and started hosting it with Webfaction. It’s been great so far but, I never quite figured out how to get rid of my old url redirecting everything to it’s new page on the new blog.</p>
-
-<p>I originally thought I’d have to write a redirect rule for each of the posts I kept on the new blog and then make the subdomain redirect to to the domain. Needless to say that it felt so annoying that I ended up not doing anything at all. Until now, that is. So here is how I fixed stuff! First of all, since I imported my Tumblr posts using the importer that comes with Jekyll, I had urls that looked like this:</p>
-
-<p><code>
-	http://martianwabbit.com/2011/04/04/4344642365.html
-</code></p>
-
-<p>I didn’t really change them, I thought that they having their old ID would be handy when I wanted to make the shift completely. This ended up being a good decision at the end.</p>
-
-<p>So now, the only thing I needed to do was to redirect this:</p>
-
-<p><code>
-http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
-</code></p>
-
-<p>to this:</p>
-
-<p><code>
-http://martianwabbit.com/2011/04/04/4344642365.html
-</code></p>
-
-<p>Which isn’t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink for imported posts to this:</p>
-
-<p><code>
-<pre>
-— <br />
-layout: post <br />
-title: &quot;JustVector Social Icons Font&quot; <br />
-permalink: /post/4344642365.html <br />
-—
-</pre>
-</code></p>
-
-<p>So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it’d redirect the URLs as intended, that was probably the easiest part, a quick regex later I ended up with this:</p>
-
-<p><code>
-<pre>
-RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
-</pre>
-</code></p>
-
-<p>Which worked exactly as intended, now all I have to do, is wait for the DNS to finish propagating.</p>
 	</article>
 
 </div>
@@ -265,6 +317,11 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#You've Gotta Love Deferreds">You've Gotta Love Deferreds</a>
+			<time>November 12, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#A Semantic Grid with Zurb's Foundation">A Semantic Grid with Zurb's Foundation</a>
@@ -284,11 +341,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 		<li>
 			<a href="#On Storytelling and Video Games">On Storytelling and Video Games</a>
 			<time>March 05, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Migrating from Tumblr to Jekyll">Migrating from Tumblr to Jekyll</a>
-			<time>February 24, 2013</time>
 		</li>
 	
 	</ul>
@@ -317,7 +369,6 @@ RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
 	</footer>
 </div>
 
-	<script src="/js/zepto.js"></script>
 	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];

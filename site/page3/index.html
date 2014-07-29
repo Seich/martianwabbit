@@ -25,6 +25,69 @@
 
 	<div class="content">
 
+	<article class="post" id="Migrating from Tumblr to Jekyll">
+		<header>
+			<h1>
+				<a href="/2013/02/24/migrating-from-tumblr-to-jekyll.html">Migrating from Tumblr to Jekyll</a>
+			</h1>
+			<time>February 24, 2013</time>
+		</header>
+
+		<p>A couple of months ago I moved my blog from Tumblr over to Jekyll and started hosting it with Webfaction. 
+It&#39;s been great so far but, I never quite figured out how to get rid of my old url redirecting everything to it&#39;s new 
+page on the new blog. </p>
+
+<p>I originally thought I&#39;d have to write a redirect rule for each of the posts I kept on the new blog and then make the 
+subdomain redirect to to the domain. Needless to say that it felt so annoying that I ended up not doing anything at all.
+Until now, that is. So here is how I fixed stuff! First of all, since I imported my Tumblr posts using the importer that 
+comes with Jekyll, I had urls that looked like this: </p>
+
+<p><code>
+    http://martianwabbit.com/2011/04/04/4344642365.html
+</code></p>
+
+<p>I didn&#39;t really change them, I thought that they having their old ID would be handy when I wanted to make the shift 
+completely. This ended up being a good decision at the end.</p>
+
+<p>So now, the only thing I needed to do was to redirect this:</p>
+
+<p><code>
+http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
+</code></p>
+
+<p>to this:</p>
+
+<p><code>
+http://martianwabbit.com/2011/04/04/4344642365.html
+</code></p>
+
+<p>Which isn&#39;t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink 
+for imported posts to this:</p>
+
+<p><code>
+<pre>
+--- <br>
+layout: post <br>
+title: &quot;JustVector Social Icons Font&quot; <br></p>
+
+<h2>permalink: /post/4344642365.html <br></h2>
+
+<p></pre>
+</code></p>
+
+<p>So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it&#39;d redirect the URLs as intended,
+that was probably the easiest part, a quick regex later I ended up with this:</p>
+
+<p><code>
+<pre>
+RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
+</pre>
+</code></p>
+
+<p>Which worked exactly as intended, now all I have to do, is wait for the DNS to finish propagating.</p>
+
+	</article>
+
 	<article class="post" id="Design For Your Mother">
 		<header>
 			<h1>
@@ -33,13 +96,14 @@
 			<time>February 20, 2013</time>
 		</header>
 
-		<p>I am not really that much of a designer. I’ve worked as one but, I’d never describe me as a “web designer”. I am simply not that good with designing things. I do have good taste though and, can tell good design apart from bad design. I also have a solid knowledge of design and UX in general which is enough for my day to day activities. At the end of the day, the only thing I know about design, is that good design should be easy to use. How easy? Well, my mother should be able to use it without having to ask for my help. I obviously know that not all mothers need help when it comes to computers (to be honest, mine can handle herself just fine without me) but, the point is, your design should be easy to use first, and nice-looking second. My mother should be able to use your application without having to think too hard. Users are lazy and they like being able to do stuff without thinking. Try as hard as possible to make it easy for them to not think.</p>
+		<p>I am not really that much of a designer. I&#39;ve worked as one but, I&#39;d never describe me as a &quot;web designer&quot;. I am simply not that good with designing things. I do have good taste though and, can tell good design apart from bad design. I also have a solid knowledge of design and UX in general which is enough for my day to day activities. At the end of the day, the only thing I know about design, is that good design should be easy to use. How easy? Well, my mother should be able to use it without having to ask for my help. I obviously know that not all mothers need help when it comes to computers (to be honest, mine can handle herself just fine without me) but, the point is, your design should be easy to use first, and nice-looking second. My mother should be able to use your application without having to think too hard. Users are lazy and they like being able to do stuff without thinking. Try as hard as possible to make it easy for them to not think.</p>
 
-<p>I really like how simple interfaces are kind of trending these days. It really is great, simple design helps get the message through and allows users to interact more freely with the web. I’ve always gone with “minimalist” designs mostly because, it’s easier to get right when you are not that great of a designer and also because it’s easier for the user to interact with any application if they are only presented what they need at any given moment.</p>
+<p>I really like how simple interfaces are kind of trending these days. It really is great, simple design helps get the message through and allows users to interact more freely with the web. I&#39;ve always gone with &quot;minimalist&quot; designs mostly because, it&#39;s easier to get right when you are not that great of a designer and also because it&#39;s easier for the user to interact with any application if they are only presented what they need at any given moment.</p>
 
-<p>Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don’t?</p>
+<p>Are you sure you need that extra button? Would anyone apart from power users benefit from having this on the interface? Will this get the message through? Can we hide all of this complexity so they can find it if they need it but wont get in the way if they don&#39;t?</p>
 
-<p>Think about, simple design is awesome, <a href="http://www.sensible.com/dmmt.html">don’t make me think</a> and don’t make my mother ask me for help.</p>
+<p>Think about, simple design is awesome, <a href="http://www.sensible.com/dmmt.html">don&#39;t make me think</a> and don&#39;t make my mother ask me for help.</p>
+
 	</article>
 
 	<article class="post" id="On the Importance of Vanilla Javascript">
@@ -50,13 +114,14 @@
 			<time>February 13, 2013</time>
 		</header>
 
-		<p>There’s a very simple reason why people don’t see the need to learn “vanilla” Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn’t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.</p>
+		<p>There&#39;s a very simple reason why people don&#39;t see the need to learn &quot;vanilla&quot; Javascript. Boilerplate code. When you are trying to create something simple and straight-forward Javascript loves getting in the way. Well, Javascript doesn&#39;t actually like getting in the way, browsers do. This gets worse when you are trying to support different browser versions. So you have to write things using the current APIs available to you and then, add a whole abstraction layer just so you can fall-back to a workable solution that might be needed to support a particular browser version which happens to be pretty old but a bunch of your users still use.</p>
 
-<p>So, there’s two ways to look at this, either you go with the approach that will support the most users and let the other’s suffer (or degrade gracefully, ideally). Or write a bunch of boilerplate code to support browsers. Luckily, the second option is actually viable. There’s a plethora of libraries other people have taken the time to write for you. These are great. They are well tested, cross-browser and are really easy to use.</p>
+<p>So, there&#39;s two ways to look at this, either you go with the approach that will support the most users and let the other&#39;s suffer (or degrade gracefully, ideally). Or write a bunch of boilerplate code to support browsers. Luckily, the second option is actually viable. There&#39;s a plethora of libraries other people have taken the time to write for you. These are great. They are well tested, cross-browser and are really easy to use. </p>
 
-<p>The problem is that sometimes you have to add 9595 lines of codes just to do something as simple as <code>$(&quot;code&quot;).addClass(&quot;prettyPrint&quot;); </code>. This is were a bunch of people will appear out of nowhere and tell you to do it manually with “vanilla” Javascript. I am not against vanilla Javascript. I actually like writing stuff in Javascript without the aid of libraries but, this is mostly unreasonable. For example, adding the class takes jQuery 38 lines. Now, you might say something along the lines that jQuery is an extreme example but, I am sure that everything that can be taken out was already taken out. So, you might just go with jQuery and call it the day, after all going the vanilla way is only feasible when you know your audience and want to tailor directly to them or when you are strict on who you support and are pro graceful degradation. Of course, if you have a time constraint it becomes even more one sided.</p>
+<p>The problem is that sometimes you have to add 9595 lines of codes just to do something as simple as <code>$(&quot;code&quot;).addClass(&quot;prettyPrint&quot;); </code>. This is were a bunch of people will appear out of nowhere and tell you to do it manually with &quot;vanilla&quot; Javascript. I am not against vanilla Javascript. I actually like writing stuff in Javascript without the aid of libraries but, this is mostly unreasonable. For example, adding the class takes jQuery 38 lines. Now, you might say something along the lines that jQuery is an extreme example but, I am sure that everything that can be taken out was already taken out. So, you might just go with jQuery and call it the day, after all going the vanilla way is only feasible when you know your audience and want to tailor directly to them or when you are strict on who you support and are pro graceful degradation. Of course, if you have a time constraint it becomes even more one sided.</p>
 
-<p>I personally think that soon enough, we won’t need jQuery to do as much for us, with new browser APIs it gets increasingly easier to get things done with less. Things like querySelectors and CSS3 animations can go a long way when building a modern site. But, as long as we have money to be made and time to be saved and many browsers to be supported, going vanilla might not be a good option in most cases.</p>
+<p>I personally think that soon enough, we won&#39;t need jQuery to do as much for us, with new browser APIs it gets increasingly easier to get things done with less. Things like querySelectors and CSS3 animations can go a long way when building a modern site. But, as long as we have money to be made and time to be saved and many browsers to be supported, going vanilla might not be a good option in most cases.</p>
+
 	</article>
 
 	<article class="post" id="Organizing a Javascript MVC Project">
@@ -69,11 +134,17 @@
 
 		<p> 
 I've been doing a lot of javascript development lately. My work as a frontend developer for Laureate has forced me to seriously how we organize the frontend code so it's easy to work with and hard for us to make mistakes.
-</p><p>
-As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use <a href='http://www.canjs.us'>can.js</a> as our MVC framework of choice and use <a href='http://www.gruntjs.com/'>grunt</a> to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
-</p><p>
+</p>
+
+<p>
+As it stands, I developed the frontend structure of the project (I am not sure if I am allowed to share it) we are currently building. We use <a href="http://www.canjs.us">can.js</a> as our MVC framework of choice and use <a href="http://www.gruntjs.com/">grunt</a> to stick all the files together and check them for errors. All this, in the effort to be as agile as possible.
+</p>
+
+<p>
 Coming up with a structure was pretty hard but, I think out current structure works pretty well. Our folder structure looks somewhat like this:
-</p><pre>
+</p>
+
+<pre>
     -Project
         -Application
             -Assets
@@ -92,14 +163,24 @@ Coming up with a structure was pretty hard but, I think out current structure wo
             -libs.min.js
         index.html
         grunt.js
-</pre><p>
+</pre>
+
+<p>
 It might look complicated, but it's actually fairly simple. I'll try to break it down, show how we use grunt to generate <code>app.min.js</code> and <code>libs.min.js</code> and how they all generally fit in together.
-</p><h2>Folder &amp; File Structure</h2><p>
+</p>
+
+<h2>Folder &amp; File Structure</h2>
+
+<p>
 The folder structure is fairly straight forward. Inside the <code>Application</code> folder we hold all of our important files. The only important folder here is the one called <code>Javascript</code>, this is where we store all of our Models, Views and Controllers which at the end, make up our entire application. You can have more folders inside of these and grunt can still fetch all of their contents to build up the final files.
-</p><p>
+</p>
+
+<p>
 Here's what a raw controller inside this folder looks like:
-</p><pre>
-<code data-language='javascript'>
+</p>
+
+<pre>
+<code data-language="javascript">
 ;(function(namespace, undefined) {
   'use strict';
   var ControllerName = can.Control({
@@ -113,10 +194,14 @@ Here's what a raw controller inside this folder looks like:
   namespace.Controllers.ControllerName = ControllerName;
 }(this));
 </code>
-</pre><p>
+</pre>
+
+<p>
 As you can see the only thing we are doing which isn't immediately obvious is to add the controller to the namespace's Controller object. In our case, this is the window object. This is great because we don't populate the global namespace with every single controller and because we can access any controller like this: <code>Controllers.ControllerName</code>. We do the same for models:
-</p><pre>
-<code data-language='javascript'>
+</p>
+
+<pre>
+<code data-language="javascript">
 ;(function(namespace, undefined) {
   'use strict';
   var ModelName = can.Model({
@@ -127,12 +212,22 @@ As you can see the only thing we are doing which isn't immediately obvious is to
   namespace.Models.ModelName = ModelName;
 }(this));
 </code>
-</pre><p>
+</pre>
+
+<p>
 In our case, views are simple .ejs files so there's nothing special about how we define them, although you could compile them to javascript and tell grunt to minimize it along with the whole code which would probably faster to load in the long run.
-</p><p>
+</p>
+
+<p>
 Now that we have our files in place, let's move into using grunt to generate the finalized application files will be using in production.
-</p><h2>Grunt</h2><p>Here's what an example grunt file would look like:</p><pre>
-<code data-language='javascript'>
+</p>
+
+<h2>Grunt</h2>
+
+<p>Here's what an example grunt file would look like:</p>
+
+<pre>
+<code data-language="javascript">
 module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
@@ -167,7 +262,14 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'concat min');
 };
 </code>
-</pre><p>This particular grunt file doesn't do much. When you call the <code>grunt</code> command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.</p><h2>That's it</h2><p>I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.</p>
+</pre>
+
+<p>This particular grunt file doesn't do much. When you call the <code>grunt</code> command it'll concatenate all of the files in the javascript folder (except for the views) and all of the libraries into two files, libs.js and app.js (and their minimized equivalents). These can be included directly into the html to have the final application files.</p>
+
+<h2>That's it</h2>
+
+<p>I hope this is somewhat useful to someone, it actually took me a while to find something I was comfortable with so try experimenting with variations and let me know about it. This is how I currently do things but, I am sure there are places where I can improve the design. This mostly revolves around keeping the global namespace as clean as possible and making files that can be easily concatenated to save space when you have to finalized copy which, I think are generally good goals.</p>
+
 	</article>
 
 	<article class="post" id="Surviving a Hackathon">
@@ -180,84 +282,32 @@ module.exports = function(grunt) {
 
 		<p>Last week I finally went to <a href="http://vdhackathon.org">my first hackathon</a> and it was an awesome experience! Here are a couple of things everyone should watch out for when they go to a hackathon for the first time.</p>
 
-<h2 id="what_youll_need">What you’ll need</h2>
+<h2>What you&#39;ll need</h2>
 
-<p>Okay, first things first, hackathons are apparently seriously social events. If you are more of an introvert it might be good for a you to bring along a friend, it’ll make your time there easier. I brought a friend along and it made the whole thing a lot more fun.</p>
+<p>Okay, first things first, hackathons are apparently seriously social events. If you are more of an introvert it might be good for a you to bring along a friend, it&#39;ll make your time there easier. I brought a friend along and it made the whole thing a lot more fun. </p>
 
-<p>There are other things which are kind of pretty obvious stuff such as: a laptop if you are going to be doing some coding and headphones if you need to block the world to get things done (Although, like I said, these are social events so try not to get too lost in your code and enjoy the company). Cameras are also great, your phone will probably do if you don’t feel like carrying additional stuff.</p>
+<p>There are other things which are kind of pretty obvious stuff such as: a laptop if you are going to be doing some coding and headphones if you need to block the world to get things done (Although, like I said, these are social events so try not to get too lost in your code and enjoy the company). Cameras are also great, your phone will probably do if you don&#39;t feel like carrying additional stuff. </p>
 
-<p>Finally, another thing, which I didn’t actually bring with me on purpose are business cards. Even though I was just hanging around and doing stuff a bunch of people approached me with project ideas and business offers. So if you are looking for a job that might also be a good place to look for one. I almost ran out of them during the weekend!</p>
+<p>Finally, another thing, which I didn&#39;t actually bring with me on purpose are business cards. Even though I was just hanging around and doing stuff a bunch of people approached me with project ideas and business offers. So if you are looking for a job that might also be a good place to look for one. I almost ran out of them during the weekend!</p>
 
-<h2 id="hackathoning">Hackathoning!</h2>
+<h2>Hackathoning!</h2>
 
-<p>Hackathoning is the only reason you are awake at 9am on a Saturday so it’s important to keep it in mind. If there’s a theme which was set beforehand, I’d recommend you go ahead and think of ideas so you can discuss them with your teammates. If there’s no theme then thinking of ideas is still a good idea.</p>
+<p>Hackathoning is the only reason you are awake at 9am on a Saturday so it&#39;s important to keep it in mind. If there&#39;s a theme which was set beforehand, I&#39;d recommend you go ahead and think of ideas so you can discuss them with your teammates. If there&#39;s no theme then thinking of ideas is still a good idea.</p>
 
-<p>The first thing you’ll need to do if find a team, if you wanna work on your own (which I don’t think is a good idea) or brought along your own team, you are done with this and can go ahead and start brainstorming. If you didn’t and have to find a team look for people who can complement your skill-set. Let them know the kind of thing you wanna work on and what you can do or want to do.</p>
+<p>The first thing you&#39;ll need to do if find a team, if you wanna work on your own (which I don&#39;t think is a good idea) or brought along your own team, you are done with this and can go ahead and start brainstorming. If you didn&#39;t and have to find a team look for people who can complement your skill-set. Let them know the kind of thing you wanna work on and what you can do or want to do.</p>
 
-<p>Once you are in a team, you are ready to make a plan. Make sure the plan is feasible, you only have a limited amount of time after all so, if it’s too complicated you might have enough time to finish, you can always continue working on the project after the hackathon so, keep it achievable.</p>
+<p>Once you are in a team, you are ready to make a plan. Make sure the plan is feasible, you only have a limited amount of time after all so, if it&#39;s too complicated you might have enough time to finish, you can always continue working on the project after the hackathon so, keep it achievable.</p>
 
-<p>At this point, you are ready to start coding! So go out there and code! Try not to get too distracted or too focused, try to socialize and get stuff done at the same time. If you can balance these things you’ll survive this hackathon successfully.</p>
+<p>At this point, you are ready to start coding! So go out there and code! Try not to get too distracted or too focused, try to socialize and get stuff done at the same time. If you can balance these things you&#39;ll survive this hackathon successfully.</p>
 
-<h3 id="networking">Networking</h3>
+<h3>Networking</h3>
 
-<p>This is, what I found to be, the most important aspect of the hackathon. You cannot only socialize but, you can also make new friends, business partners, clients and jobs. So try to talk with everyone, it’s always nice to find new project to work on.</p>
+<p>This is, what I found to be, the most important aspect of the hackathon. You cannot only socialize but, you can also make new friends, business partners, clients and jobs. So try to talk with everyone, it&#39;s always nice to find new project to work on.</p>
 
-<h2 id="closing_up">Closing up</h2>
+<h2>Closing up</h2>
 
-<p>Hackathoning is fun! You can network, socialize, code and have a general good weekend so, if you haven’t gone to one, I highly recommend you do.</p>
-	</article>
+<p>Hackathoning is fun! You can network, socialize, code and have a general good weekend so, if you haven&#39;t gone to one, I highly recommend you do.</p>
 
-	<article class="post" id="Rails Quickhint #1: Creating a model while skipping validations">
-		<header>
-			<h1>
-				<a href="/2013/01/18/rails-quickhint-1.html">Rails Quickhint #1: Creating a model while skipping validations</a>
-			</h1>
-			<time>January 18, 2013</time>
-		</header>
-
-		<p>
-	This certainly needs some background. I've been working on a random rails project for the better part of the last couple of months. 
-	This project uses devise to manage logins and user registration. Recently registrations started failing in the site which, didn't 
-	make sense since they had been working fine for a while. So I started digging into it.
-</p>
-
-<p>
-	According to rails the user url didn't exist so it couldn't redirect back to the homepage after a successful registration. 
-	After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that's normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn't (since the username is only supposed to be set after registration).
-</p>
-
-<p>
-	So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
-</p>
-
-<p>user.rb</p>
-<pre>
-<code data-language="ruby">
-class User < ActiveRecord::Base
-  after_create :create_profile
-  has_one :user_profile, :dependent => :destroy
-  
-  def create_profile
-    self.build_user_profile
-    self.user_profile.save(:validate => false)
-  end
-end
-</code>
-</pre>
-
-<p>user_profile.rb</p>
-<pre>
-<code data-language="ruby">
-class UserProfile < ActiveRecord::Base
-  belongs_to :user
- 
-  attr_accessible :username
-  validates_uniqueness_of :username
-end
-</code>
-</pre>
-
-<p>This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.</p>
 	</article>
 
 </div>
@@ -270,6 +320,11 @@ end
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#Migrating from Tumblr to Jekyll">Migrating from Tumblr to Jekyll</a>
+			<time>February 24, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#Design For Your Mother">Design For Your Mother</a>
@@ -289,11 +344,6 @@ end
 		<li>
 			<a href="#Surviving a Hackathon">Surviving a Hackathon</a>
 			<time>January 27, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Rails Quickhint #1: Creating a model while skipping validations">Rails Quickhint #1: Creating a model while skipping validations</a>
-			<time>January 18, 2013</time>
 		</li>
 	
 	</ul>
@@ -322,7 +372,6 @@ end
 	</footer>
 </div>
 
-	<script src="/js/zepto.js"></script>
 	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];

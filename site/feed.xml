@@ -7,34 +7,120 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Using MapKit with Swift</title>
+				<description>&lt;p&gt;I&amp;#39;ve been using Swift a lot lately. I wanted to start making iOS apps a while ago but Objective-C is frankly, not worth the trouble. Swift on the other hand is actually fun to use and I love experiencing how the language evolves.&lt;/p&gt;
+
+&lt;p&gt;This weekend I started working on a small app I&amp;#39;ve wanted for a while but got stuck when it came to implementing a map with MapKit. I couldn&amp;#39;t find documentation or code samples on how to do it anywhere. Turns out that it&amp;#39;s not hard at all! It took very little fiddling around before I figured it out. Here&amp;#39;s how I did it:&lt;/p&gt;
+
+&lt;h2&gt;First, create a new project&lt;/h2&gt;
+
+&lt;p&gt;I started with a &lt;strong&gt;Single View Application&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png&quot; alt=&quot;&quot;&gt;
+Then added a MKMapView to the view controller. After that, imported &lt;code&gt;MapKit&lt;/code&gt; into the view controller&amp;#39;s code. Finally, I added a new reference outlet to the map called &lt;em&gt;map&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;video src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4&quot; controls&gt;&lt;/video&gt;&lt;/p&gt;
+
+&lt;h2&gt;Setup your desired location&lt;/h2&gt;
+
+&lt;p&gt;Now our map is ready to display a location. You&amp;#39;ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var location = CLLocationCoordinate2D(
+    latitude: 16.40, 
+    longitude: -86.34
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, we need to tell the map what the area spanned by the region is. For this we use &lt;code&gt;MKCoordinateSpanMake&lt;/code&gt;. Which, as you probably guessed, creates a &lt;code&gt;MKCoordinateSpan&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var span = MKCoordinateSpanMake(1, 1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After that we just need to define the region using these two things:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var region = MKCoordinateRegion(center: location, span: span)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And finally, we set this region to the map:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;map.setRegion(region, animated: true)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Bonus: Adding an annotation&lt;/h2&gt;
+
+&lt;p&gt;Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It&amp;#39;ll display the default red pin which, might not be as pretty but it&amp;#39;ll get the job done.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var annotation = MKPointAnnotation()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Afterwards, we can set it&amp;#39;s coordinates, title and subtitle to place it wherever we want and to add the text it&amp;#39;s callout will display when tapped.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;annotation.setCoordinate(location)
+annotation.title = &amp;quot;Roatan&amp;quot;
+annotation.subtitle = &amp;quot;Honduras&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, we add it to the map like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;map.addAnnotation(annotation)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&amp;#39;s my final code:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
+import MapKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var map: MKMapView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        var location = CLLocationCoordinate2D(
+            latitude: 16.40, 
+            longitude: -86.34
+        )
+
+        var span = MKCoordinateSpanMake(0.5, 0.5)
+        var region = MKCoordinateRegion(center: location, span: span)
+
+        map.setRegion(region, animated: true)
+
+        var annotation = MKPointAnnotation()
+        annotation.setCoordinate(location)
+        annotation.title = &amp;quot;Roatan&amp;quot;
+        annotation.subtitle = &amp;quot;Honduras&amp;quot;
+
+        map.addAnnotation(annotation)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And here&amp;#39;s what my app looks like:
+&lt;img src=&quot;http://f.cl.ly/items/2r0a21423A3l2S381U3w/final.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/userexperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html&quot;&gt;Location and Maps Programming Guide&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Fri, 29 Aug 2014 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2014/08/29/using-mapkit-with-swift.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2014/08/29/using-mapkit-with-swift.html</guid>
+			</item>
+		
+			<item>
 				<title>Using mailgun to receive emails with Phabricator</title>
-				<description>&lt;p&gt;&lt;a href=&quot;http://phabricator.com&quot;&gt;Phabricator&lt;/a&gt; is awesome. We recently started trying it out for &lt;a href=&quot;http://2build.it&quot;&gt;2build.it&lt;/a&gt; (more like, this morning) and we all (&lt;a href=&quot;http://jorge.caballeromurillo.com&quot;&gt;Jorge&lt;/a&gt; and I) agreed it’s awesome.&lt;/p&gt;
+				<description>&lt;p&gt;&lt;a href=&quot;http://phabricator.com&quot;&gt;Phabricator&lt;/a&gt; is awesome. We recently started trying it out for &lt;a href=&quot;http://2build.it&quot;&gt;2build.it&lt;/a&gt; (more like, this morning) and we all (&lt;a href=&quot;http://jorge.caballeromurillo.com&quot;&gt;Jorge&lt;/a&gt; and I) agreed it&amp;#39;s awesome. &lt;/p&gt;
 
-&lt;p&gt;The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you’re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn’t mentioned anywhere in the documentation. Btw, here’s how you do it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./bin/phd restart&lt;/code&gt;&lt;/pre&gt;
-
+&lt;p&gt;The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you&amp;#39;re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn&amp;#39;t mentioned anywhere in the documentation. Btw, here&amp;#39;s how you do it:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;./bin/phd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Right from the Phabricator folder.&lt;/p&gt;
 
 &lt;p&gt;Moving on.&lt;/p&gt;
 
-&lt;p&gt;Now that sending was settled there was one huge thing that wasn’t working. Inbound emails. I tried working with postfix but, it was too painful and after a couple of hours I didn’t get anywhere. The &lt;a href=&quot;https://secure.phabricator.com/book/phabricator/article/configuring_inbound_email/&quot;&gt;documentation&lt;/a&gt; talks about using sendgrid to achieve it but, I already have a mailgun account and according to the configuration Phabricator should be able to use mailgun as well. So, I had to do some research.&lt;/p&gt;
+&lt;p&gt;Now that sending was settled there was one huge thing that wasn&amp;#39;t working. Inbound emails. I tried working with postfix but, it was too painful and after a couple of hours I didn&amp;#39;t get anywhere. The &lt;a href=&quot;https://secure.phabricator.com/book/phabricator/article/configuring_inbound_email/&quot;&gt;documentation&lt;/a&gt; talks about using sendgrid to achieve it but, I already have a mailgun account and according to the configuration Phabricator should be able to use mailgun as well. So, I had to do some research.&lt;/p&gt;
 
-&lt;p&gt;It turns out you can use mailgun to do this but, there’s zero documentation about it. Luckily, I found the &lt;a href=&quot;https://secure.phabricator.com/rPa9612fac24a9eb97ad3f611d84dfedbce98d17ad&quot;&gt;commit&lt;/a&gt; where this functionality was added and figured it out on my own. Here’s the three step guide to getting it done.&lt;/p&gt;
+&lt;p&gt;It turns out you can use mailgun to do this but, there&amp;#39;s zero documentation about it. Luckily, I found the &lt;a href=&quot;https://secure.phabricator.com/rPa9612fac24a9eb97ad3f611d84dfedbce98d17ad&quot;&gt;commit&lt;/a&gt; where this functionality was added and figured it out on my own. Here&amp;#39;s the three step guide to getting it done.&lt;/p&gt;
 
-&lt;h2 id=&quot;step_1&quot;&gt;Step 1&lt;/h2&gt;
+&lt;h2&gt;Step 1&lt;/h2&gt;
 
-&lt;p&gt;You have to configure you domain’s MX records to point to mailgun. You can find more information &lt;a href=&quot;http://documentation.mailgun.com/user_manual.html#verifying-your-domain&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You have to configure you domain&amp;#39;s MX records to point to mailgun. You can find more information &lt;a href=&quot;http://documentation.mailgun.com/user_manual.html#verifying-your-domain&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;step_2&quot;&gt;Step 2&lt;/h2&gt;
+&lt;h2&gt;Step 2&lt;/h2&gt;
 
 &lt;p&gt;Go to your setup your mailgun configuration by going to the mailgun config (http://example.com/config/group/mailgun/) and adding your API key and your domain.&lt;/p&gt;
 
-&lt;h2 id=&quot;step_3&quot;&gt;Step 3&lt;/h2&gt;
+&lt;h2&gt;Step 3&lt;/h2&gt;
 
-&lt;p&gt;We’re almost done. Now, all we have to do is tell mailgun to send received emails your way. To do this all you have to do is create a new route (go here: &lt;a href=&quot;https://mailgun.com/cp/routes&quot;&gt;https://mailgun.com/cp/routes&lt;/a&gt;). Give it a priority and a filter that’ll work for you (I used 0 as a priority and &lt;code&gt;catch_all()&lt;/code&gt; for a filter). For the action, forward it to your Phabricator installation with the endpoint ‘/mail/mailgun’. Like this: &lt;code&gt;forward(&amp;quot;http://example.com/mail/mailgun/&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We&amp;#39;re almost done. Now, all we have to do is tell mailgun to send received emails your way. To do this all you have to do is create a new route (go here: &lt;a href=&quot;https://mailgun.com/cp/routes&quot;&gt;https://mailgun.com/cp/routes&lt;/a&gt;). Give it a priority and a filter that&amp;#39;ll work for you (I used 0 as a priority and &lt;code&gt;catch_all()&lt;/code&gt; for a filter). For the action, forward it to your Phabricator installation with the endpoint &amp;#39;/mail/mailgun&amp;#39;. Like this: &lt;code&gt;forward(&amp;quot;http://example.com/mail/mailgun/&amp;quot;)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;That is all. Your emails should now allow you to interact with Phabricator.&lt;/p&gt;</description>
+&lt;p&gt;That is all. Your emails should now allow you to interact with Phabricator.&lt;/p&gt;
+</description>
 				<pubDate>Mon, 21 Apr 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</guid>
@@ -42,84 +128,83 @@
 		
 			<item>
 				<title>Sketch Presets for Desktop Screens</title>
-				<description>&lt;p&gt;I’ve been using &lt;a href=&quot;http://bohemiancoding.com/sketch/&quot;&gt;Sketch&lt;/a&gt; to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a &lt;a href=&quot;http://j4n.co/blog/custom-sketch-art-board-presets&quot;&gt;blog post&lt;/a&gt; detailing how to do just this.&lt;/p&gt;
+				<description>&lt;p&gt;I&amp;#39;ve been using &lt;a href=&quot;http://bohemiancoding.com/sketch/&quot;&gt;Sketch&lt;/a&gt; to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a &lt;a href=&quot;http://j4n.co/blog/custom-sketch-art-board-presets&quot;&gt;blog post&lt;/a&gt; detailing how to do just this.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you’re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
+&lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you&amp;#39;re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here’s my presets:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;dict&amp;gt;
-	&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-	&amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
-	&amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
-	&amp;lt;array&amp;gt;
-		&amp;lt;string&amp;gt;Retina Displays&amp;lt;/string&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;2880&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;15-inch&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1800&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;2560&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;13-inch&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-		&amp;lt;string&amp;gt;4:3&amp;lt;/string&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;Large 4:3&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1200&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1280&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;Medium 4:3&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1024&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-		&amp;lt;string&amp;gt;16:9&amp;lt;/string&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1920&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;Large 16:9&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1080&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;Medium 16:9&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;900&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-		&amp;lt;dict&amp;gt;
-			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;1366&amp;lt;/integer&amp;gt;
-			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-			&amp;lt;string&amp;gt;Small 16:9&amp;lt;/string&amp;gt;
-			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-			&amp;lt;integer&amp;gt;768&amp;lt;/integer&amp;gt;
-		&amp;lt;/dict&amp;gt;
-	&amp;lt;/array&amp;gt;
-&amp;lt;/dict&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I’ve used recently and might re-use in the future.&lt;/p&gt;</description>
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&amp;#39;s my presets:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;dict&amp;gt;
+    &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+    &amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
+    &amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
+    &amp;lt;array&amp;gt;
+        &amp;lt;string&amp;gt;Retina Displays&amp;lt;/string&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;2880&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;15-inch&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1800&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;2560&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;13-inch&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+        &amp;lt;string&amp;gt;4:3&amp;lt;/string&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;Large 4:3&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1200&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1280&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;Medium 4:3&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1024&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+        &amp;lt;string&amp;gt;16:9&amp;lt;/string&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1920&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;Large 16:9&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1080&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;Medium 16:9&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;900&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+        &amp;lt;dict&amp;gt;
+            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;1366&amp;lt;/integer&amp;gt;
+            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+            &amp;lt;string&amp;gt;Small 16:9&amp;lt;/string&amp;gt;
+            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+            &amp;lt;integer&amp;gt;768&amp;lt;/integer&amp;gt;
+        &amp;lt;/dict&amp;gt;
+    &amp;lt;/array&amp;gt;
+&amp;lt;/dict&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I&amp;#39;ve used recently and might re-use in the future.&lt;/p&gt;
+</description>
 				<pubDate>Sat, 05 Apr 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/04/05/Sketch-Presets-For-Desktop.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/04/05/Sketch-Presets-For-Desktop.html</guid>
@@ -127,61 +212,61 @@
 		
 			<item>
 				<title>Scroll Spying for Fun and Profit</title>
-				<description>&lt;p&gt;I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on. &lt;img class=&#39;small&#39; src=&#39;http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif&#39; /&gt;&lt;/p&gt;
+				<description>&lt;p&gt;I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
+&lt;img src=&quot;http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif&quot; class=&quot;small&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;To achieve this, I used &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto&lt;/a&gt; and a small amount of math. (The great thing about Zepto is that it’s fully compatible with jQuery, so this should work with jQuery out of the box as well).&lt;/p&gt;
+&lt;p&gt;To achieve this, I used &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto&lt;/a&gt; and a small amount of math. (The great thing about Zepto is that it&amp;#39;s fully compatible with jQuery, so this should work with jQuery out of the box as well).&lt;/p&gt;
 
-&lt;p&gt;Let’s jump right in, here’s how I do it:&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s jump right in, here&amp;#39;s how I do it:&lt;/p&gt;
+
 &lt;pre&gt;
 &lt;code&gt;
 $(window).on(&#39;scroll&#39;, function() {
-	var scrollTop = $(window).scrollTop();
-	var article_offsets = $(&#39;article&#39;).map(function(i) { 
-		if (i === 0) {
-			return 0;
-		}
+    var scrollTop = $(window).scrollTop();
+    var article_offsets = $(&#39;article&#39;).map(function(i) { 
+        if (i === 0) {
+            return 0;
+        }
 
-		return $(this).offset().top 
-	});
+        return $(this).offset().top 
+    });
 
-	for (var i = 0; i &amp;lt; article_offsets.length; i++) {
-		if (article_offsets[i] - 40 &amp;lt;= scrollTop) {
-			$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;)
-				.eq(i).addClass(&#39;active&#39;);
-		}
-	};
+    for (var i = 0; i &amp;lt; article_offsets.length; i++) {
+        if (article_offsets[i] - 40 &amp;lt;= scrollTop) {
+            $(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;)
+                .eq(i).addClass(&#39;active&#39;);
+        }
+    };
 });
 &lt;/code&gt;
 &lt;/pre&gt;
+
 &lt;p&gt;The first line of interest:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function(i) { 
+    if (i === 0) {
+        return 0;
+    }
 
-&lt;pre&gt;&lt;code&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function(i) { 
-	if (i === 0) {
-		return 0;
-	}
-
-	return $(this).offset().top 
-});&lt;/code&gt;&lt;/pre&gt;
-
+    return $(this).offset().top 
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
 
 &lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This looks for the Ith element on the sidebar&amp;#39;s list and we add a class of &amp;#39;active&amp;#39; to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This looks for the Ith element on the sidebar’s list and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
-
-&lt;p&gt;There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:&lt;/p&gt;
+&lt;p&gt;There&amp;#39;s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here&amp;#39;s a couple I came through:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://getbootstrap.com/javascript/#scrollspy&quot;&gt;http://getbootstrap.com/javascript/#scrollspy&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&quot;http://www.outyear.co.uk/smint/&quot;&gt;http://www.outyear.co.uk/smint/&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&quot;http://scrollnav.com/&quot;&gt;http://scrollnav.com/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;</description>
+&lt;p&gt;I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;
+</description>
 				<pubDate>Fri, 04 Apr 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</guid>
@@ -191,15 +276,16 @@ $(window).on(&#39;scroll&#39;, function() {
 				<title>2014</title>
 				<description>&lt;p&gt;I know I am a little late doing the whole goal setting and year review thing but, this year I wanted to try something different. I wanted to see how January turned out before setting goals.&lt;/p&gt;
 
-&lt;p&gt;This year will be pretty exciting. I’ll continue working as a consultant as I have for the past couple of years. Invivo Link is doing some pretty cool things and I am happy to help them continue building their product. Over at &lt;a href=&quot;http://www.2build.it&quot;&gt;2build.it&lt;/a&gt;, we’re working with some pretty cool clients, building a variety of pretty cool things, hopefully the company will grow a whole lot this year.&lt;/p&gt;
+&lt;p&gt;This year will be pretty exciting. I&amp;#39;ll continue working as a consultant as I have for the past couple of years. Invivo Link is doing some pretty cool things and I am happy to help them continue building their product. Over at &lt;a href=&quot;http://www.2build.it&quot;&gt;2build.it&lt;/a&gt;, we&amp;#39;re working with some pretty cool clients, building a variety of pretty cool things, hopefully the company will grow a whole lot this year.&lt;/p&gt;
 
-&lt;p&gt;I tend to decide what I’d like to learn more during the year. This year’s language is going to be Rust. I’ve fallen in love with it on the past couple of months and I’d like to start building more things with it as the language becomes more stable. Apart from Rust, this year I’ll be working with Objective-C a whole lot more. I don’t fully like the language yet but, I feel like it can be a valuable tool in my toolset. I’ll also continue working on bundle.js as it has become essential to a client’s project which, turns out to be a great way to further develop it.&lt;/p&gt;
+&lt;p&gt;I tend to decide what I&amp;#39;d like to learn more during the year. This year&amp;#39;s language is going to be Rust. I&amp;#39;ve fallen in love with it on the past couple of months and I&amp;#39;d like to start building more things with it as the language becomes more stable. Apart from Rust, this year I&amp;#39;ll be working with Objective-C a whole lot more. I don&amp;#39;t fully like the language yet but, I feel like it can be a valuable tool in my toolset. I&amp;#39;ll also continue working on bundle.js as it has become essential to a client&amp;#39;s project which, turns out to be a great way to further develop it. &lt;/p&gt;
 
-&lt;p&gt;I’d also like to write more, I didn’t get to do it as much as I wanted to last year so I’ve adjusted my goal, I want to write at least, 12 posts during the year. I think this is a reasonable quantity and I hope I’ll be able to reach it. I’d also like to read more, my goal for that is at least 52 books. I am up to speed so far so I am pretty sure I can reach that.&lt;/p&gt;
+&lt;p&gt;I&amp;#39;d also like to write more, I didn&amp;#39;t get to do it as much as I wanted to last year so I&amp;#39;ve adjusted my goal, I want to write at least, 12 posts during the year. I think this is a reasonable quantity and I hope I&amp;#39;ll be able to reach it. I&amp;#39;d also like to read more, my goal for that is at least 52 books. I am up to speed so far so I am pretty sure I can reach that.&lt;/p&gt;
 
-&lt;p&gt;Finally, I’d like a travel more this year, I am getting a little tired and burned out and I feel that it would help me to travel and see things.&lt;/p&gt;
+&lt;p&gt;Finally, I&amp;#39;d like a travel more this year, I am getting a little tired and burned out and I feel that it would help me to travel and see things. &lt;/p&gt;
 
-&lt;p&gt;I achieved most of the important goals from last year so, I am looking forward to a great year.&lt;/p&gt;</description>
+&lt;p&gt;I achieved most of the important goals from last year so, I am looking forward to a great year.&lt;/p&gt;
+</description>
 				<pubDate>Sun, 26 Jan 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/01/26/2014.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/01/26/2014.html</guid>
@@ -208,91 +294,94 @@ $(window).on(&#39;scroll&#39;, function() {
 			<item>
 				<title>You've Gotta Love Deferreds</title>
 				<description>&lt;p&gt;Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:&lt;/p&gt;
+
 &lt;pre&gt;
-&lt;code data-language=&#39;html&#39;&gt;
+&lt;code data-language=&quot;html&quot;&gt;
 var settings = {
-	template: &#39;todo.hbs&#39;,
-	data_src: &#39;/todo.json&#39;
+    template: &#39;todo.hbs&#39;,
+    data_src: &#39;/todo.json&#39;
 };
-	
+    
 var template;
-	
+    
 var getting_template;
 var getting_data;
-	
+    
 if (&#39;template&#39; in settings) {
-	getting_template = $.get(settings.template);
-	
-	getting_template.done(function(t) {
-		template = t;
-	});
-	
-	if (&#39;data_src&#39; in settings) {
-		getting_data = $.get(settings.data_src);
-		getting_data.done(function(data) {
-			render(template, data);
-		});
-	} else {
-		getting_template.done(function(t) {
-			render(t, {});
-		});
-	}
+    getting_template = $.get(settings.template);
+    
+    getting_template.done(function(t) {
+        template = t;
+    });
+    
+    if (&#39;data_src&#39; in settings) {
+        getting_data = $.get(settings.data_src);
+        getting_data.done(function(data) {
+            render(template, data);
+        });
+    } else {
+        getting_template.done(function(t) {
+            render(t, {});
+        });
+    }
 } else {
-	render(&#39;&#39;, {});
+    render(&#39;&#39;, {});
 }
 &lt;/code&gt;
 &lt;/pre&gt;
-&lt;p&gt;(I am pretty sure it wasn’t necessarily as ugly but, I don’t quite remember.)&lt;/p&gt;
+
+&lt;p&gt;(I am pretty sure it wasn&amp;#39;t necessarily as ugly but, I don&amp;#39;t quite remember.)&lt;/p&gt;
 
 &lt;p&gt;As you can see, even though I am making use of the deferreds returned by the &lt;code&gt;$.get&lt;/code&gt; function. This could be cleaned up a lot by using even more deferreds.&lt;/p&gt;
 
-&lt;p&gt;Here’s more or less what the code ended up looking like:&lt;/p&gt;
+&lt;p&gt;Here&amp;#39;s more or less what the code ended up looking like:&lt;/p&gt;
+
 &lt;pre&gt;
-&lt;code data-language=&#39;html&#39;&gt;
+&lt;code data-language=&quot;html&quot;&gt;
 var settings = {
-	template: &#39;todo.hbs&#39;,
-	data_src: &#39;/todo.json&#39;
+    template: &#39;todo.hbs&#39;,
+    data_src: &#39;/todo.json&#39;
 };
 
 var templateDefer = new $.Deferred();
 var dataDefer; = new $.Deferred();
 
 if (&#39;template&#39; in settings) {
-	$.get(settings.template, function(template) {
-		templateDefer.resolve(template);
-	});
+    $.get(settings.template, function(template) {
+        templateDefer.resolve(template);
+    });
 } else {
-	templateDefer.resolve(&#39;&#39;);
+    templateDefer.resolve(&#39;&#39;);
 }
 
 if (&#39;data_src&#39; in settings) {
-	$.get(settings.data_src, function(data) {
-		dataDefer.resolve(data);
-	});
+    $.get(settings.data_src, function(data) {
+        dataDefer.resolve(data);
+    });
 } else {
-	dataDefer.resolve({});
+    dataDefer.resolve({});
 }
 
 $.when(templateDefer, dataDefer).done(function(template, data) {
-	render(template, data);
+    render(template, data);
 });
 &lt;/code&gt;
 &lt;/pre&gt;
-&lt;p&gt;I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (&lt;code&gt;new $.Deferred()&lt;/code&gt;). The other handy thing built into jQuery is the &lt;code&gt;$.when&lt;/code&gt; method, you can basically pass in a bunch of deferreds and you’d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.&lt;/p&gt;
 
-&lt;p&gt;I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality.&lt;/p&gt;
+&lt;p&gt;I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (&lt;code&gt;new $.Deferred()&lt;/code&gt;). The other handy thing built into jQuery is the &lt;code&gt;$.when&lt;/code&gt; method, you can basically pass in a bunch of deferreds and you&amp;#39;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.&lt;/p&gt;
 
-&lt;h2 id=&quot;recommended_links&quot;&gt;Recommended links&lt;/h2&gt;
+&lt;p&gt;I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality. &lt;/p&gt;
 
-&lt;p&gt;Here’s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:&lt;/p&gt;
+&lt;h2&gt;Recommended links&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#39;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://api.jquery.com/category/deferred-object/&quot;&gt;jQuery’s Deferred Object Documentation&lt;/a&gt;&lt;/li&gt;
-
+&lt;li&gt;&lt;a href=&quot;http://api.jquery.com/category/deferred-object/&quot;&gt;jQuery&amp;#39;s Deferred Object Documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/&quot;&gt;jQuery Deferreds promises asynchronous bliss&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&quot;http://promises-aplus.github.io/promises-spec/&quot;&gt;Promises A+ Spec&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/ul&gt;
+</description>
 				<pubDate>Tue, 12 Nov 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/11/12/youve-gotta-love-deferreds.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/11/12/youve-gotta-love-deferreds.html</guid>
@@ -411,17 +500,20 @@ $ ssh -L 8080:localhost:8080 &amp;lt;host&amp;gt;
 		
 			<item>
 				<title>A Javascript Array of Countries</title>
-				<description>&lt;p&gt;Here’s the Array:&lt;/p&gt;
+				<description>&lt;p&gt;Here&amp;#39;s the Array: &lt;/p&gt;
+
 &lt;pre&gt;
-&lt;code data-language=&#39;javascript&#39;&gt;
+&lt;code data-language=&quot;javascript&quot;&gt;
 var countries = [&quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;American Samoa&quot;, &quot;Andorra&quot;, &quot;Angola&quot;, &quot;Anguilla&quot;, &quot;Antarctica&quot;, &quot;Antigua And Barbuda&quot;, &quot;Argentina&quot;, &quot;Armenia&quot;, &quot;Aruba&quot;, &quot;Australia&quot;, &quot;Austria&quot;, &quot;Azerbaijan&quot;, &quot;Bahamas&quot;, &quot;Bahrain&quot;, &quot;Bangladesh&quot;, &quot;Barbados&quot;, &quot;Belarus&quot;, &quot;Belgium&quot;, &quot;Belize&quot;, &quot;Benin&quot;, &quot;Bermuda&quot;, &quot;Bhutan&quot;, &quot;Bolivia, Plurinational State Of&quot;, &quot;Bonaire, Sint Eustatius And Saba&quot;, &quot;Bosnia And Herzegovina&quot;, &quot;Botswana&quot;, &quot;Bouvet Island&quot;, &quot;Brazil&quot;, &quot;British Indian Ocean Territory&quot;, &quot;Brunei Darussalam&quot;, &quot;Bulgaria&quot;, &quot;Burkina Faso&quot;, &quot;Burundi&quot;, &quot;Cambodia&quot;, &quot;Cameroon&quot;, &quot;Canada&quot;, &quot;Cape Verde&quot;, &quot;Cayman Islands&quot;, &quot;Central African Republic&quot;, &quot;Chad&quot;, &quot;Chile&quot;, &quot;China&quot;, &quot;Christmas Island&quot;, &quot;Cocos (keeling) Islands&quot;, &quot;Colombia&quot;, &quot;Comoros&quot;, &quot;Congo&quot;, &quot;Congo, The Democratic Republic Of The&quot;, &quot;Cook Islands&quot;, &quot;Costa Rica&quot;, &quot;Côte D&#39;ivoire&quot;, &quot;Croatia&quot;, &quot;Cuba&quot;, &quot;Curaçao&quot;, &quot;Cyprus&quot;, &quot;Czech Republic&quot;, &quot;Denmark&quot;, &quot;Djibouti&quot;, &quot;Dominica&quot;, &quot;Dominican Republic&quot;, &quot;Ecuador&quot;, &quot;Egypt&quot;, &quot;El Salvador&quot;, &quot;Equatorial Guinea&quot;, &quot;Eritrea&quot;, &quot;Estonia&quot;, &quot;Ethiopia&quot;, &quot;Falkland Islands (malvinas)&quot;, &quot;Faroe Islands&quot;, &quot;Fiji&quot;, &quot;Finland&quot;, &quot;France&quot;, &quot;French Guiana&quot;, &quot;French Polynesia&quot;, &quot;French Southern Territories&quot;, &quot;Gabon&quot;, &quot;Gambia&quot;, &quot;Georgia&quot;, &quot;Germany&quot;, &quot;Ghana&quot;, &quot;Gibraltar&quot;, &quot;Greece&quot;, &quot;Greenland&quot;, &quot;Grenada&quot;, &quot;Guadeloupe&quot;, &quot;Guam&quot;, &quot;Guatemala&quot;, &quot;Guernsey&quot;, &quot;Guinea&quot;, &quot;Guinea-bissau&quot;, &quot;Guyana&quot;, &quot;Haiti&quot;, &quot;Heard Island And Mcdonald Islands&quot;, &quot;Holy See (vatican City State)&quot;, &quot;Honduras&quot;, &quot;Hong Kong&quot;, &quot;Hungary&quot;, &quot;Iceland&quot;, &quot;India&quot;, &quot;Indonesia&quot;, &quot;Iran, Islamic Republic Of&quot;, &quot;Iraq&quot;, &quot;Ireland&quot;, &quot;Isle Of Man&quot;, &quot;Israel&quot;, &quot;Italy&quot;, &quot;Jamaica&quot;, &quot;Japan&quot;, &quot;Jersey&quot;, &quot;Jordan&quot;, &quot;Kazakhstan&quot;, &quot;Kenya&quot;, &quot;Kiribati&quot;, &quot;Korea, Democratic People&#39;s Republic Of&quot;, &quot;Korea, Republic Of&quot;, &quot;Kuwait&quot;, &quot;Kyrgyzstan&quot;, &quot;Lao People&#39;s Democratic Republic&quot;, &quot;Latvia&quot;, &quot;Lebanon&quot;, &quot;Lesotho&quot;, &quot;Liberia&quot;, &quot;Libya&quot;, &quot;Liechtenstein&quot;, &quot;Lithuania&quot;, &quot;Luxembourg&quot;, &quot;Macao&quot;, &quot;Macedonia, The Former Yugoslav Republic Of&quot;, &quot;Madagascar&quot;, &quot;Malawi&quot;, &quot;Malaysia&quot;, &quot;Maldives&quot;, &quot;Mali&quot;, &quot;Malta&quot;, &quot;Marshall Islands&quot;, &quot;Martinique&quot;, &quot;Mauritania&quot;, &quot;Mauritius&quot;, &quot;Mayotte&quot;, &quot;Mexico&quot;, &quot;Micronesia, Federated States Of&quot;, &quot;Moldova, Republic Of&quot;, &quot;Monaco&quot;, &quot;Mongolia&quot;, &quot;Montenegro&quot;, &quot;Montserrat&quot;, &quot;Morocco&quot;, &quot;Mozambique&quot;, &quot;Myanmar&quot;, &quot;Namibia&quot;, &quot;Nauru&quot;, &quot;Nepal&quot;, &quot;Netherlands&quot;, &quot;New Caledonia&quot;, &quot;New Zealand&quot;, &quot;Nicaragua&quot;, &quot;Niger&quot;, &quot;Nigeria&quot;, &quot;Niue&quot;, &quot;Norfolk Island&quot;, &quot;Northern Mariana Islands&quot;, &quot;Norway&quot;, &quot;Oman&quot;, &quot;Pakistan&quot;, &quot;Palau&quot;, &quot;Palestine, State Of&quot;, &quot;Panama&quot;, &quot;Papua New Guinea&quot;, &quot;Paraguay&quot;, &quot;Peru&quot;, &quot;Philippines&quot;, &quot;Pitcairn&quot;, &quot;Poland&quot;, &quot;Portugal&quot;, &quot;Puerto Rico&quot;, &quot;Qatar&quot;, &quot;Réunion&quot;, &quot;Romania&quot;, &quot;Russian Federation&quot;, &quot;Rwanda&quot;, &quot;Saint Barthélemy&quot;, &quot;Saint Helena, Ascension And Tristan Da Cunha&quot;, &quot;Saint Kitts And Nevis&quot;, &quot;Saint Lucia&quot;, &quot;Saint Martin (french Part)&quot;, &quot;Saint Pierre And Miquelon&quot;, &quot;Saint Vincent And The Grenadines&quot;, &quot;Samoa&quot;, &quot;San Marino&quot;, &quot;Sao Tome And Principe&quot;, &quot;Saudi Arabia&quot;, &quot;Senegal&quot;, &quot;Serbia&quot;, &quot;Seychelles&quot;, &quot;Sierra Leone&quot;, &quot;Singapore&quot;, &quot;Sint Maarten (dutch Part)&quot;, &quot;Slovakia&quot;, &quot;Slovenia&quot;, &quot;Solomon Islands&quot;, &quot;Somalia&quot;, &quot;South Africa&quot;, &quot;South Georgia And The South Sandwich Islands&quot;, &quot;South Sudan&quot;, &quot;Spain&quot;, &quot;Sri Lanka&quot;, &quot;Sudan&quot;, &quot;Suriname&quot;, &quot;Svalbard And Jan Mayen&quot;, &quot;Swaziland&quot;, &quot;Sweden&quot;, &quot;Switzerland&quot;, &quot;Syrian Arab Republic&quot;, &quot;Taiwan, Province Of China&quot;, &quot;Tajikistan&quot;, &quot;Tanzania, United Republic Of&quot;, &quot;Thailand&quot;, &quot;Timor-leste&quot;, &quot;Togo&quot;, &quot;Tokelau&quot;, &quot;Tonga&quot;, &quot;Trinidad And Tobago&quot;, &quot;Tunisia&quot;, &quot;Turkey&quot;, &quot;Turkmenistan&quot;, &quot;Turks And Caicos Islands&quot;, &quot;Tuvalu&quot;, &quot;Uganda&quot;, &quot;Ukraine&quot;, &quot;United Arab Emirates&quot;, &quot;United Kingdom&quot;, &quot;United States&quot;, &quot;United States Minor Outlying Islands&quot;, &quot;Uruguay&quot;, &quot;Uzbekistan&quot;, &quot;Vanuatu&quot;, &quot;Venezuela, Bolivarian Republic Of&quot;, &quot;Viet Nam&quot;, &quot;Virgin Islands, British&quot;, &quot;Virgin Islands, U.s.&quot;, &quot;Wallis And Futuna&quot;, &quot;Western Sahara&quot;, &quot;Yemen&quot;, &quot;Zambia&quot;, &quot;Zimbabwe&quot;];
 &lt;/code&gt;
 &lt;/pre&gt;
-&lt;p&gt;It follows the ISO 3166-1-alpha-2 standard. You don’t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn’t have to look for it again.&lt;/p&gt;
 
-&lt;p&gt;Here’s how I got the list:&lt;/p&gt;
+&lt;p&gt;It follows the ISO 3166-1-alpha-2 standard. You don&amp;#39;t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn&amp;#39;t have to look for it again. &lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s how I got the list:&lt;/p&gt;
+
 &lt;pre&gt;
-&lt;code data-language=&#39;javascript&#39;&gt;
+&lt;code data-language=&quot;javascript&quot;&gt;
 $ = jQuery;
 String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
@@ -443,7 +535,9 @@ countries = countries + &quot;];&quot;;
 console.log(countries);
 &lt;/code&gt;
 &lt;/pre&gt;
-&lt;p&gt;If you run that script in &lt;a href=&quot;http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm&quot;&gt;here&lt;/a&gt;, you’ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.&lt;/p&gt;</description>
+
+&lt;p&gt;If you run that script in &lt;a href=&quot;http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm&quot;&gt;here&lt;/a&gt;, you&amp;#39;ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.&lt;/p&gt;
+</description>
 				<pubDate>Fri, 28 Jun 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/06/28/a-javascript-array-of-countries.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/06/28/a-javascript-array-of-countries.html</guid>
@@ -451,66 +545,17 @@ console.log(countries);
 		
 			<item>
 				<title>On Storytelling and Video Games</title>
-				<description>&lt;p&gt;I think we live in a very exciting time. We have so many incredible things to communicate and so many mediums to do so. I’ve always been a daydreamer. I remember my third grade teacher using me in an example when he introduced the word. It always stuck with me, I am pretty introverted sometimes and, allowing myself to live in a different superposed world has always kept me sane.&lt;/p&gt;
+				<description>&lt;p&gt;I think we live in a very exciting time. We have so many incredible things to communicate and so many mediums to do so. I&amp;#39;ve always been a daydreamer. I remember my third grade teacher using me in an example when he introduced the word. It always stuck with me, I am pretty introverted sometimes and, allowing myself to live in a different superposed world has always kept me sane.&lt;/p&gt;
 
-&lt;p&gt;All these years I’ve been developing a world in my head, all the fine details, all the characters that inhabit such a world and every single one of their motivations and dreams have been slowly built and polish as my life goes on. I’ve thought of writing a book for years. Not because I want to be a writer, I’ll always be a programmer, but because I want to capture this world. I don’t want to lose it and I want others who know me and have heard all my stories to understand how deep this rabbit hole is.&lt;/p&gt;
+&lt;p&gt;All these years I&amp;#39;ve been developing a world in my head, all the fine details, all the characters that inhabit such a world and every single one of their motivations and dreams have been slowly built and polish as my life goes on. I&amp;#39;ve thought of writing a book for years. Not because I want to be a writer, I&amp;#39;ll always be a programmer, but because I want to capture this world. I don&amp;#39;t want to lose it and I want others who know me and have heard all my stories to understand how deep this rabbit hole is.&lt;/p&gt;
 
-&lt;p&gt;The problem is, I am not a writer (and as I said before, I don’t want to be one) so, writing a book is pretty daunting. Luckily there are many other mediums available to me, even though I love all sort of media, my favorite one, and the one that incorporates every other media I like is video games. I’ve always wanted to become an indie game developer. So far I haven’t been successful mostly because I let other parts of my life get in the way. I plan to change that though.&lt;/p&gt;
+&lt;p&gt;The problem is, I am not a writer (and as I said before, I don&amp;#39;t want to be one) so, writing a book is pretty daunting. Luckily there are many other mediums available to me, even though I love all sort of media, my favorite one, and the one that incorporates every other media I like is video games. I&amp;#39;ve always wanted to become an indie game developer. So far I haven&amp;#39;t been successful mostly because I let other parts of my life get in the way. I plan to change that though. &lt;/p&gt;
 
-&lt;p&gt;I want to use video games as a canvas on which I tell my stories. I think it’s probably the only way for them to be as immersing for everyone as they’ve been for me. From now on, I’ll start working on games that tell all of my daydreams. I’ve already started on the first one, the genre will be a huge mash-up of elements I like and will hopefully get my message through. Video games are truly the means to greater expression right now and I want to fully embrace that.&lt;/p&gt;</description>
+&lt;p&gt;I want to use video games as a canvas on which I tell my stories. I think it&amp;#39;s probably the only way for them to be as immersing for everyone as they&amp;#39;ve been for me. From now on, I&amp;#39;ll start working on games that tell all of my daydreams. I&amp;#39;ve already started on the first one, the genre will be a huge mash-up of elements I like and will hopefully get my message through. Video games are truly the means to greater expression right now and I want to fully embrace that.&lt;/p&gt;
+</description>
 				<pubDate>Tue, 05 Mar 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/03/05/On-Storytelling-and-games.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/03/05/On-Storytelling-and-games.html</guid>
-			</item>
-		
-			<item>
-				<title>Migrating from Tumblr to Jekyll</title>
-				<description>&lt;p&gt;A couple of months ago I moved my blog from Tumblr over to Jekyll and started hosting it with Webfaction. It’s been great so far but, I never quite figured out how to get rid of my old url redirecting everything to it’s new page on the new blog.&lt;/p&gt;
-
-&lt;p&gt;I originally thought I’d have to write a redirect rule for each of the posts I kept on the new blog and then make the subdomain redirect to to the domain. Needless to say that it felt so annoying that I ended up not doing anything at all. Until now, that is. So here is how I fixed stuff! First of all, since I imported my Tumblr posts using the importer that comes with Jekyll, I had urls that looked like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-	http://martianwabbit.com/2011/04/04/4344642365.html
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;I didn’t really change them, I thought that they having their old ID would be handy when I wanted to make the shift completely. This ended up being a good decision at the end.&lt;/p&gt;
-
-&lt;p&gt;So now, the only thing I needed to do was to redirect this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-http://blog.martianwabbit.com/post/4344642365/justvector-social-icons-font
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;to this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-http://martianwabbit.com/2011/04/04/4344642365.html
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Which isn’t as straight-forward since, I have no way of knowing what the date might be, so I changed the permalink for imported posts to this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-&lt;pre&gt;
-— &lt;br /&gt;
-layout: post &lt;br /&gt;
-title: &amp;quot;JustVector Social Icons Font&amp;quot; &lt;br /&gt;
-permalink: /post/4344642365.html &lt;br /&gt;
-—
-&lt;/pre&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;So I could just do a simple URL redirect. Now, all I needed to do was setup apache so it’d redirect the URLs as intended, that was probably the easiest part, a quick regex later I ended up with this:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;
-&lt;pre&gt;
-RedirectMatch \/post\/([0-9]+)\/.* /post/$1.html
-&lt;/pre&gt;
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Which worked exactly as intended, now all I have to do, is wait for the DNS to finish propagating.&lt;/p&gt;</description>
-				<pubDate>Sun, 24 Feb 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/02/24/migrating-from-tumblr-to-jekyll.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/02/24/migrating-from-tumblr-to-jekyll.html</guid>
 			</item>
 		
 	</channel>

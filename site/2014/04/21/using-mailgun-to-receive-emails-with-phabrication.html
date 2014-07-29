@@ -31,33 +31,33 @@
 			</h1>
 			<time>April 21, 2014</time>
 		</header>
-		<p><a href="http://phabricator.com">Phabricator</a> is awesome. We recently started trying it out for <a href="http://2build.it">2build.it</a> (more like, this morning) and we all (<a href="http://jorge.caballeromurillo.com">Jorge</a> and I) agreed it’s awesome.</p>
+		<p><a href="http://phabricator.com">Phabricator</a> is awesome. We recently started trying it out for <a href="http://2build.it">2build.it</a> (more like, this morning) and we all (<a href="http://jorge.caballeromurillo.com">Jorge</a> and I) agreed it&#39;s awesome. </p>
 
-<p>The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you’re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn’t mentioned anywhere in the documentation. Btw, here’s how you do it:</p>
-
-<pre><code>./bin/phd restart</code></pre>
-
+<p>The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you&#39;re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn&#39;t mentioned anywhere in the documentation. Btw, here&#39;s how you do it:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">./bin/phd restart
+</code></pre></div>
 <p>Right from the Phabricator folder.</p>
 
 <p>Moving on.</p>
 
-<p>Now that sending was settled there was one huge thing that wasn’t working. Inbound emails. I tried working with postfix but, it was too painful and after a couple of hours I didn’t get anywhere. The <a href="https://secure.phabricator.com/book/phabricator/article/configuring_inbound_email/">documentation</a> talks about using sendgrid to achieve it but, I already have a mailgun account and according to the configuration Phabricator should be able to use mailgun as well. So, I had to do some research.</p>
+<p>Now that sending was settled there was one huge thing that wasn&#39;t working. Inbound emails. I tried working with postfix but, it was too painful and after a couple of hours I didn&#39;t get anywhere. The <a href="https://secure.phabricator.com/book/phabricator/article/configuring_inbound_email/">documentation</a> talks about using sendgrid to achieve it but, I already have a mailgun account and according to the configuration Phabricator should be able to use mailgun as well. So, I had to do some research.</p>
 
-<p>It turns out you can use mailgun to do this but, there’s zero documentation about it. Luckily, I found the <a href="https://secure.phabricator.com/rPa9612fac24a9eb97ad3f611d84dfedbce98d17ad">commit</a> where this functionality was added and figured it out on my own. Here’s the three step guide to getting it done.</p>
+<p>It turns out you can use mailgun to do this but, there&#39;s zero documentation about it. Luckily, I found the <a href="https://secure.phabricator.com/rPa9612fac24a9eb97ad3f611d84dfedbce98d17ad">commit</a> where this functionality was added and figured it out on my own. Here&#39;s the three step guide to getting it done.</p>
 
-<h2 id="step_1">Step 1</h2>
+<h2>Step 1</h2>
 
-<p>You have to configure you domain’s MX records to point to mailgun. You can find more information <a href="http://documentation.mailgun.com/user_manual.html#verifying-your-domain">here</a>.</p>
+<p>You have to configure you domain&#39;s MX records to point to mailgun. You can find more information <a href="http://documentation.mailgun.com/user_manual.html#verifying-your-domain">here</a>.</p>
 
-<h2 id="step_2">Step 2</h2>
+<h2>Step 2</h2>
 
 <p>Go to your setup your mailgun configuration by going to the mailgun config (http://example.com/config/group/mailgun/) and adding your API key and your domain.</p>
 
-<h2 id="step_3">Step 3</h2>
+<h2>Step 3</h2>
 
-<p>We’re almost done. Now, all we have to do is tell mailgun to send received emails your way. To do this all you have to do is create a new route (go here: <a href="https://mailgun.com/cp/routes">https://mailgun.com/cp/routes</a>). Give it a priority and a filter that’ll work for you (I used 0 as a priority and <code>catch_all()</code> for a filter). For the action, forward it to your Phabricator installation with the endpoint ‘/mail/mailgun’. Like this: <code>forward(&quot;http://example.com/mail/mailgun/&quot;)</code>.</p>
+<p>We&#39;re almost done. Now, all we have to do is tell mailgun to send received emails your way. To do this all you have to do is create a new route (go here: <a href="https://mailgun.com/cp/routes">https://mailgun.com/cp/routes</a>). Give it a priority and a filter that&#39;ll work for you (I used 0 as a priority and <code>catch_all()</code> for a filter). For the action, forward it to your Phabricator installation with the endpoint &#39;/mail/mailgun&#39;. Like this: <code>forward(&quot;http://example.com/mail/mailgun/&quot;)</code>.</p>
 
 <p>That is all. Your emails should now allow you to interact with Phabricator.</p>
+
 	</article>
 </div>
 <div id="disqus_thread"></div>
@@ -82,7 +82,6 @@
 	</footer>
 </div>
 
-	<script src="/js/zepto.js"></script>
 	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];

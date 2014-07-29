@@ -31,61 +31,61 @@
 			</h1>
 			<time>April 04, 2014</time>
 		</header>
-		<p>I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on. <img class='small' src='http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif' /></p>
+		<p>I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
+<img src="http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif" class="small"></p>
 
-<p>To achieve this, I used <a href="http://zeptojs.com/">Zepto</a> and a small amount of math. (The great thing about Zepto is that it’s fully compatible with jQuery, so this should work with jQuery out of the box as well).</p>
+<p>To achieve this, I used <a href="http://zeptojs.com/">Zepto</a> and a small amount of math. (The great thing about Zepto is that it&#39;s fully compatible with jQuery, so this should work with jQuery out of the box as well).</p>
 
-<p>Let’s jump right in, here’s how I do it:</p>
+<p>Let&#39;s jump right in, here&#39;s how I do it:</p>
+
 <pre>
 <code>
 $(window).on('scroll', function() {
-	var scrollTop = $(window).scrollTop();
-	var article_offsets = $('article').map(function(i) { 
-		if (i === 0) {
-			return 0;
-		}
+    var scrollTop = $(window).scrollTop();
+    var article_offsets = $('article').map(function(i) { 
+        if (i === 0) {
+            return 0;
+        }
 
-		return $(this).offset().top 
-	});
+        return $(this).offset().top 
+    });
 
-	for (var i = 0; i &lt; article_offsets.length; i++) {
-		if (article_offsets[i] - 40 &lt;= scrollTop) {
-			$('.sidebar li').removeClass('active')
-				.eq(i).addClass('active');
-		}
-	};
+    for (var i = 0; i &lt; article_offsets.length; i++) {
+        if (article_offsets[i] - 40 &lt;= scrollTop) {
+            $('.sidebar li').removeClass('active')
+                .eq(i).addClass('active');
+        }
+    };
 });
 </code>
 </pre>
+
 <p>The first line of interest:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">var article_offsets = $(&#39;article&#39;).map(function(i) { 
+    if (i === 0) {
+        return 0;
+    }
 
-<pre><code>var article_offsets = $(&#39;article&#39;).map(function(i) { 
-	if (i === 0) {
-		return 0;
-	}
-
-	return $(this).offset().top 
-});</code></pre>
-
+    return $(this).offset().top 
+});
+</code></pre></div>
 <p>Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.</p>
 
 <p>After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);
+</code></pre></div>
+<p>This looks for the Ith element on the sidebar&#39;s list and we add a class of &#39;active&#39; to it, highlighting it and doing whatever we want with it.</p>
 
-<pre><code>$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);</code></pre>
-
-<p>This looks for the Ith element on the sidebar’s list and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.</p>
-
-<p>There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:</p>
+<p>There&#39;s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here&#39;s a couple I came through:</p>
 
 <ul>
 <li><a href="http://getbootstrap.com/javascript/#scrollspy">http://getbootstrap.com/javascript/#scrollspy</a></li>
-
 <li><a href="http://www.outyear.co.uk/smint/">http://www.outyear.co.uk/smint/</a></li>
-
 <li><a href="http://scrollnav.com/">http://scrollnav.com/</a></li>
 </ul>
 
 <p>I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.</p>
+
 	</article>
 </div>
 <div id="disqus_thread"></div>
@@ -110,7 +110,6 @@ $(window).on('scroll', function() {
 	</footer>
 </div>
 
-	<script src="/js/zepto.js"></script>
 	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];

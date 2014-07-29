@@ -31,84 +31,83 @@
 			</h1>
 			<time>April 05, 2014</time>
 		</header>
-		<p>I’ve been using <a href="http://bohemiancoding.com/sketch/">Sketch</a> to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a <a href="http://j4n.co/blog/custom-sketch-art-board-presets">blog post</a> detailing how to do just this.</p>
+		<p>I&#39;ve been using <a href="http://bohemiancoding.com/sketch/">Sketch</a> to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a <a href="http://j4n.co/blog/custom-sketch-art-board-presets">blog post</a> detailing how to do just this.</p>
 
 <blockquote>
-<p>Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you’re using the App Store version of Sketch, then the file is located here:</p>
+<p>Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you&#39;re using the App Store version of Sketch, then the file is located here:</p>
 </blockquote>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
+</code></pre></div>
+<p>Here&#39;s my presets:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">&lt;dict&gt;
+    &lt;key&gt;name&lt;/key&gt;
+    &lt;string&gt;Desktop&lt;/string&gt;
+    &lt;key&gt;presets&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;Retina Displays&lt;/string&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;2880&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;15-inch&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;1800&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;2560&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;13-inch&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;1600&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;string&gt;4:3&lt;/string&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;1600&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;Large 4:3&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;1200&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;1280&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;Medium 4:3&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;1024&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;string&gt;16:9&lt;/string&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;1920&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;Large 16:9&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;1080&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;1600&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;Medium 16:9&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;900&lt;/integer&gt;
+        &lt;/dict&gt;
+        &lt;dict&gt;
+            &lt;key&gt;width&lt;/key&gt;
+            &lt;integer&gt;1366&lt;/integer&gt;
+            &lt;key&gt;name&lt;/key&gt;
+            &lt;string&gt;Small 16:9&lt;/string&gt;
+            &lt;key&gt;height&lt;/key&gt;
+            &lt;integer&gt;768&lt;/integer&gt;
+        &lt;/dict&gt;
+    &lt;/array&gt;
+&lt;/dict&gt;
+</code></pre></div>
+<p>I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I&#39;ve used recently and might re-use in the future.</p>
 
-<pre><code>~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/</code></pre>
-
-<p>Here’s my presets:</p>
-
-<pre><code>&lt;dict&gt;
-	&lt;key&gt;name&lt;/key&gt;
-	&lt;string&gt;Desktop&lt;/string&gt;
-	&lt;key&gt;presets&lt;/key&gt;
-	&lt;array&gt;
-		&lt;string&gt;Retina Displays&lt;/string&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;2880&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;15-inch&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;1800&lt;/integer&gt;
-		&lt;/dict&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;2560&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;13-inch&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;1600&lt;/integer&gt;
-		&lt;/dict&gt;
-		&lt;string&gt;4:3&lt;/string&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;1600&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;Large 4:3&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;1200&lt;/integer&gt;
-		&lt;/dict&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;1280&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;Medium 4:3&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;1024&lt;/integer&gt;
-		&lt;/dict&gt;
-		&lt;string&gt;16:9&lt;/string&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;1920&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;Large 16:9&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;1080&lt;/integer&gt;
-		&lt;/dict&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;1600&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;Medium 16:9&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;900&lt;/integer&gt;
-		&lt;/dict&gt;
-		&lt;dict&gt;
-			&lt;key&gt;width&lt;/key&gt;
-			&lt;integer&gt;1366&lt;/integer&gt;
-			&lt;key&gt;name&lt;/key&gt;
-			&lt;string&gt;Small 16:9&lt;/string&gt;
-			&lt;key&gt;height&lt;/key&gt;
-			&lt;integer&gt;768&lt;/integer&gt;
-		&lt;/dict&gt;
-	&lt;/array&gt;
-&lt;/dict&gt;</code></pre>
-
-<p>I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I’ve used recently and might re-use in the future.</p>
 	</article>
 </div>
 <div id="disqus_thread"></div>
@@ -133,7 +132,6 @@
 	</footer>
 </div>
 
-	<script src="/js/zepto.js"></script>
 	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];

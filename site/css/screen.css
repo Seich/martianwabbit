@@ -134,7 +134,8 @@ a:hover {
 	color: #000;
 }
 
-.post img {
+.post img,
+.post video {
     max-width: 100%;
 }
 

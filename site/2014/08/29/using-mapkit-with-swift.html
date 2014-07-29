@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+
+	<title>Seichy's Missing Bit  | Using MapKit with Swift </title>
+	
+	<link rel="stylesheet" href="/css/screen.css">
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
+
+	<script src="/js/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<div class="container center">
+	<header id="top">
+		<h1>
+			<a href="/">Seichy's Missing Bit</a>
+		</h1>
+	</header>
+
+	<div class="content">
+	<article class="post">
+		<header>
+			<h1>
+				<a href="">Using MapKit with Swift</a>
+			</h1>
+			<time>August 29, 2014</time>
+		</header>
+		<p>I&#39;ve been using Swift a lot lately. I wanted to start making iOS apps a while ago but Objective-C is frankly, not worth the trouble. Swift on the other hand is actually fun to use and I love experiencing how the language evolves.</p>
+
+<p>This weekend I started working on a small app I&#39;ve wanted for a while but got stuck when it came to implementing a map with MapKit. I couldn&#39;t find documentation or code samples on how to do it anywhere. Turns out that it&#39;s not hard at all! It took very little fiddling around before I figured it out. Here&#39;s how I did it:</p>
+
+<h2>First, create a new project</h2>
+
+<p>I started with a <strong>Single View Application</strong>. </p>
+
+<p><img src="http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png" alt="">
+Then added a MKMapView to the view controller. After that, imported <code>MapKit</code> into the view controller&#39;s code. Finally, I added a new reference outlet to the map called <em>map</em>.</p>
+
+<p><video src="https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4" controls></video></p>
+
+<h2>Setup your desired location</h2>
+
+<p>Now our map is ready to display a location. You&#39;ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">var location = CLLocationCoordinate2D(
+    latitude: 16.40, 
+    longitude: -86.34
+)
+</code></pre></div>
+<p>Now, we need to tell the map what the area spanned by the region is. For this we use <code>MKCoordinateSpanMake</code>. Which, as you probably guessed, creates a <code>MKCoordinateSpan</code>.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">var span = MKCoordinateSpanMake(1, 1)
+</code></pre></div>
+<p>After that we just need to define the region using these two things:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">var region = MKCoordinateRegion(center: location, span: span)
+</code></pre></div>
+<p>And finally, we set this region to the map:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">map.setRegion(region, animated: true)
+</code></pre></div>
+<h2>Bonus: Adding an annotation</h2>
+
+<p>Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It&#39;ll display the default red pin which, might not be as pretty but it&#39;ll get the job done.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">var annotation = MKPointAnnotation()
+</code></pre></div>
+<p>Afterwards, we can set it&#39;s coordinates, title and subtitle to place it wherever we want and to add the text it&#39;s callout will display when tapped.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">annotation.setCoordinate(location)
+annotation.title = &quot;Roatan&quot;
+annotation.subtitle = &quot;Honduras&quot;
+</code></pre></div>
+<p>Finally, we add it to the map like this:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">map.addAnnotation(annotation)
+</code></pre></div>
+<p>Here&#39;s my final code:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">import UIKit
+import MapKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var map: MKMapView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        var location = CLLocationCoordinate2D(
+            latitude: 16.40, 
+            longitude: -86.34
+        )
+
+        var span = MKCoordinateSpanMake(0.5, 0.5)
+        var region = MKCoordinateRegion(center: location, span: span)
+
+        map.setRegion(region, animated: true)
+
+        var annotation = MKPointAnnotation()
+        annotation.setCoordinate(location)
+        annotation.title = &quot;Roatan&quot;
+        annotation.subtitle = &quot;Honduras&quot;
+
+        map.addAnnotation(annotation)
+    }
+}
+</code></pre></div>
+<p>And here&#39;s what my app looks like:
+<img src="http://f.cl.ly/items/2r0a21423A3l2S381U3w/final.png" alt=""></p>
+
+<h2>Additional Resources</h2>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/userexperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html">Location and Maps Programming Guide</a></p>
+
+	</article>
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'martianwabbitblog'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	<footer>
+		David Sergio Díaz &copy; All Rights Reserved.
+		<br>
+		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
+	</footer>
+</div>
+
+	<script src="/js/main.js"></script>
+	<script>
+        var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>

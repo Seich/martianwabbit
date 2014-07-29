@@ -25,6 +25,59 @@
 
 	<div class="content">
 
+	<article class="post" id="Rails Quickhint #1: Creating a model while skipping validations">
+		<header>
+			<h1>
+				<a href="/2013/01/18/rails-quickhint-1.html">Rails Quickhint #1: Creating a model while skipping validations</a>
+			</h1>
+			<time>January 18, 2013</time>
+		</header>
+
+		<p>
+	This certainly needs some background. I've been working on a random rails project for the better part of the last couple of months. 
+	This project uses devise to manage logins and user registration. Recently registrations started failing in the site which, didn't 
+	make sense since they had been working fine for a while. So I started digging into it.
+</p>
+
+<p>
+	According to rails the user url didn't exist so it couldn't redirect back to the homepage after a successful registration. 
+	After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that's normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn't (since the username is only supposed to be set after registration).
+</p>
+
+<p>
+	So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
+</p>
+
+<p>user.rb</p>
+<pre>
+<code data-language="ruby">
+class User < ActiveRecord::Base
+  after_create :create_profile
+  has_one :user_profile, :dependent => :destroy
+  
+  def create_profile
+    self.build_user_profile
+    self.user_profile.save(:validate => false)
+  end
+end
+</code>
+</pre>
+
+<p>user_profile.rb</p>
+<pre>
+<code data-language="ruby">
+class UserProfile < ActiveRecord::Base
+  belongs_to :user
+ 
+  attr_accessible :username
+  validates_uniqueness_of :username
+end
+</code>
+</pre>
+
+<p>This bug took around 2 hours to fix, I guess not all errors in rails are as descriptive and easy to follow as they should. But at the end of it all, it's my fault for not paying attention.</p>
+	</article>
+
 	<article class="post" id="Hiding elements when they lose focus with jQuery">
 		<header>
 			<h1>
@@ -63,13 +116,14 @@ $(".userMenu a").on("click", function() {
 			<time>January 05, 2013</time>
 		</header>
 
-		<p>I’ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I’ve been saying I’ll start blogging more often for a couple of years now and I keep failing. I’ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don’t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that’s how I roll.</p>
+		<p>I&#39;ll begin by saying this will be a great year. I have a lot of objectives and things I want to accomplish. Some will be the culmination of past efforts and some are new things I want to get done. My first resolution is to blog more. I&#39;ve been saying I&#39;ll start blogging more often for a couple of years now and I keep failing. I&#39;ll change that and thus, my first objective is to write 52 posts this year, one per week. Since I don&#39;t alway have too much time I am not requiring myself to publish every week as long as I get it done eventually. I also will write small random stuff most of the time since, that&#39;s how I roll.</p>
 
-<p>My second resolution is to start a company. I am currently participating in contest sponsored by my university. If I were to win I’d be established as a company in a couple of months. Even if this doesn’t work out, I’ll get started on my own.</p>
+<p>My second resolution is to start a company. I am currently participating in contest sponsored by my university. If I were to win I&#39;d be established as a company in a couple of months. Even if this doesn&#39;t work out, I&#39;ll get started on my own. </p>
 
-<p>There’s more development and learning to be done in 2013 as well. I’d say 2012 was the year of Javascript. Working as a front-end developer forces you to learn a lot of Javascript so it’s been a great experience. This year I’ll further evolve as a Javascript developer but, I also want to master ruby. I just love that language and even though I’ve worked with it a lot I don’t feel as confident in my skills. It still feels too magical for my taste. I’ll be working a lot more on personal projects (and blogging about it as well). I already have one android app in mind and a couple of gems to make my life easier.</p>
+<p>There&#39;s more development and learning to be done in 2013 as well. I&#39;d say 2012 was the year of Javascript. Working as a front-end developer forces you to learn a lot of Javascript so it&#39;s been a great experience. This year I&#39;ll further evolve as a Javascript developer but, I also want to master ruby. I just love that language and even though I&#39;ve worked with it a lot I don&#39;t feel as confident in my skills. It still feels too magical for my taste. I&#39;ll be working a lot more on personal projects (and blogging about it as well). I already have one  android app in mind and a couple of gems to make my life easier.</p>
 
 <p>In the end I hope this year is as great as the last one and I learn, develop and grow a lot more.</p>
+
 	</article>
 
 	<article class="post" id="Daydreaming: Mobile Processing Clusters">
@@ -80,13 +134,14 @@ $(".userMenu a").on("click", function() {
 			<time>November 06, 2012</time>
 		</header>
 
-		<p>I think this blog will most probably become a daydream diary. Oh wellz, let’s talk about random ideas. Today I was daydreaming during my calculus class (this is one of the reasons I suck at calculus, more on that in another post) and thought something really cool.</p>
+		<p>I think this blog will most probably become a daydream diary. Oh wellz, let&#39;s talk about random ideas. Today I was daydreaming during my calculus class (this is one of the reasons I suck at calculus, more on that in another post) and thought something really cool.</p>
 
-<p>Now, this is kind of completely out of my field so I don’t know how feasible or useful it might be but, I was thinking that cellphones spend most of their lives on standby and these phones have CPUs which we could use to do something useful, so how about we use them to help solve problems.</p>
+<p>Now, this is kind of completely out of my field so I don&#39;t know how feasible or useful it might be but, I was thinking that cellphones spend most of their lives on standby and these phones have CPUs which we could use to do something useful, so how about we use them to help solve problems. </p>
 
 <p>I was thinking of something along the lines of wolframalpha, solving via cluster of CPUs. We could connect a bunch of phones via an app running in the background which would receive requests to do some processing. These requests would be problems that can be broken up into smaller pieces.These pieces would be sent all around to phones to be solved and then be sent back to a server coordinating the problem solving.</p>
 
 <p>You could also have the server look for phones with more powerful CPUs to solve more difficult parts of the problem, which might not be as easily broken down.</p>
+
 	</article>
 
 	<article class="post" id="A little House Keeping">
@@ -97,28 +152,13 @@ $(".userMenu a").on("click", function() {
 			<time>October 15, 2012</time>
 		</header>
 
-		<p>Hello world! It’s that time of the year again where I am forced to do a little house keeping. My blog has been incredibly hideous for a couple of months now and I finally got the opportunity to do somethign about it.</p>
+		<p>Hello world! It&#39;s that time of the year again where I am forced to do a little house keeping. My blog has been incredibly hideous for a couple of months now and I finally got the opportunity to do somethign about it.</p>
 
-<p>I’ve redesigned it and, since apparently I am terrible at designing stuff I went with a very minimalistic approach. So my new blog is easier on the eyes, simpler and, will now become my homepage.</p>
+<p>I&#39;ve redesigned it and, since apparently I am terrible at designing stuff I went with a very minimalistic approach. So my new blog is easier on the eyes, simpler and, will now become my homepage.</p>
 
-<p>There isn’t much to it, I’ll be moving a couple of my old posts over to the new blog and I’ll do my best to start blogging at least twice a week. It’s actually harder said than done</p>
+<p>There isn&#39;t much to it, I&#39;ll be moving a couple of my old posts over to the new blog and I&#39;ll do my best to start blogging at least twice a week. It&#39;s actually harder said than done... </p>
 
 <p>The blog runs on Jekyll now, mostly because it is hacker friendlier than tumblr and I love the idea of version controlled blogging. I will also remove comments from the blog since they distract me quite often. If anyone feels the need to tell me anything they are free to email me.</p>
-	</article>
-
-	<article class="post" id="Random stuff has been happening lately">
-		<header>
-			<h1>
-				<a href="/post/28387444881.html">Random stuff has been happening lately</a>
-			</h1>
-			<time>July 30, 2012</time>
-		</header>
-
-		<p>Ok, so what&#8217;s up dear readers? I&#8217;ve been up to a bunch of random things lately so I&#8217;ll write them down just so I know what I was up to at this time of year later on.</p>
-<p>First of all, I got a new job. I guess I&#8217;ll stop freelancing for the time being and focus on my new (awesome) job. Starting 2 weeks ago, I&#8217;ll be working as a &#8220;Graphic Developer&#8221; for the HNSC, which, is a fancy way to say I am a front end developer. I get to play with lots of javascript and are surrounded by amazing people I didn&#8217;t even know about! So yes, lots of new people and cool projects which might actually inspire me to build new and cool things on my own.</p>
-<p>Second, I&#8217;ve been getting into javascript a lot lately. Like a serious lot. Even before my new job, I started reading and developing almost exclusively in javascript. I feel like I&#8217;ve been improving a lot constantly these past couple of weeks and am really happy about it. I&#8217;ve read and develop a lot, trying to get my vanilla javascript up to speed and I&#8217;ve been working with a lot of jQuery at work as well so that&#8217;s that. Today I built a jQuery plugin which, doesn&#8217;t do much but it&#8217;s exactly what I needed I&#8217;ll talk more about it once I figure out if I can release it as open source. That&#8217;ll hopefully happen soon.</p>
-<p>Third, since I recently started working as a frontend developer, which is almost completely opposite from my old freelancing stuff where I focused on the backend, I decided to start a pears repository of stuff I use often just to keep mental notes and to share with you guys. You can find them here: <a href="http://patterns.martianwabbit.com/">http://patterns.martianwabbit.com/</a></p>
-<p>And I guess that&#8217;s basically it, school is as hard as usual, I am still pretty dumb and I get paid to program for 4 hours on a daily basis, I am doing pretty good these days.</p>
 
 	</article>
 
@@ -132,6 +172,11 @@ $(".userMenu a").on("click", function() {
 		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
 	</div>
 	<ul>
+	
+		<li>
+			<a href="#Rails Quickhint #1: Creating a model while skipping validations">Rails Quickhint #1: Creating a model while skipping validations</a>
+			<time>January 18, 2013</time>
+		</li>
 	
 		<li>
 			<a href="#Hiding elements when they lose focus with jQuery">Hiding elements when they lose focus with jQuery</a>
@@ -151,11 +196,6 @@ $(".userMenu a").on("click", function() {
 		<li>
 			<a href="#A little House Keeping">A little House Keeping</a>
 			<time>October 15, 2012</time>
-		</li>
-	
-		<li>
-			<a href="#Random stuff has been happening lately">Random stuff has been happening lately</a>
-			<time>July 30, 2012</time>
 		</li>
 	
 	</ul>
@@ -184,7 +224,6 @@ $(".userMenu a").on("click", function() {
 	</footer>
 </div>
 
-	<script src="/js/zepto.js"></script>
 	<script src="/js/main.js"></script>
 	<script>
         var _gaq=[['_setAccount','UA-2565966-9'],['_trackPageview']];
