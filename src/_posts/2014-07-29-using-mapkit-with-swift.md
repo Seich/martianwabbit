@@ -13,7 +13,10 @@ I started with a __Single View Application__.
 Then added a MKMapView to the view controller. After that, imported `MapKit` into the view controller's code. Finally, I added a new reference outlet to the map called _map_.
 
 
-<video src="https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4" controls></video>
+<video controls>
+	<source src="https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+	<source src="https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
+</video>
 
 
 ## Setup your desired location

@@ -19,7 +19,10 @@
 &lt;p&gt;&lt;img src=&quot;http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png&quot; alt=&quot;&quot;&gt;
 Then added a MKMapView to the view controller. After that, imported &lt;code&gt;MapKit&lt;/code&gt; into the view controller&amp;#39;s code. Finally, I added a new reference outlet to the map called &lt;em&gt;map&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;video src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4&quot; controls&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;p&gt;&lt;video controls&gt;
+    &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot;&gt;
+    &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot;&gt;
+&lt;/video&gt;&lt;/p&gt;
 
 &lt;h2&gt;Setup your desired location&lt;/h2&gt;
 
