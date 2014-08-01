@@ -9,7 +9,7 @@ This weekend I started working on a small app I've wanted for a while but got st
 ## First, create a new project
 I started with a __Single View Application__. 
 
-![](http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png)
+![New Project Screen](http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png)
 Then added a MKMapView to the view controller. After that, imported `MapKit` into the view controller's code. Finally, I added a new reference outlet to the map called _map_.
 
 
