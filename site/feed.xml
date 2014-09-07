@@ -25,7 +25,7 @@ Finally, I added two labels to the prototype cell. You can use the prototype cel
 &lt;/video&gt;&lt;/p&gt;
 
 &lt;p&gt;Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from &lt;code&gt;UITableViewCell&lt;/code&gt;. I&amp;#39;ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one &amp;quot;username&amp;quot; and the smaller one &amp;quot;body&amp;quot;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;// TweetCell.swift
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;// TweetCell.swift
 import UIKit
 
 class TweetCell: UITableViewCell {
@@ -44,24 +44,24 @@ class TweetCell: UITableViewCell {
 &lt;p&gt;Now I only have to set up the view controller. We already have the basic view controller that came with the project so now we can just change it to do our bidding.&lt;/p&gt;
 
 &lt;p&gt;I start by creating a struct to contain my tweets. I added it before the ViewController&amp;#39;s class definition. &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;struct Tweet {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;struct Tweet {
     var username: String
     var body: String
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After that, I changed the ViewController&amp;#39;s parent class from &lt;code&gt;UIViewController&lt;/code&gt; to &lt;code&gt;UITableViewController&lt;/code&gt; and added the &lt;code&gt;UITableViewDataSource&lt;/code&gt; protocol to it so my class looks like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;class ViewController: UITableViewController, UITableViewDataSource {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class ViewController: UITableViewController, UITableViewDataSource {
 
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now I added an array with a couple of tweets:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var tweets: [Tweet] = [
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var tweets: [Tweet] = [
     Tweet(username: &amp;quot;Seich&amp;quot;, body: &amp;quot;Hello, World&amp;quot;),
     Tweet(username: &amp;quot;Albert&amp;quot;, body: &amp;quot;How are you doing?&amp;quot;)
 ]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally I just need to override a couple of methods. The first one is this method:  &lt;code&gt;tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -&amp;gt; UITableViewCell!&lt;/code&gt; which determines what cell should be drawn at the given index. Here&amp;#39;s how mine looks:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;override func tableView(
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;override func tableView(
     tableView: UITableView!, 
     cellForRowAtIndexPath indexPath: NSIndexPath!) 
     -&amp;gt; UITableViewCell! {
@@ -75,7 +75,7 @@ class TweetCell: UITableViewCell {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The second method is this one: &lt;code&gt;override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -&amp;gt; Int&lt;/code&gt; which should return the number of cells to draw, mine looks like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt; override func tableView(
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt; override func tableView(
     tableView: UITableView!, 
     numberOfRowsInSection section: Int) -&amp;gt; Int {
 
@@ -83,7 +83,7 @@ class TweetCell: UITableViewCell {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And that&amp;#39;s it. Here&amp;#39;s my final code for the view controller:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
 
 struct Tweet {
     var username: String
@@ -159,35 +159,35 @@ Then added a MKMapView to the view controller. After that, imported &lt;code&gt;
 &lt;h2&gt;Setup your desired location&lt;/h2&gt;
 
 &lt;p&gt;Now our map is ready to display a location. You&amp;#39;ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var location = CLLocationCoordinate2D(
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var location = CLLocationCoordinate2D(
     latitude: 16.40, 
     longitude: -86.34
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, we need to tell the map what the area spanned by the region is. For this we use &lt;code&gt;MKCoordinateSpanMake&lt;/code&gt;. Which, as you probably guessed, creates a &lt;code&gt;MKCoordinateSpan&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var span = MKCoordinateSpanMake(1, 1)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var span = MKCoordinateSpanMake(1, 1)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After that we just need to define the region using these two things:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var region = MKCoordinateRegion(center: location, span: span)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var region = MKCoordinateRegion(center: location, span: span)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And finally, we set this region to the map:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;map.setRegion(region, animated: true)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;map.setRegion(region, animated: true)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Bonus: Adding an annotation&lt;/h2&gt;
 
 &lt;p&gt;Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It&amp;#39;ll display the default red pin which, might not be as pretty but it&amp;#39;ll get the job done.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var annotation = MKPointAnnotation()
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var annotation = MKPointAnnotation()
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Afterwards, we can set it&amp;#39;s coordinates, title and subtitle to place it wherever we want and to add the text it&amp;#39;s callout will display when tapped.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;annotation.setCoordinate(location)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;annotation.setCoordinate(location)
 annotation.title = &amp;quot;Roatan&amp;quot;
 annotation.subtitle = &amp;quot;Honduras&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally, we add it to the map like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;map.addAnnotation(annotation)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;map.addAnnotation(annotation)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Here&amp;#39;s my final code:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
 import MapKit
 
 class ViewController: UIViewController {
@@ -232,7 +232,7 @@ class ViewController: UIViewController {
 				<description>&lt;p&gt;&lt;a href=&quot;http://phabricator.com&quot;&gt;Phabricator&lt;/a&gt; is awesome. We recently started trying it out for &lt;a href=&quot;http://2build.it&quot;&gt;2build.it&lt;/a&gt; (more like, this morning) and we all (&lt;a href=&quot;http://jorge.caballeromurillo.com&quot;&gt;Jorge&lt;/a&gt; and I) agreed it&amp;#39;s awesome. &lt;/p&gt;
 
 &lt;p&gt;The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you&amp;#39;re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn&amp;#39;t mentioned anywhere in the documentation. Btw, here&amp;#39;s how you do it:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;./bin/phd restart
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;./bin/phd restart
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Right from the Phabricator folder.&lt;/p&gt;
 
@@ -268,10 +268,10 @@ class ViewController: UIViewController {
 &lt;blockquote&gt;
 &lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you&amp;#39;re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Here&amp;#39;s my presets:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;dict&amp;gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;dict&amp;gt;
     &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
     &amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
     &amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
@@ -377,7 +377,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;/pre&gt;
 
 &lt;p&gt;The first line of interest:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function(i) { 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function(i) { 
     if (i === 0) {
         return 0;
     }
@@ -388,7 +388,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
 
 &lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This looks for the Ith element on the sidebar&amp;#39;s list and we add a class of &amp;#39;active&amp;#39; to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
 

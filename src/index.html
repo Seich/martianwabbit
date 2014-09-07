@@ -1,16 +1,57 @@
 ---
-layout: default
+layout: layout
 ---
+<div class="home">
+	<div class="about">
+		<h2>Person</h2>
+		<p>
+		Developer and designer. 
+		Specializes in the front-end. 
+		Actually likes Javascript. 
+		Honduran native, cat enthusiast and late-night gamer.
+		</p>
+	</div>
 
-{% for post in paginator.posts %}
-	<article class="post" id="{{post.title}}">
-		<header>
-			<h1>
-				<a href="{{post.url}}">{{post.title}}</a>
-			</h1>
-			<time>{{ post.date | date: "%B %d, %Y" }}</time>
-		</header>
+	<div class="blog">
+		<h2>Writer</h2>
+		<ul>
+		{% for post in paginator.posts %}
+			<li>
+				<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+				<time>{{ post.date | date: "%B %d, %Y"}}</time>
+			</li>
+		{% endfor %}
+		</ul>
 
-		{{ post.content }}
-	</article>
-{% endfor %}
+		<p><a href="archive.html">Blog Archive</a></p>
+	</div>
+
+	<div class="reading">
+		<h2>Reader</h2>
+		<a href="https://openlibrary.org/works/OL11817558W/Beat_the_Reaper">
+			<img src="https://covers.openlibrary.org/w/id/6391531-M.jpg" alt="Beat the Reaper">
+		</a>
+
+		<a href="https://openlibrary.org/works/OL16637768W/Gone_girl">
+			<img src="https://covers.openlibrary.org/w/id/7240542-M.jpg" alt="Gone girl">
+		</a>
+
+		<a href="https://openlibrary.org/works/OL14932974W/If_I_stay">
+			<img src="https://covers.openlibrary.org/w/id/6300478-M.jpg" alt="If I Stay">
+		</a>
+
+		<a href="https://openlibrary.org/works/OL15338505W/Norwegian_Wood">
+			<img src="https://covers.openlibrary.org/b/id/228527-M.jpg" alt="Norwegian Wood">
+		</a>
+	</div>
+
+	<div class="show">
+		<h2>Photographer</h2>
+		<p>&nbsp;</p>
+	</div>
+
+	<div class="photos show">
+	</div>
+</div>
+
+<script src="js/main.js"></script>

@@ -6,32 +6,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
 
-	<title>Seichy's Missing Bit  | Scroll Spying for Fun and Profit </title>
+	<title>Sergio Díaz  | Scroll Spying for Fun and Profit </title>
 	
 	<link rel="stylesheet" href="/css/screen.css">
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
 
 	<script src="/js/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 
-<div class="container center">
-	<header id="top">
-		<h1>
-			<a href="/">Seichy's Missing Bit</a>
-		</h1>
-	</header>
+<div id="top">
+	<h1><a href="/">Sergio Díaz<span>.</span></a></h1>
+</div>
 
-	<div class="content">
-	<article class="post">
-		<header>
-			<h1>
-				<a href="">Scroll Spying for Fun and Profit</a>
-			</h1>
-			<time>April 04, 2014</time>
-		</header>
-		<p>I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
+<article>
+	<h1>
+		<a href="">Scroll Spying for Fun and Profit</a>
+	</h1>
+
+	<aside>
+		<time>Posted on: April 04, 2014</time>
+		<span>302 Words</span>
+		<span>Takes 2 minutes to read</span>
+	</aside>
+
+	<p>I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
 <img src="http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif" class="small"></p>
 
 <p>To achieve this, I used <a href="http://zeptojs.com/">Zepto</a> and a small amount of math. (The great thing about Zepto is that it&#39;s fully compatible with jQuery, so this should work with jQuery out of the box as well).</p>
@@ -61,7 +60,7 @@ $(window).on('scroll', function() {
 </pre>
 
 <p>The first line of interest:</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">var article_offsets = $(&#39;article&#39;).map(function(i) { 
+<div class="highlight"><pre><code class="language-text" data-lang="text">var article_offsets = $(&#39;article&#39;).map(function(i) { 
     if (i === 0) {
         return 0;
     }
@@ -72,7 +71,7 @@ $(window).on('scroll', function() {
 <p>Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.</p>
 
 <p>After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);
+<div class="highlight"><pre><code class="language-text" data-lang="text">$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);
 </code></pre></div>
 <p>This looks for the Ith element on the sidebar&#39;s list and we add a class of &#39;active&#39; to it, highlighting it and doing whatever we want with it.</p>
 
@@ -86,31 +85,28 @@ $(window).on('scroll', function() {
 
 <p>I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.</p>
 
-	</article>
-</div>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-	var disqus_shortname = 'martianwabbitblog'; // required: replace example with your forum shortname
 
-	/* * * DON'T EDIT BELOW THIS LINE * * */
-	(function() {
-		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'martianwabbitblog'; // required: replace example with your forum shortname
 
-	<footer>
-		David Sergio Díaz &copy; All Rights Reserved.
-		<br>
-		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
-	</footer>
-</div>
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
 
-	<script src="/js/main.js"></script>
+<footer>
+	<p>David Sergio Díaz © All Rights Reserved.</p>
+	<p>Happily hosted on <a href="#">WebFaction</a></p>
+</footer>
+
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

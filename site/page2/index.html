@@ -6,374 +6,94 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
 
-	<title>Seichy's Missing Bit </title>
+	<title>Sergio Díaz </title>
 	
 	<link rel="stylesheet" href="/css/screen.css">
 	<link rel="alternate" type="application/rss+xml" title="RSS Feed for martianwabbit.com" href="http://feeds.feedburner.com/SeichysMissingBit" />
 
 	<script src="/js/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 
-<div class="container">
-	<header id="top">
-		<h1>
-			<a href="/">Seichy's Missing Bit</a>
-		</h1>
-	</header>
-
-	<div class="content">
-
-	<article class="post" id="2014">
-		<header>
-			<h1>
-				<a href="/2014/01/26/2014.html">2014</a>
-			</h1>
-			<time>January 26, 2014</time>
-		</header>
-
-		<p>I know I am a little late doing the whole goal setting and year review thing but, this year I wanted to try something different. I wanted to see how January turned out before setting goals.</p>
-
-<p>This year will be pretty exciting. I&#39;ll continue working as a consultant as I have for the past couple of years. Invivo Link is doing some pretty cool things and I am happy to help them continue building their product. Over at <a href="http://www.2build.it">2build.it</a>, we&#39;re working with some pretty cool clients, building a variety of pretty cool things, hopefully the company will grow a whole lot this year.</p>
-
-<p>I tend to decide what I&#39;d like to learn more during the year. This year&#39;s language is going to be Rust. I&#39;ve fallen in love with it on the past couple of months and I&#39;d like to start building more things with it as the language becomes more stable. Apart from Rust, this year I&#39;ll be working with Objective-C a whole lot more. I don&#39;t fully like the language yet but, I feel like it can be a valuable tool in my toolset. I&#39;ll also continue working on bundle.js as it has become essential to a client&#39;s project which, turns out to be a great way to further develop it. </p>
-
-<p>I&#39;d also like to write more, I didn&#39;t get to do it as much as I wanted to last year so I&#39;ve adjusted my goal, I want to write at least, 12 posts during the year. I think this is a reasonable quantity and I hope I&#39;ll be able to reach it. I&#39;d also like to read more, my goal for that is at least 52 books. I am up to speed so far so I am pretty sure I can reach that.</p>
-
-<p>Finally, I&#39;d like a travel more this year, I am getting a little tired and burned out and I feel that it would help me to travel and see things. </p>
-
-<p>I achieved most of the important goals from last year so, I am looking forward to a great year.</p>
-
-	</article>
-
-	<article class="post" id="You've Gotta Love Deferreds">
-		<header>
-			<h1>
-				<a href="/2013/11/12/youve-gotta-love-deferreds.html">You've Gotta Love Deferreds</a>
-			</h1>
-			<time>November 12, 2013</time>
-		</header>
-
-		<p>Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:</p>
-
-<pre>
-<code data-language="html">
-var settings = {
-    template: 'todo.hbs',
-    data_src: '/todo.json'
-};
-    
-var template;
-    
-var getting_template;
-var getting_data;
-    
-if ('template' in settings) {
-    getting_template = $.get(settings.template);
-    
-    getting_template.done(function(t) {
-        template = t;
-    });
-    
-    if ('data_src' in settings) {
-        getting_data = $.get(settings.data_src);
-        getting_data.done(function(data) {
-            render(template, data);
-        });
-    } else {
-        getting_template.done(function(t) {
-            render(t, {});
-        });
-    }
-} else {
-    render('', {});
-}
-</code>
-</pre>
-
-<p>(I am pretty sure it wasn&#39;t necessarily as ugly but, I don&#39;t quite remember.)</p>
-
-<p>As you can see, even though I am making use of the deferreds returned by the <code>$.get</code> function. This could be cleaned up a lot by using even more deferreds.</p>
-
-<p>Here&#39;s more or less what the code ended up looking like:</p>
-
-<pre>
-<code data-language="html">
-var settings = {
-    template: 'todo.hbs',
-    data_src: '/todo.json'
-};
-
-var templateDefer = new $.Deferred();
-var dataDefer; = new $.Deferred();
-
-if ('template' in settings) {
-    $.get(settings.template, function(template) {
-        templateDefer.resolve(template);
-    });
-} else {
-    templateDefer.resolve('');
-}
-
-if ('data_src' in settings) {
-    $.get(settings.data_src, function(data) {
-        dataDefer.resolve(data);
-    });
-} else {
-    dataDefer.resolve({});
-}
-
-$.when(templateDefer, dataDefer).done(function(template, data) {
-    render(template, data);
-});
-</code>
-</pre>
-
-<p>I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (<code>new $.Deferred()</code>). The other handy thing built into jQuery is the <code>$.when</code> method, you can basically pass in a bunch of deferreds and you&#39;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.</p>
-
-<p>I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality. </p>
-
-<h2>Recommended links</h2>
-
-<p>Here&#39;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:</p>
-
-<ul>
-<li><a href="http://api.jquery.com/category/deferred-object/">jQuery&#39;s Deferred Object Documentation</a></li>
-<li><a href="http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/">jQuery Deferreds promises asynchronous bliss</a></li>
-<li><a href="http://promises-aplus.github.io/promises-spec/">Promises A+ Spec</a></li>
-</ul>
-
-	</article>
-
-	<article class="post" id="A Semantic Grid with Zurb's Foundation">
-		<header>
-			<h1>
-				<a href="/2013/10/11/a-semantic-grid-with-foundation.html">A Semantic Grid with Zurb's Foundation</a>
-			</h1>
-			<time>October 11, 2013</time>
-		</header>
-
-		<p><a href="http://foundation.zurb.com">Foundation</a> is great. I love it, I use it whenever I am building anything big. My favorite feature and the one key thing that has kept me as a fan for so long has been it's grid. I feel like it's the best grid we have available so far.</p>
-
-<p>
-    My favorite thing about that grid you ask? Apart from just being plainly awesome? Well, it's the semantic option. I know you probably haven't put much thought into it but, don't you feel like grid classes tend to clutter the html? I do, and I hate it. Enter the mixins!
-</p>
-
-<h2>The Mixins</h2>
-<p>
-    To alleviate this issue, Foundation gives us a set of really handy mixins which allow you to build a really semantic grid. It's as flexible as it can be and just as easy to use (I'd argue that if you're familiar with sass, it's just plainly easier and requires less typing).
-</p>
-
-<p>To demonstrate, I'll be showing you how to build this:</p>
-<div>
-    <img src="http://f.cl.ly/items/08411t3C1f393p3W2B0G/Screen%20Shot%202013-10-11%20at%2012.45.18%20PM.png" alt="Demo">
+<div id="top">
+	<h1><a href="/">Sergio Díaz<span>.</span></a></h1>
 </div>
 
-<p>As you can see, it's a very simple layout. It'd be really easy to build it using the grid classes, it's even easier to build it using the mixins. Here's my markup:</p>
-<pre>
-<code data-language="html">&lt;article&gt;
-  &lt;header&gt;
-    &lt;h1&gt;Hello World&lt;/h1&gt;
-  &lt;/header&gt;
-  
-  &lt;div&gt;
-      &lt;img src=&quot;http://lorempixel.com/300/400/&quot;&gt;
-  &lt;/div&gt;
-
-  &lt;p&gt;
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, voluptatibus, deserunt, facilis iusto sapiente impedit praesentium laudantium minus voluptas numquam incidunt corrupti sequi laboriosam magnam officia perspiciatis quas quam quaerat!
-  &lt;/p&gt;
-&lt;/article&gt;
-</code>
-</pre>
-
-<p>As you can see it's pretty standard except the elements lack classes and such. Much prettier than usual in my opinion.</p>
-
-<p>Here's my CSS:</p>
-
-<pre>
-<code data-language="css">@import "foundation/components/global";
-@import "foundation/components/grid";
-
-$total-columns: 5;
-article {
-  @include grid-row;
-
-  header {
-    @include grid-row;
-
-    h1 {
-      @include grid-column(5);  
-    }
-  }
-
-  div {
-    @include grid-column(2);
-  }
-
-  p {
-    @include grid-column(3);
-  }
-}
-</code>
-</pre>
-
-<p>Awesome, right? Here I am the grid-column and grid-row mixins to create the grid directly in my CSS. All you have to do is import the mixins. There are also many options to customize the grid, in this case I changed the number of columns from the default 12, to 5. I am also nesting rows, all from the CSS, leaving the HTML to describe it's thing. </p>
-
-<h3>Side note:</h3>
-<p>I hadn't notice that in this case you're putting a row directly inside another row, this isn't ideal as it can cause alignment issues. Ideally you'd have the header inside full width column to prevent this. I don't think it matters in this example but in anything more complex it might be a pain to debug.</p>
-
-<p>Thanks to <a href="https://twitter.com/smiley">@smiley</a> for the heads up!</p>
-
-<h2>Conclusion</h2>
-<p>I feel like this technique is a great way to simplify the HTML and further decouple it from it's CSS. They've been several similar things before such as the <a href="http://semantic.gs/">Semantic Grid</a> which experimented with this idea. Foundation has a much more powerful grid so, it being able to work this way as well makes me really happy.</p>
-	</article>
-
-	<article class="post" id="Connecting To A Remote RethinkDB Admin Interface">
-		<header>
-			<h1>
-				<a href="/2013/07/20/connecting-to-a-remote-rethinkdb-admin-interface.html">Connecting To A Remote RethinkDB Admin Interface</a>
-			</h1>
-			<time>July 20, 2013</time>
-		</header>
-
+<div class="home">
+	<div class="about">
+		<h2>Person</h2>
 		<p>
-	So here's a really quick tip, when you run a RethinkDB instance on a remote server you cannot access the admin interface, by default, from the outside of the server. The easiest way to get around this without allowing anyone to access it is to use a ssh tunnel like this:
-</p>
-
-<pre>
-	<code data-language="shell">
-$ ssh -L 8080:localhost:8080 &lt;host&gt;
-	</code>
-</pre>
-
-<p>
-	This basically uses ssh to map the port 8080 of your machine (127.0.0.1 or localhost) to the port 8080 on the host machine. Don't forget to replace "&lt;host&gt;" with your actual remote host.
-</p>
-
-<p>
-	With this, you can now connect to the admin interface by going to localhost:8080 on your machine. Note that this will only work as long as the ssh connection remains open.
-</p>
-
-<h2>Additional Resources</h2>
-<p>
-	<a href="http://www.symantec.com/connect/articles/ssh-port-forwarding">SSH Port Forwarding - Symatec</a> <br>
-	<a href="https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding">SSH/OpenSSH/PortForwarding - Ubuntu Community Documentation</a>
-</p>
-	</article>
-
-	<article class="post" id="A Javascript Array of Countries">
-		<header>
-			<h1>
-				<a href="/2013/06/28/a-javascript-array-of-countries.html">A Javascript Array of Countries</a>
-			</h1>
-			<time>June 28, 2013</time>
-		</header>
-
-		<p>Here&#39;s the Array: </p>
-
-<pre>
-<code data-language="javascript">
-var countries = ["Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia, Plurinational State Of", "Bonaire, Sint Eustatius And Saba", "Bosnia And Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, The Democratic Republic Of The", "Cook Islands", "Costa Rica", "Côte D'ivoire", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-bissau", "Guyana", "Haiti", "Heard Island And Mcdonald Islands", "Holy See (vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic Of", "Iraq", "Ireland", "Isle Of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic Of", "Korea, Republic Of", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia, The Former Yugoslav Republic Of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States Of", "Moldova, Republic Of", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine, State Of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthélemy", "Saint Helena, Ascension And Tristan Da Cunha", "Saint Kitts And Nevis", "Saint Lucia", "Saint Martin (french Part)", "Saint Pierre And Miquelon", "Saint Vincent And The Grenadines", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten (dutch Part)", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia And The South Sandwich Islands", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard And Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province Of China", "Tajikistan", "Tanzania, United Republic Of", "Thailand", "Timor-leste", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela, Bolivarian Republic Of", "Viet Nam", "Virgin Islands, British", "Virgin Islands, U.s.", "Wallis And Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"];
-</code>
-</pre>
-
-<p>It follows the ISO 3166-1-alpha-2 standard. You don&#39;t need an array with countries everyday but, when you do, getting it is a pain. I am putting it here so my future self doesn&#39;t have to look for it again. </p>
-
-<p>Here&#39;s how I got the list:</p>
-
-<pre>
-<code data-language="javascript">
-$ = jQuery;
-String.prototype.capitalize = function() {
-    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-};
-
-var countries = "var countries = [";
-
-$('tbody').find("tr").each(function(i) {
-    var country = $(this).find('td').last().text();
-    country = country.toLowerCase().capitalize();
-    if (i === 0) {
-        countries = countries + "\"" + country + "\"";
-    } else {
-        countries = countries + ", " + "\"" + country + "\"";
-    }
-});
-
-countries = countries + "];";
-console.log(countries);
-</code>
-</pre>
-
-<p>If you run that script in <a href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm">here</a>, you&#39;ll get a nice string printed on the console which you can copy and paste and use as an array. Quick 5-minute hack FTW.</p>
-
-	</article>
-
-</div>
-
-
-<div class="sidebar">
-	<div class="icons">
-		<a href="https://www.github.com/seich" class="github">&#62208;</a>
-		<a href="https://www.twitter.com/seich" class="twitter">&#62217;</a>
-		<a href="http://www.last.fm/user/Seichleon" class="lastfm">&#62241;</a>
+		Developer and designer. 
+		Specializes in the front-end. 
+		Actually likes Javascript. 
+		Honduran native, cat enthusiast and late-night gamer.
+		</p>
 	</div>
-	<ul>
-	
-		<li>
-			<a href="#2014">2014</a>
-			<time>January 26, 2014</time>
-		</li>
-	
-		<li>
-			<a href="#You've Gotta Love Deferreds">You've Gotta Love Deferreds</a>
-			<time>November 12, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#A Semantic Grid with Zurb's Foundation">A Semantic Grid with Zurb's Foundation</a>
-			<time>October 11, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#Connecting To A Remote RethinkDB Admin Interface">Connecting To A Remote RethinkDB Admin Interface</a>
-			<time>July 20, 2013</time>
-		</li>
-	
-		<li>
-			<a href="#A Javascript Array of Countries">A Javascript Array of Countries</a>
-			<time>June 28, 2013</time>
-		</li>
-	
-	</ul>
 
-	
-	<div class="pagination">
+	<div class="blog">
+		<h2>Writer</h2>
+		<ul>
 		
-			
-				<a href="/" class="previous">Previous Page</a>
-			
+			<li>
+				<h3><a href="/2014/04/04/scroll-spying-for-fun-and-profit.html">Scroll Spying for Fun and Profit</a></h3>
+				<time>April 04, 2014</time>
+			</li>
 		
-		/
+			<li>
+				<h3><a href="/2014/01/26/2014.html">2014</a></h3>
+				<time>January 26, 2014</time>
+			</li>
 		
-			<a href="/page3" class="next">Next Page</a>
+			<li>
+				<h3><a href="/2013/11/12/youve-gotta-love-deferreds.html">You've Gotta Love Deferreds</a></h3>
+				<time>November 12, 2013</time>
+			</li>
 		
+			<li>
+				<h3><a href="/2013/10/11/a-semantic-grid-with-foundation.html">A Semantic Grid with Zurb's Foundation</a></h3>
+				<time>October 11, 2013</time>
+			</li>
+		
+		</ul>
 
-		<p>-2-</p>
+		<p><a href="archive.html">Blog Archive</a></p>
 	</div>
-	
+
+	<div class="reading">
+		<h2>Reader</h2>
+		<a href="https://openlibrary.org/works/OL11817558W/Beat_the_Reaper">
+			<img src="https://covers.openlibrary.org/w/id/6391531-M.jpg" alt="Beat the Reaper">
+		</a>
+
+		<a href="https://openlibrary.org/works/OL16637768W/Gone_girl">
+			<img src="https://covers.openlibrary.org/w/id/7240542-M.jpg" alt="Gone girl">
+		</a>
+
+		<a href="https://openlibrary.org/works/OL14932974W/If_I_stay">
+			<img src="https://covers.openlibrary.org/w/id/6300478-M.jpg" alt="If I Stay">
+		</a>
+
+		<a href="https://openlibrary.org/works/OL15338505W/Norwegian_Wood">
+			<img src="https://covers.openlibrary.org/b/id/228527-M.jpg" alt="Norwegian Wood">
+		</a>
+	</div>
+
+	<div class="show">
+		<h2>Photographer</h2>
+		<p>&nbsp;</p>
+	</div>
+
+	<div class="photos show">
+	</div>
 </div>
 
-	<footer>
-		David Sergio Díaz &copy; All Rights Reserved.
-		<br>
-		Happily hosted on <a href="http://www.webfaction.com?affiliate=seich">WebFaction</a>
-	</footer>
-</div>
+<script src="js/main.js"></script>
 
-	<script src="/js/main.js"></script>
+<footer>
+	<p>David Sergio Díaz © All Rights Reserved.</p>
+	<p>Happily hosted on <a href="#">WebFaction</a></p>
+</footer>
+
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

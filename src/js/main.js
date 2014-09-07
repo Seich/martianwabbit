@@ -1,58 +1,64 @@
-var throttle = function(fn, time) {
-	var ran = false;
-	if (typeof time === 'undefined') {
-		time = 10;
-	}
+;(function(window) {
+	var flickr = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=6aa4892cdcb0c3a4ac018096af271ca1&user_id=10431905%40N06&per_page=5&format=json&nojsoncallback=1';
 
-	return function() {
-		if (ran) { return; }
-		
-		fn();
-
-		ran = true;
-		setTimeout(function() {
-			ran = false;
-		}, time);
+	var getPhotoUrl = function(photo) {
+		return 	{
+			src: 	'https://farm' + photo.farm + 
+					'.staticflickr.com/' + photo.server + '/' +
+					photo.id + '_' + photo.secret + '_z.jpg',
+			page: 'https://www.flickr.com/photos/' + photo.owner + '/' + photo.id
+		};
 	};
-};
 
-document.addEventListener('DOMContentLoaded', function() {
-	// Don't execute the code if screen's mobile-sized.
-	var mobile = window.matchMedia("only screen and (min-width : 320px) and (max-width : 480px)");
-	if (mobile.matches) { return; }
+	var loadPhotos = function(photos) {
+		var div = document.getElementsByClassName('photos')[0];
 
-	var sidebar = document.querySelector('.sidebar');
-	var sidebar_articles = Array.prototype.slice.call(document.querySelectorAll('.sidebar li'));
-	var articles = Array.prototype.slice.call(document.querySelectorAll('article'));
-	document.querySelector('.sidebar li').classList.add('active');
-	
-	// Handle the menu's fixed state.
-	window.addEventListener('scroll', throttle(function() {
-		var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-		if (scrollTop > 100) {
-			sidebar.classList.add('fixed');
-		} else {
-			sidebar.classList.remove('fixed');			
-		}
-	}));
+		photos.forEach(function(photo) {
+			var a = document.createElement('a');
+			a.href = photo.page;
 
+			var img = document.createElement('img');
+			img.src = photo.src;
 
-	window.addEventListener('scroll', function() {	
-		var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-		var article_offsets = articles.map(function(article, i) { 
-			if (i === 0) {
-				return 0;
-			}
+			a.appendChild(img);
 
-			return article.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
+			div.appendChild(a);
 		});
 
-		for (var i = 0; i < article_offsets.length; i++) {
-			if (article_offsets[i] - 40 <= scrollTop) {
-				document.querySelector('.sidebar li.active').classList.remove('active');
-				sidebar_articles[i].classList.add('active');
+		var show = Array.prototype.slice.call(document.getElementsByClassName('show'));
+
+		show.forEach(function(el) {
+			el.style.display = 'block';
+			el.style.opacity = 1;
+		});
+	};
+	
+	document.addEventListener('DOMContentLoaded', function() {
+		var httpRequest;
+
+		if (window.XMLHttpRequest) {
+			httpRequest = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try	{
+				httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {}
+			}
+		}
+
+		if (!httpRequest) { return; }
+
+		httpRequest.onreadystatechange = function() {
+			if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+				var photos = JSON.parse(httpRequest.responseText).photos.photo.map(getPhotoUrl);
+				loadPhotos(photos);
 			}
 		};
-	});
 
-});
+		httpRequest.open('GET', flickr);
+		httpRequest.send();
+
+	});
+}(window));

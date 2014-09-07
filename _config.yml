@@ -4,5 +4,7 @@ plugins: ./_plugins
 name: Seichy's Missing Bit
 description: 'A blog on programing, dreams, pandas and sweet food.'
 url: http://martianwabbit.com
-paginate: 5
+paginate: 4
 markdown: redcarpet
+sass:
+    style: :compressed
