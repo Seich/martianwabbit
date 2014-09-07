@@ -1,18 +1,7 @@
 ---
 ---
 /* Fonts */
-
-/** Entypo pictograms by Daniel Bruce — www.entypo.com **/
-/*@font-face {
-  font-family: 'Entypo';
-  src: url('/fonts/entypo-social.eot');
-  src: url('/fonts/entypo-social.eot?#iefix') format('embedded-opentype'),
-	   url('/fonts/entypo-social.woff') format('woff'),
-	   url('/fonts/entypo-social.ttf')  format('truetype'),
-	   url('/fonts/entypo-social.svg#svgFontName') format('svg');
-}*/
-
-/*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|PT+Serif:400,700);*/
+@import url(http://fonts.googleapis.com/css?family=PT+Serif|EB+Garamond);
 
 $green: rgb(134, 184, 0);
 $blue: rgb(0, 134, 184);
@@ -74,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-	color: $blue;
+	color: $green;
 }
 
 /* Top */
@@ -170,6 +159,7 @@ footer {
 
 	img {
 		width: 20%;
+		height: 190px;
 	}
 }
 
@@ -211,7 +201,7 @@ article {
 
 	h2 {
 		font-size: 24px;
-		font-weight: 600;
+		font-weight: 400;
 		margin: 0;
 	}
 
