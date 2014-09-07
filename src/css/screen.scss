@@ -285,6 +285,83 @@ section.fourOfour {
 	margin: 0 auto;
 }
 
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+	body {
+		font-size: 1.3em;
+	}
+
+	#top {
+		margin: 0;
+		text-align: center;
+	}
+
+	.home {
+		& > div {
+			width: 90%;
+
+			h2 {
+				float: none;
+				position: initial;
+				text-align: left;
+				margin-bottom: 1em;
+			}
+
+			p {
+				margin: 0;
+			}
+
+			ul {
+				margin: 0;
+			}
+		}
+
+		.reading img {
+			width: 40%;
+			height: auto;
+		}
+
+		.photos {
+			margin-top: 0;
+		
+			img {
+				width: 50%;
+			}
+		}
+
+		.blog p > a {
+			margin-top: 1em;
+			display: block;
+		}
+	}
+
+	.archive {
+		width: 90%;
+		font-size: 0.8em;
+	}
+
+	article {
+		width: 90%;
+		max-width: 90%;
+		padding: 0;
+		
+		h1 {
+			font-size: 1.5em;
+		}
+
+		aside {
+			font-size: 0.8em;
+		}
+
+		p {
+			font-size: 22px;
+			line-height: 160%;
+		}
+	}
+}
+
 /* Code */
 /* Tomorrow Comment */
 .hljs-comment,
