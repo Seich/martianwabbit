@@ -1,5 +1,5 @@
 ;(function(window) {
-	var flickr = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=6aa4892cdcb0c3a4ac018096af271ca1&user_id=10431905%40N06&per_page=5&format=json&nojsoncallback=1';
+	var flickr = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=06477985bb250a134a164fd754d5cbef&user_id=10431905%40N06&per_page=5&format=json&nojsoncallback=1';
 
 	var getPhotoUrl = function(photo) {
 		return 	{
