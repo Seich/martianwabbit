@@ -156,10 +156,12 @@ footer {
 .home .photos {
 	width: 100%;
 	margin-top: 2em;
+	text-align: center;
 
 	img {
 		width: 20%;
 		height: 190px;
+		min-width: 240px;
 	}
 }
 
