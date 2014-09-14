@@ -128,8 +128,13 @@ footer {
 			margin-left: 25%;
 
 			h3 {
-				font-size: 1em;
+				font-size: 1.1em;
 				margin-bottom: 0;
+				font-weight: 100;
+
+				a:hover {
+					text-decoration: none;
+				}
 			}
 
 			p {
