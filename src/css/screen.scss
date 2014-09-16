@@ -212,6 +212,15 @@ article {
 		margin: 0;
 	}
 
+	.notice {
+		background: rgba(134, 184, 0, 0.1);
+		border: 1px solid rgba(134, 184, 0, 0.4);
+		padding: 0.5em;
+		border-radius: 1px;
+		font-size: 1.3em;
+		text-align: center;
+	}
+
 	p {
 		font-size: 16px;
 		margin: 1em 0;
