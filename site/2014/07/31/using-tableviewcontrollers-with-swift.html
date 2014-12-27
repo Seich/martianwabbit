@@ -41,10 +41,10 @@ Finally, I added two labels to the prototype cell. You can use the prototype cel
 
 <p>(There&#39;s a preset style that&#39;s only a title and a subtitle which I could have used but, I want more control over it&#39;s appearance so I went this way)</p>
 
-<p><video controls>
+<video controls>
     <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
     <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.webm" type="video/webm; codecs=vp8,vorbis">
-</video></p>
+</video>
 
 <p>Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from <code>UITableViewCell</code>. I&#39;ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one &quot;username&quot; and the smaller one &quot;body&quot;.</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">// TweetCell.swift
@@ -56,10 +56,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var body: UILabel!
 }
 </code></pre></div>
-<p><video controls>
+<video controls>
     <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
     <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.webm" type="video/webm; codecs=vp8,vorbis">
-</video></p>
+</video>
 
 <h2>The ViewController</h2>
 

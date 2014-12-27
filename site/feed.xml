@@ -7,6 +7,39 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Angular.js One-way bindings</title>
+				<description>&lt;p&gt;This week I discovered One-way bindings in Angular.&lt;/p&gt;
+
+&lt;p&gt;Angular&amp;#39;s one-way bindings are a great way to improve your app&amp;#39;s performance. Here&amp;#39;s what the documentation says about them:&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;
+    One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+    &lt;/p&gt;
+    -&lt;cite&gt;&lt;a href=&quot;https://docs.angularjs.org/guide/expression#one-time-binding&quot;&gt;Expressions, Angular Developer Guide&lt;/a&gt;&lt;/cite&gt;
+&lt;/blockquote&gt;
+    
+
+&lt;p&gt;This means that by using them, once the value is not undefined, the bound value is removed from the watch list and thus isn&amp;#39;t processed anymore during the digest cycle.&lt;/p&gt;
+
+&lt;p&gt;The syntax is pretty straight forward and very easy to use. All you have to do is prepend &lt;code&gt;::&lt;/code&gt; before the value in the binding like this: &lt;code&gt;{{ ::user.name }}&lt;/code&gt;. Once the value is set to the user&amp;#39;s name, it won&amp;#39;t be watched for changes anymore.&lt;/p&gt;
+
+&lt;p&gt;Great, huh?&lt;/p&gt;
+
+&lt;p&gt;You can use them as part of expressions and directives as well so, go crazy!&lt;/p&gt;
+
+&lt;h2&gt;Read More!&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.thoughtram.io/angularjs/2014/10/14/exploring-angular-1.3-one-time-bindings.html&quot;&gt;Exploring Angular 1.3: One-time bindings&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.angularjs.org/guide/expression#one-time-binding&quot;&gt;One-time binding, Angular Developers Guide&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Fri, 26 Dec 2014 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2014/12/26/angular-one-time-bindings.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2014/12/26/angular-one-time-bindings.html</guid>
+			</item>
+		
+			<item>
 				<title>JustVector Social Font 1.5</title>
 				<description>&lt;p&gt;Today I am releasing a new version of the JustVector social font. &lt;/p&gt;
 
@@ -44,10 +77,10 @@ Finally, I added two labels to the prototype cell. You can use the prototype cel
 
 &lt;p&gt;(There&amp;#39;s a preset style that&amp;#39;s only a title and a subtitle which I could have used but, I want more control over it&amp;#39;s appearance so I went this way)&lt;/p&gt;
 
-&lt;p&gt;&lt;video controls&gt;
+&lt;video controls&gt;
     &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot;&gt;
     &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot;&gt;
-&lt;/video&gt;&lt;/p&gt;
+&lt;/video&gt;
 
 &lt;p&gt;Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from &lt;code&gt;UITableViewCell&lt;/code&gt;. I&amp;#39;ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one &amp;quot;username&amp;quot; and the smaller one &amp;quot;body&amp;quot;.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;// TweetCell.swift
@@ -59,10 +92,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var body: UILabel!
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;video controls&gt;
+&lt;video controls&gt;
     &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot;&gt;
     &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot;&gt;
-&lt;/video&gt;&lt;/p&gt;
+&lt;/video&gt;
 
 &lt;h2&gt;The ViewController&lt;/h2&gt;
 
@@ -176,10 +209,10 @@ class ViewController: UITableViewController, UITableViewDataSource {
 &lt;p&gt;&lt;img src=&quot;http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png&quot; alt=&quot;New Project Screen&quot;&gt;
 Then added a MKMapView to the view controller. After that, imported &lt;code&gt;MapKit&lt;/code&gt; into the view controller&amp;#39;s code. Finally, I added a new reference outlet to the map called &lt;em&gt;map&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;video controls&gt;
+&lt;video controls&gt;
     &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot;&gt;
     &lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot;&gt;
-&lt;/video&gt;&lt;/p&gt;
+&lt;/video&gt;
 
 &lt;h2&gt;Setup your desired location&lt;/h2&gt;
 
@@ -626,36 +659,6 @@ article {
 				<pubDate>Fri, 11 Oct 2013 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2013/10/11/a-semantic-grid-with-foundation.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2013/10/11/a-semantic-grid-with-foundation.html</guid>
-			</item>
-		
-			<item>
-				<title>Connecting To A Remote RethinkDB Admin Interface</title>
-				<description>&lt;p&gt;
-	So here&#39;s a really quick tip, when you run a RethinkDB instance on a remote server you cannot access the admin interface, by default, from the outside of the server. The easiest way to get around this without allowing anyone to access it is to use a ssh tunnel like this:
-&lt;/p&gt;
-
-&lt;pre&gt;
-	&lt;code data-language=&quot;shell&quot;&gt;
-$ ssh -L 8080:localhost:8080 &amp;lt;host&amp;gt;
-	&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;
-	This basically uses ssh to map the port 8080 of your machine (127.0.0.1 or localhost) to the port 8080 on the host machine. Don&#39;t forget to replace &quot;&amp;lt;host&amp;gt;&quot; with your actual remote host.
-&lt;/p&gt;
-
-&lt;p&gt;
-	With this, you can now connect to the admin interface by going to localhost:8080 on your machine. Note that this will only work as long as the ssh connection remains open.
-&lt;/p&gt;
-
-&lt;h2&gt;Additional Resources&lt;/h2&gt;
-&lt;p&gt;
-	&lt;a href=&quot;http://www.symantec.com/connect/articles/ssh-port-forwarding&quot;&gt;SSH Port Forwarding - Symatec&lt;/a&gt; &lt;br&gt;
-	&lt;a href=&quot;https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding&quot;&gt;SSH/OpenSSH/PortForwarding - Ubuntu Community Documentation&lt;/a&gt;
-&lt;/p&gt;</description>
-				<pubDate>Sat, 20 Jul 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/07/20/connecting-to-a-remote-rethinkdb-admin-interface.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/07/20/connecting-to-a-remote-rethinkdb-admin-interface.html</guid>
 			</item>
 		
 	</channel>
