@@ -1,5 +1,6 @@
 ;(function(window) {
 	var flickr = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=06477985bb250a134a164fd754d5cbef&user_id=10431905%40N06&per_page=5&format=json&nojsoncallback=1';
+	var behance = 'http://www.behance.net/v2/users/seich/wips?client_id=30sND6cPqPURn4aatiwWHfsG3TypOYXp&sort=published_date&page=1&time=all';
 
 	var getPhotoUrl = function(photo) {
 		return 	{
@@ -10,8 +11,9 @@
 		};
 	};
 
-	var loadPhotos = function(photos) {
+	window.jsonFlickrApi = function(photos) {
 		var div = document.getElementsByClassName('photos')[0];
+		photos = photos.photos.photo.map(getPhotoUrl);
 
 		photos.forEach(function(photo) {
 			var a = document.createElement('a');
@@ -32,8 +34,8 @@
 			el.style.opacity = 1;
 		});
 	};
-	
-	document.addEventListener('DOMContentLoaded', function() {
+
+	var get = function(url, cb) {
 		var httpRequest;
 
 		if (window.XMLHttpRequest) {
@@ -52,13 +54,16 @@
 
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-				var photos = JSON.parse(httpRequest.responseText).photos.photo.map(getPhotoUrl);
-				loadPhotos(photos);
+				cb(httpRequest.responseText);
 			}
 		};
 
-		httpRequest.open('GET', flickr);
+		httpRequest.open('GET', url);
 		httpRequest.send();
+	};
+	
 
-	});
+	window.loadShots = function() {
+		console.log(arguments);
+	};
 }(window));
