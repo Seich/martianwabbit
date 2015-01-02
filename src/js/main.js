@@ -1,6 +1,24 @@
 ;(function(window) {
-	var flickr = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=06477985bb250a134a164fd754d5cbef&user_id=10431905%40N06&per_page=5&format=json&nojsoncallback=1';
-	var behance = 'http://www.behance.net/v2/users/seich/wips?client_id=30sND6cPqPURn4aatiwWHfsG3TypOYXp&sort=published_date&page=1&time=all';
+	var appendTo = function(div, items, show) {
+		items.forEach(function(item) {
+			var a = document.createElement('a');
+			a.href = item.page;
+
+			var img = document.createElement('img');
+			img.src = item.src;
+
+			a.appendChild(img);
+
+			div.appendChild(a);
+		});
+
+		var show = Array.prototype.slice.call(document.querySelectorAll(show));
+
+		show.forEach(function(el) {
+			el.style.display = 'block';
+			el.style.opacity = 1;
+		});	
+	};
 
 	var getPhotoUrl = function(photo) {
 		return 	{
@@ -12,58 +30,27 @@
 	};
 
 	window.jsonFlickrApi = function(photos) {
-		var div = document.getElementsByClassName('photos')[0];
+		var div = document.querySelectorAll('.photos')[0];
 		photos = photos.photos.photo.map(getPhotoUrl);
 
-		photos.forEach(function(photo) {
-			var a = document.createElement('a');
-			a.href = photo.page;
-
-			var img = document.createElement('img');
-			img.src = photo.src;
-
-			a.appendChild(img);
-
-			div.appendChild(a);
-		});
-
-		var show = Array.prototype.slice.call(document.getElementsByClassName('show'));
-
-		show.forEach(function(el) {
-			el.style.display = 'block';
-			el.style.opacity = 1;
-		});
-	};
-
-	var get = function(url, cb) {
-		var httpRequest;
-
-		if (window.XMLHttpRequest) {
-			httpRequest = new XMLHttpRequest();
-		} else if (window.ActiveXObject) {
-			try	{
-				httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch (e) {
-				try {
-					httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-				} catch (e) {}
-			}
-		}
-
-		if (!httpRequest) { return; }
-
-		httpRequest.onreadystatechange = function() {
-			if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-				cb(httpRequest.responseText);
-			}
-		};
-
-		httpRequest.open('GET', url);
-		httpRequest.send();
+		appendTo(div, photos, '.photos.show, .photo-title');
 	};
 	
+	var getShotUrl = function(shot) {
+		revision = shot.revisions[Object.keys(shot.revisions)[0]];
 
-	window.loadShots = function() {
-		console.log(arguments);
+		return { 
+			src: revision.images.thumb_240.url,  
+			page: shot.url
+		};
+	};
+
+	window.loadShots = function(shots) {
+		if (shots.http_code !== 200) { return };
+
+		var div = document.querySelectorAll('.shots')[0];
+		shots = shots.wips.map(getShotUrl);
+		
+		appendTo(div, shots, '.shots.show, .shot-title')
 	};
 }(window));
