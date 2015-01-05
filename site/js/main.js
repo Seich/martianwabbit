@@ -50,6 +50,7 @@
 
 		var div = document.querySelectorAll('.shots')[0];
 		shots = shots.wips.map(getShotUrl);
+		shots = shots.splice(0, 3);
 		
 		appendTo(div, shots, '.shots.show, .shot-title')
 	};
