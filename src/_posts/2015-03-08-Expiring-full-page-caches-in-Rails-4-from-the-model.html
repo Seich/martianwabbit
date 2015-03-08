@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Invalidating expiring full-page caches in Rails 4 from the model"
+title: "Expiring full-page caches in Rails 4 from the model"
 ---
 
 <p>Recently I was struggling with Rail’s full-page cache. Ever since it was moved out of core I can’t seem to get sweepers to work correctly. After fiddling around for several hours I finally found the best solution possible (excluding sweepers, that is), invalidating the cache on the model’s callbacks. Here’s how it looks:</p>
