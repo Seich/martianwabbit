@@ -7,7 +7,7 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Invalidating expiring full-page caches in Rails 4 from the model</title>
+				<title>Expiring full-page caches in Rails 4 from the model</title>
 				<description>&lt;p&gt;Recently I was struggling with Rail’s full-page cache. Ever since it was moved out of core I can’t seem to get sweepers to work correctly. After fiddling around for several hours I finally found the best solution possible (excluding sweepers, that is), invalidating the cache on the model’s callbacks. Here’s how it looks:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;class Ad &amp;lt; ActiveRecord::Base
@@ -30,8 +30,8 @@ end
 &lt;p&gt;Other than these 2 things it’s pretty straight-forward and easy to use. I hope I don’t have to use full page caching again any time soon.&lt;/p&gt;
 </description>
 				<pubDate>Sun, 08 Mar 2015 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2015/03/08/Invalidating-expiring-full-page-caches-in-Rails-4-from-the-model.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2015/03/08/Invalidating-expiring-full-page-caches-in-Rails-4-from-the-model.html</guid>
+				<link>http://martianwabbit.com/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</guid>
 			</item>
 		
 			<item>
