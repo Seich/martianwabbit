@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title></title>
+		<description></description>
+		<link></link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Expiring full-page caches in Rails 4 from the model</title>
+				<description>&lt;p&gt;Recently I was struggling with Rail’s full-page cache. Ever since it was moved out of core I can’t seem to get sweepers to work correctly. After fiddling around for several hours I finally found the best solution possible (excluding sweepers, that is), invalidating the cache on the model’s callbacks. Here’s how it looks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Ad &amp;lt; ActiveRecord::Base
+  after_save :clear_cache
+  after_destroy :clear_cache
+
+  def clear_cache
+        ActionController::Base.expire_page(&#39;/ads.json&#39;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There’s a couple of gotchas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You can’t use the nice syntax that’s available on controllers when you use &lt;code&gt;expire_page&lt;/code&gt;, you have to pass the route to the file as a string. I couldn’t get it to work any other way (You could use url helpers to come up with this route, I suppose).&lt;/li&gt;
+&lt;li&gt;You have to make sure to expire any additional pages that might have changed base on the model’s relationship since this won’t handle it for you.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Other than these 2 things it’s pretty straight-forward and easy to use. I hope I don’t have to use full page caching again any time soon.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 08 Mar 2015 00:00:00 -0600</pubDate>
+				<link>/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</link>
+				<guid isPermaLink="true">/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</guid>
+			</item>
+		
+			<item>
+				<title>Angular.js One-way bindings</title>
+				<description>&lt;p&gt;This week I discovered One-way bindings in Angular.&lt;/p&gt;
+
+&lt;p&gt;Angular’s one-way bindings are a great way to improve your app’s performance. Here’s what the documentation says about them:&lt;/p&gt;
+
+&lt;blockquote&gt;
+	&lt;p&gt;
+	One-time expressions will stop recalculating once they are stable, which happens after the first digest if the expression result is a non-undefined value.
+	&lt;/p&gt;
+	-&lt;cite&gt;&lt;a href=&quot;https://docs.angularjs.org/guide/expression#one-time-binding&quot;&gt;Expressions, Angular Developer Guide&lt;/a&gt;&lt;/cite&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This means that by using them, once the value is not undefined, the bound value is removed from the watch list and thus isn’t processed anymore during the digest cycle.&lt;/p&gt;
+
+&lt;p&gt;The syntax is pretty straight forward and very easy to use. All you have to do is prepend &lt;code&gt;::&lt;/code&gt; before the value in the binding like this: &lt;code&gt;{{ ::user.name }}&lt;/code&gt;. Once the value is set to the user’s name, it won’t be watched for changes anymore.&lt;/p&gt;
+
+&lt;p&gt;Great, huh?&lt;/p&gt;
+
+&lt;p&gt;You can use them as part of expressions and directives as well so, go crazy!&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read More!&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.thoughtram.io/angularjs/2014/10/14/exploring-angular-1.3-one-time-bindings.html&quot;&gt;Exploring Angular 1.3: One-time bindings&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.angularjs.org/guide/expression#one-time-binding&quot;&gt;One-time binding, Angular Developers Guide&lt;/a&gt;&lt;/p&gt;
+
+</description>
+				<pubDate>Fri, 26 Dec 2014 00:00:00 -0600</pubDate>
+				<link>/2014/12/26/angular-one-time-bindings.html</link>
+				<guid isPermaLink="true">/2014/12/26/angular-one-time-bindings.html</guid>
+			</item>
+		
+			<item>
+				<title>JustVector Social Font 1.5</title>
+				<description>&lt;p&gt;Today I am releasing a new version of the JustVector social font. &lt;/p&gt;
+
+&lt;p&gt;3 years and 59k downloads later, the process of building icon fonts has changed radically. There are a bunch of new and better ways to get things done, I think the process has come a very long way in the past 3 years. Taking these new techniques and ideas into account, I’ve rebuilt the font from scratch.&lt;/p&gt;
+
+&lt;p&gt;I had a couple of objectives with this new version: First, I wanted to fit in all of the icons, when I first built the font this wasn’t quite as trivial since I kept running out of glyphs I could replace but these days it’s quite easy. You can use special glyphs and css to have as many icons as you want (I am not sure how many that is to be honest). &lt;/p&gt;
+
+&lt;p&gt;Second, I wanted to make the process of building a new font as automatic as possible. 3 years ago I had to manually export each glyph and add it to the font. It took fairly long and was painful to hint and size correctly.&lt;/p&gt;
+
+&lt;p&gt;The process is now automatic, I use &lt;a href=&quot;http://fontcustom.com/&quot;&gt;font custom&lt;/a&gt; which allows me to automate the whole process. I can now build a new version in a couple of minutes. This means that I no longer will take 3 years between versions. I am aiming to keep it synced with the &lt;a href=&quot;http://alexpeattie.com/projects/justvector_icons/&quot;&gt;original set&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;All in all I am really happy with the much-needed update. I’d like to thank &lt;a href=&quot;http://www.maxrice.com/&quot;&gt;Max Rice&lt;/a&gt; for helping me find the motivation to revisit the project and &lt;a href=&quot;http://alexpeattie.com&quot;&gt;Alex Peattie&lt;/a&gt; for the wonderful icon set.&lt;/p&gt;
+
+&lt;p&gt;The project can now be found on Github: &lt;a href=&quot;https://github.com/Seich/JustVector-Icons-Font&quot;&gt;https://github.com/Seich/JustVector-Icons-Font&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s a preview: &lt;a href=&quot;https://dl.dropboxusercontent.com/u/8252879/justVector%20Font/index.html&quot;&gt;Preview&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here’s the download link: &lt;a href=&quot;http://cl.ly/203m2e0n1J2K&quot;&gt;Download&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Mon, 15 Sep 2014 00:00:00 -0600</pubDate>
+				<link>/2014/09/15/just-vector-social-font-1-5.html</link>
+				<guid isPermaLink="true">/2014/09/15/just-vector-social-font-1-5.html</guid>
+			</item>
+		
+			<item>
+				<title>Using TableViewControllers with Swift</title>
+				<description>&lt;p&gt;Using a TableViewController with swift is easy. It takes only a couple of steps to create a table with custom cells. I started by creating a single view application.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTables_step_1.png&quot; alt=&quot;New Project&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-the-table-and-cell-prototype&quot;&gt;Setting up the table and cell prototype&lt;/h2&gt;
+
+&lt;p&gt;I started by deleting the default view. Then, I added a &lt;em&gt;Table View Controller&lt;/em&gt; to the storyboard.
+Finally, I added two labels to the prototype cell. You can use the prototype cell to define how the cells for the table will look, so go ahead and tweak it to your convenience. Afterwards, I set the cell’s identifier to ‘cell’. I am creating a Twitter client so I only need to display the user and the Tweet. &lt;/p&gt;
+
+&lt;p&gt;(There’s a preset style that’s only a title and a subtitle which I could have used but, I want more control over it’s appearance so I went this way)&lt;/p&gt;
+
+&lt;video controls=&quot;&quot;&gt;
+	&lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot; /&gt;
+	&lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot; /&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from &lt;code&gt;UITableViewCell&lt;/code&gt;. I’ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one “username” and the smaller one “body”.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// TweetCell.swift
+import UIKit
+
+class TweetCell: UITableViewCell {
+
+	@IBOutlet weak var username: UILabel!
+    @IBOutlet weak var body: UILabel!
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;video controls=&quot;&quot;&gt;
+	&lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot; /&gt;
+	&lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot; /&gt;
+&lt;/video&gt;
+
+&lt;h2 id=&quot;the-viewcontroller&quot;&gt;The ViewController&lt;/h2&gt;
+&lt;p&gt;Now I only have to set up the view controller. We already have the basic view controller that came with the project so now we can just change it to do our bidding.&lt;/p&gt;
+
+&lt;p&gt;I start by creating a struct to contain my tweets. I added it before the ViewController’s class definition. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct Tweet {
+	var username: String
+    var body: String
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After that, I changed the ViewController’s parent class from &lt;code&gt;UIViewController&lt;/code&gt; to &lt;code&gt;UITableViewController&lt;/code&gt; and added the &lt;code&gt;UITableViewDataSource&lt;/code&gt; protocol to it so my class looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class ViewController: UITableViewController, UITableViewDataSource {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I added an array with a couple of tweets:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var tweets: [Tweet] = [
+	Tweet(username: &quot;Seich&quot;, body: &quot;Hello, World&quot;),
+    Tweet(username: &quot;Albert&quot;, body: &quot;How are you doing?&quot;)
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally I just need to override a couple of methods. The first one is this method:  &lt;code&gt;tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -&amp;gt; UITableViewCell! &lt;/code&gt; which determines what cell should be drawn at the given index. Here’s how mine looks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;override func tableView(
+	tableView: UITableView!, 
+	cellForRowAtIndexPath indexPath: NSIndexPath!) 
+	-&amp;gt; UITableViewCell! {
+    
+    var cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;) as TweetCell
+    
+    cell.username.text = tweets[indexPath.row].username
+    cell.body.text = tweets[indexPath.row].body
+    
+    return cell
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The second method is this one: &lt;code&gt;override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -&amp;gt; Int&lt;/code&gt; which should return the number of cells to draw, mine looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; override func tableView(
+ 	tableView: UITableView!, 
+ 	numberOfRowsInSection section: Int) -&amp;gt; Int {
+
+    return tweets.count
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that’s it. Here’s my final code for the view controller:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import UIKit
+
+struct Tweet {
+    var username: String
+    var body: String
+}
+
+class ViewController: UITableViewController, UITableViewDataSource {
+    
+    var tweets: [Tweet] = [
+        Tweet(username: &quot;Seich&quot;, body: &quot;Hello, World&quot;),
+        Tweet(username: &quot;Albert&quot;, body: &quot;How are you doing?&quot;)
+    ]
+    
+    override func tableView(
+        tableView: UITableView!,
+        numberOfRowsInSection section: Int)
+        -&amp;gt; Int {
+            
+        return tweets.count
+    }
+    
+    override func tableView(
+        tableView: UITableView!,
+        cellForRowAtIndexPath indexPath: NSIndexPath!)
+        -&amp;gt; UITableViewCell! {
+            
+        var cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;) as TweetCell
+        
+        cell.username.text = tweets[indexPath.row].username
+        cell.body.text = tweets[indexPath.row].body
+        
+        return cell
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is what my finalised app looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftTables_final.png&quot; alt=&quot;Final app&quot; class=&quot;small&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s not perfect but, it shouldn’t take much to have it looking decent. I’ll probably be revisiting this soon and finishing the whole Twitter application so stay tuned for more. &lt;/p&gt;
+
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/userexperience/conceptual/tableview_iphone/AboutTableViewsiPhone/AboutTableViewsiPhone.html&quot;&gt;About Table Views in iOS Apps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/userexperience/conceptual/tableview_iphone/CreateConfigureTableView/CreateConfigureTableView.html&quot;&gt;Creating and Configuring a Table View&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.raywenderlich.com/50308/storyboards-tutorial-in-ios-7-part-1&quot;&gt;Storyboard Tutorial&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 31 Jul 2014 00:00:00 -0600</pubDate>
+				<link>/2014/07/31/using-tableviewcontrollers-with-swift.html</link>
+				<guid isPermaLink="true">/2014/07/31/using-tableviewcontrollers-with-swift.html</guid>
+			</item>
+		
+			<item>
+				<title>Using MapKit with Swift</title>
+				<description>&lt;p&gt;I’ve been using Swift a lot lately. I wanted to start making iOS apps a while ago but Objective-C is frankly, not worth the trouble. Swift on the other hand is actually fun to use and I love experiencing how the language evolves.&lt;/p&gt;
+
+&lt;p&gt;This weekend I started working on a small app I’ve wanted for a while but got stuck when it came to implementing a map with MapKit. I couldn’t find documentation or code samples on how to do it anywhere. Turns out that it’s not hard at all! It took very little fiddling around before I figured it out. Here’s how I did it:&lt;/p&gt;
+
+&lt;h2 id=&quot;first-create-a-new-project&quot;&gt;First, create a new project&lt;/h2&gt;
+&lt;p&gt;I started with a &lt;strong&gt;Single View Application&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png&quot; alt=&quot;New Project Screen&quot; /&gt;
+Then added a MKMapView to the view controller. After that, imported &lt;code&gt;MapKit&lt;/code&gt; into the view controller’s code. Finally, I added a new reference outlet to the map called &lt;em&gt;map&lt;/em&gt;.&lt;/p&gt;
+
+&lt;video controls=&quot;&quot;&gt;
+	&lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4&quot; type=&quot;video/mp4; codecs=avc1.42E01E,mp4a.40.2&quot; /&gt;
+	&lt;source src=&quot;https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.webm&quot; type=&quot;video/webm; codecs=vp8,vorbis&quot; /&gt;
+&lt;/video&gt;
+
+&lt;h2 id=&quot;setup-your-desired-location&quot;&gt;Setup your desired location&lt;/h2&gt;
+&lt;p&gt;Now our map is ready to display a location. You’ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var location = CLLocationCoordinate2D(
+	latitude: 16.40, 
+	longitude: -86.34
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, we need to tell the map what the area spanned by the region is. For this we use &lt;code&gt;MKCoordinateSpanMake&lt;/code&gt;. Which, as you probably guessed, creates a &lt;code&gt;MKCoordinateSpan&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var span = MKCoordinateSpanMake(1, 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After that we just need to define the region using these two things:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var region = MKCoordinateRegion(center: location, span: span)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And finally, we set this region to the map:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;map.setRegion(region, animated: true)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;bonus-adding-an-annotation&quot;&gt;Bonus: Adding an annotation&lt;/h2&gt;
+&lt;p&gt;Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It’ll display the default red pin which, might not be as pretty but it’ll get the job done.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var annotation = MKPointAnnotation()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Afterwards, we can set it’s coordinates, title and subtitle to place it wherever we want and to add the text it’s callout will display when tapped.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;annotation.setCoordinate(location)
+annotation.title = &quot;Roatan&quot;
+annotation.subtitle = &quot;Honduras&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, we add it to the map like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;map.addAnnotation(annotation)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here’s my final code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import UIKit
+import MapKit
+
+class ViewController: UIViewController {
+                        
+	@IBOutlet weak var map: MKMapView!
+    override func viewDidLoad() {
+    	super.viewDidLoad()
+    
+        var location = CLLocationCoordinate2D(
+        	latitude: 16.40, 
+        	longitude: -86.34
+        )
+        
+	    var span = MKCoordinateSpanMake(0.5, 0.5)
+    	var region = MKCoordinateRegion(center: location, span: span)
+    
+        map.setRegion(region, animated: true)
+
+	    var annotation = MKPointAnnotation()
+    	annotation.setCoordinate(location)
+        annotation.title = &quot;Roatan&quot;
+	    annotation.subtitle = &quot;Honduras&quot;
+    
+    	map.addAnnotation(annotation)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here’s what my app looks like:
+&lt;img src=&quot;http://f.cl.ly/items/2r0a21423A3l2S381U3w/final.png&quot; alt=&quot;Final product&quot; class=&quot;small&quot; /&gt;
+## Additional Resources&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/userexperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html&quot;&gt;Location and Maps Programming Guide&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Tue, 29 Jul 2014 00:00:00 -0600</pubDate>
+				<link>/2014/07/29/using-mapkit-with-swift.html</link>
+				<guid isPermaLink="true">/2014/07/29/using-mapkit-with-swift.html</guid>
+			</item>
+		
+			<item>
+				<title>Using mailgun to receive emails with Phabricator</title>
+				<description>&lt;p&gt;&lt;a href=&quot;http://phabricator.com&quot;&gt;Phabricator&lt;/a&gt; is awesome. We recently started trying it out for &lt;a href=&quot;http://2build.it&quot;&gt;2build.it&lt;/a&gt; (more like, this morning) and we all (&lt;a href=&quot;http://jorge.caballeromurillo.com&quot;&gt;Jorge&lt;/a&gt; and I) agreed it’s awesome. &lt;/p&gt;
+
+&lt;p&gt;The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you’re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn’t mentioned anywhere in the documentation. Btw, here’s how you do it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./bin/phd restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Right from the Phabricator folder.&lt;/p&gt;
+
+&lt;p&gt;Moving on.&lt;/p&gt;
+
+&lt;p&gt;Now that sending was settled there was one huge thing that wasn’t working. Inbound emails. I tried working with postfix but, it was too painful and after a couple of hours I didn’t get anywhere. The &lt;a href=&quot;https://secure.phabricator.com/book/phabricator/article/configuring_inbound_email/&quot;&gt;documentation&lt;/a&gt; talks about using sendgrid to achieve it but, I already have a mailgun account and according to the configuration Phabricator should be able to use mailgun as well. So, I had to do some research.&lt;/p&gt;
+
+&lt;p&gt;It turns out you can use mailgun to do this but, there’s zero documentation about it. Luckily, I found the &lt;a href=&quot;https://secure.phabricator.com/rPa9612fac24a9eb97ad3f611d84dfedbce98d17ad&quot;&gt;commit&lt;/a&gt; where this functionality was added and figured it out on my own. Here’s the three step guide to getting it done.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-1&quot;&gt;Step 1&lt;/h2&gt;
+&lt;p&gt;You have to configure you domain’s MX records to point to mailgun. You can find more information &lt;a href=&quot;http://documentation.mailgun.com/user_manual.html#verifying-your-domain&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-2&quot;&gt;Step 2&lt;/h2&gt;
+&lt;p&gt;Go to your setup your mailgun configuration by going to the mailgun config (http://example.com/config/group/mailgun/) and adding your API key and your domain.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-3&quot;&gt;Step 3&lt;/h2&gt;
+&lt;p&gt;We’re almost done. Now, all we have to do is tell mailgun to send received emails your way. To do this all you have to do is create a new route (go here: &lt;a href=&quot;https://mailgun.com/cp/routes&quot;&gt;https://mailgun.com/cp/routes&lt;/a&gt;). Give it a priority and a filter that’ll work for you (I used 0 as a priority and &lt;code&gt;catch_all()&lt;/code&gt; for a filter). For the action, forward it to your Phabricator installation with the endpoint ‘/mail/mailgun’. Like this: &lt;code&gt;forward(&quot;http://example.com/mail/mailgun/&quot;)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;That is all. Your emails should now allow you to interact with Phabricator.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 21 Apr 2014 00:00:00 -0600</pubDate>
+				<link>/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</link>
+				<guid isPermaLink="true">/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</guid>
+			</item>
+		
+			<item>
+				<title>Sketch Presets for Desktop Screens</title>
+				<description>&lt;p&gt;I’ve been using &lt;a href=&quot;http://bohemiancoding.com/sketch/&quot;&gt;Sketch&lt;/a&gt; to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a &lt;a href=&quot;http://j4n.co/blog/custom-sketch-art-board-presets&quot;&gt;blog post&lt;/a&gt; detailing how to do just this.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you’re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here’s my presets:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;dict&amp;gt;
+	&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+	&amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
+	&amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
+	&amp;lt;array&amp;gt;
+		&amp;lt;string&amp;gt;Retina Displays&amp;lt;/string&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;2880&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;15-inch&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1800&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;2560&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;13-inch&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;string&amp;gt;4:3&amp;lt;/string&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Large 4:3&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1200&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1280&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Medium 4:3&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1024&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;string&amp;gt;16:9&amp;lt;/string&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1920&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Large 16:9&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1080&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Medium 16:9&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;900&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+		&amp;lt;dict&amp;gt;
+			&amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;1366&amp;lt;/integer&amp;gt;
+			&amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
+			&amp;lt;string&amp;gt;Small 16:9&amp;lt;/string&amp;gt;
+			&amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
+			&amp;lt;integer&amp;gt;768&amp;lt;/integer&amp;gt;
+		&amp;lt;/dict&amp;gt;
+	&amp;lt;/array&amp;gt;
+&amp;lt;/dict&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I’ve used recently and might re-use in the future.&lt;/p&gt;
+</description>
+				<pubDate>Sat, 05 Apr 2014 00:00:00 -0600</pubDate>
+				<link>/2014/04/05/Sketch-Presets-For-Desktop.html</link>
+				<guid isPermaLink="true">/2014/04/05/Sketch-Presets-For-Desktop.html</guid>
+			</item>
+		
+			<item>
+				<title>Scroll Spying for Fun and Profit</title>
+				<description>&lt;p&gt;I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
+&lt;img src=&quot;http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif&quot; class=&quot;small&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To achieve this, I used &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto&lt;/a&gt; and a small amount of math. (The great thing about Zepto is that it’s fully compatible with jQuery, so this should work with jQuery out of the box as well).&lt;/p&gt;
+
+&lt;p&gt;Let’s jump right in, here’s how I do it:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code&gt;
+$(window).on(&#39;scroll&#39;, function() {
+	var scrollTop = $(window).scrollTop();
+	var article_offsets = $(&#39;article&#39;).map(function(i) { 
+		if (i === 0) {
+			return 0;
+		}
+
+		return $(this).offset().top 
+	});
+
+	for (var i = 0; i &amp;lt; article_offsets.length; i++) {
+		if (article_offsets[i] - 40 &amp;lt;= scrollTop) {
+			$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;)
+				.eq(i).addClass(&#39;active&#39;);
+		}
+	};
+});
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;The first line of interest:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var article_offsets = $(&#39;article&#39;).map(function(i) { 
+	if (i === 0) {
+		return 0;
+	}
+
+	return $(this).offset().top 
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
+
+&lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This looks for the Ith element on the sidebar’s list and we add a class of ‘active’ to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
+
+&lt;p&gt;There’s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here’s a couple I came through:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://getbootstrap.com/javascript/#scrollspy&quot;&gt;http://getbootstrap.com/javascript/#scrollspy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.outyear.co.uk/smint/&quot;&gt;http://www.outyear.co.uk/smint/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://scrollnav.com/&quot;&gt;http://scrollnav.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;
+</description>
+				<pubDate>Fri, 04 Apr 2014 00:00:00 -0600</pubDate>
+				<link>/2014/04/04/scroll-spying-for-fun-and-profit.html</link>
+				<guid isPermaLink="true">/2014/04/04/scroll-spying-for-fun-and-profit.html</guid>
+			</item>
+		
+			<item>
+				<title>2014</title>
+				<description>&lt;p&gt;I know I am a little late doing the whole goal setting and year review thing but, this year I wanted to try something different. I wanted to see how January turned out before setting goals.&lt;/p&gt;
+
+&lt;p&gt;This year will be pretty exciting. I’ll continue working as a consultant as I have for the past couple of years. Invivo Link is doing some pretty cool things and I am happy to help them continue building their product. Over at &lt;a href=&quot;http://www.2build.it&quot;&gt;2build.it&lt;/a&gt;, we’re working with some pretty cool clients, building a variety of pretty cool things, hopefully the company will grow a whole lot this year.&lt;/p&gt;
+
+&lt;p&gt;I tend to decide what I’d like to learn more during the year. This year’s language is going to be Rust. I’ve fallen in love with it on the past couple of months and I’d like to start building more things with it as the language becomes more stable. Apart from Rust, this year I’ll be working with Objective-C a whole lot more. I don’t fully like the language yet but, I feel like it can be a valuable tool in my toolset. I’ll also continue working on bundle.js as it has become essential to a client’s project which, turns out to be a great way to further develop it. &lt;/p&gt;
+
+&lt;p&gt;I’d also like to write more, I didn’t get to do it as much as I wanted to last year so I’ve adjusted my goal, I want to write at least, 12 posts during the year. I think this is a reasonable quantity and I hope I’ll be able to reach it. I’d also like to read more, my goal for that is at least 52 books. I am up to speed so far so I am pretty sure I can reach that.&lt;/p&gt;
+
+&lt;p&gt;Finally, I’d like a travel more this year, I am getting a little tired and burned out and I feel that it would help me to travel and see things. &lt;/p&gt;
+
+&lt;p&gt;I achieved most of the important goals from last year so, I am looking forward to a great year.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 26 Jan 2014 00:00:00 -0600</pubDate>
+				<link>/2014/01/26/2014.html</link>
+				<guid isPermaLink="true">/2014/01/26/2014.html</guid>
+			</item>
+		
+			<item>
+				<title>You've Gotta Love Deferreds</title>
+				<description>&lt;p&gt;Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code data-language=&quot;html&quot;&gt;
+var settings = {
+	template: &#39;todo.hbs&#39;,
+	data_src: &#39;/todo.json&#39;
+};
+	
+var template;
+	
+var getting_template;
+var getting_data;
+	
+if (&#39;template&#39; in settings) {
+	getting_template = $.get(settings.template);
+	
+	getting_template.done(function(t) {
+		template = t;
+	});
+	
+	if (&#39;data_src&#39; in settings) {
+		getting_data = $.get(settings.data_src);
+		getting_data.done(function(data) {
+			render(template, data);
+		});
+	} else {
+		getting_template.done(function(t) {
+			render(t, {});
+		});
+	}
+} else {
+	render(&#39;&#39;, {});
+}
+&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;(I am pretty sure it wasn’t necessarily as ugly but, I don’t quite remember.)&lt;/p&gt;
+
+&lt;p&gt;As you can see, even though I am making use of the deferreds returned by the &lt;code&gt;$.get&lt;/code&gt; function. This could be cleaned up a lot by using even more deferreds.&lt;/p&gt;
+
+&lt;p&gt;Here’s more or less what the code ended up looking like:&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code data-language=&quot;html&quot;&gt;
+var settings = {
+	template: &#39;todo.hbs&#39;,
+	data_src: &#39;/todo.json&#39;
+};
+
+var templateDefer = new $.Deferred();
+var dataDefer; = new $.Deferred();
+
+if (&#39;template&#39; in settings) {
+	$.get(settings.template, function(template) {
+		templateDefer.resolve(template);
+	});
+} else {
+	templateDefer.resolve(&#39;&#39;);
+}
+
+if (&#39;data_src&#39; in settings) {
+	$.get(settings.data_src, function(data) {
+		dataDefer.resolve(data);
+	});
+} else {
+	dataDefer.resolve({});
+}
+
+$.when(templateDefer, dataDefer).done(function(template, data) {
+	render(template, data);
+});
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (&lt;code&gt;new $.Deferred()&lt;/code&gt;). The other handy thing built into jQuery is the &lt;code&gt;$.when&lt;/code&gt; method, you can basically pass in a bunch of deferreds and you’d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.&lt;/p&gt;
+
+&lt;p&gt;I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality. 
+## Recommended links
+Here’s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://api.jquery.com/category/deferred-object/&quot;&gt;jQuery’s Deferred Object Documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/&quot;&gt;jQuery Deferreds promises asynchronous bliss&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://promises-aplus.github.io/promises-spec/&quot;&gt;Promises A+ Spec&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+				<pubDate>Tue, 12 Nov 2013 00:00:00 -0600</pubDate>
+				<link>/2013/11/12/youve-gotta-love-deferreds.html</link>
+				<guid isPermaLink="true">/2013/11/12/youve-gotta-love-deferreds.html</guid>
+			</item>
+		
+	</channel>
+</rss>

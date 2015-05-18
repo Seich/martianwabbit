@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST}  ^www.martianwabbit.com [nocase]
+RewriteRule ^(.*)         http://martianwabbit.com/$1 [last,redirect=301]
