@@ -46,7 +46,7 @@ Adding an annotation is actually quite easy. We start by creating a new MKPointA
 	
 Afterwards, we can set it's coordinates, title and subtitle to place it wherever we want and to add the text it's callout will display when tapped.
 
-	annotation.setCoordinate(location)
+	annotation.coordinate = location
     annotation.title = "Roatan"
     annotation.subtitle = "Honduras"
     
@@ -76,7 +76,7 @@ Here's my final code:
 	        map.setRegion(region, animated: true)
 
     	    var annotation = MKPointAnnotation()
-        	annotation.setCoordinate(location)
+        	annotation.coordinate = location
 	        annotation.title = "Roatan"
     	    annotation.subtitle = "Honduras"
         

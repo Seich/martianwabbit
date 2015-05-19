@@ -265,7 +265,7 @@ Then added a MKMapView to the view controller. After that, imported &lt;code&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var annotation = MKPointAnnotation()
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Afterwards, we can set it&amp;#39;s coordinates, title and subtitle to place it wherever we want and to add the text it&amp;#39;s callout will display when tapped.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;annotation.setCoordinate(location)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;annotation.coordinate = location
 annotation.title = &amp;quot;Roatan&amp;quot;
 annotation.subtitle = &amp;quot;Honduras&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -293,7 +293,7 @@ class ViewController: UIViewController {
         map.setRegion(region, animated: true)
 
         var annotation = MKPointAnnotation()
-        annotation.setCoordinate(location)
+        annotation.coordinate = location
         annotation.title = &amp;quot;Roatan&amp;quot;
         annotation.subtitle = &amp;quot;Honduras&amp;quot;
 
