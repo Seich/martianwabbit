@@ -8,3 +8,6 @@ paginate: 4
 markdown: redcarpet
 sass:
     style: :compressed
+
+host: 0.0.0.0
+port: 4000

@@ -15,7 +15,8 @@
 		var show = Array.prototype.slice.call(document.querySelectorAll(show));
 
 		show.forEach(function(el) {
-			el.style.display = 'block';
+			el.style.display = 'flex';
+			el.style.display = '-webkit-flex';
 			el.style.opacity = 1;
 		});	
 	};
