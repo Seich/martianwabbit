@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Using MapKit with Swift"
+redirect_from:
+  - /2014/08/29/using-mapkit-with-swift.html
 ---
 I've been using Swift a lot lately. I wanted to start making iOS apps a while ago but Objective-C is frankly, not worth the trouble. Swift on the other hand is actually fun to use and I love experiencing how the language evolves.
 
