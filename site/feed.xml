@@ -20,7 +20,7 @@ log_statement = ‘all’
 
 tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/* 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Also, it’s worth knowing that Pg Admin has a log viewer you can use for this task. Just go to Tools &amp;gt; Server Status and you should get this window:&lt;/p&gt;
+&lt;p&gt;Also, it’s worth noting that Pg Admin has a log viewer you can use for this task. Just go to Tools &amp;gt; Server Status and you should get this window:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/martianwabbit/pg_admin.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </description>
