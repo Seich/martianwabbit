@@ -7,6 +7,29 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Postgres: Checking Queries in Real Time</title>
+				<description>&lt;p&gt;Recently I came around a really simple way of checking what queries are going on in Postgres at any given time. Basically what you want to do is tell Postgres to log all queries and then you can tail the log file.&lt;/p&gt;
+
+&lt;p&gt;The first step is to tell Postgres to log all queries. To do that you go to your postgresql.conf file (mine’s here: ~/Library/Application Support/Postgres/var-9.4) and set the following options:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;logging_collector = on
+log_directory = ‘pg_log’
+log_statement = ‘all’
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once you’ve configured these values Postgres will be dumping all queries into the current log file at pg_log. Now you can tail your log file and see what queries are happening in real time.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# Change this to your log’s folder.
+
+tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/* 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also, it’s worth knowing that Pg Admin has a log viewer you can use for this task. Just go to Tools &amp;gt; Server Status and you should get this window:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/martianwabbit/pg_admin.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</description>
+				<pubDate>Wed, 10 Jun 2015 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2015/06/10/postgres-checking-queries-in-realtime.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2015/06/10/postgres-checking-queries-in-realtime.html</guid>
+			</item>
+		
+			<item>
 				<title>Expiring full-page caches in Rails 4 from the model</title>
 				<description>&lt;p&gt;Recently I was struggling with Rail’s full-page cache. Ever since it was moved out of core I can’t seem to get sweepers to work correctly. After fiddling around for several hours I finally found the best solution possible (excluding sweepers, that is), invalidating the cache on the model’s callbacks. Here’s how it looks:&lt;/p&gt;
 
@@ -510,102 +533,6 @@ $(window).on(&#39;scroll&#39;, function() {
 				<pubDate>Sun, 26 Jan 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/01/26/2014.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/01/26/2014.html</guid>
-			</item>
-		
-			<item>
-				<title>You've Gotta Love Deferreds</title>
-				<description>&lt;p&gt;Deferreds are awesome. They are such a simple solution to a really hard problem. Keeping things async in javascript can get hard sometimes. I recently wrote some code that looked like this:&lt;/p&gt;
-
-&lt;pre&gt;
-&lt;code data-language=&quot;html&quot;&gt;
-var settings = {
-    template: &#39;todo.hbs&#39;,
-    data_src: &#39;/todo.json&#39;
-};
-    
-var template;
-    
-var getting_template;
-var getting_data;
-    
-if (&#39;template&#39; in settings) {
-    getting_template = $.get(settings.template);
-    
-    getting_template.done(function(t) {
-        template = t;
-    });
-    
-    if (&#39;data_src&#39; in settings) {
-        getting_data = $.get(settings.data_src);
-        getting_data.done(function(data) {
-            render(template, data);
-        });
-    } else {
-        getting_template.done(function(t) {
-            render(t, {});
-        });
-    }
-} else {
-    render(&#39;&#39;, {});
-}
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;(I am pretty sure it wasn&amp;#39;t necessarily as ugly but, I don&amp;#39;t quite remember.)&lt;/p&gt;
-
-&lt;p&gt;As you can see, even though I am making use of the deferreds returned by the &lt;code&gt;$.get&lt;/code&gt; function. This could be cleaned up a lot by using even more deferreds.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;#39;s more or less what the code ended up looking like:&lt;/p&gt;
-
-&lt;pre&gt;
-&lt;code data-language=&quot;html&quot;&gt;
-var settings = {
-    template: &#39;todo.hbs&#39;,
-    data_src: &#39;/todo.json&#39;
-};
-
-var templateDefer = new $.Deferred();
-var dataDefer; = new $.Deferred();
-
-if (&#39;template&#39; in settings) {
-    $.get(settings.template, function(template) {
-        templateDefer.resolve(template);
-    });
-} else {
-    templateDefer.resolve(&#39;&#39;);
-}
-
-if (&#39;data_src&#39; in settings) {
-    $.get(settings.data_src, function(data) {
-        dataDefer.resolve(data);
-    });
-} else {
-    dataDefer.resolve({});
-}
-
-$.when(templateDefer, dataDefer).done(function(template, data) {
-    render(template, data);
-});
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;I basically kept everything async using stand-alone deferreds. Turns out jQuery has really handy deferred util built-in, all you have to do is create a new one (&lt;code&gt;new $.Deferred()&lt;/code&gt;). The other handy thing built into jQuery is the &lt;code&gt;$.when&lt;/code&gt; method, you can basically pass in a bunch of deferreds and you&amp;#39;d get a single one that responds when all of them respond in a particular way. That way, you can basically say, when they are all done, do this.&lt;/p&gt;
-
-&lt;p&gt;I shall try experimenting a lot more with these tools, they are pretty easy to use and pack in, so much functionality. &lt;/p&gt;
-
-&lt;h2&gt;Recommended links&lt;/h2&gt;
-
-&lt;p&gt;Here&amp;#39;s a couple of recommended links, in case you want to learn more about deffereds, in particular, those built into jQuery:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://api.jquery.com/category/deferred-object/&quot;&gt;jQuery&amp;#39;s Deferred Object Documentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://vvv.tobiassjosten.net/javascript/jquery-deferreds-promises-asynchronous-bliss/&quot;&gt;jQuery Deferreds promises asynchronous bliss&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://promises-aplus.github.io/promises-spec/&quot;&gt;Promises A+ Spec&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-				<pubDate>Tue, 12 Nov 2013 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2013/11/12/youve-gotta-love-deferreds.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2013/11/12/youve-gotta-love-deferreds.html</guid>
 			</item>
 		
 	</channel>
