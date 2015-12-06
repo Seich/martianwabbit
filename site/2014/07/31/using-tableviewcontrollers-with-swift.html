@@ -24,7 +24,7 @@
 
 	<aside>
 		<time>Posted on: July 31, 2014</time>
-		<span>633 Words</span>
+		<span>666 Words</span>
 		<span>Takes 4 minutes to read</span>
 	</aside>
 
@@ -45,7 +45,7 @@ Finally, I added two labels to the prototype cell. You can use the prototype cel
 </video>
 
 <p>Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from <code>UITableViewCell</code>. I&#39;ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one &quot;username&quot; and the smaller one &quot;body&quot;.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">// TweetCell.swift
+<div class="highlight"><pre><code class="language-" data-lang="">// TweetCell.swift
 import UIKit
 
 class TweetCell: UITableViewCell {
@@ -64,29 +64,29 @@ class TweetCell: UITableViewCell {
 <p>Now I only have to set up the view controller. We already have the basic view controller that came with the project so now we can just change it to do our bidding.</p>
 
 <p>I start by creating a struct to contain my tweets. I added it before the ViewController&#39;s class definition. </p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">struct Tweet {
+<div class="highlight"><pre><code class="language-" data-lang="">struct Tweet {
     var username: String
     var body: String
 }
 </code></pre></div>
 <p>After that, I changed the ViewController&#39;s parent class from <code>UIViewController</code> to <code>UITableViewController</code> and added the <code>UITableViewDataSource</code> protocol to it so my class looks like this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">class ViewController: UITableViewController, UITableViewDataSource {
+<div class="highlight"><pre><code class="language-" data-lang="">class ViewController: UITableViewController, UITableViewDataSource {
 
 }
 </code></pre></div>
 <p>Now I added an array with a couple of tweets:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">var tweets: [Tweet] = [
-    Tweet(username: &quot;Seich&quot;, body: &quot;Hello, World&quot;),
-    Tweet(username: &quot;Albert&quot;, body: &quot;How are you doing?&quot;)
+<div class="highlight"><pre><code class="language-" data-lang="">var tweets: [Tweet] = [
+    Tweet(username: "Seich", body: "Hello, World"),
+    Tweet(username: "Albert", body: "How are you doing?")
 ]
 </code></pre></div>
 <p>Finally I just need to override a couple of methods. The first one is this method:  <code>tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -&gt; UITableViewCell!</code> which determines what cell should be drawn at the given index. Here&#39;s how mine looks:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">override func tableView(
+<div class="highlight"><pre><code class="language-" data-lang="">override func tableView(
     tableView: UITableView!, 
     cellForRowAtIndexPath indexPath: NSIndexPath!) 
     -&gt; UITableViewCell! {
 
-    var cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;) as TweetCell
+    var cell = tableView.dequeueReusableCellWithIdentifier("cell") as TweetCell
 
     cell.username.text = tweets[indexPath.row].username
     cell.body.text = tweets[indexPath.row].body
@@ -95,7 +95,7 @@ class TweetCell: UITableViewCell {
 }
 </code></pre></div>
 <p>The second method is this one: <code>override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -&gt; Int</code> which should return the number of cells to draw, mine looks like this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"> override func tableView(
+<div class="highlight"><pre><code class="language-" data-lang=""> override func tableView(
     tableView: UITableView!, 
     numberOfRowsInSection section: Int) -&gt; Int {
 
@@ -103,7 +103,7 @@ class TweetCell: UITableViewCell {
 }
 </code></pre></div>
 <p>And that&#39;s it. Here&#39;s my final code for the view controller:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">import UIKit
+<div class="highlight"><pre><code class="language-" data-lang="">import UIKit
 
 struct Tweet {
     var username: String
@@ -113,8 +113,8 @@ struct Tweet {
 class ViewController: UITableViewController, UITableViewDataSource {
 
     var tweets: [Tweet] = [
-        Tweet(username: &quot;Seich&quot;, body: &quot;Hello, World&quot;),
-        Tweet(username: &quot;Albert&quot;, body: &quot;How are you doing?&quot;)
+        Tweet(username: "Seich", body: "Hello, World"),
+        Tweet(username: "Albert", body: "How are you doing?")
     ]
 
     override func tableView(
@@ -130,7 +130,7 @@ class ViewController: UITableViewController, UITableViewDataSource {
         cellForRowAtIndexPath indexPath: NSIndexPath!)
         -&gt; UITableViewCell! {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;) as TweetCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell") as TweetCell
 
         cell.username.text = tweets[indexPath.row].username
         cell.body.text = tweets[indexPath.row].body

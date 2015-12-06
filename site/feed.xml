@@ -7,16 +7,51 @@
 		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Making a Wooden iPhone Stand</title>
+				<description>&lt;p&gt;I recently decided to tried my hand at building a physical thing. A stand for my iPhone. I decided I wanted to go through the whole process and see what its like. So I started with a mockup:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/martianwabbit/mockup-1.png&quot; alt=&quot;First mockup&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s a simple thing, a piece of wood with a slanted channel to put your phone in. Here’s how it turned out:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/martianwabbit/final-1.jpg&quot; alt=&quot;First attempt&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;It looks ok, but there’s a couple of things I didn’t like with this first version. It held the phone just fine but it didn&amp;#39;t look right or inspire enough confidence to actually trust it with my phone.&lt;/p&gt;
+
+&lt;p&gt;Time for a second version. There were three things I wanted to change. The width of the base, its angle and I wanted to add little anti-slip pads.&lt;/p&gt;
+
+&lt;p&gt;The width was straight forward, I measured my phone and added a centimetre. This way my phone would get to sit in the middle of the base.&lt;/p&gt;
+
+&lt;p&gt;For the angle, I wanted my phone to “face” me. The whole point of the base was to keep me from moving my neck too much to see my phone. This angle also defined the out cuts on the base because I wanted all the angles to match. After a bunch of test, I settled with 15º, which is rather comfortable.&lt;/p&gt;
+
+&lt;p&gt;Finally, I wanted to add anti-slipping pads to the base. I originally wanted to get some clear vinyl pads. I ended up settling for 1/2” cork pads though. The cork pads looked nicer and were thinner than their vinyl counterparts.&lt;/p&gt;
+
+&lt;p&gt;With everything figured out, I moved onto the mock up. I learned a couple of new techniques for sketchup so making it was a lot faster. Here’s what the mockup ended up looking like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/martianwabbit/mockup-2.png&quot; alt=&quot;Second Mockup&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;And here’s what it ended up looking like at then end:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/8252879/martianwabbit/final-2.jpg&quot; alt=&quot;Final result&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;All in all, I am pretty happy with the results. The base matches my original idea and fulfils my expectations. It’s not perfect, my wood working skills leave much to be desired. I made a couple of mistakes which I plan on correcting on my next build. Here’s the sketchup model in case you want to play with it or build your own: &lt;a href=&quot;http://cl.ly/0z2w2K0T173t&quot;&gt;Download SketchUp Model&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sat, 05 Dec 2015 00:00:00 -0600</pubDate>
+				<link>http://martianwabbit.com/2015/12/05/Making-a-wooden-iphone-stand.html</link>
+				<guid isPermaLink="true">http://martianwabbit.com/2015/12/05/Making-a-wooden-iphone-stand.html</guid>
+			</item>
+		
+			<item>
 				<title>Postgres: Checking Queries in Real Time</title>
 				<description>&lt;p&gt;Recently I came around a really simple way of checking what queries are going on in Postgres at any given time. Basically what you want to do is tell Postgres to log all queries and then you can tail the log file.&lt;/p&gt;
 
 &lt;p&gt;The first step is to tell Postgres to log all queries. To do that you go to your postgresql.conf file (mine’s here: ~/Library/Application Support/Postgres/var-9.4) and set the following options:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;logging_collector = on
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;logging_collector = on
 log_directory = ‘pg_log’
 log_statement = ‘all’
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once you’ve configured these values Postgres will be dumping all queries into the current log file at pg_log. Now you can tail your log file and see what queries are happening in real time.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# Change this to your log’s folder.
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;# Change this to your log’s folder.
 
 tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/* 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -134,7 +169,7 @@ Finally, I added two labels to the prototype cell. You can use the prototype cel
 &lt;/video&gt;
 
 &lt;p&gt;Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from &lt;code&gt;UITableViewCell&lt;/code&gt;. I&amp;#39;ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one &amp;quot;username&amp;quot; and the smaller one &amp;quot;body&amp;quot;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;// TweetCell.swift
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;// TweetCell.swift
 import UIKit
 
 class TweetCell: UITableViewCell {
@@ -153,29 +188,29 @@ class TweetCell: UITableViewCell {
 &lt;p&gt;Now I only have to set up the view controller. We already have the basic view controller that came with the project so now we can just change it to do our bidding.&lt;/p&gt;
 
 &lt;p&gt;I start by creating a struct to contain my tweets. I added it before the ViewController&amp;#39;s class definition. &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;struct Tweet {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;struct Tweet {
     var username: String
     var body: String
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After that, I changed the ViewController&amp;#39;s parent class from &lt;code&gt;UIViewController&lt;/code&gt; to &lt;code&gt;UITableViewController&lt;/code&gt; and added the &lt;code&gt;UITableViewDataSource&lt;/code&gt; protocol to it so my class looks like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;class ViewController: UITableViewController, UITableViewDataSource {
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class ViewController: UITableViewController, UITableViewDataSource {
 
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now I added an array with a couple of tweets:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var tweets: [Tweet] = [
-    Tweet(username: &amp;quot;Seich&amp;quot;, body: &amp;quot;Hello, World&amp;quot;),
-    Tweet(username: &amp;quot;Albert&amp;quot;, body: &amp;quot;How are you doing?&amp;quot;)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var tweets: [Tweet] = [
+    Tweet(username: &quot;Seich&quot;, body: &quot;Hello, World&quot;),
+    Tweet(username: &quot;Albert&quot;, body: &quot;How are you doing?&quot;)
 ]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally I just need to override a couple of methods. The first one is this method:  &lt;code&gt;tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -&amp;gt; UITableViewCell!&lt;/code&gt; which determines what cell should be drawn at the given index. Here&amp;#39;s how mine looks:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;override func tableView(
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;override func tableView(
     tableView: UITableView!, 
     cellForRowAtIndexPath indexPath: NSIndexPath!) 
     -&amp;gt; UITableViewCell! {
 
-    var cell = tableView.dequeueReusableCellWithIdentifier(&amp;quot;cell&amp;quot;) as TweetCell
+    var cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;) as TweetCell
 
     cell.username.text = tweets[indexPath.row].username
     cell.body.text = tweets[indexPath.row].body
@@ -184,7 +219,7 @@ class TweetCell: UITableViewCell {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The second method is this one: &lt;code&gt;override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -&amp;gt; Int&lt;/code&gt; which should return the number of cells to draw, mine looks like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt; override func tableView(
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt; override func tableView(
     tableView: UITableView!, 
     numberOfRowsInSection section: Int) -&amp;gt; Int {
 
@@ -192,7 +227,7 @@ class TweetCell: UITableViewCell {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And that&amp;#39;s it. Here&amp;#39;s my final code for the view controller:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;import UIKit
 
 struct Tweet {
     var username: String
@@ -202,8 +237,8 @@ struct Tweet {
 class ViewController: UITableViewController, UITableViewDataSource {
 
     var tweets: [Tweet] = [
-        Tweet(username: &amp;quot;Seich&amp;quot;, body: &amp;quot;Hello, World&amp;quot;),
-        Tweet(username: &amp;quot;Albert&amp;quot;, body: &amp;quot;How are you doing?&amp;quot;)
+        Tweet(username: &quot;Seich&quot;, body: &quot;Hello, World&quot;),
+        Tweet(username: &quot;Albert&quot;, body: &quot;How are you doing?&quot;)
     ]
 
     override func tableView(
@@ -219,7 +254,7 @@ class ViewController: UITableViewController, UITableViewDataSource {
         cellForRowAtIndexPath indexPath: NSIndexPath!)
         -&amp;gt; UITableViewCell! {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier(&amp;quot;cell&amp;quot;) as TweetCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;) as TweetCell
 
         cell.username.text = tweets[indexPath.row].username
         cell.body.text = tweets[indexPath.row].body
@@ -268,35 +303,35 @@ Then added a MKMapView to the view controller. After that, imported &lt;code&gt;
 &lt;h2&gt;Setup your desired location&lt;/h2&gt;
 
 &lt;p&gt;Now our map is ready to display a location. You&amp;#39;ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var location = CLLocationCoordinate2D(
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var location = CLLocationCoordinate2D(
     latitude: 16.40, 
     longitude: -86.34
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, we need to tell the map what the area spanned by the region is. For this we use &lt;code&gt;MKCoordinateSpanMake&lt;/code&gt;. Which, as you probably guessed, creates a &lt;code&gt;MKCoordinateSpan&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var span = MKCoordinateSpanMake(1, 1)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var span = MKCoordinateSpanMake(1, 1)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After that we just need to define the region using these two things:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var region = MKCoordinateRegion(center: location, span: span)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var region = MKCoordinateRegion(center: location, span: span)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And finally, we set this region to the map:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;map.setRegion(region, animated: true)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;map.setRegion(region, animated: true)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Bonus: Adding an annotation&lt;/h2&gt;
 
 &lt;p&gt;Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It&amp;#39;ll display the default red pin which, might not be as pretty but it&amp;#39;ll get the job done.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var annotation = MKPointAnnotation()
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var annotation = MKPointAnnotation()
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Afterwards, we can set it&amp;#39;s coordinates, title and subtitle to place it wherever we want and to add the text it&amp;#39;s callout will display when tapped.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;annotation.coordinate = location
-annotation.title = &amp;quot;Roatan&amp;quot;
-annotation.subtitle = &amp;quot;Honduras&amp;quot;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;annotation.coordinate = location
+annotation.title = &quot;Roatan&quot;
+annotation.subtitle = &quot;Honduras&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally, we add it to the map like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;map.addAnnotation(annotation)
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;map.addAnnotation(annotation)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Here&amp;#39;s my final code:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;import UIKit
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;import UIKit
 import MapKit
 
 class ViewController: UIViewController {
@@ -317,8 +352,8 @@ class ViewController: UIViewController {
 
         var annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = &amp;quot;Roatan&amp;quot;
-        annotation.subtitle = &amp;quot;Honduras&amp;quot;
+        annotation.title = &quot;Roatan&quot;
+        annotation.subtitle = &quot;Honduras&quot;
 
         map.addAnnotation(annotation)
     }
@@ -341,7 +376,7 @@ class ViewController: UIViewController {
 				<description>&lt;p&gt;&lt;a href=&quot;http://phabricator.com&quot;&gt;Phabricator&lt;/a&gt; is awesome. We recently started trying it out for &lt;a href=&quot;http://2build.it&quot;&gt;2build.it&lt;/a&gt; (more like, this morning) and we all (&lt;a href=&quot;http://jorge.caballeromurillo.com&quot;&gt;Jorge&lt;/a&gt; and I) agreed it&amp;#39;s awesome. &lt;/p&gt;
 
 &lt;p&gt;The setup is pretty straight-forward and only took like 20 minutes. The one thing I got stuck on though, was the emailing. It took me forever to realise that you&amp;#39;re supposed to restart the emailing daemons for the configuration to stick. It is my fault but, this wasn&amp;#39;t mentioned anywhere in the documentation. Btw, here&amp;#39;s how you do it:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;./bin/phd restart
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;./bin/phd restart
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Right from the Phabricator folder.&lt;/p&gt;
 
@@ -377,10 +412,10 @@ class ViewController: UIViewController {
 &lt;blockquote&gt;
 &lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you&amp;#39;re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Here&amp;#39;s my presets:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;dict&amp;gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&amp;lt;dict&amp;gt;
     &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
     &amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
     &amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
@@ -486,7 +521,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;/pre&gt;
 
 &lt;p&gt;The first line of interest:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;var article_offsets = $(&amp;#39;article&amp;#39;).map(function(i) { 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var article_offsets = $(&#39;article&#39;).map(function(i) { 
     if (i === 0) {
         return 0;
     }
@@ -497,7 +532,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
 
 &lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$(&amp;#39;.sidebar li&amp;#39;).removeClass(&amp;#39;active&amp;#39;).eq(i).addClass(&amp;#39;active&amp;#39;);
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This looks for the Ith element on the sidebar&amp;#39;s list and we add a class of &amp;#39;active&amp;#39; to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
 
@@ -514,25 +549,6 @@ $(window).on(&#39;scroll&#39;, function() {
 				<pubDate>Fri, 04 Apr 2014 00:00:00 -0600</pubDate>
 				<link>http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</link>
 				<guid isPermaLink="true">http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</guid>
-			</item>
-		
-			<item>
-				<title>2014</title>
-				<description>&lt;p&gt;I know I am a little late doing the whole goal setting and year review thing but, this year I wanted to try something different. I wanted to see how January turned out before setting goals.&lt;/p&gt;
-
-&lt;p&gt;This year will be pretty exciting. I&amp;#39;ll continue working as a consultant as I have for the past couple of years. Invivo Link is doing some pretty cool things and I am happy to help them continue building their product. Over at &lt;a href=&quot;http://www.2build.it&quot;&gt;2build.it&lt;/a&gt;, we&amp;#39;re working with some pretty cool clients, building a variety of pretty cool things, hopefully the company will grow a whole lot this year.&lt;/p&gt;
-
-&lt;p&gt;I tend to decide what I&amp;#39;d like to learn more during the year. This year&amp;#39;s language is going to be Rust. I&amp;#39;ve fallen in love with it on the past couple of months and I&amp;#39;d like to start building more things with it as the language becomes more stable. Apart from Rust, this year I&amp;#39;ll be working with Objective-C a whole lot more. I don&amp;#39;t fully like the language yet but, I feel like it can be a valuable tool in my toolset. I&amp;#39;ll also continue working on bundle.js as it has become essential to a client&amp;#39;s project which, turns out to be a great way to further develop it. &lt;/p&gt;
-
-&lt;p&gt;I&amp;#39;d also like to write more, I didn&amp;#39;t get to do it as much as I wanted to last year so I&amp;#39;ve adjusted my goal, I want to write at least, 12 posts during the year. I think this is a reasonable quantity and I hope I&amp;#39;ll be able to reach it. I&amp;#39;d also like to read more, my goal for that is at least 52 books. I am up to speed so far so I am pretty sure I can reach that.&lt;/p&gt;
-
-&lt;p&gt;Finally, I&amp;#39;d like a travel more this year, I am getting a little tired and burned out and I feel that it would help me to travel and see things. &lt;/p&gt;
-
-&lt;p&gt;I achieved most of the important goals from last year so, I am looking forward to a great year.&lt;/p&gt;
-</description>
-				<pubDate>Sun, 26 Jan 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/01/26/2014.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/01/26/2014.html</guid>
 			</item>
 		
 	</channel>

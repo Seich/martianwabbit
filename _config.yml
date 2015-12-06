@@ -1,6 +1,5 @@
 source: ./src
 destination: ./site
-plugins: ./_plugins
 name: Seichy's Missing Bit
 description: 'A blog on programing, dreams, pandas and sweet food.'
 url: http://martianwabbit.com
@@ -13,3 +12,4 @@ host: 0.0.0.0
 port: 4000
 gems:
   - jekyll-redirect-from
+  - jekyll-paginate

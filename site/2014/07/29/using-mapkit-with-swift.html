@@ -24,8 +24,8 @@
 
 	<aside>
 		<time>Posted on: July 29, 2014</time>
-		<span>448 Words</span>
-		<span>Takes 2 minutes to read</span>
+		<span>480 Words</span>
+		<span>Takes 3 minutes to read</span>
 	</aside>
 
 	<p>I&#39;ve been using Swift a lot lately. I wanted to start making iOS apps a while ago but Objective-C is frankly, not worth the trouble. Swift on the other hand is actually fun to use and I love experiencing how the language evolves.</p>
@@ -47,35 +47,35 @@ Then added a MKMapView to the view controller. After that, imported <code>MapKit
 <h2>Setup your desired location</h2>
 
 <p>Now our map is ready to display a location. You&#39;ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">var location = CLLocationCoordinate2D(
+<div class="highlight"><pre><code class="language-" data-lang="">var location = CLLocationCoordinate2D(
     latitude: 16.40, 
     longitude: -86.34
 )
 </code></pre></div>
 <p>Now, we need to tell the map what the area spanned by the region is. For this we use <code>MKCoordinateSpanMake</code>. Which, as you probably guessed, creates a <code>MKCoordinateSpan</code>.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">var span = MKCoordinateSpanMake(1, 1)
+<div class="highlight"><pre><code class="language-" data-lang="">var span = MKCoordinateSpanMake(1, 1)
 </code></pre></div>
 <p>After that we just need to define the region using these two things:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">var region = MKCoordinateRegion(center: location, span: span)
+<div class="highlight"><pre><code class="language-" data-lang="">var region = MKCoordinateRegion(center: location, span: span)
 </code></pre></div>
 <p>And finally, we set this region to the map:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">map.setRegion(region, animated: true)
+<div class="highlight"><pre><code class="language-" data-lang="">map.setRegion(region, animated: true)
 </code></pre></div>
 <h2>Bonus: Adding an annotation</h2>
 
 <p>Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It&#39;ll display the default red pin which, might not be as pretty but it&#39;ll get the job done.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">var annotation = MKPointAnnotation()
+<div class="highlight"><pre><code class="language-" data-lang="">var annotation = MKPointAnnotation()
 </code></pre></div>
 <p>Afterwards, we can set it&#39;s coordinates, title and subtitle to place it wherever we want and to add the text it&#39;s callout will display when tapped.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">annotation.coordinate = location
-annotation.title = &quot;Roatan&quot;
-annotation.subtitle = &quot;Honduras&quot;
+<div class="highlight"><pre><code class="language-" data-lang="">annotation.coordinate = location
+annotation.title = "Roatan"
+annotation.subtitle = "Honduras"
 </code></pre></div>
 <p>Finally, we add it to the map like this:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">map.addAnnotation(annotation)
+<div class="highlight"><pre><code class="language-" data-lang="">map.addAnnotation(annotation)
 </code></pre></div>
 <p>Here&#39;s my final code:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">import UIKit
+<div class="highlight"><pre><code class="language-" data-lang="">import UIKit
 import MapKit
 
 class ViewController: UIViewController {
@@ -96,8 +96,8 @@ class ViewController: UIViewController {
 
         var annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = &quot;Roatan&quot;
-        annotation.subtitle = &quot;Honduras&quot;
+        annotation.title = "Roatan"
+        annotation.subtitle = "Honduras"
 
         map.addAnnotation(annotation)
     }
