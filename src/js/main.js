@@ -38,10 +38,8 @@
 	};
 	
 	var getShotUrl = function(shot) {
-		revision = shot.revisions[Object.keys(shot.revisions)[0]];
-
 		return { 
-			src: revision.images.thumb_240.url,  
+			src: shot.covers['230'],  
 			page: shot.url
 		};
 	};
@@ -50,7 +48,7 @@
 		if (shots.http_code !== 200) { return };
 
 		var div = document.querySelectorAll('.shots')[0];
-		shots = shots.wips.map(getShotUrl);
+		shots = shots.projects.map(getShotUrl);
 		shots = shots.splice(0, 3);
 		
 		appendTo(div, shots, '.shots.show, .shot-title')

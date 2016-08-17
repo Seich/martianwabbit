@@ -73,7 +73,7 @@ tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/*
   after_destroy :clear_cache
 
   def clear_cache
-        ActionController::Base.expire_page(&#39;/ads.json&#39;)
+        ActionController::Base.expire_page('/ads.json')
   end
 end
 &lt;/code&gt;&lt;/pre&gt;
@@ -500,9 +500,9 @@ class ViewController: UIViewController {
 
 &lt;pre&gt;
 &lt;code&gt;
-$(window).on(&#39;scroll&#39;, function() {
+$(window).on('scroll', function() {
     var scrollTop = $(window).scrollTop();
-    var article_offsets = $(&#39;article&#39;).map(function(i) { 
+    var article_offsets = $('article').map(function(i) { 
         if (i === 0) {
             return 0;
         }
@@ -512,8 +512,8 @@ $(window).on(&#39;scroll&#39;, function() {
 
     for (var i = 0; i &amp;lt; article_offsets.length; i++) {
         if (article_offsets[i] - 40 &amp;lt;= scrollTop) {
-            $(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;)
-                .eq(i).addClass(&#39;active&#39;);
+            $('.sidebar li').removeClass('active')
+                .eq(i).addClass('active');
         }
     };
 });
@@ -521,7 +521,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;/pre&gt;
 
 &lt;p&gt;The first line of interest:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var article_offsets = $(&#39;article&#39;).map(function(i) { 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var article_offsets = $('article').map(function(i) { 
     if (i === 0) {
         return 0;
     }
@@ -532,7 +532,7 @@ $(window).on(&#39;scroll&#39;, function() {
 &lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
 
 &lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$(&#39;.sidebar li&#39;).removeClass(&#39;active&#39;).eq(i).addClass(&#39;active&#39;);
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$('.sidebar li').removeClass('active').eq(i).addClass('active');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This looks for the Ith element on the sidebar&amp;#39;s list and we add a class of &amp;#39;active&amp;#39; to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
 
