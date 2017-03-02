@@ -14,8 +14,8 @@ Once you’ve configured these values Postgres will be dumping all queries into 
 
 	# Change this to your log’s folder.
 
-	tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/* 
+	tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/*
 
 Also, it’s worth noting that Pg Admin has a log viewer you can use for this task. Just go to Tools > Server Status and you should get this window:
 
-![](https://dl.dropboxusercontent.com/u/8252879/martianwabbit/pg_admin.png)
+![](http://files.martianwabbit.com/blog/pg_admin.png)

@@ -24,24 +24,24 @@
 
 	<aside>
 		<time>Posted on: July 31, 2014</time>
-		<span>666 Words</span>
+		<span>663 Words</span>
 		<span>Takes 4 minutes to read</span>
 	</aside>
 
 	<p>Using a TableViewController with swift is easy. It takes only a couple of steps to create a table with custom cells. I started by creating a single view application.</p>
 
-<p><img src="https://dl.dropboxusercontent.com/u/8252879/swiftTables_step_1.png" alt="New Project"></p>
+<p><img src="http://files.martianwabbit.com/blog/swiftTables_step_1.png" alt="New Project"></p>
 
 <h2>Setting up the table and cell prototype</h2>
 
 <p>I started by deleting the default view. Then, I added a <em>Table View Controller</em> to the storyboard.
-Finally, I added two labels to the prototype cell. You can use the prototype cell to define how the cells for the table will look, so go ahead and tweak it to your convenience. Afterwards, I set the cell&#39;s identifier to &#39;cell&#39;. I am creating a Twitter client so I only need to display the user and the Tweet. </p>
+Finally, I added two labels to the prototype cell. You can use the prototype cell to define how the cells for the table will look, so go ahead and tweak it to your convenience. Afterwards, I set the cell&#39;s identifier to &#39;cell&#39;. I am creating a Twitter client so I only need to display the user and the Tweet.</p>
 
 <p>(There&#39;s a preset style that&#39;s only a title and a subtitle which I could have used but, I want more control over it&#39;s appearance so I went this way)</p>
 
 <video controls>
-    <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_1.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="http://files.martianwabbit.com/blog/swiftTable_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="http://files.martianwabbit.com/blog/swiftTable_step_1.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
 
 <p>Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from <code>UITableViewCell</code>. I&#39;ll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one &quot;username&quot; and the smaller one &quot;body&quot;.</p>
@@ -55,15 +55,15 @@ class TweetCell: UITableViewCell {
 }
 </code></pre></div>
 <video controls>
-    <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="https://dl.dropboxusercontent.com/u/8252879/swiftTable_step_2.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="http://files.martianwabbit.com/blog/swiftTable_step_2.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="http://files.martianwabbit.com/blog/swiftTable_step_2.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
 
 <h2>The ViewController</h2>
 
 <p>Now I only have to set up the view controller. We already have the basic view controller that came with the project so now we can just change it to do our bidding.</p>
 
-<p>I start by creating a struct to contain my tweets. I added it before the ViewController&#39;s class definition. </p>
+<p>I start by creating a struct to contain my tweets. I added it before the ViewController&#39;s class definition.</p>
 <div class="highlight"><pre><code class="language-" data-lang="">struct Tweet {
     var username: String
     var body: String
@@ -82,8 +82,8 @@ class TweetCell: UITableViewCell {
 </code></pre></div>
 <p>Finally I just need to override a couple of methods. The first one is this method:  <code>tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -&gt; UITableViewCell!</code> which determines what cell should be drawn at the given index. Here&#39;s how mine looks:</p>
 <div class="highlight"><pre><code class="language-" data-lang="">override func tableView(
-    tableView: UITableView!, 
-    cellForRowAtIndexPath indexPath: NSIndexPath!) 
+    tableView: UITableView!,
+    cellForRowAtIndexPath indexPath: NSIndexPath!)
     -&gt; UITableViewCell! {
 
     var cell = tableView.dequeueReusableCellWithIdentifier("cell") as TweetCell
@@ -96,7 +96,7 @@ class TweetCell: UITableViewCell {
 </code></pre></div>
 <p>The second method is this one: <code>override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -&gt; Int</code> which should return the number of cells to draw, mine looks like this:</p>
 <div class="highlight"><pre><code class="language-" data-lang=""> override func tableView(
-    tableView: UITableView!, 
+    tableView: UITableView!,
     numberOfRowsInSection section: Int) -&gt; Int {
 
     return tweets.count
@@ -141,9 +141,9 @@ class ViewController: UITableViewController, UITableViewDataSource {
 </code></pre></div>
 <p>And this is what my finalised app looks like:</p>
 
-<p><img src="https://dl.dropboxusercontent.com/u/8252879/swiftTables_final.png" alt="Final app" class="small"></p>
+<p><img src="http://files.martianwabbit.com/blog/swiftTables_final.png" alt="Final app" class="small"></p>
 
-<p>It&#39;s not perfect but, it shouldn&#39;t take much to have it looking decent. I&#39;ll probably be revisiting this soon and finishing the whole Twitter application so stay tuned for more. </p>
+<p>It&#39;s not perfect but, it shouldn&#39;t take much to have it looking decent. I&#39;ll probably be revisiting this soon and finishing the whole Twitter application so stay tuned for more.</p>
 
 <h2>Resources</h2>
 

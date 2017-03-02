@@ -3,11 +3,11 @@ layout: post
 title: "JustVector Social Font 1.5"
 ---
 
-Today I am releasing a new version of the JustVector social font. 
+Today I am releasing a new version of the JustVector social font.
 
 3 years and 59k downloads later, the process of building icon fonts has changed radically. There are a bunch of new and better ways to get things done, I think the process has come a very long way in the past 3 years. Taking these new techniques and ideas into account, I've rebuilt the font from scratch.
 
-I had a couple of objectives with this new version: First, I wanted to fit in all of the icons, when I first built the font this wasn't quite as trivial since I kept running out of glyphs I could replace but these days it's quite easy. You can use special glyphs and css to have as many icons as you want (I am not sure how many that is to be honest). 
+I had a couple of objectives with this new version: First, I wanted to fit in all of the icons, when I first built the font this wasn't quite as trivial since I kept running out of glyphs I could replace but these days it's quite easy. You can use special glyphs and css to have as many icons as you want (I am not sure how many that is to be honest).
 
 Second, I wanted to make the process of building a new font as automatic as possible. 3 years ago I had to manually export each glyph and add it to the font. It took fairly long and was painful to hint and size correctly.
 
@@ -17,6 +17,6 @@ All in all I am really happy with the much-needed update. I'd like to thank [Max
 
 The project can now be found on Github: [https://github.com/Seich/JustVector-Icons-Font](https://github.com/Seich/JustVector-Icons-Font)
 
-Here's a preview: [Preview](https://dl.dropboxusercontent.com/u/8252879/justVector%20Font/index.html)
+Here's a preview: [Preview](http://files.martianwabbit.com/blog/justVector%20Font/index.html)
 
 Here's the download link: [Download](http://cl.ly/203m2e0n1J2K)

@@ -24,7 +24,7 @@
 
 	<aside>
 		<time>Posted on: July 29, 2014</time>
-		<span>480 Words</span>
+		<span>479 Words</span>
 		<span>Takes 3 minutes to read</span>
 	</aside>
 
@@ -34,21 +34,21 @@
 
 <h2>First, create a new project</h2>
 
-<p>I started with a <strong>Single View Application</strong>. </p>
+<p>I started with a <strong>Single View Application</strong>.</p>
 
-<p><img src="http://f.cl.ly/items/012e0M1g1z360Q3N1f2C/step_1.png" alt="New Project Screen">
+<p><img src="http://files.martianwabbit.com/blog/step_1.png" alt="New Project Screen">
 Then added a MKMapView to the view controller. After that, imported <code>MapKit</code> into the view controller&#39;s code. Finally, I added a new reference outlet to the map called <em>map</em>.</p>
 
 <video controls>
-    <source src="https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="https://dl.dropboxusercontent.com/u/8252879/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="http://files.martianwabbit.com/blog/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="http://files.martianwabbit.com/blog/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
 
 <h2>Setup your desired location</h2>
 
 <p>Now our map is ready to display a location. You&#39;ll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.</p>
 <div class="highlight"><pre><code class="language-" data-lang="">var location = CLLocationCoordinate2D(
-    latitude: 16.40, 
+    latitude: 16.40,
     longitude: -86.34
 )
 </code></pre></div>
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         var location = CLLocationCoordinate2D(
-            latitude: 16.40, 
+            latitude: 16.40,
             longitude: -86.34
         )
 
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
 }
 </code></pre></div>
 <p>And here&#39;s what my app looks like:
-<img src="http://f.cl.ly/items/2r0a21423A3l2S381U3w/final.png" alt="Final product" class="small"></p>
+<img src="http://files.martianwabbit.com/blog/final.png" alt="Final product" class="small"></p>
 
 <h2>Additional Resources</h2>
 
