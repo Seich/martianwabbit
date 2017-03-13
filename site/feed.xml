@@ -3,8 +3,48 @@
 	<channel>
 		<title>Seichy's Missing Bit</title>
 		<description>A blog on programing, dreams, pandas and sweet food.</description>
-		<link>http://martianwabbit.com</link>
-		<atom:link href="http://martianwabbit.com/feed.xml" rel="self" type="application/rss+xml" />
+		<link>http://0.0.0.0:4000</link>
+		<atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Hey Beau!</title>
+				<description>&lt;p&gt;So I&amp;#39;ve been doing a lot of random experiments lately. One of them is Beau. &lt;a href=&quot;https://github.com/seich/beau&quot;&gt;Beau&lt;/a&gt; is at it&amp;#39;s heart a configurable http client. It was built with JSON APIs in mind. I&amp;#39;ve used things like Paw or Postman in the past and they are good but they are lacking in some key areas. For example, I love how extensible Paw is but not being able to share project files with coworkers in Windows or Linux makes it so I can&amp;#39;t use it with most of the teams I&amp;#39;ve worked with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://files.martianwabbit.com/beau.png&quot; alt=&quot;Beau's logo, a Seahorse&quot; height=&quot;144&quot; width=&quot;76&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;So to scratch that itch, I decided to build a simple http client for myself. I only had a couple of requirements. It should run on all platforms. It should be easy to setup and get started. Ideally the configuration is a plain text file so I can version control it and share it with others.&lt;/p&gt;
+
+&lt;p&gt;Having all of those things in mind I created Beau. Beau allows you to write a simple YAML file as configuration. It has a client written in Javascript which you can install using npm or yarn in a couple of seconds and it is completely cross-platform.&lt;/p&gt;
+
+&lt;p&gt;A simple beau configuration might look something like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;POST /session:
+    alias: session
+    payload:
+        username: seich
+        password: password
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this simple config file, I can request a new session using the CLI:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;beau -r session
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://files.martianwabbit.com/beau.gif&quot; alt=&quot;A gif showing Beau in action&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s all it takes. It also has a couple other tricks up it&amp;#39;s sleeve though. You can also reference requests, so if that session request returns a token to verify other requests you can reference it like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;GET /profile:
+    alias: profile
+    headers:
+        authorization: Bearer $session.body.token
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Beau understands $session is another request and it&amp;#39;ll execute it first before attempting to do the profile request. The command doesn&amp;#39;t change:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;beau -r profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Beau is still a work in progress but I feel like there is some potential to it. I&amp;#39;ll be improving it&amp;#39;s codebase and making it more extensible as time goes on. I am always open to feedback wether good or bad.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;P.S. The incredibly talented, Angela Velasquez helped me out with a logo. Everyone knows a successful open source project begins with a great logo.&lt;/em&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sun, 13 Mar 2016 00:00:00 -0600</pubDate>
+				<link>http://0.0.0.0:4000/2016/03/13/hey-beau.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2016/03/13/hey-beau.html</guid>
+			</item>
 		
 			<item>
 				<title>Making a Wooden iPhone Stand</title>
@@ -37,8 +77,8 @@
 &lt;p&gt;All in all, I am pretty happy with the results. The base matches my original idea and fulfils my expectations. It’s not perfect, my wood working skills leave much to be desired. I made a couple of mistakes which I plan on correcting on my next build. Here’s the sketchup model in case you want to play with it or build your own: &lt;a href=&quot;http://cl.ly/0z2w2K0T173t&quot;&gt;Download SketchUp Model&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Sat, 05 Dec 2015 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2015/12/05/Making-a-wooden-iphone-stand.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2015/12/05/Making-a-wooden-iphone-stand.html</guid>
+				<link>http://0.0.0.0:4000/2015/12/05/Making-a-wooden-iphone-stand.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2015/12/05/Making-a-wooden-iphone-stand.html</guid>
 			</item>
 		
 			<item>
@@ -60,8 +100,8 @@ tail -f ~/Library/Application\ Support/Postgres/var-9.4/pg_log/*
 &lt;p&gt;&lt;img src=&quot;http://files.martianwabbit.com/blog/pg_admin.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </description>
 				<pubDate>Wed, 10 Jun 2015 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2015/06/10/postgres-checking-queries-in-realtime.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2015/06/10/postgres-checking-queries-in-realtime.html</guid>
+				<link>http://0.0.0.0:4000/2015/06/10/postgres-checking-queries-in-realtime.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2015/06/10/postgres-checking-queries-in-realtime.html</guid>
 			</item>
 		
 			<item>
@@ -88,8 +128,8 @@ end
 &lt;p&gt;Other than these 2 things it’s pretty straight-forward and easy to use. I hope I don’t have to use full page caching again any time soon.&lt;/p&gt;
 </description>
 				<pubDate>Sun, 08 Mar 2015 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</guid>
+				<link>http://0.0.0.0:4000/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2015/03/08/Expiring-full-page-caches-in-Rails-4-from-the-model.html</guid>
 			</item>
 		
 			<item>
@@ -121,8 +161,8 @@ end
 &lt;p&gt;&lt;a href=&quot;https://docs.angularjs.org/guide/expression#one-time-binding&quot;&gt;One-time binding, Angular Developers Guide&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Fri, 26 Dec 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/12/26/angular-one-time-bindings.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/12/26/angular-one-time-bindings.html</guid>
+				<link>http://0.0.0.0:4000/2014/12/26/angular-one-time-bindings.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2014/12/26/angular-one-time-bindings.html</guid>
 			</item>
 		
 			<item>
@@ -146,8 +186,8 @@ end
 &lt;p&gt;Here&amp;#39;s the download link: &lt;a href=&quot;http://cl.ly/203m2e0n1J2K&quot;&gt;Download&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Mon, 15 Sep 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/09/15/just-vector-social-font-1-5.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/09/15/just-vector-social-font-1-5.html</guid>
+				<link>http://0.0.0.0:4000/2014/09/15/just-vector-social-font-1-5.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2014/09/15/just-vector-social-font-1-5.html</guid>
 			</item>
 		
 			<item>
@@ -278,8 +318,8 @@ class ViewController: UITableViewController, UITableViewDataSource {
 &lt;p&gt;&lt;a href=&quot;http://www.raywenderlich.com/50308/storyboards-tutorial-in-ios-7-part-1&quot;&gt;Storyboard Tutorial&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Thu, 31 Jul 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/07/31/using-tableviewcontrollers-with-swift.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/07/31/using-tableviewcontrollers-with-swift.html</guid>
+				<link>http://0.0.0.0:4000/2014/07/31/using-tableviewcontrollers-with-swift.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2014/07/31/using-tableviewcontrollers-with-swift.html</guid>
 			</item>
 		
 			<item>
@@ -367,8 +407,8 @@ class ViewController: UIViewController {
 &lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/ios/documentation/userexperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html&quot;&gt;Location and Maps Programming Guide&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Tue, 29 Jul 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/07/29/using-mapkit-with-swift.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/07/29/using-mapkit-with-swift.html</guid>
+				<link>http://0.0.0.0:4000/2014/07/29/using-mapkit-with-swift.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2014/07/29/using-mapkit-with-swift.html</guid>
 			</item>
 		
 			<item>
@@ -401,8 +441,8 @@ class ViewController: UIViewController {
 &lt;p&gt;That is all. Your emails should now allow you to interact with Phabricator.&lt;/p&gt;
 </description>
 				<pubDate>Mon, 21 Apr 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</guid>
+				<link>http://0.0.0.0:4000/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</guid>
 			</item>
 		
 			<item>
@@ -485,70 +525,8 @@ class ViewController: UIViewController {
 &lt;p&gt;I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I&amp;#39;ve used recently and might re-use in the future.&lt;/p&gt;
 </description>
 				<pubDate>Sat, 05 Apr 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/04/05/Sketch-Presets-For-Desktop.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/04/05/Sketch-Presets-For-Desktop.html</guid>
-			</item>
-		
-			<item>
-				<title>Scroll Spying for Fun and Profit</title>
-				<description>&lt;p&gt;I recently redesigned by blog. One of the new features is a menu that highlights the current post you are on.
-&lt;img src=&quot;http://f.cl.ly/items/133x0c1u0K0g0Y3g0g1W/scrollspying.gif&quot; class=&quot;small&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;To achieve this, I used &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto&lt;/a&gt; and a small amount of math. (The great thing about Zepto is that it&amp;#39;s fully compatible with jQuery, so this should work with jQuery out of the box as well).&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s jump right in, here&amp;#39;s how I do it:&lt;/p&gt;
-
-&lt;pre&gt;
-&lt;code&gt;
-$(window).on('scroll', function() {
-    var scrollTop = $(window).scrollTop();
-    var article_offsets = $('article').map(function(i) { 
-        if (i === 0) {
-            return 0;
-        }
-
-        return $(this).offset().top 
-    });
-
-    for (var i = 0; i &amp;lt; article_offsets.length; i++) {
-        if (article_offsets[i] - 40 &amp;lt;= scrollTop) {
-            $('.sidebar li').removeClass('active')
-                .eq(i).addClass('active');
-        }
-    };
-});
-&lt;/code&gt;
-&lt;/pre&gt;
-
-&lt;p&gt;The first line of interest:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;var article_offsets = $('article').map(function(i) { 
-    if (i === 0) {
-        return 0;
-    }
-
-    return $(this).offset().top 
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Grabs all the vertical positions (from now on, offsets) of the elements I want to match and makes an array out of them. In this case, I am targeting the articles since, those represent my blog posts. I make sure to mark the first one as 0, so it works when the page first loads at scroll position 0.&lt;/p&gt;
-
-&lt;p&gt;After doing this, we iterate over all our scroll positions, if we find ourselves scrolled after one of the offsets we run this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$('.sidebar li').removeClass('active').eq(i).addClass('active');
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This looks for the Ith element on the sidebar&amp;#39;s list and we add a class of &amp;#39;active&amp;#39; to it, highlighting it and doing whatever we want with it.&lt;/p&gt;
-
-&lt;p&gt;There&amp;#39;s a couple of other (bigger, more complex and probably more robust) solutions to this problem out there. Here&amp;#39;s a couple I came through:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://getbootstrap.com/javascript/#scrollspy&quot;&gt;http://getbootstrap.com/javascript/#scrollspy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.outyear.co.uk/smint/&quot;&gt;http://www.outyear.co.uk/smint/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://scrollnav.com/&quot;&gt;http://scrollnav.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I am pretty sure they are plenty of others but, for my evil purposes, my tiny script fulfills my needs.&lt;/p&gt;
-</description>
-				<pubDate>Fri, 04 Apr 2014 00:00:00 -0600</pubDate>
-				<link>http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</link>
-				<guid isPermaLink="true">http://martianwabbit.com/2014/04/04/scroll-spying-for-fun-and-profit.html</guid>
+				<link>http://0.0.0.0:4000/2014/04/05/Sketch-Presets-For-Desktop.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2014/04/05/Sketch-Presets-For-Desktop.html</guid>
 			</item>
 		
 	</channel>
