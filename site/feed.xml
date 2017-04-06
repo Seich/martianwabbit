@@ -7,6 +7,73 @@
 		<atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Writing Plugins for Beau</title>
+				<description>&lt;p&gt;Currently Beau allows plugins to do two different transformations. You can change the request settings right before they are used to make the request and you can transform the response after the request is finished. This covers all use cases I&amp;#39;ve come up with so far. I&amp;#39;ll go over the basics or writing a plugin in this post.&lt;/p&gt;
+
+&lt;h2&gt;The Plugin&lt;/h2&gt;
+
+&lt;p&gt;The first step is writing the plugin. A Beau plugin is a Javascript class that defines any of these methods: &lt;code&gt;preRequest(requestSettings, originalRequest)&lt;/code&gt; and &lt;code&gt;postResponse(response)&lt;/code&gt;. They can also receive settings as part of their &lt;code&gt;beau.yml&lt;/code&gt;configuration. Here&amp;#39;s the basic skeleton for a new plugin:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class MyPlugin {
+    constructor(settings = {}) {
+        this.settings = settings;
+    }
+
+    preRequest(req, orig) {}
+
+    postResponse(res) {}
+
+}
+
+module.exports = MyPlugin;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;All you are missing is a basic &lt;code&gt;package.json&lt;/code&gt; to finish the module (just run &lt;code&gt;npm init&lt;/code&gt; and go through the steps). Once that&amp;#39;s done you can install your plugin globally and use it as part of your &lt;code&gt;beau.yml&lt;/code&gt; like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;Host: http://localhost:9000
+    plugins:
+        - MyPlugin:
+            data:
+                name: Sergio
+            secret: ssh
+
+GET /profile:
+    alias: profile
+
+GET /:
+    skip_jwt: true
+    alias: home
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Our plugin will generate a jwt using the secret and data settings and send that along with every request. If &lt;code&gt;skip_jwt: true&lt;/code&gt; is part of the request&amp;#39;s configuration it won&amp;#39;t attach the header. First I&amp;#39;ll install &lt;code&gt;jsonwebtoken&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;npm install jsonwebtoken -S
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now all I need is to modify the preRequest so that it changes the headers and includes an Authorization with the bearer token:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;preRequest(req, orig) {
+    let token = jwt.sign(this.settings.data || {}, this.settings.secret);
+
+    req.headers.Authorization = `Bearer ${token}`;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will attach the authorization header to every request. We should also handle the case were certain requests don&amp;#39;t need the  header. In this case, I&amp;#39;ll just check if the original request configuration has the field:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;preRequest(req, orig) {
+    if (orig.skip_jwt) {
+        return;
+    }   
+
+    let token = jwt.sign(this.settings.data || {}, this.settings.secret);
+
+    req.headers.Authorization = `Bearer ${token}`;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That&amp;#39;s it. Like I said before, it&amp;#39;s pretty simple. This plugin as-is allows us for automatic token generation for certain requests. We can get as fancy or keep it as simple as we want. For now, I&amp;#39;ll publish that plugin as &lt;a href=&quot;https://github.com/Seich/beau-jwt&quot;&gt;beau-jwt&lt;/a&gt; and will make more improvements as I see fit.&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Writing a plugin is pretty easy. Beau doesn&amp;#39;t really do much so modifying requests is pretty straightforward and allows for nice, clean configuration files. Hopefully someone will think of cool things to do with these.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 06 Apr 2017 00:00:00 -0600</pubDate>
+				<link>http://0.0.0.0:4000/2017/04/06/writing-plugins-for-beau.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2017/04/06/writing-plugins-for-beau.html</guid>
+			</item>
+		
+			<item>
 				<title>Hey Beau!</title>
 				<description>&lt;p&gt;So I&amp;#39;ve been doing a lot of random experiments lately. One of them is Beau. &lt;a href=&quot;https://github.com/seich/beau&quot;&gt;Beau&lt;/a&gt; is at it&amp;#39;s heart a configurable http client. It was built with JSON APIs in mind. I&amp;#39;ve used things like Paw or Postman in the past and they are good but they are lacking in some key areas. For example, I love how extensible Paw is but not being able to share project files with coworkers in Windows or Linux makes it so I can&amp;#39;t use it with most of the teams I&amp;#39;ve worked with.&lt;/p&gt;
 
@@ -41,9 +108,9 @@
 
 &lt;p&gt;&lt;em&gt;P.S. The incredibly talented, Angela Velasquez helped me out with a logo. Everyone knows a successful open source project begins with a great logo.&lt;/em&gt;&lt;/p&gt;
 </description>
-				<pubDate>Sun, 13 Mar 2016 00:00:00 -0600</pubDate>
-				<link>http://0.0.0.0:4000/2016/03/13/hey-beau.html</link>
-				<guid isPermaLink="true">http://0.0.0.0:4000/2016/03/13/hey-beau.html</guid>
+				<pubDate>Mon, 13 Mar 2017 00:00:00 -0600</pubDate>
+				<link>http://0.0.0.0:4000/2017/03/13/hey-beau.html</link>
+				<guid isPermaLink="true">http://0.0.0.0:4000/2017/03/13/hey-beau.html</guid>
 			</item>
 		
 			<item>
@@ -443,90 +510,6 @@ class ViewController: UIViewController {
 				<pubDate>Mon, 21 Apr 2014 00:00:00 -0600</pubDate>
 				<link>http://0.0.0.0:4000/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</link>
 				<guid isPermaLink="true">http://0.0.0.0:4000/2014/04/21/using-mailgun-to-receive-emails-with-phabrication.html</guid>
-			</item>
-		
-			<item>
-				<title>Sketch Presets for Desktop Screens</title>
-				<description>&lt;p&gt;I&amp;#39;ve been using &lt;a href=&quot;http://bohemiancoding.com/sketch/&quot;&gt;Sketch&lt;/a&gt; to create mock ups for clients lately. So far so good. Today, I wanted to create art board presets for common desktop screen sizes. It took me a little while to find out how to organize them into folders. Luckily for me, Jan Drewniak has a &lt;a href=&quot;http://j4n.co/blog/custom-sketch-art-board-presets&quot;&gt;blog post&lt;/a&gt; detailing how to do just this.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Sketch actually keeps these artboard presets in an artboards.sketchpreset file located somewhere on your mac. If you&amp;#39;re using the App Store version of Sketch, then the file is located here:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application  Support/sketch/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Here&amp;#39;s my presets:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&amp;lt;dict&amp;gt;
-    &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-    &amp;lt;string&amp;gt;Desktop&amp;lt;/string&amp;gt;
-    &amp;lt;key&amp;gt;presets&amp;lt;/key&amp;gt;
-    &amp;lt;array&amp;gt;
-        &amp;lt;string&amp;gt;Retina Displays&amp;lt;/string&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;2880&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;15-inch&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1800&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;2560&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;13-inch&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;string&amp;gt;4:3&amp;lt;/string&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;Large 4:3&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1200&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1280&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;Medium 4:3&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1024&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;string&amp;gt;16:9&amp;lt;/string&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1920&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;Large 16:9&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1080&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1600&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;Medium 16:9&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;900&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;width&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;1366&amp;lt;/integer&amp;gt;
-            &amp;lt;key&amp;gt;name&amp;lt;/key&amp;gt;
-            &amp;lt;string&amp;gt;Small 16:9&amp;lt;/string&amp;gt;
-            &amp;lt;key&amp;gt;height&amp;lt;/key&amp;gt;
-            &amp;lt;integer&amp;gt;768&amp;lt;/integer&amp;gt;
-        &amp;lt;/dict&amp;gt;
-    &amp;lt;/array&amp;gt;
-&amp;lt;/dict&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I have categories for: Retina, 16:9 and 5:4 displays. Only listing the ones I&amp;#39;ve used recently and might re-use in the future.&lt;/p&gt;
-</description>
-				<pubDate>Sat, 05 Apr 2014 00:00:00 -0600</pubDate>
-				<link>http://0.0.0.0:4000/2014/04/05/Sketch-Presets-For-Desktop.html</link>
-				<guid isPermaLink="true">http://0.0.0.0:4000/2014/04/05/Sketch-Presets-For-Desktop.html</guid>
 			</item>
 		
 	</channel>
