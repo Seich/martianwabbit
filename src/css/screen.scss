@@ -161,12 +161,6 @@ footer {
 	}
 }
 
-.shots img {
-	width: 140px;
-	margin-right: 0.5em;
-	border-radius: 5px;
-}
-
 /* Content */
 article {
 	position: relative;
@@ -367,13 +361,6 @@ and (max-width: 667px) {
 		.blog p > a {
 			margin-top: 1em;
 			display: block;
-		}
-
-		.shots {
-			-webkit-flex-direction: column;
-			-ms-flex-direction: column;
-			flex-direction: column;
-			margin-top: 3em;
 		}
 	}
 

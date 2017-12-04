@@ -1,14 +1,14 @@
 ---
-layout: home
+layout: layout
 ---
 <div class="home">
 	<div class="about">
 		<h2>Person</h2>
 		<p>
-		Developer and designer. 
-		Specializes in the front-end. 
-		Actually likes Javascript. 
-		Honduran, cat enthusiast and late-night gamer.
+		Developer and designer.
+		Specializes in the front-end.
+		Actually likes Javascript.
+		Honduran, cat enthusiast, foodie and late-night maker of noisy things.
 		</p>
 	</div>
 
@@ -26,17 +26,12 @@ layout: home
 		<p><a href="archive.html">Blog Archive</a></p>
 	</div>
 
-	<div class="shot-title show">
-		<h2>Designer</h2>
-		<div class="shots show"></div>
-	</div>
-
-	<div class="photo-title show">
+	<div class="photo-title">
 		<h2>Photographer</h2>
 		<p>&nbsp;</p>
 	</div>
 
-	<div class="photos show">
+	<div class="photos">
 		{% jekyllgram 6 %}
 			<a href="{{ photo.link }}" title="{{ photo.caption.text }}">
 				<img src="{{ photo.images.standard_resolution.url }}" title="{{ photo.caption.text }}" />
