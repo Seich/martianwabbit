@@ -36,5 +36,11 @@ layout: home
 		<p>&nbsp;</p>
 	</div>
 
-	<div class="photos show"></div>
+	<div class="photos show">
+		{% jekyllgram 6 %}
+			<a href="{{ photo.link }}" title="{{ photo.caption.text }}">
+				<img src="{{ photo.images.standard_resolution.url }}" title="{{ photo.caption.text }}" />
+			</a>
+		{% endjekyllgram %}
+	</div>
 </div>
