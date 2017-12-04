@@ -1,0 +1,47 @@
+---
+layout: home
+---
+<div class="home">
+	<div class="about">
+		<h2>Person</h2>
+		<p>
+		Developer and designer.
+		Specializes in the front-end.
+		Actually likes Javascript.
+		Honduran, cat enthusiast and late-night gamer.
+		</p>
+	</div>
+
+	<div class="blog">
+		<h2>Writer</h2>
+		<ul>
+		{% for post in paginator.posts %}
+			<li>
+				<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+				<time>{{ post.date | date: "%B %d, %Y"}}</time>
+			</li>
+		{% endfor %}
+		</ul>
+
+		<p><a href="archive.html">Blog Archive</a></p>
+	</div>
+
+	<div class="shot-title show">
+		<h2>Designer</h2>
+		<div class="shots show"></div>
+	</div>
+
+	<div class="photo-title show">
+		<h2>Photographer</h2>
+		<p>&nbsp;</p>
+	</div>
+
+	<div class="photos show"></div>
+
+	{% jekyllgram 6 %}
+	   <a href="{{ photo.link }}" title="{{ photo.caption.text }}">
+	     <img src="{{ photo.images.thumbnail.url }}"
+	          title="{{ photo.caption.text }}" />
+	   </a>
+	{% endjekyllgram %}
+</div>
