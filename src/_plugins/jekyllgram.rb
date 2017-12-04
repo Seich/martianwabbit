@@ -12,7 +12,6 @@
 # To use this plugin you will need to make your Instagram API credentials
 # available as environment variables below:
 #
-# ENV['JEKYLLGRAM_USER'] = {{ INSTAGRAM_USER_ID }}
 # ENV['JEKYLLGRAM_KEY'] = {{ INSTAGRAM_CLIENT_ID }}
 #
 # Usage in your templates:
@@ -38,8 +37,7 @@ module Jekyll
 
     def initialize(tag, params, token)
       @limit = params.to_i
-      @user_id = ENV['JEKYLLGRAM_USER']
-      @client_id = ENV['JEKYLLGRAM_KEY']
+      @access_token = ENV['JEKYLLGRAM_KEY']
       @api_url = 'https://api.instagram.com/v1'
 
       super
@@ -70,8 +68,8 @@ module Jekyll
     end
 
     def recent_photos
-      method = "/users/#{@user_id}/media/recent"
-      keys = "/?client_id=#{@client_id}"
+      method = "/users/self/media/recent"
+      keys = "/?access_token=#{@access_token}"
 
       response = Net::HTTP.get_response(URI.parse(@api_url + method + keys))
       return [] unless response.is_a?(Net::HTTPSuccess)

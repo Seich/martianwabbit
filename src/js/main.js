@@ -20,22 +20,6 @@
 			el.style.opacity = 1;
 		});	
 	};
-
-	var getPhotoUrl = function(photo) {
-		return 	{
-			src: 	'https://farm' + photo.farm + 
-					'.staticflickr.com/' + photo.server + '/' +
-					photo.id + '_' + photo.secret + '_z.jpg',
-			page: 'https://www.flickr.com/photos/' + photo.owner + '/' + photo.id
-		};
-	};
-
-	window.jsonFlickrApi = function(photos) {
-		var div = document.querySelectorAll('.photos')[0];
-		photos = photos.photos.photo.map(getPhotoUrl);
-
-		appendTo(div, photos, '.photos.show, .photo-title');
-	};
 	
 	var getShotUrl = function(shot) {
 		return { 
