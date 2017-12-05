@@ -14,6 +14,7 @@ html {
 body {
 	margin: 0;
 	font-family: "PT Serif", serif;
+	font-size: 18px;
 
 	& > * {
 		-webkit-animation-name: fadeIn;
@@ -61,7 +62,10 @@ a {
 
 /* Top */
 #top {
-	margin: 3em 8em;
+	margin: 4em auto;
+	max-width: 900px;
+	min-width: 500px;
+	width: 70vw;
 
 	h1 {
 		font-size: 1.6em;
@@ -96,8 +100,10 @@ footer {
 .home {
 
 	& > div {
-		width: 600px;
-		margin: 2em auto 0;
+		margin: 3em auto 0;
+		max-width: 700px;
+		min-width: 500px;
+		width: 50vw;
 
 		h2 {
 			position: relative;
@@ -157,21 +163,25 @@ footer {
 	justify-content: center;
 
 	img {
-		height: 16.03vw;
+		height: 16vw;
+		max-height: 250px;
 	}
 }
 
 /* Content */
 article {
-	position: relative;
-	margin: 2em auto;
-	max-width: 600px;
-	padding: 0 3em;
 	color: #222;
+	margin: 2em auto;
+	padding: 0 3em;
+	position: relative;
+
+	width: 50vw;
+	min-width: 500px;
+	max-width: 700px;
 
 	h1 {
 		font-size: 2.5em;
-		margin: 2em 0 0 0;
+		margin: 0;
 		padding: 0.2em 0;
 		text-align: center;
 
@@ -213,9 +223,9 @@ article {
 	}
 
 	p {
-		font-size: 16px;
-		margin: 1em 0;
-		line-height: 27px;
+		font-size: 1em;
+		margin: 1.8em 0;
+		line-height: 180%;
 	}
 
 	img,
@@ -231,13 +241,17 @@ article {
 
 	code {
 		font-family: 'Space Mono', monaco, menlo, consolas, monospace;
-		font-size: 12px;
 		background: #f4f4f4;
+	}
+
+	p code {
+		font-size: 0.9em;
 		padding: 0.2em 0.5em;
 	}
 
 	pre code {
-		line-height: normal;
+		font-size: 0.8em;
+		line-height: 160%;
 		margin-left: -5%;
 		margin-top: 1em;
 		padding: 2em;
@@ -310,7 +324,6 @@ section.fourOfour {
 
 
 @media screen
-and (min-width: 320px)
 and (max-width: 667px) {
 	body {
 		font-size: 1.3em;

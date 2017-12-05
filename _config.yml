@@ -3,7 +3,7 @@ destination: ./site
 name: Seichy's Missing Bit
 description: 'A blog on programing, dreams, pandas and sweet food.'
 url: http://martianwabbit.com
-paginate: 4
+paginate: 6
 markdown: redcarpet
 sass:
     style: :compressed
