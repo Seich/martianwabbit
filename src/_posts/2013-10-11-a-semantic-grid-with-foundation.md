@@ -20,29 +20,28 @@ title: "A Semantic Grid with Zurb's Foundation"
 </div>
 
 <p>As you can see, it's a very simple layout. It'd be really easy to build it using the grid classes, it's even easier to build it using the mixins. Here's my markup:</p>
-<pre>
-<code data-language="html">&lt;article&gt;
-  &lt;header&gt;
-    &lt;h1&gt;Hello World&lt;/h1&gt;
-  &lt;/header&gt;
-  
-  &lt;div&gt;
-      &lt;img src=&quot;http://lorempixel.com/300/400/&quot;&gt;
-  &lt;/div&gt;
 
-  &lt;p&gt;
+``` html
+<article>
+  <header>
+    <h1>Hello World</h1>
+  </header>
+
+  <div>
+      <img src="http://lorempixel.com/300/400/">
+  </div>
+
+  <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, voluptatibus, deserunt, facilis iusto sapiente impedit praesentium laudantium minus voluptas numquam incidunt corrupti sequi laboriosam magnam officia perspiciatis quas quam quaerat!
-  &lt;/p&gt;
-&lt;/article&gt;
-</code>
-</pre>
-
+  </p>
+</article>
+```
 <p>As you can see it's pretty standard except the elements lack classes and such. Much prettier than usual in my opinion.</p>
 
 <p>Here's my CSS:</p>
 
-<pre>
-<code data-language="css">@import "foundation/components/global";
+``` scss
+@import "foundation/components/global";
 @import "foundation/components/grid";
 
 $total-columns: 5;
@@ -53,7 +52,7 @@ article {
     @include grid-row;
 
     h1 {
-      @include grid-column(5);  
+      @include grid-column(5);
     }
   }
 
@@ -65,8 +64,7 @@ article {
     @include grid-column(3);
   }
 }
-</code>
-</pre>
+```
 
 <p>Awesome, right? Here I am the grid-column and grid-row mixins to create the grid directly in my CSS. All you have to do is import the mixins. There are also many options to customize the grid, in this case I changed the number of columns from the default 12, to 5. I am also nesting rows, all from the CSS, leaving the HTML to describe it's thing. </p>
 

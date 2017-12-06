@@ -16,75 +16,90 @@ Then added a MKMapView to the view controller. After that, imported `MapKit` int
 
 
 <video controls>
-	<source src="http://files.martianwabbit.com/blog/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-	<source src="http://files.martianwabbit.com/blog/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="http://files.martianwabbit.com/blog/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="http://files.martianwabbit.com/blog/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
-
 
 ## Setup your desired location
 Now our map is ready to display a location. You'll need a couple of things to set it to the right place. First, you need a location in the form of a latitude and longitude and a CLLocationCoordinate2D.
 
-	var location = CLLocationCoordinate2D(
-		latitude: 16.40,
-		longitude: -86.34
-	)
+``` swift
+var location = CLLocationCoordinate2D(
+    latitude: 16.40,
+    longitude: -86.34
+)
+```
 
 Now, we need to tell the map what the area spanned by the region is. For this we use `MKCoordinateSpanMake`. Which, as you probably guessed, creates a `MKCoordinateSpan`.
 
-	var span = MKCoordinateSpanMake(1, 1)
+``` swift
+var span = MKCoordinateSpanMake(1, 1)
+```
 
 After that we just need to define the region using these two things:
 
-	var region = MKCoordinateRegion(center: location, span: span)
+``` swift
+var region = MKCoordinateRegion(center: location, span: span)
+```
 
 And finally, we set this region to the map:
 
-	map.setRegion(region, animated: true)
+``` swift
+map.setRegion(region, animated: true)
+```
 
 ## Bonus: Adding an annotation
 Adding an annotation is actually quite easy. We start by creating a new MKPointAnnotation instance. It'll display the default red pin which, might not be as pretty but it'll get the job done.
 
-	var annotation = MKPointAnnotation()
+``` swift
+var annotation = MKPointAnnotation()
+```
 
 Afterwards, we can set it's coordinates, title and subtitle to place it wherever we want and to add the text it's callout will display when tapped.
 
-	annotation.coordinate = location
-    annotation.title = "Roatan"
-    annotation.subtitle = "Honduras"
+``` swift
+annotation.coordinate = location
+annotation.title = "Roatan"
+annotation.subtitle = "Honduras"
+```
 
 Finally, we add it to the map like this:
 
-	map.addAnnotation(annotation)
+``` swift
+map.addAnnotation(annotation)
+```
 
 Here's my final code:
 
-	import UIKit
-	import MapKit
+``` swift
+import UIKit
+import MapKit
 
-	class ViewController: UIViewController {
+class ViewController: UIViewController {
 
-    	@IBOutlet weak var map: MKMapView!
-	    override func viewDidLoad() {
-        	super.viewDidLoad()
+    @IBOutlet weak var map: MKMapView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-	        var location = CLLocationCoordinate2D(
-	        	latitude: 16.40,
-	        	longitude: -86.34
-	        )
+        var location = CLLocationCoordinate2D(
+            latitude: 16.40,
+            longitude: -86.34
+        )
 
-    	    var span = MKCoordinateSpanMake(0.5, 0.5)
-        	var region = MKCoordinateRegion(center: location, span: span)
+        var span = MKCoordinateSpanMake(0.5, 0.5)
+        var region = MKCoordinateRegion(center: location, span: span)
 
-	        map.setRegion(region, animated: true)
+        map.setRegion(region, animated: true)
 
-    	    var annotation = MKPointAnnotation()
-        	annotation.coordinate = location
-	        annotation.title = "Roatan"
-    	    annotation.subtitle = "Honduras"
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Roatan"
+        annotation.subtitle = "Honduras"
 
-        	map.addAnnotation(annotation)
-	    }
-	}
+        map.addAnnotation(annotation)
+    }
+}
+```
 
 And here's what my app looks like:
 <img src="http://files.martianwabbit.com/blog/final.png" alt="Final product" class="small">
