@@ -162,6 +162,9 @@ footer {
 	-ms-flex-pack: center;
 	justify-content: center;
 
+	max-width: 100vw;
+	overflow: hidden;
+
 	img {
 		height: 16vw;
 		max-height: 250px;
