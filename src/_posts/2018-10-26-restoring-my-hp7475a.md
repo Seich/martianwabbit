@@ -19,6 +19,9 @@ Luckily Geneva drives are well documented and this one was a textbook example so
 
 Once that was in the pen drive came back to life and worked brilliantly. It seems to use bumping into the first position to figure out where it’s at making it noisy and hilarious to use.
 
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<a class="gumroad-button" href="https://gum.co/hp7475adrive">Download Geneva Drive</a>
+
 <video playsinline muted="muted" autoplay="autoplay" preload="auto" loop="loop">
     <source src="http://files.martianwabbit.com/blog/hp7475a/new-gear-working.mp4" type="video/mp4">
 </video>
