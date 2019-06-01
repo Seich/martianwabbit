@@ -11,8 +11,14 @@ pool:
 
 steps:
 - script: echo 'JEKYLLGRAM_KEY=$JEKYLLGRAM_KEY' > .env
+  displayName: Creating .env file
+  
 - script: docker-compose run site jekyll build
   displayName: Building Site
 
-- script: rsync -a ./site seich@martianwabbit.com:/home/seich/webapps/martianwabbitsite
-  displayName: 'Syncing Site to Server'
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'Martian Wabbit'
+    sourceFolder: './site'
+    contents: '**'
+    targetFolder: '/home/seich/webapps/martianwabbitsite'
