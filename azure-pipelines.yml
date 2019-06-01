@@ -7,8 +7,6 @@ pool:
 steps:
 - script: echo "JEKYLLGRAM_KEY=$JEKYLLGRAM_KEY" > .env
   displayName: Creating .env file
-
-- script: cat .env
   
 - script: docker-compose run site jekyll build
   displayName: Building Site
