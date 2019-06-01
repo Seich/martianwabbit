@@ -10,8 +10,9 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
+- script: echo 'JEKYLLGRAM_KEY=$JEKYLLGRAM_KEY' > .env
 - script: docker-compose run site jekyll build
   displayName: Building Site
 
-- script: rsync -a /srv/jekyll/site seich@martianwabbit.com:/home/seich/webapps/martianwabbitsite
+- script: rsync -a ./site seich@martianwabbit.com:/home/seich/webapps/martianwabbitsite
   displayName: 'Syncing Site to Server'
