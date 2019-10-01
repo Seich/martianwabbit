@@ -11,13 +11,13 @@ This weekend I started working on a small app I've wanted for a while but got st
 ## First, create a new project
 I started with a __Single View Application__.
 
-![New Project Screen](/images/2014-07-29-using-mapkit/step_1.png)
+![New Project Screen](/files/2014-07-29-using-mapkit/step_1.png)
 Then added a MKMapView to the view controller. After that, imported `MapKit` into the view controller's code. Finally, I added a new reference outlet to the map called _map_.
 
 
 <video controls>
-    <source src="/images/2014-07-29-using-mapkit/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="/images/2014-07-29-using-mapkit/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="/files/2014-07-29-using-mapkit/swiftmaps_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="/files/2014-07-29-using-mapkit/swiftmaps_step_1.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
 
 ## Setup your desired location
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
 ```
 
 And here's what my app looks like:
-<img src="/images/2014-07-29-using-mapkit/final.png" alt="Final product" class="small">
+<img src="/files/2014-07-29-using-mapkit/final.png" alt="Final product" class="small">
 ## Additional Resources
 
 [Location and Maps Programming Guide](https://developer.apple.com/library/ios/documentation/userexperience/Conceptual/LocationAwarenessPG/AnnotatingMaps/AnnotatingMaps.html)

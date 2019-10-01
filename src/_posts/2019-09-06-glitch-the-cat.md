@@ -7,4 +7,4 @@ Glitch the cat was my best friend for quite a while. This might seem as hyperbol
 
 Goodbye Glitch, The Cat. I love you and you will be missed.
 
-![Glitch, The Cat](/images/2019-09-6-glitch-the-cat.JPG)
+![Glitch, The Cat](/files/2019-09-06-glitch-the-cat/glitch.JPG)

@@ -17,6 +17,6 @@ All in all I am really happy with the much-needed update. I'd like to thank [Max
 
 The project can now be found on Github: [https://github.com/Seich/JustVector-Icons-Font](https://github.com/Seich/JustVector-Icons-Font)
 
-Here's a preview: [Preview](/images/2014-09-15-just-vector-social-font/index.html)
+Here's a preview: [Preview](/files/2014-09-15-just-vector-social-font/index.html)
 
 Here's the download link: [Download](http://cl.ly/203m2e0n1J2K)

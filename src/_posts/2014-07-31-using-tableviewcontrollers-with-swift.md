@@ -5,7 +5,7 @@ title: "Using TableViewControllers with Swift"
 
 Using a TableViewController with swift is easy. It takes only a couple of steps to create a table with custom cells. I started by creating a single view application.
 
-![New Project](/images/2014-07-31-using-tableviewcontrollers/swiftTables_step_1.png)
+![New Project](/files/2014-07-31-using-tableviewcontrollers/swiftTables_step_1.png)
 
 ## Setting up the table and cell prototype
 
@@ -15,8 +15,8 @@ Finally, I added two labels to the prototype cell. You can use the prototype cel
 (There's a preset style that's only a title and a subtitle which I could have used but, I want more control over it's appearance so I went this way)
 
 <video controls>
-    <source src="/images/2014-07-31-using-tableviewcontrollers/swiftTable_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="/images/2014-07-31-using-tableviewcontrollers/swiftTable_step_1.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="/files/2014-07-31-using-tableviewcontrollers/swiftTable_step_1.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="/files/2014-07-31-using-tableviewcontrollers/swiftTable_step_1.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
 
 Once I had my cell and table ready I just needed to do a couple more things. First, I created a class called TweetCell that inherits from `UITableViewCell`. I'll be using this class as a base for my custom cell. I set my class as the custom class and I added two outlets to refer to both of the labels. I named the big one "username" and the smaller one "body".
@@ -32,8 +32,8 @@ class TweetCell: UITableViewCell {
 ```
 
 <video controls>
-    <source src="/images/2014-07-31-using-tableviewcontrollers/swiftTable_step_2.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
-    <source src="/images/2014-07-31-using-tableviewcontrollers/swiftTable_step_2.webm" type="video/webm; codecs=vp8,vorbis">
+    <source src="/files/2014-07-31-using-tableviewcontrollers/swiftTable_step_2.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2">
+    <source src="/files/2014-07-31-using-tableviewcontrollers/swiftTable_step_2.webm" type="video/webm; codecs=vp8,vorbis">
 </video>
 
 ## The ViewController
@@ -135,7 +135,7 @@ class ViewController: UITableViewController, UITableViewDataSource {
 
  And this is what my finalised app looks like:
 
-<img src="/images/2014-07-31-using-tableviewcontrollers/swiftTables_final.png" alt="Final app" class="small">
+<img src="/files/2014-07-31-using-tableviewcontrollers/swiftTables_final.png" alt="Final app" class="small">
 
 It's not perfect but, it shouldn't take much to have it looking decent. I'll probably be revisiting this soon and finishing the whole Twitter application so stay tuned for more.
 
