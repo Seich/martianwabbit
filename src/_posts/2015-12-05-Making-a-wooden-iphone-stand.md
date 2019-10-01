@@ -4,11 +4,11 @@ title: "Making a Wooden iPhone Stand"
 ---
 I recently decided to tried my hand at building a physical thing. A stand for my iPhone. I decided I wanted to go through the whole process and see what its like. So I started with a mockup:
 
-![First mockup](http://files.martianwabbit.com/blog/mockup-1.png)
+![First mockup](/images/2015-12-05-making-a-wooden-iphone-stand/mockup-1.png)
 
 It’s a simple thing, a piece of wood with a slanted channel to put your phone in. Here’s how it turned out:
 
-![First attempt](http://files.martianwabbit.com/blog/final-1.jpg)
+![First attempt](/images/2015-12-05-making-a-wooden-iphone-stand/final-1.jpg)
 
 It looks ok, but there’s a couple of things I didn’t like with this first version. It held the phone just fine but it didn't look right or inspire enough confidence to actually trust it with my phone.
 
@@ -22,10 +22,10 @@ Finally, I wanted to add anti-slipping pads to the base. I originally wanted to 
 
 With everything figured out, I moved onto the mock up. I learned a couple of new techniques for sketchup so making it was a lot faster. Here’s what the mockup ended up looking like:
 
-![Second Mockup](http://files.martianwabbit.com/blog/mockup-2.png)
+![Second Mockup](/images/2015-12-05-making-a-wooden-iphone-stand/mockup-2.png)
 
 And here’s what it ended up looking like at then end:
 
-![Final result](http://files.martianwabbit.com/blog/final-2.jpg)
+![Final result](/images/2015-12-05-making-a-wooden-iphone-stand/final-2.jpg)
 
 All in all, I am pretty happy with the results. The base matches my original idea and fulfils my expectations. It’s not perfect, my wood working skills leave much to be desired. I made a couple of mistakes which I plan on correcting on my next build. Here’s the sketchup model in case you want to play with it or build your own: [Download SketchUp Model](http://cl.ly/0z2w2K0T173t)

@@ -18,4 +18,4 @@ Once you’ve configured these values Postgres will be dumping all queries into 
 
 Also, it’s worth noting that Pg Admin has a log viewer you can use for this task. Just go to Tools > Server Status and you should get this window:
 
-![](http://files.martianwabbit.com/blog/pg_admin.png)
+![Screenshot of PG Admin Log](/images/2015-06-10-postgres-checking-queries/pg_admin.png)
