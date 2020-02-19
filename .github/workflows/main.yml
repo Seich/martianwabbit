@@ -19,8 +19,16 @@ jobs:
         mkdir ~/.ssh
         echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+    - uses: actions/cache@v1
+      with:
+        path: ./bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
     - name: Building Site
-      run: docker-compose run site jekyll build --trace
+      run: |
+        mkdir ./src/.jekyll-cache
+        docker-compose run site jekyll build --trace
     - name: Deploying site...
       run: |
         rsync -e "ssh -o StrictHostKeyChecking=accept-new" -azP ./site/ ${{ secrets.REMOTE_USER }}:/home/seich/webapps/martianwabbitsite
