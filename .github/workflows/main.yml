@@ -19,14 +19,13 @@ jobs:
         mkdir ~/.ssh
         echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ls
     - uses: actions/cache@v1.1.2
       with:
         path: ./bundle
         key: gems-${{ hashFiles('**/Gemfile.lock') }}
     - name: Building Site
       run: |
-        mkdir -p ./src/.jekyll-cache/ _site
+        mkdir -p ./src/.jekyll-cache/ site
         docker-compose run site jekyll build --trace
     - name: Deploying site...
       run: |
