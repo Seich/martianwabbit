@@ -20,7 +20,7 @@ jobs:
         echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
     - name: Building Site
-      run: docker-compose run site jekyll build
+      run: docker-compose run site jekyll build --trace
     - name: Deploying site...
       run: |
         rsync -e "ssh -o StrictHostKeyChecking=accept-new" -azP ./site/ ${{ secrets.REMOTE_USER }}:/home/seich/webapps/martianwabbitsite
