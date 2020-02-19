@@ -27,7 +27,7 @@ jobs:
           ${{ runner.os }}-gems-
     - name: Building Site
       run: |
-        mkdir ./src/.jekyll-cache
+        mkdir -p ./src/.jekyll-cache/Jekyll
         docker-compose run site jekyll build --trace
     - name: Deploying site...
       run: |
