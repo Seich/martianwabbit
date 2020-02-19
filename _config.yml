@@ -1,9 +1,8 @@
 source: ./src
 destination: ./site
 name: Seichy's Missing Bit
-description: 'A blog on programing, dreams, pandas and sweet food.'
+description: 'A blog on programing, electronics, plotters and cats.'
 url: http://martianwabbit.com
-paginate: 6
 
 highlighter: rouge
 markdown: kramdown
@@ -19,4 +18,3 @@ host: 0.0.0.0
 port: 4000
 gems:
   - jekyll-redirect-from
-  - jekyll-paginate
