@@ -30,7 +30,7 @@ jobs:
     - name: Building Site
       run: |
         mkdir ./site 
-        mkdir -p ./src/.jekyll-cache/Jekyll/Cache
+        mkdir -p ./src/.jekyll-cache/Jekyll/Cache/Jekyll--Cache
         docker-compose run site jekyll build --trace
 
     - name: Deploying site...
