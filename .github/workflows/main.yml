@@ -25,8 +25,8 @@ jobs:
         key: gems-${{ hashFiles('**/Gemfile.lock') }}
     - name: Building Site
       run: |
-        mkdir site 
-        mkdir .jekyll-cache/
+        mkdir ./site 
+        mkdir ./src/.jekyll-cache/
         docker-compose run site jekyll build --trace
     - name: Deploying site...
       run: |
