@@ -12,22 +12,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Creating .env file
       run: echo "JEKYLLGRAM_KEY=${{ secrets.JEKYLLGRAM_KEY }}" > .env
+
     - name: Adding Private Key
       run: |
         mkdir ~/.ssh
         echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+
     - uses: actions/cache@v1.1.2
       with:
         path: ./bundle
         key: gems-${{ hashFiles('**/Gemfile.lock') }}
+
     - name: Building Site
       run: |
         mkdir ./site 
-        mkdir ./src/.jekyll-cache/
+        mkdir -p ./src/.jekyll-cache/Jekyll
         docker-compose run site jekyll build --trace
+
     - name: Deploying site...
       run: |
         rsync -e "ssh -o StrictHostKeyChecking=accept-new" -azP ./site/ ${{ secrets.REMOTE_USER }}:/home/seich/webapps/martianwabbitsite
