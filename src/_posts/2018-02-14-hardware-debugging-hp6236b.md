@@ -50,6 +50,9 @@ was back to working as intended. I started fixing some of the broken pieces,
 like the meter holders. Those were not salvageable so I designed and 3d printed
 new ones.
 
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<a class="gumroad-button" href="https://gum.co/eAfVf" target="_blank">Download Meter Holders</a>
+
 ![The broken holders](/files/2018-02-14-hardware-debugging-hp6236b/holders.jpg)
 
 Once all the pieces were in, I resoldered the meters, placed everything back
