@@ -5,7 +5,7 @@ services:
     env_file:
         - .env
     command: jekyll serve --force_polling
-    image: jekyll/jekyll:4.0.0
+    image: jekyll/jekyll@sha256:fa979718aac3528a2c127eedf1e4f721ac07aed5c22bd5ea493e6ab7b8eca9a1
     volumes:
       - .:/srv/jekyll
       - ./bundle:/usr/local/bundle
