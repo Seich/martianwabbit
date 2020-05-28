@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rails Quickhint #1: Creating a model while skipping validations"
+title: "Creating a model while skipping validations in Rails"
 ---
 
 This certainly needs some background. I've been working on a random rails project for the better part of the last couple of months.
@@ -8,7 +8,7 @@ This project uses devise to manage logins and user registration. Recently regist
 make sense since they had been working fine for a while. So I started digging into it.
 
 According to rails the user url didn't exist so it couldn't redirect back to the homepage after a successful registration.
-After much digging around the stack trace I finally figured it out. Turns out that when a devise user is create a user profile is created along with it(this is specific to my application). But, that's normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn't (since the username is only supposed to be set after registration).
+After much digging around the stack trace I finally figured it out. Turns out that when a devise user is created a user profile is created along with it(this is specific to my application). But, that's normal, what started causing problems was that the profile had a validation for a unique username, which blank, wasn't (since the username is only supposed to be set after registration).
 
 So, what's the solution? Easy, all I had to make sure of was that when I created the user profile I disabled validations for the user profile model. Here's how I did it:
 
