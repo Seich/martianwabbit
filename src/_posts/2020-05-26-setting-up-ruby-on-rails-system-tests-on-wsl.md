@@ -37,12 +37,12 @@ Now we have to change the default chrome driver to use the selenium hub instead:
 require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-	driven_by :selenium, using: :chrome, screen_size: [1600, 1080], options: {
-	  url: "http://localhost:4444/wd/hub",
-	  desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-		chromeOptions: { args: %w[headless window-size=1600x1080] },
-	  )
-	}
+  driven_by :selenium, using: :chrome, screen_size: [1600, 1080], options: {
+    url: "http://localhost:4444/wd/hub",
+    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: %w[headless window-size=1600x1080] },
+    )
+  }
 end
 ```
 
@@ -52,18 +52,17 @@ This would be mostly it if we are running rails containerized as well but since 
 # application_system_test_case.rb 
 require "test_helper"
 
- class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  ...
 
-	...
-
-   def setup
-     Capybara.server_host = "0.0.0.0"
-     Capybara.server = :puma, { Threads: "1:1" }
-     Capybara.app_host = "http://host.docker.internal:#{Capybara.current_session.server.port}"
-     host! "http://host.docker.internal:#{Capybara.current_session.server.port}"
-     super
-   end
+ def setup
+   Capybara.server_host = "0.0.0.0"
+   Capybara.server = :puma, { Threads: "1:1" }
+   Capybara.app_host = "http://host.docker.internal:#{Capybara.current_session.server.port}"
+   host! "http://host.docker.internal:#{Capybara.current_session.server.port}"
+   super
  end
+end
 ```
 
 The key idea here is that rails instances created by capybara when testing should be bound to `0.0.0.0` so they are available to the chrome container, these will get a random port assigned and we can use it along with `host.docker.internal` to allow chrome to connect to it.
