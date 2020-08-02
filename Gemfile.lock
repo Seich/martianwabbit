@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    childprocess (3.0.0)
     colorator (1.1.0)
     concurrent-ruby (1.1.6)
     em-websocket (0.5.1)
@@ -50,9 +51,13 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rouge (3.16.0)
+    rubyzip (2.3.0)
     safe_yaml (1.0.5)
     sassc (2.2.1)
       ffi (~> 1.9)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     unicode-display_width (1.6.1)
@@ -63,6 +68,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (= 4.0.0)
   jekyll-redirect-from
+  selenium-webdriver
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

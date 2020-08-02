@@ -13,9 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Creating .env file
-      run: echo "JEKYLLGRAM_KEY=${{ secrets.JEKYLLGRAM_KEY }}" > .env
-
     - name: Adding Private Key
       run: |
         mkdir ~/.ssh
