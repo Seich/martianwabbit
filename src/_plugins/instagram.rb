@@ -21,8 +21,6 @@ module Jekyll
 
       driver.get("https://instagram.com/seichleon")
 
-      p driver.page_source
-
       links = driver.find_elements(css: 'a[href^="/p/"]')
       photos = links.first(@amount).map do |link|
         img = link.find_element(css: "img")
