@@ -5,7 +5,7 @@ echo
 
 title=$(sed 's/ /-/g' <<< $orig_title | tr '[:upper:]' '[:lower:]')
 folder=`date +%Y-%m-%d`-$title
-filename=$folder-$title.md
+filename=$folder.md
 
 cp ./template.md $filename 
 
