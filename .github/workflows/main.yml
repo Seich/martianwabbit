@@ -3,7 +3,8 @@ name: Deploy Website
 on: 
   push:
     branches: 
-      - disabled
+      - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,8 +16,8 @@ jobs:
 
     - name: Creating .env file
       run: |
-        echo "FLICKR_KEY=${{secrets.FLICKR_KEY}}" > .env
-        echo "FLICKR_USER=${{secrets.FLICKR_USER}}" >> .env
+        echo "FLICKR_KEY=${{ secrets.FLICKR_KEY }}" > .env
+        echo "FLICKR_USER=${{ secrets.FLICKR_USER }}" >> .env
 
     - name: Adding Private Key
       run: |
@@ -38,6 +39,9 @@ jobs:
         
 
     - name: Deploying site...
-      run: |
-        rsync -e "ssh -o StrictHostKeyChecking=accept-new" -azP ./site/ ${{ secrets.REMOTE_USER }}:/home/seich/webapps/martianwabbitsite
-      
+      uses: s0/git-publish-subdir-action@v2.4.0
+      env:
+        REPO: ${{ secrets.REMOTE_HOST }}
+        BRANCH: master
+        FOLDER: site
+        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
