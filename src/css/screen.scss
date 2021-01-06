@@ -15,41 +15,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
-  & > * {
-    -webkit-animation-name: fadeIn;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-iteration-count: 1;
-    -moz-animation-name: fadeIn;
-    -moz-animation-duration: 1s;
-    -moz-animation-iteration-count: 1;
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 a {

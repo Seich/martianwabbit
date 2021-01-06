@@ -2,6 +2,7 @@ version: '3'
 
 services:
   site:
+    env_file: .env
     command: jekyll serve --force_polling 
     image: jekyll/jekyll@sha256:d1bf33637d476e3cb2d5858038673cc93bc961e9390d31171d9febde5c5d24fd
     volumes:
@@ -11,20 +12,3 @@ services:
       - 4000:4000
       - 35729:35729
       - 3000:3000
-    depends_on:
-      - chrome
-
-  hub:
-    image: selenium/hub:3.141.59-20200515
-    ports: 
-      - '4444:4444'
-
-  chrome:
-    image: selenium/node-chrome:3.141.59-20200515
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      HUB_HOST: hub
-      HUB_PORT: 4444
