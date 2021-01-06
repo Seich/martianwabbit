@@ -19,6 +19,9 @@ jobs:
         echo "FLICKR_KEY=${{ secrets.FLICKR_KEY }}" > .env
         echo "FLICKR_USER=${{ secrets.FLICKR_USER }}" >> .env
 
+    - name: Setup known_hosts
+      run: echo "${{ secrets.HOST_FINGERPRINT }}" > known_hosts
+
     - name: Adding Private Key
       run: |
         mkdir ~/.ssh
@@ -36,6 +39,7 @@ jobs:
         mkdir -p ./src/.jekyll-cache
         chmod -R 0777 ./
         docker-compose run site jekyll build --trace
+        touch ./site/.static
         
 
     - name: Deploying site...
@@ -45,3 +49,4 @@ jobs:
         BRANCH: master
         FOLDER: site
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        KNOWN_HOSTS_FILE: known_hosts
