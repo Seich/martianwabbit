@@ -22,11 +22,12 @@ git checkout origin/Beta
 
 If you are on Ubuntu you can run `ubuntu_setup.sh` and should install pretty
 much everything you need. I did hit a snag though, for whatever reason if I
-tried installing the requirements, gdal would not compile and break. Turns out
+tried installing the requirements, gdal would not compile. Turns out
 it comes down to it not finding the correct headers. You can get around it by
 installing it manually like this:
 
 ```
+sudo apt install libgdal-dev gdal-bin
 pip install gdal==3.0.4 --global-option=build_ext --global-option="-I/usr/include/gdal/"
 ```
 
