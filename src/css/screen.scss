@@ -1,24 +1,25 @@
 ---
 ---
 
-/* Fonts */
-@import url(https://fonts.googleapis.com/css?family=PT+Serif);
-
-$green: #29b90b;
-$blue: rgb(0, 134, 184);
+$primary: #971717;
 
 /* General */
 body {
   margin: 0;
-  font-family: "PT Serif", serif;
-  font-size: 18px;
+  font-family: "Liberation Serif", Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 a {
-  color: $green;
+  color: $primary
+;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 /* Top */
@@ -37,7 +38,7 @@ a {
     }
 
     span {
-      color: $green;
+      color: $primary;
     }
   }
 }
@@ -83,10 +84,6 @@ footer {
         font-size: 1.1em;
         margin-bottom: 0;
         font-weight: 100;
-
-        a:hover {
-          text-decoration: none;
-        }
       }
 
       p {
