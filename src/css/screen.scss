@@ -11,11 +11,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: rgb(65, 27, 51);
 }
 
 a {
-  color: $primary
-;
+  color: $primary;
 
   &:hover {
     text-decoration: none;
