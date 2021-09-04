@@ -102,18 +102,16 @@ footer {
 }
 
 .home .photos {
-  width: 100%;
-  margin-top: 2em;
-  text-align: center;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-
+  line-height: 0;
+  margin: 2em;
   max-width: 100vw;
   overflow: hidden;
+  width: 100%;
+
+  a {
+    display: inline-block;
+    padding: 0.2rem;
+  }
 
   img {
     height: 16vw;
@@ -219,6 +217,10 @@ article {
     margin: 1em;
   }
 
+  blockquote + h2 {
+    margin-top: 3rem;
+  }
+
   blockquote p {
     margin: 0;
   }
@@ -244,6 +246,12 @@ article {
   }
 }
 
+.footnotes {
+  border-top: 1px dotted;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+
 .archive {
   margin: 0 auto;
   width: 800px;
@@ -253,33 +261,21 @@ article {
     font-size: 2.3em;
   }
 
+  li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 1px dotted;
+    padding-bottom: 0.3rem;
+  }
+
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
 
-    h3 {
-      margin-bottom: 0.3em;
-      font-size: 1.5em;
-
-      a {
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-
     p {
       margin: 0;
-    }
-
-    hr {
-      width: 20%;
-      border-bottom: none;
-      border-top: 2px solid #ccc;
-      margin: 1em auto;
     }
   }
 }
