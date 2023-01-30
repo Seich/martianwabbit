@@ -132,6 +132,7 @@ footer {
 /* Content */
 header {
   width: 70vw;
+  max-width: 1240px;
   margin: 0 auto;
 
   h1 {
@@ -139,6 +140,7 @@ header {
     margin: 0;
     padding: 0.2em 0;
     text-align: center;
+    line-height: 100%;
 
     a {
       text-decoration: none;
