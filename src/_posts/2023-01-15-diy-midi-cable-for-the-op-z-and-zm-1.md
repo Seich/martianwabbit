@@ -17,27 +17,28 @@ All you need is a MIDI jack, and 3.5mm jack and some cable. I used a midi jack
 that already had it's cable attached. I took this from a previous midi project
 so that cut the soldering in half.
 
-![](/files/2023-01-15-diy-midi-cable-for-the-op-z-and-zm-1/1.jpg)
+{% image 1.jpg "The parts we'll need. A midi jack and a 3.5mm jack"%}
 
 I couldn't find documentation stating weather this cable is meant to be type a
 or b or something else. So I tried wiring it as a type-A (a being the "standard"
 from what I know). This didn't work, it turns out is actually type-B. Here's the
 diagram:
 
-![](/files/2023-01-15-diy-midi-cable-for-the-op-z-and-zm-1/diagram.png)
+{% image diagram.png "The diagram we'll follow, current source to tip, current
+sink to the ring and shield to the sleeve "%}
 
 Some soldering later and the cable is mostly ready:
 
-![](/files/2023-01-15-diy-midi-cable-for-the-op-z-and-zm-1/2.jpg)
+{% image 2.jpg "The cables soldered onto the 3.5mm jack"%}
 
 I used some heatshrink as strain-relief. I was also lacking the piece of plastic
 that screws to the 3.5mm jack so I wrapped it in some extra heatshrink to give
 it some strength. Here's the final cable:
 
-![](/files/2023-01-15-diy-midi-cable-for-the-op-z-and-zm-1/4.jpg)
+{% image 4.jpg "The finished cable, now with some heatshrink" %}
 
 Here's what my keytar setup looks like now:
 
-![](/files/2023-01-15-diy-midi-cable-for-the-op-z-and-zm-1/5.jpg)
+{% image 5.jpg "The op-z on top of my rockband keytar" %}
 
 It works flawlessly and makes for a fun little weekend project.

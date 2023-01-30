@@ -86,7 +86,7 @@ acrylics, I didn't like how glossy they were but it grew on me. I eventually
 started drawing over them with markers and developed a bit of a "style". I would
 paint quite a bit over the next couple of months.
 
-![One of the many paintings I did over the pandemic. An infinity net over a red background.](/files/2021-08-08-the-pandemic/painting.jpeg)
+{% image painting.jpg "One of the many paintings I did over the pandemic. An infinity net over a red background."%}
 
 As the sense of normalcy grew and I had more time off I started playing Call of
 Duty with Carlos and Carla. It happened almost by accident but we started
@@ -112,7 +112,7 @@ again. It's always been a large part of my life so it felt like that'd help me
 go back "normal". I decided to make a hobby off it (it technically already was)
 and got myself a espresso machine. I named it Pino.
 
-![Pino the espresso machine](/files/2021-08-08-the-pandemic/pino.jpeg)
+{% image pino.jpg "Pino the espresso machine"%}
 
 I eventually start working on my small side project, a site to simplify selling
 online, elmarket.
@@ -123,7 +123,7 @@ Very little happened the rest of the year:
 
 We raised moths.
 
-![One of the moths we raised, marimoth](/files/2021-08-08-the-pandemic/marimoth.jpeg)
+{% image marimoth.jpg "One of the moths we raised, marimoth"%}
 
 We would raise more moths the following year at around the same time of the
 year.
@@ -133,11 +133,11 @@ camera (Which I called Prismo). I painted some more. My sister suggested we run
 a book club, we read one book, tiny fire everywhere, I hated it and decided to
 stop book clubbing.
 
-![Another painting of mine from that time](/files/2021-08-08-the-pandemic/painting2.jpeg)
+{% image painting2.jpg "Another painting of mine from that time"%}
 
 I took a couple of weeks off in December to try to chill for a bit.
 
-![A picture of the sky](/files/2021-08-08-the-pandemic/sky.jpeg)
+{% image sky.jpg "A picture of the sky"%}
 
 ## A New Year
 On my first day back after the Christmas break we were told at Azlo that our CEO
@@ -160,7 +160,7 @@ We found Pitt, the chunkiest boy. We originally offered him to Edward for
 adoption but he didn't want to adopt him. After a couple of days, even though we thought
 we had enough cats, we ended up falling in love with him.
 
-![Pitt, the cat](/files/2021-08-08-the-pandemic/pitt.JPG)
+{% image pitt.jpg "Pitt, the cat"%}
 
 We finally got our first vaccine shot in August. It was nice, it felt like maybe
 it was coming to an end.
@@ -179,14 +179,14 @@ no intentions of adopting another cat at the point but she needed a ton of help
 and it didn't seem fair to pin her off on someone else. So we kept her. No
 regrets.
 
-![Gomita, the cat](/files/2021-08-08-the-pandemic/gomita.jpeg)
+{% image gomita.jpg "Gomita, the cat"%}
 
 We left for Europe in October and spent a couple of weeks over there. I had to
 go to Estonia to open a bank account for the company I had founded the year
 before but we spent the rest of time relaxing and doing normally touristy stuff
 (mostly eating).
 
-![A picture of the author](/files/2021-08-08-the-pandemic/me.JPG)
+{% image me.jpg "A picture of the author"%}
 
 [^1]:
     We are about 4 weeks away from being fully immunized which is as far as I

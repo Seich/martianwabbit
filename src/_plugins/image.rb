@@ -1,4 +1,4 @@
-class FileTag < Liquid::Tag
+class ImageTag < Liquid::Tag
   def initialize(tag_name, params, alt)
     super
     params = params.split(" ", 2)
@@ -12,4 +12,4 @@ class FileTag < Liquid::Tag
   end
 end
 
-Liquid::Template.register_tag("file", FileTag)
+Liquid::Template.register_tag("image", ImageTag)
