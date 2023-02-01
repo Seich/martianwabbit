@@ -3,7 +3,7 @@ class ImageTag < Liquid::Tag
     super
     params = params.split(" ", 2)
     @filename = params[0]
-    @alt = params[1]
+    @alt = params[1].sub('"', "")
   end
 
   def render(context)

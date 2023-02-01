@@ -268,6 +268,26 @@ article {
   }
 }
 
+.image-stack {
+  margin-top: calc(25% + 1.8em);
+  position: relative;
+
+  img {
+    position: relative;
+    margin: 0;
+    margin-top: -25%;
+    max-width: 70%;
+
+    &:nth-child(odd) {
+      left: 0;
+    }
+
+    &:nth-child(even) {
+      margin-left: 25%;
+    }
+  }
+}
+
 .footnotes {
   border-top: 1px dotted;
   font-size: 0.9rem;
