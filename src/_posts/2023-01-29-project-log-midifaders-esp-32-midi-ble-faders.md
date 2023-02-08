@@ -19,7 +19,7 @@ faders, and measured how many I could fit easily on that board.
 The electronics were pretty straightforward. I just needed all of my faders to
 be connected:
 
-{% image 1.png "A schematic for the midi faders" %}
+{% image 1.jpg "A schematic for the midi faders" %}
 
 I rapidly routed a board, and proceeded to mill it.
 
@@ -37,12 +37,12 @@ The biggest problem was FlatCam. FlatCam is awesome and I love it but it seems
 barely maintained and running it is getting harder every day. I decided to try
 out alternatives. It turns out there really aren't any.
 
-I ended up settling with https://copper.carbide3d.com/. This is a website
-provided by carbide3d that allows you to upload your layers and get a set of
-gcode files. You only get minimal options so I don't think I'd use it for
+I ended up settling with [Copper](https://copper.carbide3d.com/). This is a
+website provided by carbide3d that allows you to upload your layers and get a
+set of gcode files. You only get minimal options so I don't think I'd use it for
 anything but a one-sided PCB but it seemed acceptable.
 
-{% image 2.png "A picture of Carbide Copper" %}
+{% image 2.jpg "A picture of Carbide Copper" %}
 
 With my set of gcode files I felt ready to mill my PCB. Thankfully bCNC still
 runs flawlessly on a Pi so that part of my workflow remained intact. Here's a
@@ -79,7 +79,38 @@ It ended up looking pretty good.
 
 ## Firmware~
 
-So the firmware is the hard part. My idea was extremely simple. Each fader
-should send, via bluetooth midi, a cc on a channel. These should be modifiable
-from within the device. The UI would have to be something I came up with as I
-went.
+So the firmware for these things is usually the hard part. My idea was extremely
+simple. Each fader should send, via bluetooth midi, a cc on a channel. These
+should be modifiable from within the device. The UI would have to be something I
+came up with as I went. I used the excellent arduino_midi_library with a
+bluetooth transport and everything went surprisingly smoothly.
+
+In a couple of days I had implemented all menus, battery management, bluetooth
+and settings. Of the features I wanted to add, I am only missing presets and a
+web app to load these in. Overall I am extremely happy with how performant and
+easy to use it is.
+
+## Case
+
+The case took a couple of iterations to get right. I hadn't done any 3d printing
+in a while so I was a bit rusty.
+
+{% image 8.jpg "A 3d printer, printing the case" %}
+
+After shifting around the design a bit I came up with something that was both
+easy to print and very functional.
+
+{% image 9.jpg "The different versions of the case" %}
+
+# The End ~
+
+I am very happy with the final result. It came out really clean, easy to use and
+highly functional. Setting up new devices is fast and easy and since it's
+compliant it connects seamlessly with other MIDI-BLE devices, like the widi
+masters.
+
+{% image 10.jpg "The final device" %}
+
+{% image 11.jpg "The final device" %}
+
+{% image 12.jpg "The final device" %}
