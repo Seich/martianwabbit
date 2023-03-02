@@ -166,7 +166,6 @@ header {
 }
 
 article {
-  color: #222;
   margin: 0 auto 2em;
   padding: 0 3em;
   position: relative;
@@ -415,6 +414,30 @@ section.fourOfour {
     overflow-x: auto;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+ body {
+   background: #202020;
+   color: #f9e2f0;
+ }
+
+ a {
+   color: #ee6d6d;
+ }
+
+ header h1 a {
+   color: #f9e2f0;
+ }
+
+ #top h1 a {
+  color: #f9e2f0;
+ }
+
+ footer {
+  background: #2b2a2a;
+ }
+}
+
 
 div.highlighter-rouge {
   background: #f4f4f4;
