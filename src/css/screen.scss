@@ -338,6 +338,17 @@ section.fourOfour {
     width: 100%;
   }
 
+  header {
+    width: 100vw;
+
+    h1 {
+      font-size: 2em;
+      line-height: 120%;
+      text-align: left;
+      padding-left: 4vw;
+    }
+  }
+
   .home {
     & > div {
       width: 90%;
@@ -431,6 +442,10 @@ section.fourOfour {
 
  #top h1 a {
   color: #f9e2f0;
+ }
+
+ .highlighter-rouge {
+   filter: invert(1);
  }
 
  footer {
