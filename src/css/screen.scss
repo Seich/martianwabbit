@@ -431,6 +431,10 @@ section.fourOfour {
    background: #202020;
    color: #f9e2f0;
  }
+ 
+ blockquote {
+   background: #292929!important;
+ }
 
  a {
    color: #ee6d6d;
@@ -446,6 +450,10 @@ section.fourOfour {
 
  .highlighter-rouge {
    filter: invert(1);
+ }
+
+ code {
+   color: black;
  }
 
  footer {
