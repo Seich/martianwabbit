@@ -1,8 +1,6 @@
 ---
 ---
 
-@import url("https://use.typekit.net/txs0ayd.css");
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap');
 
 $primary: #971717;
 
@@ -28,7 +26,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: futura-pt, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
 }
 
 /* Top */
@@ -89,10 +87,14 @@ footer {
       list-style: none;
       margin-left: 25%;
 
-      h3 {
-        font-size: 1.1em;
-        margin-bottom: 0;
+      li {
+        font-size: 1em;
+        margin-bottom: 22px;
         font-weight: 100;
+
+        a {
+          display: block;
+        }
       }
 
       p {
@@ -136,11 +138,12 @@ header {
   margin: 0 auto;
 
   h1 {
-    font-size: 4em;
     margin: 0;
+    margin-top: 1em;
     padding: 0.2em 0;
     text-align: center;
-    line-height: 100%;
+    font-size: 2.5em;
+    line-height: 140%;
 
     a {
       text-decoration: none;
@@ -216,7 +219,7 @@ article {
   }
 
   code {
-    font-family: 'JetBrains Mono', monaco, menlo, consolas, monospace;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   }
 
   p code,
@@ -440,8 +443,16 @@ section.fourOfour {
    color: #ee6d6d;
  }
 
+ #top h1 span {
+   color: #ee6d6d;
+ }
+
  header h1 a {
    color: #f9e2f0;
+ }
+
+ header aside {
+   color: #d0b9b9;
  }
 
  #top h1 a {
